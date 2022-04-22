@@ -1545,6 +1545,7 @@
                             1 < s && we(c),
                             1 < s &&
                                 xe(
+<<<<<<< HEAD
                                     e
                                         .slice(0, s - 1)
                                         .concat({
@@ -1553,6 +1554,11 @@
                                                     ? '*'
                                                     : '',
                                         })
+=======
+                                    e.slice(0, s - 1).concat({
+                                        value: ' ' === e[s - 2].type ? '*' : '',
+                                    })
+>>>>>>> upstream/main
                                 ).replace($, '$1'),
                             t,
                             s < n && Ee(e.slice(s, n)),

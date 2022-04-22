@@ -873,12 +873,19 @@ function iOSversion() {
                     t.opt.fadeOnStartTime,
                     function () {
                         jQuery.mbYTPlayer.getDataFromAPI(t),
+<<<<<<< HEAD
                             r
                                 .YTPGetPlayer()
                                 .loadVideoById({
                                     videoId: t.videoID,
                                     suggestedQuality: t.opt.quality,
                                 }),
+=======
+                            r.YTPGetPlayer().loadVideoById({
+                                videoId: t.videoID,
+                                suggestedQuality: t.opt.quality,
+                            }),
+>>>>>>> upstream/main
                             r.YTPPause(),
                             r.optimizeDisplay(),
                             r.YTPCheckForState();

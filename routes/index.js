@@ -1,3 +1,7 @@
+const loginRoutes = require('./login');
+const logoutRoutes = require('./logout');
+const signupRoutes = require('./signup');
+
 const constructorMethod = (app) => {
     app.use('/login', loginRoutes);
     app.use('/logout', logoutRoutes);
