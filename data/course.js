@@ -5,17 +5,34 @@ const { ObjectId } = require('mongodb');
 
 const exportMethods = {
     /*
-        Professor: {
-            “_id”: ObjectId(“624724af974aef308ff7cc6a”),
-            “professorName”: ​​“Patrick, Hill”,
-            “Introduction”: “Professor in the Computer Science department at Stevens Institute of 
-                            Technology”
-            “rating”: 4.5,
-            “reviews” : ["62215a7ebd69a460a6193411", "62215a7ebd69a460a6193412"],
-            “courses” : ["62215a7ebd69a460a6193413", "62215a7ebd69a460a6193414"]
+        Courses: {
+           "_id": "62222e3457e362991824996e",
+           "course": "CS 546 Web Programming",
+           "academicLevel": "Graduate",
+           "courseOwner": "Computer Science Program",
+           "type": "Core",
+           "gradingBasis": ["Audit", "Graded", "Pass/Fail"],
+           "units": 3,
+           "description": "This course will provide students with a first strong approach of internet 
+                   programming. It will give the basic knowledge on how the Internet works and how to 
+                   create advanced web sites by the use of script languages, after learning the basics 
+                   of HTML. The course will teach the students how to create a complex global site 
+                   through the creation of individual working modules, giving them the skills required 
+                   in any business such as proper team work and coordination between groups.", 
+           "typicalPeriodsOffered": ["Fall Semester", "Spring Semester", "Summer Session"],
+           "instructionalFormats": "Lecture",
+           "syllabus": "https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf",
+           "courseware": "https://github.com/graffixnyc/CS-546",
+           "metrics": {
+                      "difficulty": "Medium",
+                      "chanceToGetA": "High",
+                      "workLoad": "Hard"
+             },
+           "courseReview": ["62222e3b57e362991824996f", "62222e4a57e3629918249970"]
         }
     */
-    async createProfessor(name, intro, courses) {
+
+    async createCourse(course, academicLevel, courseOwner, type, gradingBasis, units, description, typicalPeriodsOffered, instructionalFormats) {
         // TODO: input validation
 
         const profCollection = await professors();
@@ -57,17 +74,6 @@ const exportMethods = {
         if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
             throw 'Update failed';
         return await this.getProfById(id);
-    },
-
-    async removeUser(id) {
-        // TODO: validate id
-
-        const profCollection = await professors();
-        const deletionInfo = await userCollection.deleteOne({_id: ObjectId(id)});
-        if (deletionInfo.deletedCount === 0) {
-          throw `Could not delete professor with id of ${id}`;
-        }
-        return true;
     },
 
     /* 
