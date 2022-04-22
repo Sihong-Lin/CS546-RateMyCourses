@@ -36,8 +36,8 @@ async function createUser(username, password) {
         courseReviews: [],
         professorReviews: [],
         restrictStatus: false,
-        profilePicture: "",
-        role: "admin"
+        profilePicture: '',
+        role: 'admin',
     };
 
     const insertInfo = await userCollection.insertOne(newUser);
