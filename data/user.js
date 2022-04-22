@@ -1,12 +1,12 @@
 const bcrypt = require('bcrypt');
 const saltRound = 16;
-const mongoCollections = require("../config/mongoCollections");
+const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 
 module.exports = {
     createUser,
-    checkUser
-}
+    checkUser,
+};
 
 async function createUser(username, password) {
 
@@ -16,22 +16,18 @@ async function createUser(username, password) {
     const userCollection = await users();
     const res = await userCollection.find({}).toArray();
     if (res.length == 0) {
-        await userCollection.createIndex({ "username": "text" })
+        await userCollection.createIndex({ username: 'text' });
     }
 
-    const checkDuplicate = await userCollection.findOne(
-        {
-            $text:
-            {
-                $search: username,
-                $caseSensitive: false
-            }
-        }
-    );
+    const checkDuplicate = await userCollection.findOne({
+        $text: {
+            $search: username,
+            $caseSensitive: false,
+        },
+    });
     if (checkDuplicate) {
-        throw "Provided username already exists."; 
+        throw 'Provided username already exists.';
     }
- 
 
     let newUser = {
         "username": username.toLowerCase(),
@@ -44,13 +40,11 @@ async function createUser(username, password) {
     }
     const insertInfo = await userCollection.insertOne(newUser);
     if (insertInfo.insertedCount === 0) {
-        throw "Could not create user.";
+        throw 'Could not create user.';
     }
 
-    return {userInserted: true};
+    return { userInserted: true };
 }
-
-
 
 async function checkUser(username, password) {
 
@@ -60,20 +54,17 @@ async function checkUser(username, password) {
     const userCollection = await users();
     const res = await userCollection.find({}).toArray();
     if (res.length == 0) {
-        await userCollection.createIndex({ "username": "text" })
+        await userCollection.createIndex({ username: 'text' });
     }
 
-    const checkResult = await userCollection.findOne(
-        {
-            $text:
-            {
-                $search: username,
-                $caseSensitive: false
-            }
-        }
-    );
+    const checkResult = await userCollection.findOne({
+        $text: {
+            $search: username,
+            $caseSensitive: false,
+        },
+    });
     if (!checkResult) {
-        throw "Either the username or password is invalid."; 
+        throw 'Either the username or password is invalid.';
     }
     if (! await bcrypt.compare(password, checkResult.password)) {
         throw "Either the username or password is invalid.";
@@ -83,18 +74,17 @@ async function checkUser(username, password) {
 
 function checkUsername(input) {
     if (input == undefined) return false;
-    if (typeof input != "string") return false;
+    if (typeof input != 'string') return false;
     input = input.trim();
     if (input.length == 0) return false;
-    if (! /^[a-zA-Z0-9]{4,}$/.test(input)) return false;
-    return true;   
+    if (!/^[a-zA-Z0-9]{4,}$/.test(input)) return false;
+    return true;
 }
 
 function checkPassword(input) {
     if (input == undefined) return false;
-    if (typeof input != "string") return false;
+    if (typeof input != 'string') return false;
     if (input.length < 6) return false;
     if (/[ ]{1,}/.test(input)) return false;
-    return true;   
+    return true;
 }
-
