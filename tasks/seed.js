@@ -1,11 +1,22 @@
+const user = require('../data/user');
 const course = require('../data/course');
 const professor = require('../data/professor');
 const connection = require('../config/mongoConnection');
+const { ObjectId } = require('mongodb');
+
 const main = async () => {
     const db = await connection.connectToDb();
     await db.dropDatabase();
     console.log('1. Create a course)');
+
     try {
+
+        let user1 = await user.createUser(
+            "jguo32",
+            "123456"
+        );
+        console.log(user1);
+
         let course1 = await course.createCourse(
             'CS 546 Web Programming', // courseName
             'Graduate', // academicLevel
@@ -25,12 +36,7 @@ const main = async () => {
             ], // metrics
             []
         ); // courseReview
-        console.log('Course has added');
-    } catch (e) {
-        console.log(e);
-    }
 
-    try {
         let name =  "Eric Koskinen"
         let intro = "My research yields techniques that improve the way programmers develop reliable and efficient concurrent software for multi-core and distributed systems."
         let professor1 = await professor.createProfessor(
@@ -39,6 +45,16 @@ const main = async () => {
             ['CS516', 'CS511']
         );
         console.log(professor1);
+
+        console.log('Course has added');
+        
+        let uid = user1.insertedId.toString()
+        let pid = professor1._id.toString();
+        let review = "nice!";
+
+        let review1 = await professor.addProfReview(uid, pid, review, 5);
+        console.log(review1);
+
     } catch (e) {
         console.log(e);
     }

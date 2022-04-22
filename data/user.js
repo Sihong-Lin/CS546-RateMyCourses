@@ -33,6 +33,11 @@ async function createUser(username, password) {
     let newUser = {
         username: username.toLowerCase(),
         password: await bcrypt.hash(password, saltRound),
+        courseReviews: [],
+        professorReviews: [],
+        restrictStatus: false,
+        profilePicture: "",
+        role: "admin"
     };
 
     const insertInfo = await userCollection.insertOne(newUser);
@@ -40,7 +45,7 @@ async function createUser(username, password) {
         throw 'Could not create user.';
     }
 
-    return { userInserted: true };
+    return { userInserted: true, insertedId: insertInfo.insertedId };
 }
 
 async function checkUser(username, password) {
