@@ -1,7 +1,7 @@
 
 const constructorMethod = app => {
     app.get("/", (req, res) => {
-        res.render('200')
+        res.sendFile('index.html');
     })
   
     app.use("*", (req, res) => {
