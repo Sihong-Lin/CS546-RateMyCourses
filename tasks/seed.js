@@ -21,6 +21,7 @@ const main = async () => {
             [{difficulty: "Medium"}, {chanceToGetA: "High"}, {workLoad: "Hard" }], // metrics
             []) // courseReview
         console.log('Course has added');
+        console.log(course1);
       } catch (e) {
         console.log(e);
     }
