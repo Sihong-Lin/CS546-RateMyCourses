@@ -7,8 +7,8 @@ const { ObjectId } = require('mongodb');
 const main = async () => {
     const db = await connection.connectToDb();
     await db.dropDatabase();
-    console.log('1. Create a course)');
-
+    let courseToDelete = undefined
+    console.log("1. Create a course"); 
     try {
         let user1 = await user.createUser('jguo32', '123456');
         console.log(user1);
