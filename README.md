@@ -7,7 +7,7 @@ Want to stack your schedule with great classes in Stevens? The RateMyCourses app
 
 
 ## **Task**
-- Sihong Lin    core：1.Dashboard    Extra features: 1.Data Visualization
+- Sihong Lin: 1.Dashboard || 1.Data Visualization
 - Jiayi Guo
 - Ziheng Zhu
 - Yinuo Lu
