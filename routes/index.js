@@ -1,11 +1,16 @@
 
 const constructorMethod = app => {
+
+    app.use('/login', loginRoutes);
+    app.use('/logout', logoutRoutes);
+    app.use('/signup', signupRoutes);
+
     app.get("/", (req, res) => {
         res.sendFile('index.html');
     })
   
     app.use("*", (req, res) => {
-    res.render('404')
+        res.status(404).json({ error: 'Page Not found' });
     })
   }
   
