@@ -10,7 +10,7 @@ Want to stack your schedule with great classes in Stevens? The RateMyCourses app
 - Sihong Lin: 1.Dashboard || 1.Data Visualization
 - Jiayi Guo
 - Ziheng Zhu
-- Yinuo Lu 1.Professor api || 5. Deployment
+- Yinuo Lu    5.Backstage Management || 4. Backstage Management
 - Bofei Wang: 2.User Profile || 2.Course Recommendation
 
 
