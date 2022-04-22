@@ -14,7 +14,14 @@ const getCollectionFn = (collection) => {
   };
 };
 
-/* Now, you can list your collections here: */
+/*
+  Three collections are created for:
+    - users 
+    - courses
+    - professors
+*/
 module.exports = {
-  users: getCollectionFn('users')
+  users: getCollectionFn('users'),
+  courses: getCollectionFn('courses'),
+  professors: getCollectionFn('professors')
 };
