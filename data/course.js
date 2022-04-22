@@ -61,9 +61,23 @@ async function getCourse(courseId) {
     return course;
 }
 
+async function removeCourse(courseId) {
+    courseId = inputCheck.checkCourseId(courseId);
+    const courseCollection = await courses();
+    const course = await this.getCourse(courseId)
+    const courseName = course.name
+    const deletionInfo = await courseCollection.deleteOne({ _id: ObjectId(courseId) });
+    if (deletionInfo.deletedCount === 0) {
+        throw `Could not delete courseName with id of ${courseId}`;
+    }
+    return courseName + ' has been successfully deleted!'
+}
+
+
 
 
 module.exports = {
     createCourse,
-    getCourse
+    getCourse,
+    removeCourse
 }
