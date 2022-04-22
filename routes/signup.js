@@ -13,12 +13,11 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     let username = req.body.usernameInput;
     let password = req.body.passwordInput;
-
     try {
         if (!username || !password)
             throw 'Both username and password must be supplied.';
-        if (!checkUsername(username)) throw 'Provided username is invalid.';
-        if (!checkPassword(password)) throw 'Provided password is invalid.';
+        //if (!checkUsername(username)) throw 'Provided username is invalid.';
+        //if (!checkPassword(password)) throw 'Provided password is invalid.';
     } catch (err) {
         res.status(400).render('signup', {
             hasError: true,
@@ -31,7 +30,7 @@ router.post('/', async (req, res) => {
     try {
         const result = await user.createUser(username, password);
         if (result.userInserted == true) {
-            res.redirect('/');
+            res.redirect('/login.html');
         } else {
             res.status(500).render('signup', {
                 error: 'Internal Server Error',
