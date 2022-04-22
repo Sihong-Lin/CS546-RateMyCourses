@@ -1,3 +1,4 @@
+
 const course = require('../data/course');
 const connection = require('../config/mongoConnection');
 const main = async () => {
