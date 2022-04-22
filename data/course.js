@@ -3,9 +3,21 @@ const inputCheck = require('./inputCheck');
 const courses = mongoCollections.courses;
 const { ObjectId } = require('mongodb');
 
-async function createCourse(courseName, academicLevel, courseOwner, type,
-    gradingBasis, units, description, typicalPeriodsOffered,
-    instructionalFormats, syllabus, courseware) {
+async function createCourse(
+    courseName,
+    academicLevel,
+    courseOwner,
+    type,
+    gradingBasis,
+    units,
+    description,
+    typicalPeriodsOffered,
+    instructionalFormats,
+    syllabus,
+    courseware,
+    metrics,
+    courseReview
+) {
     try {
         courseName = inputCheck.checkCourseName(courseName);
         academicLevel = inputCheck.checkAcademicLevel(academicLevel);
@@ -14,12 +26,17 @@ async function createCourse(courseName, academicLevel, courseOwner, type,
         gradingBasis = inputCheck.checkGradingBasis(gradingBasis);
         units = inputCheck.checkUnits(units);
         description = inputCheck.checkDescription(description);
-        typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(typicalPeriodsOffered);
-        instructionalFormats = inputCheck.checkInstructionalFormats(instructionalFormats);
+        typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(
+            typicalPeriodsOffered
+        );
+        instructionalFormats =
+            inputCheck.checkInstructionalFormats(instructionalFormats);
         syllabus = inputCheck.checkSyllabus(syllabus);
         courseware = inputCheck.checkCourseware(courseware);
+        metrics = inputCheck.checkMetrics(metrics);
+        courseReview = inputCheck.checkCourseReview(courseReview);
     } catch (e) {
-        throw e
+        throw e;
     }
     
 
@@ -46,7 +63,10 @@ async function createCourse(courseName, academicLevel, courseOwner, type,
     };
     const courseCollection = await courses();
     const newInsertInformation = await courseCollection.insertOne(newCourse);
-    if (!newInsertInformation.acknowledged || !newInsertInformation.insertedId) {
+    if (
+        !newInsertInformation.acknowledged ||
+        !newInsertInformation.insertedId
+    ) {
         throw 'Could not add course';
     }
     const newId = newInsertInformation.insertedId.toString();

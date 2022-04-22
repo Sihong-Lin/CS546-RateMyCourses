@@ -43,7 +43,7 @@ async function createUser(username, password) {
         throw 'Could not create user.';
     }
 
-    return { userInserted: true };
+    return { userInserted: true, insertedId: insertInfo.insertedId };
 }
 
 async function checkUser(username, password) {

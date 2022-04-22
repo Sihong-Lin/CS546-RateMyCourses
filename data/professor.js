@@ -36,7 +36,7 @@ const exportMethods = {
 
     async getProfById(id) {
         const profCollection = await professors();
-        const professor = await userCollection.findOne({ _id: ObjectId(id) });
+        const professor = await profCollection.findOne({ _id: ObjectId(id) });
         if (!professor) throw 'Professor not found';
         return professor;
     },
@@ -63,9 +63,11 @@ const exportMethods = {
         // TODO: validate id
 
         const profCollection = await professors();
-        const deletionInfo = await userCollection.deleteOne({_id: ObjectId(id)});
+        const deletionInfo = await userCollection.deleteOne({
+            _id: ObjectId(id),
+        });
         if (deletionInfo.deletedCount === 0) {
-          throw `Could not delete professor with id of ${id}`;
+            throw `Could not delete professor with id of ${id}`;
         }
         return true;
     },
