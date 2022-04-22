@@ -14,3 +14,6 @@ Want to stack your schedule with great classes in Stevens? The RateMyCourses app
 - Bofei Wang: 2.User Profile || 2.Course Recommendation
 
 hello?
+## Sync to upstream
+git fetch upstream
+git merge upstream/main
