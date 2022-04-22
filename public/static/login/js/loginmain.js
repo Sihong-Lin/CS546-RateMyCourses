@@ -1,13 +1,13 @@
-(function($) {
-    "use strict";
+(function ($) {
+    'use strict';
 
     /*-------------------------------------
 	Background image
 	-------------------------------------*/
-    $("[data-bg-image]").each(function() {
-        var img = $(this).data("bg-image");
+    $('[data-bg-image]').each(function () {
+        var img = $(this).data('bg-image');
         $(this).css({
-            backgroundImage: "url(" + img + ")"
+            backgroundImage: 'url(' + img + ')',
         });
     });
 
@@ -17,38 +17,40 @@
     window.onload = addNewClass();
 
     function addNewClass() {
-        $('.fxt-template-animation').imagesLoaded().done(function(instance) {
-            $('.fxt-template-animation').addClass('loaded');
-        });
+        $('.fxt-template-animation')
+            .imagesLoaded()
+            .done(function (instance) {
+                $('.fxt-template-animation').addClass('loaded');
+            });
     }
 
     /*-------------------------------------
     Toggle Class
     -------------------------------------*/
-    $(".toggle-password").on('click', function() {
-        $(this).toggleClass("fa-eye fa-eye-slash");
-        var input = $($(this).attr("toggle"));
-        if (input.attr("type") == "password") {
-            input.attr("type", "text");
+    $('.toggle-password').on('click', function () {
+        $(this).toggleClass('fa-eye fa-eye-slash');
+        var input = $($(this).attr('toggle'));
+        if (input.attr('type') == 'password') {
+            input.attr('type', 'text');
         } else {
-            input.attr("type", "password");
+            input.attr('type', 'password');
         }
     });
 
     /*-------------------------------------
     Youtube Video
     -------------------------------------*/
-    if ($.fn.YTPlayer !== undefined && $("#fxtVideo").length) {
-        $("#fxtVideo").YTPlayer({ useOnMobile: true });
+    if ($.fn.YTPlayer !== undefined && $('#fxtVideo').length) {
+        $('#fxtVideo').YTPlayer({ useOnMobile: true });
     }
 
     /*-------------------------------------
     Vegas Slider
     -------------------------------------*/
-    if ($.fn.vegas !== undefined && $("#vegas-slide").length) {
-        var target_slider = $("#vegas-slide"),
+    if ($.fn.vegas !== undefined && $('#vegas-slide').length) {
+        var target_slider = $('#vegas-slide'),
             vegas_options = target_slider.data('vegas-options');
-        if (typeof vegas_options === "object") {
+        if (typeof vegas_options === 'object') {
             target_slider.vegas(vegas_options);
         }
     }
@@ -56,7 +58,7 @@
     /*-------------------------------------
     OTP Form (Focusing on next input)
     -------------------------------------*/
-    $("#otp-form .otp-input").keyup(function() {
+    $('#otp-form .otp-input').keyup(function () {
         if (this.value.length == this.maxLength) {
             $(this).next('.otp-input').focus();
         }
@@ -65,7 +67,7 @@
     /*-------------------------------------
 	Social Animation
 	-------------------------------------*/
-    $('#fxt-login-option >ul >li').hover(function() {
+    $('#fxt-login-option >ul >li').hover(function () {
         $('#fxt-login-option >ul >li').removeClass('active');
         $(this).addClass('active');
     });
@@ -73,8 +75,7 @@
     /*-------------------------------------
     Preloader
     -------------------------------------*/
-    $('#preloader').fadeOut('slow', function() {
+    $('#preloader').fadeOut('slow', function () {
         $(this).remove();
     });
-
 })(jQuery);

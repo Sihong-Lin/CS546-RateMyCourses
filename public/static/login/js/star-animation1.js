@@ -1,6 +1,6 @@
 var fps = 60,
     interval = 1000 / fps,
-    lastTime = (new Date()).getTime(),
+    lastTime = new Date().getTime(),
     currentTime = 0,
     delta = 0;
 
@@ -10,9 +10,8 @@ var starsCount = 500,
     starsSpeed = starsMinSpeed,
     stars = [];
 
-
 (function () {
-    "use strict";
+    'use strict';
 
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
@@ -26,11 +25,10 @@ var starsCount = 500,
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        context.fillStyle = "white";
-        context.strokeStyle = "white";
+        context.fillStyle = 'white';
+        context.strokeStyle = 'white';
         context.translate(canvas.width / 2, canvas.height / 2);
     };
-
 
     class Star {
         constructor() {
@@ -81,8 +79,7 @@ var starsCount = 500,
             }
         }
 
-        if (stars.length < starsCount)
-            stars.push(new Star());
+        if (stars.length < starsCount) stars.push(new Star());
     }
 
     function draw() {
@@ -92,15 +89,19 @@ var starsCount = 500,
     }
 
     function clear() {
-        context.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+        context.clearRect(
+            -canvas.width / 2,
+            -canvas.height / 2,
+            canvas.width,
+            canvas.height
+        );
     }
 
     function render() {
-        currentTime = (new Date()).getTime();
+        currentTime = new Date().getTime();
         delta = currentTime - lastTime;
 
         if (delta > interval) {
-
             update();
 
             clear();
@@ -115,5 +116,4 @@ var starsCount = 500,
     }
 
     init();
-
 })();
