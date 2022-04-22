@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const user = require("../data/user");
+const user = require("../data/userCheck");
 
 router.get('/', async (req, res) => {
     res.render("login", { title: "login" });
