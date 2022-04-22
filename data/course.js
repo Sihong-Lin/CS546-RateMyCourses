@@ -65,7 +65,7 @@ async function removeCourse(courseId) {
     courseId = inputCheck.checkCourseId(courseId);
     const courseCollection = await courses();
     const course = await this.getCourse(courseId)
-    const courseName = course.name
+    const courseName = course.courseName
     const deletionInfo = await courseCollection.deleteOne({ _id: ObjectId(courseId) });
     if (deletionInfo.deletedCount === 0) {
         throw `Could not delete courseName with id of ${courseId}`;

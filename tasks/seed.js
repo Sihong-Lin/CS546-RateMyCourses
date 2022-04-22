@@ -48,8 +48,8 @@ const main = async () => {
     }
     console.log("3. delete first course");  
     try {
-        await course.removeCourse(courseToDelete._id.toString());
-        //console.log(course1);
+        let deleteStatus = await course.removeCourse(courseToDelete._id.toString());
+        console.log(deleteStatus);
       } catch (e) {
         console.log(e);
     }
