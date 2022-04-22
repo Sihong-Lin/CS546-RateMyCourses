@@ -1,7 +1,6 @@
-
 function checkCourseName(courseName) {
-    if(!courseName) throw 'You must provided courseName'
-    if(typeof(courseName) !== 'string') throw 'courseName is not a string'
+    if (!courseName) throw 'You must provided courseName';
+    if (typeof courseName !== 'string') throw 'courseName is not a string';
     courseName = courseName.trim();
     if (courseName.trim().length === 0) {
         throw 'courseName cannot be an empty string or just spaces';
@@ -10,55 +9,55 @@ function checkCourseName(courseName) {
 }
 
 function checkAcademicLevel(academicLevel) {
-    return academicLevel
+    return academicLevel;
 }
 
 function checkCourseOwner(relecourseOwneraseDate) {
-    return relecourseOwneraseDate
+    return relecourseOwneraseDate;
 }
 
 function checkType(type) {
-    return type
+    return type;
 }
 
 function checkGradingBasis(gradingBasis) {
-    if(!gradingBasis) throw 'You must provided gradingBasis'
-    if(!Array.isArray(gradingBasis)) throw 'GradingBasis must be an array'
-    return gradingBasis
+    if (!gradingBasis) throw 'You must provided gradingBasis';
+    if (!Array.isArray(gradingBasis)) throw 'GradingBasis must be an array';
+    return gradingBasis;
 }
 
 function checkUnits(units) {
-    if(!units) throw 'You must provided unit'
-    if(typeof(units) !== 'number') throw 'unit is not a string'
-    return units
+    if (!units) throw 'You must provided unit';
+    if (typeof units !== 'number') throw 'unit is not a string';
+    return units;
 }
 
 function checkDescription(description) {
-    return description
+    return description;
 }
 
 function checkTypicalPeriodsOffered(typicalPeriodsOffered) {
-    return typicalPeriodsOffered
+    return typicalPeriodsOffered;
 }
 
 function checkInstructionalFormats(instructionalFormats) {
-    return instructionalFormats
+    return instructionalFormats;
 }
 
 function checkSyllabus(syllabus) {
-    return syllabus
+    return syllabus;
 }
 
 function checkCourseware(courseware) {
-    return courseware
+    return courseware;
 }
 
 function checkMetrics(metrics) {
-    return metrics
+    return metrics;
 }
 
 function checkCourseReview(courseReview) {
-    return courseReview
+    return courseReview;
 }
 
 module.exports = {
@@ -74,5 +73,5 @@ module.exports = {
     checkSyllabus,
     checkCourseware,
     checkMetrics,
-    checkCourseReview
-}
+    checkCourseReview,
+};
