@@ -5,4 +5,3 @@ const data = require('../data/');
 // 2
 const posts = data.posts;
 // 2222
-
