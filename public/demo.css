@@ -1,0 +1,13 @@
+body {
+    background: #dedede;
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+h1 {
+    color: #222;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+}
+p {
+    font-size: 1rem;
+    line-height: 2;
+}

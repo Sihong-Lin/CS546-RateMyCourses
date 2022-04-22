@@ -1,10 +1,11 @@
+
 const constructorMethod = app => {
     app.get("/", (req, res) => {
-        res.status(200).json({ message: "200 OK" })
+        res.render('200')
     })
   
     app.use("*", (req, res) => {
-        res.status(404).json({ error: "404 Page Not found" })
+    res.render('404')
     })
   }
   
