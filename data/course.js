@@ -136,10 +136,192 @@ async function updateCourseAcademicLevel(courseId, newAcademicLevel) {
     return oldAcademicLevel + " is changed to " + newAcademicLevel
 }
 
+async function updateCourseOwner(courseId, newCourseOwner) {
+    try {
+        courseId = inputCheck.checkCourseId(courseId);
+        newCourseOwner = inputCheck.checkCourseOwner(newCourseOwner);
+    } catch(e) {
+        throw e
+    }
+    const courseCollection = await courses();
+    const course = await courseCollection.findOne({ _id: ObjectId(courseId) })
+    if (course === null) throw 'No Course with that id'
+    const oldCourseOwner = course.courseOwner
+    const updateInfo = await courseCollection.updateOne(
+        {_id: ObjectId(courseId)},
+        {$set: {courseOwner: newCourseOwner}}
+    )
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    return oldCourseOwner + " is changed to " + newCourseOwner
+}
+
+async function updateCourseType(courseId, newType) {
+    try {
+        courseId = inputCheck.checkCourseId(courseId);
+        newType = inputCheck.checkCourseOwner(newType);
+    } catch(e) {
+        throw e
+    }
+    const courseCollection = await courses();
+    const course = await courseCollection.findOne({ _id: ObjectId(courseId) })
+    if (course === null) throw 'No Course with that id'
+    const oldType = course.type
+    const updateInfo = await courseCollection.updateOne(
+        {_id: ObjectId(courseId)},
+        {$set: {type: newType}}
+    )
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    return oldType + " is changed to " + newType
+}
+
+async function updateCourseGradingBasis(courseId, newGradingBasis) {
+    try {
+        courseId = inputCheck.checkCourseId(courseId);
+        newGradingBasis = inputCheck.checkGradingBasis(newGradingBasis);
+    } catch(e) {
+        throw e
+    }
+    const courseCollection = await courses();
+    const course = await courseCollection.findOne({ _id: ObjectId(courseId) })
+    if (course === null) throw 'No Course with that id'
+    const oldGradingBasis = course.gradingBasis
+    const updateInfo = await courseCollection.updateOne(
+        {_id: ObjectId(courseId)},
+        {$set: {gradingBasis: newGradingBasis}}
+    )
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    return oldGradingBasis + " is changed to " + newGradingBasis
+}
+
+async function updateCourseUnites(courseId, newUnits) {
+    try {
+        courseId = inputCheck.checkCourseId(courseId);
+        newUnits = inputCheck.checkUnits(newUnits);
+    } catch(e) {
+        throw e
+    }
+    const courseCollection = await courses();
+    const course = await courseCollection.findOne({ _id: ObjectId(courseId) })
+    if (course === null) throw 'No Course with that id'
+    const oldUnits = course.units
+    const updateInfo = await courseCollection.updateOne(
+        {_id: ObjectId(courseId)},
+        {$set: {units: newUnits}}
+    )
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    return oldUnits + " is changed to " + newUnits
+}
+
+
+async function updateCourseDescription(courseId, newDescription) {
+    try {
+        courseId = inputCheck.checkCourseId(courseId);
+        newDescription = inputCheck.checkDescription(newDescription);
+    } catch(e) {
+        throw e
+    }
+    const courseCollection = await courses();
+    const course = await courseCollection.findOne({ _id: ObjectId(courseId) })
+    if (course === null) throw 'No Course with that id'
+    const oldDescription = course.description
+    const updateInfo = await courseCollection.updateOne(
+        {_id: ObjectId(courseId)},
+        {$set: {description: newDescription}}
+    )
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    return oldDescription + " is changed to " + newDescription
+}
+
+async function updateCourseTypicalPeriodsOffered(courseId, newTypicalPeriodsOffered) {
+    try {
+        courseId = inputCheck.checkCourseId(courseId);
+        newTypicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(newTypicalPeriodsOffered);
+    } catch(e) {
+        throw e
+    }
+    const courseCollection = await courses();
+    const course = await courseCollection.findOne({ _id: ObjectId(courseId) })
+    if (course === null) throw 'No Course with that id'
+    const oldTypicalPeriodsOffered = course.typicalPeriodsOffered
+    const updateInfo = await courseCollection.updateOne(
+        {_id: ObjectId(courseId)},
+        {$set: {typicalPeriodsOffered: newTypicalPeriodsOffered}}
+    )
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    return oldTypicalPeriodsOffered + " is changed to " + newTypicalPeriodsOffered
+}
+
+async function updateCourseInstructionalFormats(courseId, newInstructionalFormats) {
+    try {
+        courseId = inputCheck.checkCourseId(courseId);
+        newInstructionalFormats = inputCheck.checkInstructionalFormats(newInstructionalFormats);
+    } catch(e) {
+        throw e
+    }
+    const courseCollection = await courses();
+    const course = await courseCollection.findOne({ _id: ObjectId(courseId) })
+    if (course === null) throw 'No Course with that id'
+    const oldInstructionalFormats = course.instructionalFormats
+    const updateInfo = await courseCollection.updateOne(
+        {_id: ObjectId(courseId)},
+        {$set: {instructionalFormats: newInstructionalFormats}}
+    )
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    return oldInstructionalFormats + " is changed to " + newInstructionalFormats
+}
+
+
+async function updateCourseSyllabus(courseId, newSyllabus) {
+    try {
+        courseId = inputCheck.checkCourseId(courseId);
+        newSyllabus = inputCheck.checkSyllabus(newSyllabus);
+    } catch(e) {
+        throw e
+    }
+    const courseCollection = await courses();
+    const course = await courseCollection.findOne({ _id: ObjectId(courseId) })
+    if (course === null) throw 'No Course with that id'
+    const oldSyllabus = course.syllabus
+    const updateInfo = await courseCollection.updateOne(
+        {_id: ObjectId(courseId)},
+        {$set: {syllabus: newSyllabus}}
+    )
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    return oldSyllabus + " is changed to " + newSyllabus
+}
+
+async function updateCourseCourseware(courseId, newCourseware) {
+    try {
+        courseId = inputCheck.checkCourseId(courseId);
+        newCourseware = inputCheck.checkCourseware(newCourseware);
+    } catch(e) {
+        throw e
+    }
+    const courseCollection = await courses();
+    const course = await courseCollection.findOne({ _id: ObjectId(courseId) })
+    if (course === null) throw 'No Course with that id'
+    const oldCourseware = course.courseware
+    const updateInfo = await courseCollection.updateOne(
+        {_id: ObjectId(courseId)},
+        {$set: {courseware: newCourseware}}
+    )
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    return oldCourseware + " is changed to " + newCourseware
+}
+
 module.exports = {
     createCourse,
     getCourse,
     removeCourse,
     updateCourseName,
-    updateCourseAcademicLevel
+    updateCourseAcademicLevel,
+    updateCourseOwner,
+    updateCourseType,
+    updateCourseGradingBasis,
+    updateCourseUnites,
+    updateCourseDescription,
+    updateCourseTypicalPeriodsOffered,
+    updateCourseInstructionalFormats,
+    updateCourseSyllabus,
+    updateCourseCourseware
 }
