@@ -1,4 +1,4 @@
-const bandData = require('./course');
+const courseData = require('./course');
 
 module.exports = {
     course: courseData,
