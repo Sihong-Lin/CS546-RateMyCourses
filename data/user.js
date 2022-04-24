@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const inputCheck = require('./inputCheck');
 const saltRound = 16;
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
@@ -7,39 +8,37 @@ module.exports = {
     createUser,
     checkUser,
 };
+async function checkUsernameRepeat(username) {
+    const userCollection = await users();
+    let user = await userCollection.findOne({username: username})
+    if(user === null) {
+        return username
+    } else {
+        throw 'this username already existed'
+    }   
+}
+
 
 async function createUser(username, password) {
-
-    if (arguments.length != 2) throw "Both username and password must be supplied.";
-    //if (!checkUsername(username)) throw "Provided username is invalid.";
-   // if (!checkPassword(password)) throw "Provided password is invalid.";
+    try {
+        username = inputCheck.checkUserName(username)
+        username = await checkUsernameRepeat(username)
+        password = inputCheck.checkPassword(password)
+    } catch (e) {
+        throw e
+    }
     const userCollection = await users();
-    const res = await userCollection.find({}).toArray();
-    if (res.length == 0) {
-        await userCollection.createIndex({ username: 'text' });
-    }
-
-    const checkDuplicate = await userCollection.findOne({
-        $text: {
-            $search: username,
-            $caseSensitive: false,
-        },
-    });
-    if (checkDuplicate) {
-        throw 'Provided username already exists.';
-    }
-
     let newUser = {
-        "username": username.toLowerCase(),
-        "password": await bcrypt.hash(password, saltRound),
-        "courseReviews": [],
-        "professorReviews": [],
-        "restrictStatus": false,
-        "profilePicture": "",
-        "role": "student"
+        username: username.toLowerCase(),
+        password: await bcrypt.hash(password, saltRound),
+        courseReviews: [],
+        professorReviews: [],
+        restrictStatus: false,
+        profilePicture: "",
+        role: "student"
     }
     const insertInfo = await userCollection.insertOne(newUser);
-    if (insertInfo.insertedCount === 0) {
+    if (!insertInfo.acknowledged || !insertInfo.insertedId) {
         throw 'Could not create user.';
     }
 
@@ -47,44 +46,24 @@ async function createUser(username, password) {
 }
 
 async function checkUser(username, password) {
-
-    if (arguments.length != 2) throw "Both username and password must be supplied.";
-   // if (!checkUsername(username)) throw "Provided username is invalid.";
-   // if (!checkPassword(password)) throw "Provided password is invalid.";
+    try {
+        username = inputCheck.checkUserName(username)
+        password = inputCheck.checkPassword(password)
+    } catch (e) {
+        throw e
+    }
     const userCollection = await users();
-    const res = await userCollection.find({}).toArray();
-    if (res.length == 0) {
-        await userCollection.createIndex({ username: 'text' });
+    let userInfo = await userCollection.findOne({username: username.toLowerCase()})
+    if(userInfo === null) {
+        throw 'Either the username or password is invalid'
     }
-
-    const checkResult = await userCollection.findOne({
-        $text: {
-            $search: username,
-            $caseSensitive: false,
-        },
-    });
-    if (!checkResult) {
-        throw 'Either the username or password is invalid.';
+    let encrypted_password = userInfo.password
+    let passwordMatch = await bcrypt.compare(password, encrypted_password)
+    if (!passwordMatch) {
+        throw 'Either the username or password is invalid'
+    } else {
+        return {authenticated: true}
     }
-    if (! await bcrypt.compare(password, checkResult.password)) {
-        throw "Either the username or password is invalid.";
-    }
-    return {authenticated: true};
 }
 
-function checkUsername(input) {
-    if (input == undefined) return false;
-    if (typeof input != 'string') return false;
-    input = input.trim();
-    if (input.length == 0) return false;
-    if (!/^[a-zA-Z0-9]{4,}$/.test(input)) return false;
-    return true;
-}
 
-function checkPassword(input) {
-    if (input == undefined) return false;
-    if (typeof input != 'string') return false;
-    if (input.length < 6) return false;
-    if (/[ ]{1,}/.test(input)) return false;
-    return true;
-}

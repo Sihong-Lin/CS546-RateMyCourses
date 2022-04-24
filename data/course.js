@@ -2,7 +2,7 @@ const mongoCollections = require('../config/mongoCollections');
 const inputCheck = require('./inputCheck');
 const courses = mongoCollections.courses;
 const { ObjectId } = require('mongodb');
-const { course } = require('.');
+
 
 async function createCourse(courseName, academicLevel, courseOwner, type,
     gradingBasis, units, description, typicalPeriodsOffered,
@@ -77,7 +77,6 @@ async function removeCourse(courseId) {
     }
     return courseName + ' has been successfully deleted!'
 }
-
 
 async function updateCourseName(courseId, newCourseName) {
     try {
