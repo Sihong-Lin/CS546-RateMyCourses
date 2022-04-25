@@ -3,8 +3,7 @@ const router = express.Router();
 const home = require('../data/home');
 
 router.get('/', async (req, res) => {
-    let professorList = await home.top3Professors();
-    console.log(professorList);
+    let professorList = await home.getTop3Professors();
     res.render('home', { 
                     title: 'RateMyCourses - Home',
                     professorPicture1: professorList[0].picture                    ,
