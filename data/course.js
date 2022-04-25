@@ -379,31 +379,60 @@ async function updateCourseMetrics(courseId) {
 function countDifficulty(difficulty) {
     if(difficulty.Hard > difficulty.Medium && difficulty.Hard > difficulty.Easy) {
         return 'Hard'
-    } else if(difficulty.Medium > difficulty.Easy && difficulty.Medium > difficulty.Hard) {
+    } else if(difficulty.Medium > difficulty.Hard && difficulty.Medium > difficulty.Easy) {
         return 'Medium'
-    } else {
+    } else if(difficulty.Easy > difficulty.Medium && difficulty.Easy > difficulty.Hard) {
         return 'Easy'
+    } else {
+        if(difficulty.Hard === difficulty.Easy) {
+            return 'Medium'
+        } else if (difficulty.Hard === difficulty.Medium) {
+            return 'Hard'
+        } else if(difficulty.Easy === difficulty.Medium) {
+            return 'Medium'
+        }
     }
+    return 'unknown'
 }
+
+
 
 function countChanceToGetA(chanceToGetA) {
     if(chanceToGetA.High > chanceToGetA.Medium && chanceToGetA.High > chanceToGetA.Low) {
         return 'High'
-    } else if(chanceToGetA.Medium > chanceToGetA.Low && chanceToGetA.Medium > chanceToGetA.High) {
+    } else if(chanceToGetA.Medium > chanceToGetA.High && chanceToGetA.Medium > chanceToGetA.Low) {
         return 'Medium'
-    } else {
+    } else if(chanceToGetA.Low > chanceToGetA.Medium && chanceToGetA.Low > chanceToGetA.High) {
         return 'Low'
+    } else {
+        if(chanceToGetA.High === chanceToGetA.Low) {
+            return 'Medium'
+        } else if (chanceToGetA.High === chanceToGetA.Medium) {
+            return 'High'
+        } else if(chanceToGetA.Low === chanceToGetA.Medium) {
+            return 'Medium'
+        }
     }
+    return 'unknown'
 }
 
 function countworkLoad(workLoad) {
     if(workLoad.Plenty > workLoad.Medium && workLoad.Plenty > workLoad.Less) {
         return 'Plenty'
-    } else if(workLoad.Medium > workLoad.Less && workLoad.Medium > workLoad.Plenty) {
+    } else if(workLoad.Medium > workLoad.Plenty && workLoad.Medium > workLoad.Less) {
         return 'Medium'
-    } else {
+    } else if(workLoad.Less > workLoad.Medium && workLoad.Less > workLoad.Plenty) {
         return 'Less'
+    } else {
+        if(workLoad.Plenty === workLoad.Less) {
+            return 'Medium'
+        } else if (workLoad.Plenty === workLoad.Medium) {
+            return 'Plenty'
+        } else if(workLoad.Less === workLoad.Medium) {
+            return 'Medium'
+        }
     }
+    return 'unknown'
 }
 
 async function updateCourseRating(courseId) {
@@ -447,6 +476,5 @@ module.exports = {
     updateCourseInstructionalFormats,
     updateCourseSyllabus,
     updateCourseCourseware,
-    updateCourseRating,
-    createCourseReview
+    createCourseReview // create course review function will call call back function update rating, count and metrics
 }
