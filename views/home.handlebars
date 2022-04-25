@@ -182,51 +182,46 @@
             <h1 class="display-4">Top 3 Highest Rated Professors</h1>
         </div>
         <div class="owl-carousel team-carousel position-relative">
+            {{#each topProfessors}}
             <div class="team-item">
                 <div class="row g-0 bg-light rounded overflow-hidden">
                     <div class="col-12 col-sm-5 h-100">
-                        <img class="img-fluid h-100" src="{{professorPicture1}}" style="object-fit: cover;">
+                        <img class="img-fluid h-100" src="{{this.picture}}" style="object-fit: cover;">
                     </div>
                     <div class="col-12 col-sm-7 h-100 d-flex flex-column">
                         <div class="mt-auto p-4">
-                            <h3>{{professorName1}}</h3>
-                            <h6 class="fw-normal fst-italic text-primary mb-4">{{ProfessorDepartment1}}</h6>
-                            <p class="m-0">{{ProfessorIntroduction1}}</p>
+                            <h3>{{this.professorName}}</h3>
+                            <h6 class="fw-normal fst-italic text-primary mb-4">{{this.department}}</h6>
+                            <p class="m-0">{{this.introduction}}</p>
                         </div>
                         <div class="d-flex mt-auto border-top p-4"></div>
                     </div>
                 </div>
             </div>
+            {{/each}}
+
             <div class="team-item">
-                <div class="row g-0 bg-light rounded overflow-hidden">
-                    <div class="col-12 col-sm-5 h-100">
-                        <img class="img-fluid h-100" src="{{professorPicture2}}" style="object-fit: cover;">
-                    </div>
-                    <div class="col-12 col-sm-7 h-100 d-flex flex-column">
-                        <div class="mt-auto p-4">
-                            <h3>{{professorName2}}</h3>
-                            <h6 class="fw-normal fst-italic text-primary mb-4">{{ProfessorDepartment2}}</h6>
-                            <p class="m-0">{{ProfessorIntroduction2}}</p>
+                    <div class="row g-0 bg-light rounded overflow-hidden">
+                        <div class="col-12 col-sm-5 h-100">
+                            <img class="img-fluid h-100" src="static/picture/team-1.jpg" style="object-fit: cover;">
                         </div>
-                        <div class="d-flex mt-auto border-top p-4"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="team-item">
-                <div class="row g-0 bg-light rounded overflow-hidden">
-                    <div class="col-12 col-sm-5 h-100">
-                        <img class="img-fluid h-100" src="{{professorPicture3}}" style="object-fit: cover;">
-                    </div>
-                    <div class="col-12 col-sm-7 h-100 d-flex flex-column">
-                        <div class="mt-auto p-4">
-                            <h3>{{professorName3}}</h3>
-                            <h6 class="fw-normal fst-italic text-primary mb-4">{{ProfessorDepartment3}}</h6>
-                            <p class="m-0">{{ProfessorIntroduction3}}</p>
+                        <div class="col-12 col-sm-7 h-100 d-flex flex-column">
+                            <div class="mt-auto p-4">
+                                <h3>Patrick Hill</h3>
+                                <h6 class="fw-normal fst-italic text-primary mb-4">Computer Science</h6>
+                                <p class="m-0">He is very arrogant, but his course is useful. His assignments take time
+                                    but provides good knowledge. God bless you if he makes the project group because not
+                                    everyone will work and you will cuss him for the group he made. but course is worth
+                                    taking!</p>
+                            </div> 
+                            <div class="col-12 text-center">
+                                <a href="" class="btn btn-primary rounded-pill py-2 px-3 my-3">More Details</a>
+                            </div>
                         </div>
-                        <div class="d-flex mt-auto border-top p-4"></div>
                     </div>
-                </div>
+                    
             </div>
+
         </div>
     </div>
 
