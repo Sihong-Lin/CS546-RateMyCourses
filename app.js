@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const exphbs = require('express-handlebars');
 const configRoutes = require('./routes');
 const app = express();
@@ -15,6 +16,14 @@ app.use(express.urlencoded({ extended: true }));
 // Handlebars setting
 app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+
+app.use(
+    session({
+        name: 'AuthCookie',
+        secret: 'some secret string!',
+        resave: false,
+        saveUninitialized: true
+}));
 
 configRoutes(app);
 

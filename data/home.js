@@ -5,17 +5,23 @@ const professors = mongoCollections.professors;
 const { ObjectId } = require('mongodb');
 
 module.exports = {
-    topCourses,
-    top3Professors,
+    getTopCourses,
+    getAllCourses,
+    getTop3Professors,
+    getAllProfessors,
     searchCoursesByMajor
 };
 
-async function topCourses() {
+async function getTopCourses() {
 
 
 }
 
-async function top3Professors() {
+async function getAllCourses() {
+    
+}
+
+async function getTop3Professors() {
     const professorCollection = await professors();
     let professorList = await professorCollection
         .find({},{ 
@@ -30,6 +36,23 @@ async function top3Professors() {
         .toArray(); 
     let res = professorList.sort((a, b) => b.rating - a.rating).slice(0,3);
     return res;
+}
+
+
+async function getAllProfessors() {
+    const professorCollection = await professors();
+    let professorList = await professorCollection
+        .find({},{ 
+            projection: { _id: 1, 
+                            professorName: 1,
+                            department: 1,
+                            introduction: 1,
+                            rating: 1,
+                            picture: 1,
+                        } }
+        )
+        .toArray(); 
+    return professorList;
 }
 
 async function searchCoursesByMajor(major) {
