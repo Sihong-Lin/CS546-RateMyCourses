@@ -8,7 +8,7 @@ const exportMethods = {
         Professor: {
             “_id”: ObjectId(“624724af974aef308ff7cc6a”),
             “professorName”: ​​“Patrick, Hill”,
-            “Introduction”: “Professor in the Computer Science department at Stevens Institute of 
+            “introduction”: “Professor in the Computer Science department at Stevens Institute of 
                             Technology”
             “rating”: 4.5,
             “reviews” : ["62215a7ebd69a460a6193411", "62215a7ebd69a460a6193412"],
@@ -21,7 +21,7 @@ const exportMethods = {
         const profCollection = await professors();
         let newProf = {
             professorName: name,
-            Introduction: intro,
+            introduction: intro,
             rating: 0,
             reviews: [],
             courses: courses,
