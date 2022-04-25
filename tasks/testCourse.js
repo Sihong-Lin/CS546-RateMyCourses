@@ -24,6 +24,7 @@ const main = async () => {
             'Lecture', // instructionalFormats
             'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
             'https://github.com/graffixnyc/CS-546', // courseware
+            'https://somepicture.com' // picture
         )
         firstCourseId = course1._id.toString()
         console.log(course1);
@@ -46,6 +47,7 @@ const main = async () => {
             'Lecture', // instructionalFormats
             'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
             'https://github.com/graffixnyc/CS-546', // courseware
+            'https://somepicture.com' // picture
         )
         secondCourseId = course2._id.toString()
         console.log(course2);

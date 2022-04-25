@@ -22,7 +22,7 @@ const exportMethods = {
             professorName = inputCheck.checkProfessorName(professorName);
             department = inputCheck.checkDepartment(department);
             introduction = inputCheck.checkIntroduction(introduction);
-            picture = inputCheck.checkPicture(picture);
+            picture = inputCheck.checkProfessorPicture(picture);
         } catch (e) {
             throw e
         }
