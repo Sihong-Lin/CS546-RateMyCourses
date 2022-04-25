@@ -1,8 +1,99 @@
 const { ObjectId } = require('mongodb');
 
+module.exports = {
+    /*User data input check*/
+    checkUserName,
+    checkPassword,
+    checkUserId,
+    checkComment,
+    checkMetrics,
+    checkRating,
+    /*Course data input check*/
+    checkCourseName,
+    checkAcademicLevel,
+    checkCourseOwner,
+    checkType,
+    checkGradingBasis,
+    checkUnits,
+    checkDescription,
+    checkTypicalPeriodsOffered,
+    checkInstructionalFormats,
+    checkSyllabus,
+    checkCourseware,
+    checkCourseId
+}
 
 
+/* input checking for user */
+function checkUserName(userName) {
+    if (userName == undefined) throw 'You must provided userName';
+    if (typeof userName != 'string') throw 'userName is not a string';
+    userName = userName.trim();
+    if (userName.length == 0) throw 'userName cannot be an empty string or just spaces';
+    if (!/^[a-zA-Z0-9]{4,}$/.test(userName)) throw 'userName is not vaild';
+    return userName;
+}
 
+function checkPassword(password) {
+    if (password == undefined) throw 'You must provided password';
+    if (typeof password != 'string') throw 'password is not a string';
+    password = password.trim();
+    if (password.length < 6) throw 'password should be at least 6 characters long';
+    if (/[ ]{1,}/.test(password)) throw 'password cannot contain space'
+    return password;
+}
+
+function checkUserId(userId) {
+    if (!userId) throw 'You must provide a userId to search for';
+    if (typeof userId !== 'string') throw 'userId must be a string';
+    if (userId.trim().length === 0) {
+        throw 'userId cannot be an empty string or just spaces';
+    }
+    userId = userId.trim();
+    if (!ObjectId.isValid(userId)) throw 'invalid object ID';
+    return userId
+}
+
+function checkComment(comment) {
+    if(!comment) throw 'You must provided comment'
+    if (typeof comment !== 'string') throw 'comment is not a string';
+    comment = comment.trim();
+    if (comment.trim().length === 0) {
+        throw 'comment cannot be an empty string or just spaces';
+    }
+    return comment;
+}
+
+function checkMetrics(metrics) {
+    if(!metrics) throw 'You must provided metrics'
+    if(typeof metrics !== 'object') throw 'metrics is not a object'
+    if(!('difficulty' in metrics)) throw 'You must get difficulty'
+    if(!('chanceToGetA' in metrics)) throw 'You must get chanceToGetA'
+    if(!('workLoad' in metrics)) throw 'You must get workLoad'
+    const difficulty = metrics.difficulty
+    const chanceToGetA = metrics.chanceToGetA
+    const workLoad = metrics.workLoad
+    if(!((difficulty === 'Easy') || (difficulty === 'Medium') || (difficulty === 'Hard'))) {
+        throw 'difficulty must be easy/medium/hard'
+    }
+    if(!((chanceToGetA === 'Low') || (difficulty === 'Medium') || (difficulty === 'High'))) {
+        throw 'chanceToGetA must be low/medium/high'
+    }
+    if(!((workLoad !== 'Less') || (workLoad !== 'Medium') || (workLoad !== 'Plenty'))) {
+        throw 'workLoad must be less/medium/plenty'
+    }
+    return metrics
+}
+
+function checkRating(rating) {
+    if(!rating) throw 'You must provided rating'
+    if(typeof(rating) !== 'number' || rating < 0 || rating > 5) {
+        throw 'rating is not a number from 0 to 5'
+    }
+    return Number(rating.toFixed(1))
+}
+
+/* input checking for course */
 function checkCourseName(courseName) {
     if (!courseName) throw 'You must provided courseName';
     if (typeof courseName !== 'string') throw 'courseName is not a string';
@@ -114,17 +205,8 @@ function checkCourseId(courseId) {
     return courseId
 }
 
-module.exports = {
-    checkCourseName,
-    checkAcademicLevel,
-    checkCourseOwner,
-    checkType,
-    checkGradingBasis,
-    checkUnits,
-    checkDescription,
-    checkTypicalPeriodsOffered,
-    checkInstructionalFormats,
-    checkSyllabus,
-    checkCourseware,
-    checkCourseId
-}
+
+
+
+
+

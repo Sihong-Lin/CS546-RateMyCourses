@@ -13,26 +13,20 @@ const main = async () => {
         let user1 = await user.createUser('jguo32', '123456');
         console.log(user1);
 
-        let course1 = await course.createCourse(
-            'CS 546 Web Programming', // courseName
-            'Graduate', // academicLevel
-            'Computer Science Program', // courseOwner
-            'Core', // type
-            ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
-            3, // units
-            'This course will provide students with a first strong approach of internet programming', // description
-            ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
-            'Lecture', // instructionalFormats
-            'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
-            'https://github.com/graffixnyc/CS-546', // courseware
-            [
-                { difficulty: 'Medium' },
-                { chanceToGetA: 'High' },
-                { workLoad: 'Hard' },
-            ], // metrics
-            []
-        ); // courseReview
-        console.log('Course has added');
+        // let course1 = await course.createCourse(
+        //     'CS 546 Web Programming', // courseName
+        //     'Graduate', // academicLevel
+        //     'Computer Science Program', // courseOwner
+        //     'Core', // type
+        //     ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
+        //     3, // units
+        //     'This course will provide students with a first strong approach of internet programming', // description
+        //     ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
+        //     'Lecture', // instructionalFormats
+        //     'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
+        //     'https://github.com/graffixnyc/CS-546', // courseware
+            
+        // ); // courseReview
 
         // add a professor
         let name = 'Eric Koskinen';
