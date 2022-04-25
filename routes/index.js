@@ -1,14 +1,17 @@
 const loginRoutes = require('./login');
 const logoutRoutes = require('./logout');
 const signupRoutes = require('./signup');
+const homeRoutes = require('./home');
 
 const constructorMethod = (app) => {
     app.use('/login', loginRoutes);
     app.use('/logout', logoutRoutes);
     app.use('/signup', signupRoutes);
+    app.use('/home', homeRoutes);
 
     app.get('/', (req, res) => {
-        res.sendFile('index.html');
+        return res.redirect('home');
+        //res.sendFile('home.html');
     });
 
     app.use('*', (req, res) => {

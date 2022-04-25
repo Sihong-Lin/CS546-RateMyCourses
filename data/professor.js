@@ -8,23 +8,27 @@ const exportMethods = {
         Professor: {
             “_id”: ObjectId(“624724af974aef308ff7cc6a”),
             “professorName”: ​​“Patrick, Hill”,
+            “department”: “Computer Science”,
             “introduction”: “Professor in the Computer Science department at Stevens Institute of 
                             Technology”
             “rating”: 4.5,
             “reviews” : ["62215a7ebd69a460a6193411", "62215a7ebd69a460a6193412"],
-            “courses” : ["62215a7ebd69a460a6193413", "62215a7ebd69a460a6193414"]
+            “courses” : ["62215a7ebd69a460a6193413", "62215a7ebd69a460a6193414"],
+            “picture”: “http://georgetownheckler.com/wp-content/uploads/2016/09/prof.jpg”
         }
     */
-    async createProfessor(name, intro, courses) {
+    async createProfessor(name, department, intro, courses, picture) {
         // TODO: input validation
 
         const profCollection = await professors();
         let newProf = {
             professorName: name,
+            department: department,
             introduction: intro,
             rating: 0,
             reviews: [],
             courses: courses,
+            picture: picture
         };
 
         const newInsertInformation = await profCollection.insertOne(newProf);

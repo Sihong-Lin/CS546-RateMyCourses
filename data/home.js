@@ -21,9 +21,10 @@ async function top3Professors() {
         .find({},{ 
             projection: { _id: 1, 
                             professorName: 1,
+                            department: 1,
                             introduction: 1,
                             rating: 1,
-                            picture: 1 
+                            picture: 1,
                         } }
         )
         .toArray(); 
@@ -36,7 +37,12 @@ async function searchCoursesByMajor(major) {
 }
 
 const main = async () => {
-    console.log(await top3Professors());
+    try {
+        //console.log(await top3Professors());
+    } catch(e) {
+        console.log(e);
+    }
+   
 }
 
 main();
