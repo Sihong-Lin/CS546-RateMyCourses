@@ -25,7 +25,7 @@ async function createCourse(courseName, academicLevel, courseOwner, type,
 
 
     let count = { difficulty: { Easy: 0, Medium: 0, Hard: 0 }, chanceToGetA: { Low: 0, Medium: 0, High: 0 }, workLoad: { Less: 0, Medium: 0, Plenty: 0 } }
-    let metrics = { difficulty: "N/A", chanceToGetA: "N/A", workLoad: "N/A" }
+    let metrics = { difficulty: "unkonwn", chanceToGetA: "unkonwn", workLoad: "unkonwn" }
     let courseReviews = []
     let overallRating = 0;
     const newCourse = {
@@ -319,6 +319,7 @@ async function createCourseReview(courseId, newCourseReview) {
     } else {
         try{
             await updateCourseRating(courseId)
+            await updateCourseCount(courseId, newCourseReview.metrics)
         } catch (e) {
             throw e
         }
@@ -326,6 +327,84 @@ async function createCourseReview(courseId, newCourseReview) {
     return {courseReviewInsertedToCourse: true}
 }
 
+async function updateCourseCount(courseId, newUserMetrics) {
+    let course = await getCourse(courseId)
+    const courseCollection = await courses()
+    let count = course.count
+    const userDifficulty = newUserMetrics.difficulty
+    const userChanceToGetA = newUserMetrics.chanceToGetA
+    const userWorkLoad = newUserMetrics.workLoad
+    count.difficulty[userDifficulty] = count.difficulty[userDifficulty] + 1 
+    count.chanceToGetA[userChanceToGetA] = count.chanceToGetA[userChanceToGetA] + 1 
+    count.workLoad[userWorkLoad] = count.workLoad[userWorkLoad] + 1 
+    const updateInfo = await courseCollection.updateOne(
+        { _id: ObjectId(courseId) },
+        { $set: {count:count }}
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw 'Update failed';
+    } else {
+        try {
+            await updateCourseMetrics(courseId)
+        } catch(e) {
+            throw e
+        }
+    }
+
+    return {updateCount: true}
+}
+
+async function updateCourseMetrics(courseId) {
+    let course = await getCourse(courseId) 
+    const courseCollection = await courses()
+    let metrics = course.metrics
+    let count = course.count
+    console.log(count.difficulty);
+    let difficulty = countDifficulty(count.difficulty); //return easy/medium/hard
+    let chanceToGetA = countChanceToGetA(count.chanceToGetA); //return low/medium/high
+    let workLoad = countworkLoad(count.workLoad); // return less/medium/plenty
+    metrics.difficulty = difficulty
+    metrics.chanceToGetA = chanceToGetA
+    metrics.workLoad = workLoad
+    const updateInfo = await courseCollection.updateOne(
+        { _id: ObjectId(courseId) },
+        { $set: {metrics:metrics }}
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw 'Update failed';
+    }
+    return {updateCourseMetrics: true}
+}
+
+function countDifficulty(difficulty) {
+    if(difficulty.Hard > difficulty.Medium && difficulty.Hard > difficulty.Easy) {
+        return 'Hard'
+    } else if(difficulty.Medium > difficulty.Easy && difficulty.Medium > difficulty.Hard) {
+        return 'Medium'
+    } else {
+        return 'Easy'
+    }
+}
+
+function countChanceToGetA(chanceToGetA) {
+    if(chanceToGetA.High > chanceToGetA.Medium && chanceToGetA.High > chanceToGetA.Low) {
+        return 'High'
+    } else if(chanceToGetA.Medium > chanceToGetA.Low && chanceToGetA.Medium > chanceToGetA.High) {
+        return 'Medium'
+    } else {
+        return 'Low'
+    }
+}
+
+function countworkLoad(workLoad) {
+    if(workLoad.Plenty > workLoad.Medium && workLoad.Plenty > workLoad.Less) {
+        return 'Plenty'
+    } else if(workLoad.Medium > workLoad.Less && workLoad.Medium > workLoad.Plenty) {
+        return 'Medium'
+    } else {
+        return 'Less'
+    }
+}
 
 async function updateCourseRating(courseId) {
     let course = await getCourse(courseId)
