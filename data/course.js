@@ -6,7 +6,7 @@ const { ObjectId } = require('mongodb');
 
 async function createCourse(courseName, academicLevel, courseOwner, type,
     gradingBasis, units, description, typicalPeriodsOffered,
-    instructionalFormats, syllabus, courseware) {
+    instructionalFormats, syllabus, courseware, picture) {
     try {
         courseName = inputCheck.checkCourseName(courseName);
         academicLevel = inputCheck.checkAcademicLevel(academicLevel);
@@ -19,6 +19,7 @@ async function createCourse(courseName, academicLevel, courseOwner, type,
         instructionalFormats = inputCheck.checkInstructionalFormats(instructionalFormats);
         syllabus = inputCheck.checkSyllabus(syllabus);
         courseware = inputCheck.checkCourseware(courseware);
+        picture = inputCheck.checkCoursePicture(picture);
     } catch (e) {
         throw e
     }
@@ -40,6 +41,7 @@ async function createCourse(courseName, academicLevel, courseOwner, type,
         instructionalFormats: instructionalFormats,
         syllabus: syllabus,
         courseware: courseware,
+        picture,
         count: count,
         metrics: metrics,
         courseReviews: courseReviews,

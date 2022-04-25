@@ -20,7 +20,13 @@ module.exports = {
     checkInstructionalFormats,
     checkSyllabus,
     checkCourseware,
-    checkCourseId
+    checkCourseId,
+    checkCoursePicture,
+    /*Professor data input check*/
+    checkProfessorName,
+    checkDepartment,
+    checkIntroduction,
+    checkProfessorPicture
 }
 
 
@@ -205,8 +211,53 @@ function checkCourseId(courseId) {
     return courseId
 }
 
+function checkCoursePicture(coursePicture) {
+    if(!coursePicture) throw 'You must provided course picture'
+    if(typeof(coursePicture) !== 'string') throw 'Course Picture is not a string'
+    coursePicture = coursePicture.trim();
+    if (coursePicture.trim().length === 0) {
+        throw 'Course Picture cannot be an empty string or just spaces';
+    }
+    return coursePicture
+}
+/* input checking for professor */
 
+function checkProfessorName(professorName){
+    if (!professorName) throw 'You must provided professor name';
+    if (typeof professorName !== 'string') throw 'professor name is not a string';
+    professorName = professorName.trim();
+    if (professorName.trim().length === 0) {
+        throw 'professor name cannot be an empty string or just spaces';
+    }
+    return professorName;
+}
 
+function checkDepartment(department) {
+    if(!department) throw 'You must provided department'
+    if(typeof(department) !== 'string') throw 'department is not a string'
+    department = department.trim();
+    if (department.trim().length === 0) {
+        throw 'department cannot be an empty string or just spaces';
+    }
+    return department
+}
 
+function checkIntroduction(introduction) {
+    if(!introduction) throw 'You must provided introduction'
+    if(typeof(introduction) !== 'string') throw 'introduction is not a string'
+    introduction = introduction.trim();
+    if (introduction.trim().length === 0) {
+        throw 'introduction cannot be an empty string or just spaces';
+    }
+    return introduction
+}
 
-
+function checkProfessorPicture(professorPicture) {
+    if(!professorPicture) throw 'You must provided professor picture'
+    if(typeof(professorPicture) !== 'string') throw 'Professor Picture is not a string'
+    professorPicture = professorPicture.trim();
+    if (professorPicture.trim().length === 0) {
+        throw 'Professor Picture cannot be an empty string or just spaces';
+    }
+    return professorPicture
+}
