@@ -2,7 +2,7 @@ const mongoCollections = require('../config/mongoCollections');
 const inputCheck = require('./inputCheck');
 const courses = mongoCollections.courses;
 const { ObjectId } = require('mongodb');
-const { course } = require('.');
+
 
 async function createCourse(courseName, academicLevel, courseOwner, type,
     gradingBasis, units, description, typicalPeriodsOffered,
@@ -24,10 +24,10 @@ async function createCourse(courseName, academicLevel, courseOwner, type,
     }
 
 
-    let count = { difficulty: { Easy: 0, Medium: 0, Hard: 0 }, chanceToGetA: { Low: 0, Medium: 0, High: 0 }, workLoad: { Less: 0, Medium: 0, Lots: 0 } }
-    let metrics = { difficulty: "N/A", chanceToGetA: "N/A", workLoad: "N/A" }
-    let courseReview = []
-    let averageRating = 0;
+    let count = { difficulty: { Easy: 0, Medium: 0, Hard: 0 }, chanceToGetA: { Low: 0, Medium: 0, High: 0 }, workLoad: { Less: 0, Medium: 0, Plenty: 0 } }
+    let metrics = { difficulty: "unkonwn", chanceToGetA: "unkonwn", workLoad: "unkonwn" }
+    let courseReviews = []
+    let overallRating = 0;
     const newCourse = {
         courseName: courseName,
         academicLevel: academicLevel,
@@ -42,8 +42,8 @@ async function createCourse(courseName, academicLevel, courseOwner, type,
         courseware: courseware,
         count: count,
         metrics: metrics,
-        courseReview: courseReview,
-        averageRating: averageRating
+        courseReviews: courseReviews,
+        overallRating: overallRating
     };
     const courseCollection = await courses();
     const newInsertInformation = await courseCollection.insertOne(newCourse);
@@ -77,7 +77,6 @@ async function removeCourse(courseId) {
     }
     return courseName + ' has been successfully deleted!'
 }
-
 
 async function updateCourseName(courseId, newCourseName) {
     try {
@@ -309,6 +308,159 @@ async function updateCourseCourseware(courseId, newCourseware) {
     return oldCourseware + " is changed to " + newCourseware
 }
 
+async function createCourseReview(courseId, newCourseReview) {
+    const courseCollection = await courses();
+    const courseUpdateInfo = await courseCollection.updateOne(
+        {_id: ObjectId(courseId)},
+        { $push: { courseReviews: newCourseReview}}
+    )
+    if (!courseUpdateInfo.matchedCount && !userUpdateInfo.modifiedCount){
+        throw 'fail to add course Review in course';
+    } else {
+        try{
+            await updateCourseRating(courseId)
+            await updateCourseCount(courseId, newCourseReview.metrics)
+        } catch (e) {
+            throw e
+        }
+    }
+    return {courseReviewInsertedToCourse: true}
+}
+
+async function updateCourseCount(courseId, newUserMetrics) {
+    let course = await getCourse(courseId)
+    const courseCollection = await courses()
+    let count = course.count
+    const userDifficulty = newUserMetrics.difficulty
+    const userChanceToGetA = newUserMetrics.chanceToGetA
+    const userWorkLoad = newUserMetrics.workLoad
+    count.difficulty[userDifficulty] = count.difficulty[userDifficulty] + 1 
+    count.chanceToGetA[userChanceToGetA] = count.chanceToGetA[userChanceToGetA] + 1 
+    count.workLoad[userWorkLoad] = count.workLoad[userWorkLoad] + 1 
+    const updateInfo = await courseCollection.updateOne(
+        { _id: ObjectId(courseId) },
+        { $set: {count:count }}
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw 'Update failed';
+    } else {
+        try {
+            await updateCourseMetrics(courseId)
+        } catch(e) {
+            throw e
+        }
+    }
+
+    return {updateCount: true}
+}
+
+async function updateCourseMetrics(courseId) {
+    let course = await getCourse(courseId) 
+    const courseCollection = await courses()
+    let metrics = course.metrics
+    let count = course.count
+    console.log(count.difficulty);
+    let difficulty = countDifficulty(count.difficulty); //return easy/medium/hard
+    let chanceToGetA = countChanceToGetA(count.chanceToGetA); //return low/medium/high
+    let workLoad = countworkLoad(count.workLoad); // return less/medium/plenty
+    metrics.difficulty = difficulty
+    metrics.chanceToGetA = chanceToGetA
+    metrics.workLoad = workLoad
+    const updateInfo = await courseCollection.updateOne(
+        { _id: ObjectId(courseId) },
+        { $set: {metrics:metrics }}
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw 'Update failed';
+    }
+    return {updateCourseMetrics: true}
+}
+
+function countDifficulty(difficulty) {
+    if(difficulty.Hard > difficulty.Medium && difficulty.Hard > difficulty.Easy) {
+        return 'Hard'
+    } else if(difficulty.Medium > difficulty.Hard && difficulty.Medium > difficulty.Easy) {
+        return 'Medium'
+    } else if(difficulty.Easy > difficulty.Medium && difficulty.Easy > difficulty.Hard) {
+        return 'Easy'
+    } else {
+        if(difficulty.Hard === difficulty.Easy) {
+            return 'Medium'
+        } else if (difficulty.Hard === difficulty.Medium) {
+            return 'Hard'
+        } else if(difficulty.Easy === difficulty.Medium) {
+            return 'Medium'
+        }
+    }
+    return 'unknown'
+}
+
+
+
+function countChanceToGetA(chanceToGetA) {
+    if(chanceToGetA.High > chanceToGetA.Medium && chanceToGetA.High > chanceToGetA.Low) {
+        return 'High'
+    } else if(chanceToGetA.Medium > chanceToGetA.High && chanceToGetA.Medium > chanceToGetA.Low) {
+        return 'Medium'
+    } else if(chanceToGetA.Low > chanceToGetA.Medium && chanceToGetA.Low > chanceToGetA.High) {
+        return 'Low'
+    } else {
+        if(chanceToGetA.High === chanceToGetA.Low) {
+            return 'Medium'
+        } else if (chanceToGetA.High === chanceToGetA.Medium) {
+            return 'High'
+        } else if(chanceToGetA.Low === chanceToGetA.Medium) {
+            return 'Medium'
+        }
+    }
+    return 'unknown'
+}
+
+function countworkLoad(workLoad) {
+    if(workLoad.Plenty > workLoad.Medium && workLoad.Plenty > workLoad.Less) {
+        return 'Plenty'
+    } else if(workLoad.Medium > workLoad.Plenty && workLoad.Medium > workLoad.Less) {
+        return 'Medium'
+    } else if(workLoad.Less > workLoad.Medium && workLoad.Less > workLoad.Plenty) {
+        return 'Less'
+    } else {
+        if(workLoad.Plenty === workLoad.Less) {
+            return 'Medium'
+        } else if (workLoad.Plenty === workLoad.Medium) {
+            return 'Plenty'
+        } else if(workLoad.Less === workLoad.Medium) {
+            return 'Medium'
+        }
+    }
+    return 'unknown'
+}
+
+async function updateCourseRating(courseId) {
+    let course = await getCourse(courseId)
+    const courseCollection = await courses()
+    let reviews = course.courseReviews
+    let sum = 0;
+    reviews.forEach(object => {
+        sum += object.rating
+    });
+    let avg = undefined
+    if(reviews.length == 0) {
+        avg = 0;
+    }else {
+        avg = sum / reviews.length
+    }
+    const updateInfo = await courseCollection.updateOne(
+        { _id: ObjectId(courseId) },
+        { $set: {overallRating:avg }}
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw 'Update failed';
+    }
+    return {updateOverallRating: true}
+}
+
+
+
 module.exports = {
     createCourse,
     getCourse,
@@ -323,5 +475,6 @@ module.exports = {
     updateCourseTypicalPeriodsOffered,
     updateCourseInstructionalFormats,
     updateCourseSyllabus,
-    updateCourseCourseware
+    updateCourseCourseware,
+    createCourseReview // create course review function will call call back function update rating, count and metrics
 }
