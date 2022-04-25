@@ -32,7 +32,9 @@ const main = async () => {
             ], // metrics
             []
         ); // courseReview
+        console.log('Course has added');
 
+        // add a professor
         let name = 'Eric Koskinen';
         let intro =
             'My research yields techniques that improve the way programmers develop reliable and efficient concurrent software for multi-core and distributed systems.';
@@ -42,14 +44,14 @@ const main = async () => {
         ]);
         console.log(professor1);
 
-        console.log('Course has added');
-
+        // add a professor review
         let uid = user1.insertedId.toString();
         let pid = professor1._id.toString();
         let review = 'nice!';
 
         let review1 = await professor.addProfReview(uid, pid, review, 5);
         console.log(review1);
+
     } catch (e) {
         console.log(e);
     }
