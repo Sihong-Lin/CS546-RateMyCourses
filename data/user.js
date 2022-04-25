@@ -2,11 +2,16 @@ const bcrypt = require('bcrypt');
 const inputCheck = require('./inputCheck');
 const saltRound = 16;
 const mongoCollections = require('../config/mongoCollections');
+const { ObjectId } = require('mongodb');
+const courses = mongoCollections.courses;
 const users = mongoCollections.users;
+const courseDBFunction = require('../data/course');
 
 module.exports = {
     createUser,
     checkUser,
+    getUser,
+    createCourseReview
 };
 async function checkUsernameRepeat(username) {
     const userCollection = await users();
@@ -17,7 +22,6 @@ async function checkUsernameRepeat(username) {
         throw 'this username already existed'
     }   
 }
-
 
 async function createUser(username, password) {
     try {
@@ -42,7 +46,7 @@ async function createUser(username, password) {
         throw 'Could not create user.';
     }
 
-    return { userInserted: true, insertedId: insertInfo.insertedId };
+    return { userInserted: true, insertedId: insertInfo.insertedId.toString()};
 }
 
 async function checkUser(username, password) {
@@ -65,5 +69,54 @@ async function checkUser(username, password) {
         return {authenticated: true}
     }
 }
+
+async function getUser(userId) {
+    userId = inputCheck.checkUserId(userId);
+    const userCollection = await users();
+    let user = await userCollection.findOne({ _id: ObjectId(userId) });
+    if (user === null) throw 'No user with that id';
+    return user;
+}
+
+async function createCourseReview(userId, courseId, comment, metrics, rating) {
+    try {
+        userId = inputCheck.checkUserId(userId)
+        courseId = inputCheck.checkCourseId(courseId)
+        comment = inputCheck.checkComment(comment)
+        metrics = inputCheck.checkMetrics(metrics)
+        rating = inputCheck.checkRating(rating)
+    } catch (e) {
+        throw e
+    }
+
+    let newCourseReview = {
+        userId: userId,
+        courseId: courseId,
+        comment: comment,
+        metrics: metrics,
+        rating: rating
+    }
+    
+    // add review to user
+    const userCollection = await users();
+    const userUpdateInfo = await userCollection.updateOne(
+        {_id: ObjectId(userId)},
+        { $push: { courseReviews: newCourseReview}}
+    )
+    if (!userUpdateInfo.matchedCount && !userUpdateInfo.modifiedCount){
+        throw 'fail to add course Review in user';
+    }
+
+    // add review to course
+    try {
+        await courseDBFunction.createCourseReview(courseId, newCourseReview)
+    }
+    catch(e) {
+        throw e
+    }
+    return { courseReviewInserted: true}; 
+}
+
+
 
 

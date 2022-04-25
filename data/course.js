@@ -24,10 +24,10 @@ async function createCourse(courseName, academicLevel, courseOwner, type,
     }
 
 
-    let count = { difficulty: { Easy: 0, Medium: 0, Hard: 0 }, chanceToGetA: { Low: 0, Medium: 0, High: 0 }, workLoad: { Less: 0, Medium: 0, Lots: 0 } }
+    let count = { difficulty: { Easy: 0, Medium: 0, Hard: 0 }, chanceToGetA: { Low: 0, Medium: 0, High: 0 }, workLoad: { Less: 0, Medium: 0, Plenty: 0 } }
     let metrics = { difficulty: "N/A", chanceToGetA: "N/A", workLoad: "N/A" }
-    let courseReview = []
-    let averageRating = 0;
+    let courseReviews = []
+    let overallRating = 0;
     const newCourse = {
         courseName: courseName,
         academicLevel: academicLevel,
@@ -42,8 +42,8 @@ async function createCourse(courseName, academicLevel, courseOwner, type,
         courseware: courseware,
         count: count,
         metrics: metrics,
-        courseReview: courseReview,
-        averageRating: averageRating
+        courseReviews: courseReviews,
+        overallRating: overallRating
     };
     const courseCollection = await courses();
     const newInsertInformation = await courseCollection.insertOne(newCourse);
@@ -308,6 +308,51 @@ async function updateCourseCourseware(courseId, newCourseware) {
     return oldCourseware + " is changed to " + newCourseware
 }
 
+async function createCourseReview(courseId, newCourseReview) {
+    const courseCollection = await courses();
+    const courseUpdateInfo = await courseCollection.updateOne(
+        {_id: ObjectId(courseId)},
+        { $push: { courseReviews: newCourseReview}}
+    )
+    if (!courseUpdateInfo.matchedCount && !userUpdateInfo.modifiedCount){
+        throw 'fail to add course Review in course';
+    } else {
+        try{
+            await updateCourseRating(courseId)
+        } catch (e) {
+            throw e
+        }
+    }
+    return {courseReviewInsertedToCourse: true}
+}
+
+
+async function updateCourseRating(courseId) {
+    let course = await getCourse(courseId)
+    const courseCollection = await courses()
+    let reviews = course.courseReviews
+    let sum = 0;
+    reviews.forEach(object => {
+        sum += object.rating
+    });
+    let avg = undefined
+    if(reviews.length == 0) {
+        avg = 0;
+    }else {
+        avg = sum / reviews.length
+    }
+    const updateInfo = await courseCollection.updateOne(
+        { _id: ObjectId(courseId) },
+        { $set: {overallRating:avg }}
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw 'Update failed';
+    }
+    return {updateOverallRating: true}
+}
+
+
+
 module.exports = {
     createCourse,
     getCourse,
@@ -322,5 +367,7 @@ module.exports = {
     updateCourseTypicalPeriodsOffered,
     updateCourseInstructionalFormats,
     updateCourseSyllabus,
-    updateCourseCourseware
+    updateCourseCourseware,
+    updateCourseRating,
+    createCourseReview
 }
