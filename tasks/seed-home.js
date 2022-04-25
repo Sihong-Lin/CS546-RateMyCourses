@@ -41,6 +41,111 @@ const main = async () => {
 
 
 
+        await course.createCourse(
+            'CS 546 Web Programming', // courseName
+            'Graduate', // academicLevel
+            'Computer Science Program', // courseOwner
+            'Core', // type
+            ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
+            3, // units
+            'This course will provide students with a first strong approach of internet programming', // description
+            ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
+            'Lecture', // instructionalFormats
+            'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
+            'https://github.com/graffixnyc/CS-546', // courseware
+           
+        );
+        
+        await course.createCourse(
+            'CS 111 aaaaaass dffdf dfd', // courseName
+            'Graduate', // academicLevel
+            'Computer Science Program', // courseOwner
+            'Core', // type
+            ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
+            3, // units
+            'This course will provide students with a first strong approach of internet programming', // description
+            ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
+            'Lecture', // instructionalFormats
+            'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
+            'https://github.com/graffixnyc/CS-546', // courseware
+           
+        );// courseReview
+
+        await course.createCourse(
+            'CS 222 5252525d', // courseNa55me
+            'Graduate', // academicLevel
+            'Computer Science Program', // courseOwner
+            'Core', // type
+            ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
+            3, // units
+            'This course will provide students with a first strong approach of internet programming', // description
+            ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
+            'Lecture', // instructionalFormats
+            'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
+            'https://github.com/graffixnyc/CS-546', // courseware
+           
+        );
+
+        await course.createCourse(
+            'CS 333 uuuud fdfdf', // courseNa55me
+            'Graduate', // academicLevel
+            'Computer Science Program', // courseOwner
+            'Core', // type
+            ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
+            3, // units
+            'This course will provide students with a first strong approach of internet programming', // description
+            ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
+            'Lecture', // instructionalFormats
+            'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
+            'https://github.com/graffixnyc/CS-546', // courseware
+           
+        );
+
+        await course.createCourse(
+            'CS 444 fgtg dsgs dgs', // courseNa55me
+            'Graduate', // academicLevel
+            'Computer Science Program', // courseOwner
+            'Core', // type
+            ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
+            3, // units
+            'This course will provide students with a first strong approach of internet programming', // description
+            ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
+            'Lecture', // instructionalFormats
+            'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
+            'https://github.com/graffixnyc/CS-546', // courseware
+           
+        );
+
+        await course.createCourse(
+            'CS 555 fddgs 11111111111', // courseNa55me
+            'Graduate', // academicLevel
+            'Computer Science Program', // courseOwner
+            'Core', // type
+            ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
+            3, // units
+            'This course will provide students with a first strong approach of internet programming', // description
+            ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
+            'Lecture', // instructionalFormats
+            'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
+            'https://github.com/graffixnyc/CS-546', // courseware
+           
+        );
+
+        await course.createCourse(
+            'CS 666 fddgs 1dddvfvse11111', // courseNa55me
+            'Graduate', // academicLevel
+            'Computer Science Program', // courseOwner
+            'Core', // type
+            ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
+            3, // units
+            'This course will provide students with a first strong approach of internet programming', // description
+            ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
+            'Lecture', // instructionalFormats
+            'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
+            'https://github.com/graffixnyc/CS-546', // courseware
+           
+        );
+
     } catch (e) {
         console.log(e);
     }
