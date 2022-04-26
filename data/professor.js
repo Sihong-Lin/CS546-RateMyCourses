@@ -17,7 +17,7 @@ const exportMethods = {
             “picture”: “http://georgetownheckler.com/wp-content/uploads/2016/09/prof.jpg”
         }
     */
-    async createProfessor(name, department, intro, courses, picture) {
+    async createProfessor(name, department, intro, picture) {
         // TODO: input validation
 
         const profCollection = await professors();
@@ -27,7 +27,7 @@ const exportMethods = {
             introduction: intro,
             rating: 0,
             reviews: [],
-            courses: courses,
+            courses: [],
             picture: picture
         };
 
@@ -63,7 +63,7 @@ const exportMethods = {
         return await this.getProfById(id);
     },
 
-    async removeUser(id) {
+    async removeProf(id) {
         // TODO: validate id
 
         const profCollection = await professors();
