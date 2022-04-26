@@ -82,7 +82,7 @@ function checkMetrics(metrics) {
     if(!((difficulty === 'Easy') || (difficulty === 'Medium') || (difficulty === 'Hard'))) {
         throw 'difficulty must be easy/medium/hard'
     }
-    if(!((chanceToGetA === 'Low') || (difficulty === 'Medium') || (difficulty === 'High'))) {
+    if(!((chanceToGetA === 'Low') || (chanceToGetA === 'Medium') || (chanceToGetA === 'High'))) {
         throw 'chanceToGetA must be low/medium/high'
     }
     if(!((workLoad !== 'Less') || (workLoad !== 'Medium') || (workLoad !== 'Plenty'))) {

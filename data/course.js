@@ -503,9 +503,10 @@ async function updateCourseRating(courseId) {
     }else {
         avg = sum / reviews.length
     }
+
     const updateInfo = await courseCollection.updateOne(
         { _id: ObjectId(courseId) },
-        { $set: {overallRating:avg }}
+        { $set: {overallRating:avg.toFixed(1) }}
     );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
         throw 'Update failed';
@@ -513,7 +514,7 @@ async function updateCourseRating(courseId) {
     return {updateOverallRating: true}
 }
 
-
+//async function getCoursesByKeywords(department, courseName)
 
 module.exports = {
     createCourse,

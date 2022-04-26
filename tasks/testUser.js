@@ -8,7 +8,7 @@ const main = async () => {
     const db = await connection.connectToDb();
     await db.dropDatabase();
     let firstUserId = undefined
-    let firstCourseId = undefined
+    
     console.log("1. Create first user");
     try {
         let createUser = await user.createUser(
@@ -27,7 +27,45 @@ const main = async () => {
         console.log(e);
     } 
 
-    console.log("2. Create first course"); 
+    let secondUserId = undefined
+    console.log("2. Create second user");
+    try {
+        let createUser = await user.createUser(
+            "somebody",
+            "123456789"
+        )
+        const insertStatus = createUser.userInserted
+        secondUserId = createUser.insertedId
+        if(insertStatus) {
+            console.log("Second user created successfully, user id is: " + secondUserId);
+        }else {
+            console.log("Second user fail to insert")
+        }
+    } catch (e) {
+        console.log(e);
+    } 
+    
+    let thirdUserId = undefined
+    console.log("3. Create third user");
+    try {
+        let createUser = await user.createUser(
+            "JiangJinFu",
+            "123456789"
+        )
+        const insertStatus = createUser.userInserted
+        thirdUserId = createUser.insertedId
+        if(insertStatus) {
+            console.log("third user created successfully, user id is: " + thirdUserId);
+        }else {
+            console.log("third user fail to insert")
+        }
+    } catch (e) {
+        console.log(e);
+    } 
+
+
+    let firstCourseId = undefined
+    console.log("4. Create first course"); 
     
     try {
         let course1 = await course.createCourse(
@@ -50,7 +88,7 @@ const main = async () => {
         console.log(e);
     }
     
-    console.log("3. first user add course review to first course ");
+    console.log("5. first user add course review to first course ");
     try {
         let newCourseReview = await user.createCourseReview(
             firstUserId,
@@ -70,26 +108,7 @@ const main = async () => {
         console.log(e);
     } 
 
-
-    let secondUserId = undefined
-    console.log("4. Create second user");
-    try {
-        let createUser = await user.createUser(
-            "somebody",
-            "123456789"
-        )
-        const insertStatus = createUser.userInserted
-        secondUserId = createUser.insertedId
-        if(insertStatus) {
-            console.log("Second user created successfully, user id is: " + secondUserId);
-        }else {
-            console.log("Second user fail to insert")
-        }
-    } catch (e) {
-        console.log(e);
-    } 
-
-    console.log("5. second user add course review to first course ");
+    console.log("6. second user add course review to first course ");
     try {
         let newCourseReview = await user.createCourseReview(
             secondUserId,
@@ -106,25 +125,44 @@ const main = async () => {
         }
     } catch (e) {
         console.log(e);
-    } 
+    }
 
-    console.log("6. first user delete course review to first course ");
+    console.log("7. third user add course review to first course ");
     try {
-        let deleteCourseReview = await user.deleteCourseReview(
-            firstUserId,
+        let newCourseReview = await user.createCourseReview(
+            thirdUserId,
             firstCourseId,
+            "The lectures is awesome",
+            {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Plenty'},
+            4.9999
         )
-        const deleteStatus = deleteCourseReview.courseReviewDelete
-        if(deleteStatus) {
-            console.log("first course Review delete successfully");
+        const insertStatus = newCourseReview.courseReviewInserted
+        if(insertStatus) {
+            console.log("Third course Review created successfully");
         }else {
-            console.log("first course Review fail to delete")
+            console.log("Third course Review fail to insert")
         }
     } catch (e) {
         console.log(e);
     } 
 
-    console.log("5. second user add course review again to first course ");
+    // console.log("6. first user delete course review to first course ");
+    // try {
+    //     let deleteCourseReview = await user.deleteCourseReview(
+    //         firstUserId,
+    //         firstCourseId,
+    //     )
+    //     const deleteStatus = deleteCourseReview.courseReviewDelete
+    //     if(deleteStatus) {
+    //         console.log("first course Review delete successfully");
+    //     }else {
+    //         console.log("first course Review fail to delete")
+    //     }
+    // } catch (e) {
+    //     console.log(e);
+    // } 
+
+    console.log("10. second user add course review again to first course ");
     try {
         let newCourseReview = await user.createCourseReview(
             secondUserId,
