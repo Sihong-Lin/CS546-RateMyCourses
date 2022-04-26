@@ -55,8 +55,10 @@ const exportMethods = {
 
         id = inputCheck.checkUserId(id);
         let profUpdateInfo = {
-            name: updatedProf.name,
-            intro: updatedProf.intro,
+            professorName: updatedProf.professorName,
+            department: updatedProf.department,
+            introduction: updatedProf.introduction,
+            picture: updatedProf.picture,
             // delete review?
         };
         const profCollection = await professors();
@@ -146,7 +148,7 @@ const exportMethods = {
         await profCollection.updateOne({ _id: prof._id }, { $pull: { reviews: { _id: ObjectId(id)}}})
         await profCollection.updateOne({ _id: ObjectId(prof._id)}, [{$set: {rating: {$avg: "$reviews.rating"}}}])
         return { deleted: true };
-    }
+    },
 };
 
 module.exports = exportMethods;

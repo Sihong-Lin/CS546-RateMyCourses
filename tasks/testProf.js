@@ -39,6 +39,11 @@ const main = async () => {
         console.log(await professor.getProfById(pid))
 
 
+        // update professor
+        professor1.introduction = "My research yields techniques that improve the way programmers develop reliable and efficient concurrent software for multi-core and distributed systems";
+        await professor.updateProf(pid, professor1);
+        console.log(await professor.getProfById(pid))
+
     } catch (e) {
         console.log(e);
     }
