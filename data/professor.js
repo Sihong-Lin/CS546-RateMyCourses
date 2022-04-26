@@ -17,21 +17,27 @@ const exportMethods = {
             “picture”: “http://georgetownheckler.com/wp-content/uploads/2016/09/prof.jpg”
         }
     */
-    async createProfessor(name, department, intro, picture) {
-        // TODO: input validation
-
-        const profCollection = await professors();
-        let newProf = {
-            professorName: name,
+    async createProfessor(professorName, department, introduction, picture) {
+        try {
+            professorName = inputCheck.checkProfessorName(professorName);
+            department = inputCheck.checkDepartment(department);
+            introduction = inputCheck.checkIntroduction(introduction);
+            picture = inputCheck.checkProfessorPicture(picture);
+        } catch (e) {
+            throw e
+        }
+        const professorsCollection = await professors();
+        let newProfessor = {
+            professorName: professorName,
             department: department,
-            introduction: intro,
-            rating: 0,
-            reviews: [],
+            introduction: introduction,
+            picture: picture,
+            professorReviews: [],
             courses: [],
-            picture: picture
+            overallRating: 0
         };
 
-        const newInsertInformation = await profCollection.insertOne(newProf);
+        const newInsertInformation = await professorsCollection.insertOne(newProfessor);
         if (newInsertInformation.insertedCount === 0) throw 'Insert failed!';
         return await this.getProfById(
             newInsertInformation.insertedId.toString()
