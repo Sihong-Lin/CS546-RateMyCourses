@@ -50,6 +50,8 @@ const exportMethods = {
     },
 
     async getProfById(id) {
+        id = inputCheck.checkUserId(id);
+        
         const profCollection = await professors();
         const professor = await profCollection.findOne({ _id: ObjectId(id) });
         if (!professor) throw 'Professor not found';
@@ -57,8 +59,8 @@ const exportMethods = {
     },
 
     async updateProf(id, updatedProf) {
-
         id = inputCheck.checkUserId(id);
+
         let profUpdateInfo = {
             professorName: updatedProf.professorName,
             department: updatedProf.department,
