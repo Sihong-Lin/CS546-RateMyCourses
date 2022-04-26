@@ -6,6 +6,11 @@ const { check } = require('prettier');
 const inputCheck = require('./inputCheck');
 
 const exportMethods = {
+    async getAllProfessors() {
+        const professorsCollection = await professors();
+        return await professorsCollection.find({}).toArray();
+    },
+
     /*
         Professor: {
             “_id”: ObjectId(“624724af974aef308ff7cc6a”),
