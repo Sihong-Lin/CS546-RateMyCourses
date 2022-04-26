@@ -2,6 +2,8 @@ const mongoCollections = require('../config/mongoCollections');
 const professors = mongoCollections.professors;
 const users = mongoCollections.users;
 const { ObjectId } = require('mongodb');
+const { check } = require('prettier');
+const inputCheck = require('./inputCheck');
 
 const exportMethods = {
     /*
@@ -18,14 +20,12 @@ const exportMethods = {
         }
     */
     async createProfessor(professorName, department, introduction, picture) {
-        try {
-            professorName = inputCheck.checkProfessorName(professorName);
-            department = inputCheck.checkDepartment(department);
-            introduction = inputCheck.checkIntroduction(introduction);
-            picture = inputCheck.checkProfessorPicture(picture);
-        } catch (e) {
-            throw e
-        }
+
+        professorName = inputCheck.checkProfessorName(professorName);
+        department = inputCheck.checkDepartment(department);
+        introduction = inputCheck.checkIntroduction(introduction);
+        picture = inputCheck.checkProfessorPicture(picture);
+
         const professorsCollection = await professors();
         let newProfessor = {
             professorName: professorName,
@@ -34,7 +34,7 @@ const exportMethods = {
             picture: picture,
             professorReviews: [],
             courses: [],
-            overallRating: 0
+            overallRating: null
         };
 
         const newInsertInformation = await professorsCollection.insertOne(newProfessor);
@@ -52,11 +52,13 @@ const exportMethods = {
     },
 
     async updateProf(id, updatedProf) {
-        // TODO: input validation
 
+        id = inputCheck.checkUserId(id);
         let profUpdateInfo = {
-            name: updatedProf.name,
-            intro: updatedProf.intro,
+            professorName: updatedProf.professorName,
+            department: updatedProf.department,
+            introduction: updatedProf.introduction,
+            picture: updatedProf.picture,
             // delete review?
         };
         const profCollection = await professors();
@@ -70,16 +72,16 @@ const exportMethods = {
     },
 
     async removeProf(id) {
-        // TODO: validate id
+        id = inputCheck.checkUserId(id)
 
         const profCollection = await professors();
-        const deletionInfo = await userCollection.deleteOne({
+        const deletionInfo = await profCollection.deleteOne({
             _id: ObjectId(id),
         });
         if (deletionInfo.deletedCount === 0) {
             throw `Could not delete professor with id of ${id}`;
         }
-        return true;
+        return { deleted: true };
     },
 
     /* 
@@ -97,7 +99,12 @@ const exportMethods = {
     */
 
     async addProfReview(uid, pid, comment, rating) {
-        // TODO: input validation
+
+        uid = inputCheck.checkUserId(uid);
+        pid = inputCheck.checkUserId(pid);
+        comment = inputCheck.checkComment(comment);
+        rating = inputCheck.checkRating(rating);
+
         const profReview = {
             _id: ObjectId(),
             userId: ObjectId(uid),
@@ -130,6 +137,17 @@ const exportMethods = {
         ]);
 
         return profReview;
+    },
+
+    async removeProfReview(id) {
+        id = inputCheck.checkUserId(id);
+
+        const profCollection = await professors();
+        const prof = await profCollection.findOne({ 'reviews._id': { $eq: ObjectId(id) }});
+        if(!prof) throw "review does not exist";
+        await profCollection.updateOne({ _id: prof._id }, { $pull: { reviews: { _id: ObjectId(id)}}})
+        await profCollection.updateOne({ _id: ObjectId(prof._id)}, [{$set: {rating: {$avg: "$reviews.rating"}}}])
+        return { deleted: true };
     },
 };
 
