@@ -6,12 +6,14 @@ const { ObjectId } = require('mongodb');
 const courses = mongoCollections.courses;
 const users = mongoCollections.users;
 const courseDBFunction = require('../data/course');
+const { get } = require('express/lib/request');
 
 module.exports = {
     createUser,
     checkUser,
     getUser,
-    createCourseReview
+    createCourseReview,
+    deleteCourseReview
 };
 async function checkUsernameRepeat(username) {
     const userCollection = await users();
@@ -85,6 +87,7 @@ async function createCourseReview(userId, courseId, comment, metrics, rating) {
         comment = inputCheck.checkComment(comment)
         metrics = inputCheck.checkMetrics(metrics)
         rating = inputCheck.checkRating(rating)
+        courseReviewIsNoExisted(userId, courseId)
     } catch (e) {
         throw e
     }
@@ -117,6 +120,44 @@ async function createCourseReview(userId, courseId, comment, metrics, rating) {
     return { courseReviewInserted: true}; 
 }
 
+async function deleteCourseReview(userId, courseId) {
+    try {
+        userId = inputCheck.checkUserId(userId)
+        courseId = inputCheck.checkCourseId(courseId)
+    } catch (e) {
+        throw e
+    }
+
+    
+    // delete review to user
+    const userCollection = await users();
+    const userUpdateInfo = await userCollection.updateOne(
+        {_id: ObjectId(userId)},
+        { $pull: {courseReviews:{courseId:courseId}}}
+    )
+    if (!userUpdateInfo.matchedCount && !userUpdateInfo.modifiedCount){
+        throw 'fail to delete course Review in user';
+    }
+
+    // delete review to course
+    try {
+        await courseDBFunction.deleteCourseReview(userId, courseId)
+    }
+    catch(e) {
+        throw e
+    }
+    return { courseReviewDelete: true}; 
+}
 
 
+async function courseReviewIsNoExisted(userId, courseId) {
+    const user = getUser(userId);
+    const reviews = user.courseReviews
+    for(let i = 0; i < reviews.lengnth; i++) {
+        if(reviews[i].courseId == courseId) {
+            throw 'user already make a review to this course'
+        }
+    }
+    return true;
+}
 

@@ -9,7 +9,8 @@ module.exports = {
     getAllCourses,
     getTop3Professors,
     getAllProfessors,
-    searchCoursesByMajor
+    searchCoursesByMajor,
+    professors,
 };
 
 
