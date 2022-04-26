@@ -329,6 +329,33 @@ async function createCourseReview(courseId, newCourseReview) {
     return {courseReviewInsertedToCourse: true}
 }
 
+async function deleteCourseReview(userId, courseId) {
+    const courseCollection = await courses();
+    const reviews = (await getCourse(courseId)).courseReviews;
+    let reviewToDelete = undefined
+    for(let i = 0; i < reviews.length; i++) {
+        if(reviews[i].userId == userId) {
+            reviewToDelete = reviews[i]
+            break;
+        }
+    }
+    const courseUpdateInfo = await courseCollection.updateOne(
+        {_id: ObjectId(courseId)},
+        { $pull: {courseReviews:{userId:userId}}}
+    )
+    if (!courseUpdateInfo.matchedCount && !userUpdateInfo.modifiedCount){
+        throw 'fail to delete course Review in course';
+    } else {
+        try{
+            await updateCourseRating(courseId)
+            await decreaseCourseCount(courseId, reviewToDelete.metrics)
+        } catch (e) {
+            throw e
+        }
+    }
+    return {courseReviewInsertedToCourse: true}
+}
+
 async function updateCourseCount(courseId, newUserMetrics) {
     let course = await getCourse(courseId)
     const courseCollection = await courses()
@@ -352,7 +379,32 @@ async function updateCourseCount(courseId, newUserMetrics) {
             throw e
         }
     }
+    return {updateCount: true}
+}
 
+async function decreaseCourseCount(courseId, deleteUserMetrics) {
+    let course = await getCourse(courseId)
+    const courseCollection = await courses()
+    let count = course.count
+    const userDifficulty = deleteUserMetrics.difficulty
+    const userChanceToGetA = deleteUserMetrics.chanceToGetA
+    const userWorkLoad = deleteUserMetrics.workLoad
+    count.difficulty[userDifficulty] = count.difficulty[userDifficulty] - 1 
+    count.chanceToGetA[userChanceToGetA] = count.chanceToGetA[userChanceToGetA] - 1 
+    count.workLoad[userWorkLoad] = count.workLoad[userWorkLoad] - 1 
+    const updateInfo = await courseCollection.updateOne(
+        { _id: ObjectId(courseId) },
+        { $set: {count:count }}
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw 'Update failed';
+    } else {
+        try {
+            await updateCourseMetrics(courseId)
+        } catch(e) {
+            throw e
+        }
+    }
     return {updateCount: true}
 }
 
@@ -478,5 +530,6 @@ module.exports = {
     updateCourseInstructionalFormats,
     updateCourseSyllabus,
     updateCourseCourseware,
-    createCourseReview // create course review function will call call back function update rating, count and metrics
+    createCourseReview, // create course review function will call call back function update rating, count and metrics
+    deleteCourseReview
 }

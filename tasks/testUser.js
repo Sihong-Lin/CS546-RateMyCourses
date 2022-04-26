@@ -42,6 +42,7 @@ const main = async () => {
             'Lecture', // instructionalFormats
             'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
             'https://github.com/graffixnyc/CS-546', // courseware
+            'https://somepicture.com' // picture
         )
         firstCourseId = course1._id.toString()
         console.log(course1);
@@ -106,6 +107,41 @@ const main = async () => {
     } catch (e) {
         console.log(e);
     } 
+
+    console.log("6. first user delete course review to first course ");
+    try {
+        let deleteCourseReview = await user.deleteCourseReview(
+            firstUserId,
+            firstCourseId,
+        )
+        const deleteStatus = deleteCourseReview.courseReviewDelete
+        if(deleteStatus) {
+            console.log("first course Review delete successfully");
+        }else {
+            console.log("first course Review fail to delete")
+        }
+    } catch (e) {
+        console.log(e);
+    } 
+
+    console.log("5. second user add course review again to first course ");
+    try {
+        let newCourseReview = await user.createCourseReview(
+            secondUserId,
+            firstCourseId,
+            "The lectures is suck",
+            {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Plenty'},
+            1.111
+        )
+        const insertStatus = newCourseReview.courseReviewInserted
+        if(insertStatus) {
+            console.log("Second course Review created successfully");
+        }else {
+            console.log("Second course Review fail to insert")
+        }
+    } catch (e) {
+        console.log(e);
+    }
 
 
     // console.log("2. log in first user");
