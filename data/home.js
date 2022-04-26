@@ -18,26 +18,26 @@ async function getTopCourses() {
 }
 
 async function getAllCourses() {
-    
-}
-
-async function getTop3Professors() {
-    const professorCollection = await professors();
-    let professorList = await professorCollection
+    const courseCollection = await courses();
+    let courseList = await courseCollection
         .find({},{ 
             projection: { _id: 1, 
-                            professorName: 1,
-                            department: 1,
-                            introduction: 1,
+                            courseName: 1,
+                            metrics: 1,
                             rating: 1,
                             picture: 1,
                         } }
         )
         .toArray(); 
-    let res = professorList.sort((a, b) => b.rating - a.rating).slice(0,3);
-    return res;
+    for (let i = 0; i < courseList.length; i++) {
+        let courseName = courseList[i].courseName;
+        let arr = courseName.split(" ");
+        courseList[i].courseIndex = arr[0] + " " +arr[1];
+        courseList[i].courseName = arr.slice(2).join(" ");
+        courseList[i].picture = "https://www.smartpassiveincome.com/wp-content/uploads/2020/04/How-to-Create-an-Online-Course.png"
+    }    
+    return courseList;
 }
-
 
 async function getAllProfessors() {
     const professorCollection = await professors();
@@ -55,13 +55,21 @@ async function getAllProfessors() {
     return professorList;
 }
 
+async function getTop3Professors() {
+    let professorList = await getAllProfessors();
+    let res = professorList.sort((a, b) => b.rating - a.rating).slice(0,3);
+    return res;
+}
+
+
+
 async function searchCoursesByMajor(major) {
     
 }
 
 const main = async () => {
     try {
-        //console.log(await top3Professors());
+        //console.log(await getAllCourses());
     } catch(e) {
         console.log(e);
     }
