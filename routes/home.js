@@ -3,10 +3,15 @@ const router = express.Router();
 const home = require('../data/home');
 
 router.get('/', async (req, res) => {
-    let professorList = await home.getTop3Professors();
-    res.render('home', { 
+    let topProfessors = await home.getTop3Professors();
+    let topCourses = await home.getTop5Courses();
+    res.render('home', 
+                { 
                     title: 'RateMyCourses - Home',
-                    topProfessors: professorList});
+                    topProfessors: topProfessors,
+                    topCourses: topCourses
+                }
+    );
 });
 
 

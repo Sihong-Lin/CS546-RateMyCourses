@@ -5,7 +5,7 @@ const professors = mongoCollections.professors;
 const { ObjectId } = require('mongodb');
 
 module.exports = {
-    getTopCourses,
+    getTop5Courses,
     getAllCourses,
     getTop3Professors,
     getAllProfessors,
@@ -13,10 +13,6 @@ module.exports = {
     professors,
 };
 
-async function getTopCourses() {
-
-
-}
 
 async function getAllCourses() {
     const courseCollection = await courses();
@@ -25,7 +21,8 @@ async function getAllCourses() {
             projection: { _id: 1, 
                             courseName: 1,
                             metrics: 1,
-                            rating: 1,
+                            type: 1,
+                            overallRating: 1,
                             picture: 1,
                         } }
         )
@@ -48,7 +45,7 @@ async function getAllProfessors() {
                             professorName: 1,
                             department: 1,
                             introduction: 1,
-                            rating: 1,
+                            overallRating: 1,
                             picture: 1,
                         } }
         )
@@ -56,9 +53,15 @@ async function getAllProfessors() {
     return professorList;
 }
 
+async function getTop5Courses() {
+    let courseList = await getAllCourses();
+    let res = courseList.sort((a, b) => b.overallRating - a.overallRating).slice(0,5);
+    return res;
+}
+
 async function getTop3Professors() {
     let professorList = await getAllProfessors();
-    let res = professorList.sort((a, b) => b.rating - a.rating).slice(0,3);
+    let res = professorList.sort((a, b) => b.overallRating - a.overallRating).slice(0,3);
     return res;
 }
 
