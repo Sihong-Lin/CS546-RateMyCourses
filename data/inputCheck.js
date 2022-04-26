@@ -73,9 +73,9 @@ function checkComment(comment) {
 function checkMetrics(metrics) {
     if(!metrics) throw 'You must provided metrics'
     if(typeof metrics !== 'object') throw 'metrics is not a object'
-    if(!('difficulty' in metrics)) throw 'You must get difficulty'
-    if(!('chanceToGetA' in metrics)) throw 'You must get chanceToGetA'
-    if(!('workLoad' in metrics)) throw 'You must get workLoad'
+    if(!('difficulty' in metrics)) throw 'You must rate difficulty'
+    if(!('chanceToGetA' in metrics)) throw 'You must rate chanceToGetA'
+    if(!('workLoad' in metrics)) throw 'You must rate workLoad'
     const difficulty = metrics.difficulty
     const chanceToGetA = metrics.chanceToGetA
     const workLoad = metrics.workLoad
