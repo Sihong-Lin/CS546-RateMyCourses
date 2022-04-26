@@ -69,7 +69,7 @@ const exportMethods = {
         return await this.getProfById(id);
     },
 
-    async removeUser(id) {
+    async removeProf(id) {
         // TODO: validate id
 
         const profCollection = await professors();
