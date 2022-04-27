@@ -5,11 +5,24 @@ const { ObjectId } = require('mongodb');
 const { check } = require('prettier');
 const inputCheck = require('./inputCheck');
 
-const exportMethods = {
-    async getAllProfessors() {
-        const professorsCollection = await professors();
-        return await professorsCollection.find({}).toArray();
-    },
+async function getAllProfessors() {
+    const professorCollection = await professors();
+    let professorList = await professorCollection
+        .find({},{ 
+            projection: { _id: 1, 
+                            professorName: 1,
+                            department: 1,
+                            introduction: 1,
+                            overallRating: 1,
+                            picture: 1,
+                        } }
+        )
+        .toArray();
+    professorList.forEach(professor => {
+        professor._id = professor._id.toString()
+    })
+    return professorList;
+}
 
     /*
         Professor: {
@@ -24,72 +37,73 @@ const exportMethods = {
             “picture”: “http://georgetownheckler.com/wp-content/uploads/2016/09/prof.jpg”
         }
     */
-    async createProfessor(professorName, department, introduction, picture) {
+async function createProfessor(professorName, department, introduction, picture) {
 
-        professorName = inputCheck.checkProfessorName(professorName);
-        department = inputCheck.checkDepartment(department);
-        introduction = inputCheck.checkIntroduction(introduction);
-        picture = inputCheck.checkProfessorPicture(picture);
+    professorName = inputCheck.checkProfessorName(professorName);
+    department = inputCheck.checkDepartment(department);
+    introduction = inputCheck.checkIntroduction(introduction);
+    picture = inputCheck.checkProfessorPicture(picture);
 
-        const professorsCollection = await professors();
-        let newProfessor = {
-            professorName: professorName,
-            department: department,
-            introduction: introduction,
-            picture: picture,
-            professorReviews: [],
-            courses: [],
-            overallRating: null
-        };
+    const professorsCollection = await professors();
+    let newProfessor = {
+        professorName: professorName,
+        department: department,
+        introduction: introduction,
+        picture: picture,
+        professorReviews: [],
+        courses: [],
+        overallRating: null
+    };
 
-        const newInsertInformation = await professorsCollection.insertOne(newProfessor);
-        if (newInsertInformation.insertedCount === 0) throw 'Insert failed!';
-        return await this.getProfById(
-            newInsertInformation.insertedId.toString()
-        );
-    },
+    const newInsertInformation = await professorsCollection.insertOne(newProfessor);
+    if (newInsertInformation.insertedCount === 0) throw 'Insert failed!';
+    return await this.getProfById(
+        newInsertInformation.insertedId.toString()
+    );
+}
 
-    async getProfById(id) {
-        id = inputCheck.checkUserId(id);
-        
-        const profCollection = await professors();
-        const professor = await profCollection.findOne({ _id: ObjectId(id) });
-        if (!professor) throw 'Professor not found';
-        return professor;
-    },
+async function getProfById(id) {
+    id = inputCheck.checkUserId(id);
+    
+    const profCollection = await professors();
+    const professor = await profCollection.findOne({ _id: ObjectId(id) });
+    if (!professor) throw 'Professor not found';
+    professor._id = professor._id.toString()
+    return professor;
+}
 
-    async updateProf(id, updatedProf) {
-        id = inputCheck.checkUserId(id);
+async function updateProf(id, updatedProf) {
+    id = inputCheck.checkUserId(id);
 
-        let profUpdateInfo = {
-            professorName: updatedProf.professorName,
-            department: updatedProf.department,
-            introduction: updatedProf.introduction,
-            picture: updatedProf.picture,
-            // delete review?
-        };
-        const profCollection = await professors();
-        const updateInfo = await profCollection.updateOne(
-            { _id: ObjectId(id) },
-            { $set: profUpdateInfo }
-        );
-        if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
-            throw 'Update failed';
-        return await this.getProfById(id);
-    },
+    let profUpdateInfo = {
+        professorName: updatedProf.professorName,
+        department: updatedProf.department,
+        introduction: updatedProf.introduction,
+        picture: updatedProf.picture,
+        // delete review?
+    };
+    const profCollection = await professors();
+    const updateInfo = await profCollection.updateOne(
+        { _id: ObjectId(id) },
+        { $set: profUpdateInfo }
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
+        throw 'Update failed';
+    return await this.getProfById(id);
+}
 
-    async removeProf(id) {
-        id = inputCheck.checkUserId(id)
+async function removeProf(id) {
+    id = inputCheck.checkUserId(id)
 
-        const profCollection = await professors();
-        const deletionInfo = await profCollection.deleteOne({
-            _id: ObjectId(id),
-        });
-        if (deletionInfo.deletedCount === 0) {
-            throw `Could not delete professor with id of ${id}`;
-        }
-        return { deleted: true };
-    },
+    const profCollection = await professors();
+    const deletionInfo = await profCollection.deleteOne({
+        _id: ObjectId(id),
+    });
+    if (deletionInfo.deletedCount === 0) {
+        throw `Could not delete professor with id of ${id}`;
+    }
+    return { deleted: true };
+}
 
     /* 
     ProfessoReview: {
@@ -105,57 +119,69 @@ const exportMethods = {
     }
     */
 
-    async addProfReview(uid, pid, comment, rating) {
+async function addProfReview(uid, pid, comment, rating) {
 
-        uid = inputCheck.checkUserId(uid);
-        pid = inputCheck.checkUserId(pid);
-        comment = inputCheck.checkComment(comment);
-        rating = inputCheck.checkRating(rating);
+    uid = inputCheck.checkUserId(uid);
+    pid = inputCheck.checkUserId(pid);
+    comment = inputCheck.checkComment(comment);
+    rating = inputCheck.checkRating(rating);
 
-        const profReview = {
-            _id: ObjectId(),
-            userId: ObjectId(uid),
-            professorId: Object(pid),
-            comment: comment,
-            rating: rating,
-        };
-        const userCollection = await users();
-        const profCollection = await professors();
+    const profReview = {
+        _id: ObjectId(),
+        userId: ObjectId(uid),
+        professorId: Object(pid),
+        comment: comment,
+        rating: rating,
+    };
+    const userCollection = await users();
+    const profCollection = await professors();
 
-        // insert review into user
-        const userUpdateInfo = await userCollection.updateOne(
-            { _id: ObjectId(uid) },
-            { $push: { professorReviews: profReview } }
-        );
-        if (!userUpdateInfo.modifiedCount && !userUpdateInfo.matchedCount)
-            throw `No user found with ID of ${uid}`;
+    // insert review into user
+    const userUpdateInfo = await userCollection.updateOne(
+        { _id: ObjectId(uid) },
+        { $push: { professorReviews: profReview } }
+    );
+    if (!userUpdateInfo.modifiedCount && !userUpdateInfo.matchedCount)
+        throw `No user found with ID of ${uid}`;
 
-        // insert prof review into professor
-        const profUpdateInfo = await profCollection.updateOne(
-            { _id: ObjectId(pid) },
-            { $push: { reviews: profReview } }
-        );
-        if (!profUpdateInfo.modifiedCount && !profUpdateInfo.matchedCount)
-            throw `No professor found with ID of ${pid}`;
+    // insert prof review into professor
+    const profUpdateInfo = await profCollection.updateOne(
+        { _id: ObjectId(pid) },
+        { $push: { reviews: profReview } }
+    );
+    if (!profUpdateInfo.modifiedCount && !profUpdateInfo.matchedCount)
+        throw `No professor found with ID of ${pid}`;
 
-        // set average rating
-        await profCollection.updateOne({ _id: ObjectId(pid) }, [
-            { $set: { rating: { $avg: '$reviews.rating' } } },
-        ]);
+    // set average rating
+    await profCollection.updateOne({ _id: ObjectId(pid) }, [
+        { $set: { rating: { $avg: '$reviews.rating' } } },
+    ]);
 
-        return profReview;
-    },
+    return profReview;
+}
 
-    async removeProfReview(id) {
-        id = inputCheck.checkUserId(id);
+async function removeProfReview(id) {
+    id = inputCheck.checkUserId(id);
 
-        const profCollection = await professors();
-        const prof = await profCollection.findOne({ 'reviews._id': { $eq: ObjectId(id) }});
-        if(!prof) throw "review does not exist";
-        await profCollection.updateOne({ _id: prof._id }, { $pull: { reviews: { _id: ObjectId(id)}}})
-        await profCollection.updateOne({ _id: ObjectId(prof._id)}, [{$set: {rating: {$avg: "$reviews.rating"}}}])
-        return { deleted: true };
-    },
+    const profCollection = await professors();
+    // find out the professor document this review belongs to
+    const prof = await profCollection.findOne({ 'reviews._id': { $eq: ObjectId(id) }});
+    if(!prof) throw "review does not exist";
+
+        // delete the review from the reviews
+    await profCollection.updateOne({ _id: prof._id }, { $pull: { reviews: { _id: ObjectId(id)}}})
+
+    // re-calculate avg rating
+    await profCollection.updateOne({ _id: ObjectId(prof._id)}, [{$set: {rating: {$avg: "$reviews.rating"}}}])
+    return { deleted: true };
+}
+
+module.exports = {
+    getAllProfessors: getAllProfessors,
+    createProfessor: createProfessor,
+    getProfById: getProfById,
+    updateProf: updateProf,
+    removeProf: removeProf,
+    addProfReview: addProfReview,
+    removeProfReview: removeProfReview
 };
-
-module.exports = exportMethods;
