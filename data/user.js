@@ -80,19 +80,26 @@ async function getUser(userId) {
     return user;
 }
 
+
+
 async function createCourseReview(userId, courseId, comment, metrics, rating) {
+    let username = (await getUser(userId)).username
     try {
         userId = inputCheck.checkUserId(userId)
         courseId = inputCheck.checkCourseId(courseId)
         comment = inputCheck.checkComment(comment)
         metrics = inputCheck.checkMetrics(metrics)
         rating = inputCheck.checkRating(rating)
-        courseReviewIsNoExisted(userId, courseId)
     } catch (e) {
         throw e
     }
 
+    if(await courseReviewIsExisted(userId, courseId)) {
+        throw 'User already make comment to course'
+    }
+
     let newCourseReview = {
+        username: username,
         userId: userId,
         courseId: courseId,
         comment: comment,
@@ -150,14 +157,14 @@ async function deleteCourseReview(userId, courseId) {
 }
 
 
-async function courseReviewIsNoExisted(userId, courseId) {
-    const user = getUser(userId);
+async function courseReviewIsExisted(userId, courseId) {
+    const user = await getUser(userId);
     const reviews = user.courseReviews
-    for(let i = 0; i < reviews.lengnth; i++) {
+    for(let i = 0; i < reviews.length; i++) {
         if(reviews[i].courseId == courseId) {
-            throw 'user already make a review to this course'
+            return true;
         }
     }
-    return true;
+    return false;
 }
 

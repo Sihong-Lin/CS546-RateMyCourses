@@ -73,16 +73,16 @@ function checkComment(comment) {
 function checkMetrics(metrics) {
     if(!metrics) throw 'You must provided metrics'
     if(typeof metrics !== 'object') throw 'metrics is not a object'
-    if(!('difficulty' in metrics)) throw 'You must get difficulty'
-    if(!('chanceToGetA' in metrics)) throw 'You must get chanceToGetA'
-    if(!('workLoad' in metrics)) throw 'You must get workLoad'
+    if(!('difficulty' in metrics)) throw 'You must rate difficulty'
+    if(!('chanceToGetA' in metrics)) throw 'You must rate chanceToGetA'
+    if(!('workLoad' in metrics)) throw 'You must rate workLoad'
     const difficulty = metrics.difficulty
     const chanceToGetA = metrics.chanceToGetA
     const workLoad = metrics.workLoad
     if(!((difficulty === 'Easy') || (difficulty === 'Medium') || (difficulty === 'Hard'))) {
         throw 'difficulty must be easy/medium/hard'
     }
-    if(!((chanceToGetA === 'Low') || (difficulty === 'Medium') || (difficulty === 'High'))) {
+    if(!((chanceToGetA === 'Low') || (chanceToGetA === 'Medium') || (chanceToGetA === 'High'))) {
         throw 'chanceToGetA must be low/medium/high'
     }
     if(!((workLoad !== 'Less') || (workLoad !== 'Medium') || (workLoad !== 'Plenty'))) {
