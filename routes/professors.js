@@ -7,13 +7,13 @@ router.get('/', async (req, res) => {
     let professorList = await home.getAllProfessors();
     res.render('professors', { 
         title: 'RateMyCourses - Courses', 
-        allProfessors: professorList,
-        partial: "professor-scripts"
+        allProfessors: professorList
     });
 });
 
 router.get('/:id', async (req, res) => {
-    res.render('professorsDetail');
+    
+    res.render('professorDetail');
 });
 
 
