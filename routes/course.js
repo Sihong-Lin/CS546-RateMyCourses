@@ -1,4 +1,4 @@
-const { ConsoleLogger } = require('aws-amplify/node_modules/@aws-amplify/core');
+// const { ConsoleLogger } = require('aws-amplify/node_modules/@aws-amplify/core');
 const express = require('express');
 const router = express.Router();
 const course = require('../data/course');
