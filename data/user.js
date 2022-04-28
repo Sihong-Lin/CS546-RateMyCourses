@@ -68,7 +68,7 @@ async function checkUser(username, password) {
     if (!passwordMatch) {
         throw 'Either the username or password is invalid'
     } else {
-        return {authenticated: true, userId: userInfo._id.toString()};
+        return {authenticated: true, userId: userInfo._id.toString(), role: userInfo.role };
     }
 }
 
