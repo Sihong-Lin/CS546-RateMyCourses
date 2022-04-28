@@ -33,7 +33,10 @@ async function getAllCourses() {
         courseList[i].courseIndex = arr[0] + " " +arr[1];
         courseList[i].courseName = arr.slice(2).join(" ");
         courseList[i].picture = "https://www.smartpassiveincome.com/wp-content/uploads/2020/04/How-to-Create-an-Online-Course.png"
-    }    
+    }
+    courseList.forEach(course => {
+        course._id = course._id.toString()
+    })
     return courseList;
 }
 
@@ -49,7 +52,10 @@ async function getAllProfessors() {
                             picture: 1,
                         } }
         )
-        .toArray(); 
+        .toArray();
+    professorList.forEach(professor => {
+        professor._id = professor._id.toString()
+    })
     return professorList;
 }
 

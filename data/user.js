@@ -142,8 +142,8 @@ async function deleteCourseReview(userId, courseId) {
         {_id: ObjectId(userId)},
         { $pull: {courseReviews:{courseId:courseId}}}
     )
-    if (!userUpdateInfo.matchedCount && !userUpdateInfo.modifiedCount){
-        throw 'fail to delete course Review in user';
+    if (userUpdateInfo.modifiedCount == 0){
+        throw 'user dont have course Review to this course';
     }
 
     // delete review to course
