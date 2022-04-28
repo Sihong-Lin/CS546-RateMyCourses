@@ -33,6 +33,8 @@ const main = async () => {
     }
 
 
+    // Add Courses
+
     
     let course1 = undefined;
     try {
@@ -43,24 +45,87 @@ const main = async () => {
             'Core', // type
             ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
             3, // units
-            'This course will provide students with a first strong approach of internet programming', // description
+            'This course will provide students with a first strong approach of internet programming. It will give the basic knowledge on how the Internet works and how to create advanced web sites by the use of script languages, after learning the basics of HTML. The course will teach the students how to create a complex global site through the creation of individual working modules, giving them the skills required in any business such as proper team work and coordination between groups.', // description
             ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
             'Lecture', // instructionalFormats
             'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
             'https://github.com/graffixnyc/CS-546', // courseware
-            'https://somepicture.com' // picture
+            'https://d1ymz67w5raq8g.cloudfront.net/Pictures/1024x536/P/web/n/z/b/onlinecourses_shutterstock_490891228_2000px_728945.jpg' // picture
         )
         course1 = createCourse._id.toString()
-        
-        
-
-
     } catch (e) {
         console.log(e);
     }
 
+
+    let course2 = undefined;
+    try {
+        let createCourse = await course.createCourse(
+            'CS 521 TCP/IP Networking', // courseName
+            'Graduate', // academicLevel
+            'Computer Science Program', // courseOwner
+            'Elective', // type
+            ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
+            3, // units
+            'Introduction to IP networking. Examination of all layers of the OSI stack. Detailed examination of the IP, ICMP, UDP, and TCP protocols. Basic concepts of network design: end-to-end principle, routing, encapsulation, flow control, congestion control, and security. Detailed coverage of TCP. Some treatment of important Internet applications and services. Emphasis on network layer and above. Assignments focus on protocols and software.', // description
+            ['Fall Semester', 'Spring Semester'], // typicalPeriodsOffered
+            'Lecture', // instructionalFormats
+            'https://web.stevens.edu/academic_files/courses/syllabus/CS521syl.pdf', // syllabus
+            'https://www.studocu.com/en-us/course/stevens-institute-of-technology/tcpip-networking/4691927', // courseware（复制课名随便找点相关网址粘上去）
+            'https://www.smartpassiveincome.com/wp-content/uploads/2020/04/How-to-Create-an-Online-Course.png' // picture
+        )
+        course2 = createCourse._id.toString()
+    } catch (e) {
+        console.log(e);
+    }
+
+    
+    //Computer Science 15条
+
+    //Biomedical Engineering 5条
+
+    //Mechanical Engineering 5条
+
+    //Financial Engineering 5条
+
+    //Materials Engineering 5条
+
+    //Civil Engineering 5条
+
+    //Management 5条
+
+    //Information Systems 5条
+
+    //Mathematics 5条
+
+    //Chemistry 5条
+
+
+
+
+
+
+
+
+    //Add reviews：100条
+    
+
+
+    await user.createCourseReview(
+        user1,      //这个先不改，只改最后三个属性性
+        course1,    //这个先不改，只改最后三个属性性
+        "The lectures are quite easy to understand and so are the Labs. Only need to make sure that you are not careless while working on labs or else you'll lose points and that is something that the professor is always clear about. If you dedicatedly work on the labs and the project, you can easily score an Best professor at Stevens",
+        {difficulty: "Easy", chanceToGetA: 'Low', workLoad: 'Less'},
+        4.5   //0.0-5.0
+    )
+    //Difficulty (Easy / Medium / Hard)
+    //Chance of getting A (Low / Medium / High)
+    //Workload (Low / Medium / Lots)
+
    
     
+
+
     connection.closeConnection();
     console.log('Done!');
 }
