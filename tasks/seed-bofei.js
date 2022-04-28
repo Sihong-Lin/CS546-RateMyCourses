@@ -82,23 +82,27 @@ const main = async () => {
     
     //Computer Science 15条
 
-    //Biomedical Engineering 5条
+    //Biomedical Engineering 9条
 
     //Mechanical Engineering 5条
 
-    //Financial Engineering 5条
-
-    //Materials Engineering 5条
-
-    //Civil Engineering 5条
+    //Electrical Engineering 8条
 
     //Management 5条
 
-    //Information Systems 5条
+    //Business Intelligence and Analytics 8条
 
-    //Mathematics 5条
+    //Finance 5条
 
-    //Chemistry 5条
+    //Physics & Engineering Physic 6条
+
+    //Chemistry 4条
+
+    //Materials Engineering 5条
+
+    //Civil Engineering 2条
+
+    //Environmental Engineering 3
 
 
 
