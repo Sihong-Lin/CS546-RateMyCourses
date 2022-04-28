@@ -16,11 +16,15 @@ router.get('/:id', async (req, res) => { // show course
 
 router.post('/:id', async (req, res) => { // create course review
     const reviewBody = req.body;
-    const userId = "6268449ea7264fdd760d4d5e";
+    const userId = "6269c572c594dd340156efec";
     const courseId = req.params.id;
     const comment = reviewBody.comment;
-    const rating = reviewBody.rating;
-    const metrics = reviewBody.metrics;
+    const rating = parseInt(reviewBody.rating);
+    // const metrics = reviewBody.metrics;
+    const difficulty = reviewBody.Difficulty;
+    const chanceToGetA = reviewBody.ChanceToGetA;
+    const workLoad = reviewBody.WorkLoad;
+    const metrics = {difficulty: difficulty, chanceToGetA: chanceToGetA, workLoad: workLoad}
     let reviewCreateStatus = undefined
     try {
         reviewCreateStatus = await user.createCourseReview(userId, courseId, comment, metrics, rating);
@@ -32,7 +36,7 @@ router.post('/:id', async (req, res) => { // create course review
 });
 
 router.delete('/:id', async (req, res) => {  //delete course review
-    const userId = "6268449ea7264fdd760d4d5e";
+    const userId = "6269c572c594dd340156efec";
     const courseId = req.params.id;
     let reviewDeleteStatus = undefined
     try {
