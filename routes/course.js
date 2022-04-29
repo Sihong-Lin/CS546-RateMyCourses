@@ -32,10 +32,23 @@ router.post('/:id', async (req, res) => { // create course review
         res.status(500).json(e);
     }
     
-    res.status(200).json({reviewCreateStatus });
+    //res.status(200).json({reviewCreateStatus });
 });
 
 router.delete('/:id', async (req, res) => {  //delete course review
+    const courseId = req.params.id;
+
+    try {
+        removeCourseStatus = await course.removeCourse(courseId);
+    } catch (e) {
+        res.status(500).json(e);
+        return
+    }
+    
+    res.status(200).json({removeCourseStatus });
+    
+    
+    /*
     const userId = "6269c572c594dd340156efec";
     const courseId = req.params.id;
     let reviewDeleteStatus = undefined
@@ -47,6 +60,7 @@ router.delete('/:id', async (req, res) => {  //delete course review
     }
     
     res.status(200).json({reviewDeleteStatus });
+    */
 });
 
 router.put('/edit/:id', async (req, res) => {  // edit course

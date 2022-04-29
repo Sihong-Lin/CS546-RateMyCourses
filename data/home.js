@@ -24,6 +24,7 @@ async function getAllCourses() {
                             type: 1,
                             overallRating: 1,
                             picture: 1,
+                            description: 1
                         } }
         )
         .toArray(); 
@@ -32,7 +33,6 @@ async function getAllCourses() {
         let arr = courseName.split(" ");
         courseList[i].courseIndex = arr[0] + " " +arr[1];
         courseList[i].courseName = arr.slice(2).join(" ");
-        courseList[i].picture = "https://www.smartpassiveincome.com/wp-content/uploads/2020/04/How-to-Create-an-Online-Course.png"
     }
     courseList.forEach(course => {
         course._id = course._id.toString()

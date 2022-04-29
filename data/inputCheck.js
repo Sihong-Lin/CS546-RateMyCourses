@@ -149,8 +149,8 @@ function checkGradingBasis(gradingBasis) {
 
 function checkUnits(units) {
     if(!units) throw 'You must provided unit'
-    if(typeof(units) !== 'number') throw 'unit is not a number'
-    return units
+    //if(typeof(units) !== 'number') throw 'unit is not a number'
+    return parseInt(units)
 }
 
 function checkDescription(description) {

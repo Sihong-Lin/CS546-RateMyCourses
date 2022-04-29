@@ -7,6 +7,7 @@ const courseRoutes = require('./course');
 const coursesRoutes = require('./courses');
 const professorsRoutes = require('./professors');
 const backstageRoutes = require('./backstage');
+const courseManageRoutes = require('./courseManage');
 
 const constructorMethod = (app) => {
     app.use('/login', loginRoutes);
@@ -18,6 +19,7 @@ const constructorMethod = (app) => {
     app.use('/courses', coursesRoutes);
     app.use('/professors', professorsRoutes);
     app.use('/backstage', backstageRoutes);
+    app.use('/courseManage', courseManageRoutes);
 
     app.get('/', (req, res) => {
         return res.redirect('home');
