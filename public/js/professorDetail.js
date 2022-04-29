@@ -1,6 +1,5 @@
 (function ($) {
-    var form = $('#review-form'),
-    url = document.URL;
+    var form = $('#review-form')
 
     form.submit(function (event) {
         event.preventDefault();
@@ -11,7 +10,7 @@
             if (comment && rating) {
                 var requestConfig = {
                     method: 'POST',
-                    url: url,
+                    url: ocument.URL,
                     contentType: 'application/json',
                     data: JSON.stringify({
                         comment: comment,

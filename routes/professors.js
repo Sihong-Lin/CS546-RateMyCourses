@@ -32,11 +32,14 @@ router.post('/:id', async (req, res) => {
         res.redirect('/login');
         return;
     }
+    console.log("2");
     uid = req.session.user.userId;
     comment = req.body.comment;
     rating = parseInt(req.body.rating);
     try {
-        home.addProfReview(uid, id, comment, rating)
+        let profReview = await home.addProfReview(uid, id, comment, rating);
+        console.log(profReview);
+        res.redirect(`/professors/${id}`);
     } catch (e) {
         console.log(e);
     }
