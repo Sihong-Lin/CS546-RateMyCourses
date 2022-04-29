@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const inputCheck = require('./inputCheck');
-const saltRound = 16;
+const saltRound = 1;
 const mongoCollections = require('../config/mongoCollections');
 const { ObjectId } = require('mongodb');
 const courses = mongoCollections.courses;
@@ -68,7 +68,7 @@ async function checkUser(username, password) {
     if (!passwordMatch) {
         throw 'Either the username or password is invalid'
     } else {
-        return {authenticated: true}
+        return {authenticated: true, userId: userInfo._id.toString(), role: userInfo.role };
     }
 }
 

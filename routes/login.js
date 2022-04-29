@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
     try {
         const result = await user.checkUser(username, password);
         if (result.authenticated == true) {
-           // req.session.user = { username: username };
+            req.session.user = { username: username , userId : result.userId , role : result.role};
             res.redirect('/');
         } else {
             res.status(500).render('login', { error: 'Internal Server Error' });

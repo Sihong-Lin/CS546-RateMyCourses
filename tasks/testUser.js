@@ -87,6 +87,29 @@ const main = async () => {
     } catch (e) {
         console.log(e);
     }
+
+    let secondCourseId = undefined
+    console.log("2. Create second course"); 
+    try {
+        let course2 = await course.createCourse(
+            'CS 561 Database', // courseName
+            'Graduate', // academicLevel
+            'Computer Science Program', // courseOwner
+            'Core', // type
+            ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
+            3, // units
+            'This course will provide students with a first strong approach of database system', // description
+            ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
+            'Lecture', // instructionalFormats
+            'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
+            'https://github.com/graffixnyc/CS-546', // courseware
+            'https://somepicture.com' // picture
+        )
+        secondCourseId = course2._id.toString()
+        console.log(course2);
+    } catch (e) {
+        console.log(e);
+    }
     
     console.log("5. first user add course review to first course ");
     try {
@@ -162,24 +185,24 @@ const main = async () => {
     //     console.log(e);
     // } 
 
-    console.log("10. second user add course review again to first course ");
-    try {
-        let newCourseReview = await user.createCourseReview(
-            secondUserId,
-            firstCourseId,
-            "The lectures is suck",
-            {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Plenty'},
-            1.111
-        )
-        const insertStatus = newCourseReview.courseReviewInserted
-        if(insertStatus) {
-            console.log("Second course Review created successfully");
-        }else {
-            console.log("Second course Review fail to insert")
-        }
-    } catch (e) {
-        console.log(e);
-    }
+    // console.log("10. second user add course review again to first course ");
+    // try {
+    //     let newCourseReview = await user.createCourseReview(
+    //         secondUserId,
+    //         firstCourseId,
+    //         "The lectures is suck",
+    //         {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Plenty'},
+    //         1.111
+    //     )
+    //     const insertStatus = newCourseReview.courseReviewInserted
+    //     if(insertStatus) {
+    //         console.log("Second course Review created successfully");
+    //     }else {
+    //         console.log("Second course Review fail to insert")
+    //     }
+    // } catch (e) {
+    //     console.log(e);
+    // }
 
 
     // console.log("2. log in first user");

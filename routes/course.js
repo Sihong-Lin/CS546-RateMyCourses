@@ -1,9 +1,18 @@
-const { ConsoleLogger } = require('aws-amplify/node_modules/@aws-amplify/core');
+// const { ConsoleLogger } = require('aws-amplify/node_modules/@aws-amplify/core');
 const express = require('express');
 const router = express.Router();
 const course = require('../data/course');
 const user = require('../data/user');
 const inputCheck = require('../data/inputCheck');
+
+const isLoggedIn = function (req) {
+    if(req.session.user != undefined) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
 
 router.get('/', async (req, res) => {
     res.redirect('home');
@@ -15,24 +24,48 @@ router.get('/:id', async (req, res) => { // show course
 });
 
 router.post('/:id', async (req, res) => { // create course review
+    if (!isLoggedIn(req)) {
+        //res.sendFile("/Users/makutoo/Desktop/CS546-RateMyCourses/public/login.html")
+        res.status(404).json({ error: 'Not yet login' });
+        return
+    }
+    const loginUser = req.session.user
     const reviewBody = req.body;
-    const userId = "6268449ea7264fdd760d4d5e";
+    const userId = loginUser.userId
     const courseId = req.params.id;
     const comment = reviewBody.comment;
-    const rating = reviewBody.rating;
-    const metrics = reviewBody.metrics;
+    const rating = parseInt(reviewBody.rating);
+    // const metrics = reviewBody.metrics;s
+    const difficulty = reviewBody.Difficulty;
+    const chanceToGetA = reviewBody.ChanceToGetA;
+    const workLoad = reviewBody.WorkLoad;
+    const metrics = {difficulty: difficulty, chanceToGetA: chanceToGetA, workLoad: workLoad}
     let reviewCreateStatus = undefined
     try {
         reviewCreateStatus = await user.createCourseReview(userId, courseId, comment, metrics, rating);
     } catch (e) {
         res.status(500).json(e);
+        return
     }
     
-    res.status(200).json({reviewCreateStatus });
+    //res.status(200).json({reviewCreateStatus });
 });
 
 router.delete('/:id', async (req, res) => {  //delete course review
-    const userId = "6268449ea7264fdd760d4d5e";
+    const courseId = req.params.id;
+
+    try {
+        removeCourseStatus = await course.removeCourse(courseId);
+    } catch (e) {
+        res.status(500).json(e);
+        return
+    }
+    
+    res.status(200).json({removeCourseStatus });
+    
+    
+    /*
+    const userId = "6269c572c594dd340156efec";
     const courseId = req.params.id;
     let reviewDeleteStatus = undefined
     try {
@@ -43,6 +76,7 @@ router.delete('/:id', async (req, res) => {  //delete course review
     }
     
     res.status(200).json({reviewDeleteStatus });
+    */
 });
 
 router.put('/edit/:id', async (req, res) => {  // edit course
