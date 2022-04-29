@@ -6,7 +6,6 @@
         var comment = $('#comment').val(),
         rating = $('#rating').val();
         try {
-            console.log(url);
             if (comment && rating) {
                 var requestConfig = {
                     method: 'POST',

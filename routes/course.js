@@ -25,9 +25,7 @@ router.get('/:id', async (req, res) => { // show course
 
 router.post('/:id', async (req, res) => { // create course review
     if (!isLoggedIn(req)) {
-        //res.sendFile("/Users/makutoo/Desktop/CS546-RateMyCourses/public/login.html")
-        //res.status(404).json({ error: 'Not yet login' });
-        res.redirect("../401.html");
+        res.redirect("../login.html");
         return
     }
     const loginUser = req.session.user
@@ -49,7 +47,7 @@ router.post('/:id', async (req, res) => { // create course review
         return
     }
     
-    //res.status(200).json({reviewCreateStatus });
+    res.status(200).json({reviewCreateStatus });
 });
 
 router.delete('/:id', async (req, res) => {  //delete course review

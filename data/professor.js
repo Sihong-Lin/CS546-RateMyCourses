@@ -14,7 +14,7 @@ async function getAllProfessors() {
                             professorName: 1,
                             department: 1,
                             introduction: 1,
-                            overallRating: 1,
+                            rating: 1,
                             picture: 1,
                         } }
         )
@@ -53,7 +53,7 @@ async function createProfessor(professorName, department, introduction, picture)
         picture: picture,
         reviews: [],
         courses: [],
-        overallRating: null
+        rating: null
     };
 
     const newInsertInformation = await professorsCollection.insertOne(newProfessor);
@@ -75,7 +75,7 @@ async function getProfById(id) {
 
 async function getTop3Professors() {
     let professorList = await getAllProfessors();
-    let res = professorList.sort((a, b) => b.overallRating - a.overallRating).slice(0,3);
+    let res = professorList.sort((a, b) => b.rating - a.rating).slice(0,3);
     return res;
 }
 
