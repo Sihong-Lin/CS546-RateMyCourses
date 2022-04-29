@@ -145,6 +145,7 @@ const main = async () => {
         console.log(e);
     }
 
+    console.log("done")
     await connection.closeConnection();
     console.log('Done!');
 };

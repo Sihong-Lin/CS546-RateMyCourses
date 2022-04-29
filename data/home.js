@@ -55,6 +55,31 @@ async function getAllCourses() {
     return courseList;
 }
 
+<<<<<<< HEAD
+=======
+async function getAllProfessors() {
+    const professorCollection = await professors();
+    let professorList = await professorCollection
+        .find({},{ 
+            projection: { _id: 1, 
+                            professorName: 1,
+                            department: 1,
+                            introduction: 1,
+                            rating: 1,
+                            picture: 1,
+                            professorReviews: 1,
+                            courses: 1,
+                            reviews: 1
+                        } }
+        )
+        .toArray();
+    professorList.forEach(professor => {
+        professor._id = professor._id.toString()
+    })
+    return professorList;
+}
+
+>>>>>>> upstream/main
 async function getTop5Courses() {
     let courseList = await getAllCourses();
     let res = courseList.sort((a, b) => b.overallRating - a.overallRating).slice(0,5);
