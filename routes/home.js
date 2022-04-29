@@ -10,7 +10,6 @@ router.get('/', async (req, res) => {
                     title: 'RateMyCourses - Home',
                     topProfessors: topProfessors,
                     topCourses: topCourses,
-                    partial: ""
                 }
     );
 });

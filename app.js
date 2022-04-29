@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const configRoutes = require('./routes');
 const Handlebars = require('handlebars');
 const app = express();
+const static = express.static(__dirname + '/public');
 
 Handlebars.registerHelper('concat', function() {
     var outStr = '';
@@ -21,6 +22,7 @@ app.use(express.static(__dirname + '/public/'));
 //   res.sendFile('index.html');
 // });
 
+app.use('/public', static);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
