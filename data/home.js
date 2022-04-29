@@ -48,8 +48,11 @@ async function getAllProfessors() {
                             professorName: 1,
                             department: 1,
                             introduction: 1,
-                            overallRating: 1,
+                            rating: 1,
                             picture: 1,
+                            professorReviews: 1,
+                            courses: 1,
+                            reviews: 1
                         } }
         )
         .toArray();
