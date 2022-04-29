@@ -5,7 +5,7 @@
     form.submit(function (event) {
         event.preventDefault();
         var comment = $('#comment').val(),
-        rating = $('#rating');
+        rating = $('#rating').val();
         try {
             console.log(url);
             if (comment && rating) {
@@ -22,7 +22,7 @@
                     console.log("request submitted")
                 });
             } else {
-                throw "comment or rating is not defined"
+                throw "comment or rating is missing"
             }
         } catch (e) {
             console.log(e);

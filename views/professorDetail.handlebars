@@ -49,21 +49,7 @@
                     <div class="mb-4">
                         <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Professor Info
                         </h5>
-                        <h1 class="display-10"> {{ professorName }} </h1>
-                    </div>
-                    <div class="mb-4">
-                        <h2 class="display-10"> {{ department }} </h2>
-                    </div>
-                    <div class="mb-4">
-                        <h2 class="display-10"> About me </h2>
-                        <h3 class="display-18"> {{ introduction }} </h3>
-                    </div>
-                    <div class="mb-4">
-                        <h2 class="display-10"> {{ courses }} </h2>
-                    </div>
-                    <div class="mb-4">
-                        <h2 class="display-10"> Rating </h2>
-                        <h2 class="display-10"> {{ concat rating ' / 5' }} </h2>
+                        <h1 class="display-10">Username: </h1>
                     </div>
                 </div>
             </div>
@@ -77,27 +63,186 @@
                 <h1 class="display-4">Professor's Latest Comments Posts</h1>
             </div>
             <div class="row g-5">
-                {{#each reviews}}
                 <div class="col-xl-4 col-lg-6">
                     <div class="bg-light rounded overflow-hidden">
                         <div class="p-4">
-                            <a class="h3 d-block mb-3" href=""> {{ concat this.rating ' / 5' }} </a>
-                            <p> {{ this.comment }} </p>
+                            <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo diam</a>
+                            <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
+                                rebum clita rebum dolor stet amet justo</p>
                         </div>
                         <div class="d-flex justify-content-between border-top p-4">
                             <div class="d-flex align-items-center">
                                 <img class="rounded-circle me-2" src="static/picture/user.jpg" width="25" height="25"
                                     alt="">
-                                <small> {{ this.username }} </small>
+                                <small>John Doe</small>
                             </div>
                             <div class="d-flex align-items-center">
-                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>842</small>
-                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>5</small>
+                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
                             </div>
                         </div>
                     </div>
                 </div>
-                {{/each}}
+                <div class="col-xl-4 col-lg-6">
+                    <div class="bg-light rounded overflow-hidden">
+                        <div class="p-4">
+                            <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo diam</a>
+                            <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
+                                rebum clita rebum dolor stet amet justo</p>
+                        </div>
+                        <div class="d-flex justify-content-between border-top p-4">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle me-2" src="static/picture/user.jpg" width="25" height="25"
+                                    alt="">
+                                <small>John Doe</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6">
+                    <div class="bg-light rounded overflow-hidden">
+                        <div class="p-4">
+                            <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo diam</a>
+                            <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
+                                rebum clita rebum dolor stet amet justo</p>
+                        </div>
+                        <div class="d-flex justify-content-between border-top p-4">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle me-2" src="static/picture/user.jpg" width="25" height="25"
+                                    alt="">
+                                <small>John Doe</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6">
+                    <div class="bg-light rounded overflow-hidden">
+                        <div class="p-4">
+                            <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo diam</a>
+                            <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
+                                rebum clita rebum dolor stet amet justo</p>
+                        </div>
+                        <div class="d-flex justify-content-between border-top p-4">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle me-2" src="static/picture/user.jpg" width="25" height="25"
+                                    alt="">
+                                <small>John Doe</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6">
+                    <div class="bg-light rounded overflow-hidden">
+                        <div class="p-4">
+                            <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo diam</a>
+                            <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
+                                rebum clita rebum dolor stet amet justo</p>
+                        </div>
+                        <div class="d-flex justify-content-between border-top p-4">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle me-2" src="static/picture/user.jpg" width="25" height="25"
+                                    alt="">
+                                <small>John Doe</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6">
+                    <div class="bg-light rounded overflow-hidden">
+                        <div class="p-4">
+                            <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo diam</a>
+                            <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
+                                rebum clita rebum dolor stet amet justo</p>
+                        </div>
+                        <div class="d-flex justify-content-between border-top p-4">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle me-2" src="static/picture/user.jpg" width="25" height="25"
+                                    alt="">
+                                <small>John Doe</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6">
+                    <div class="bg-light rounded overflow-hidden">
+                        <div class="p-4">
+                            <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo diam</a>
+                            <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
+                                rebum clita rebum dolor stet amet justo</p>
+                        </div>
+                        <div class="d-flex justify-content-between border-top p-4">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle me-2" src="static/picture/user.jpg" width="25" height="25"
+                                    alt="">
+                                <small>John Doe</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6">
+                    <div class="bg-light rounded overflow-hidden">
+                        <div class="p-4">
+                            <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo diam</a>
+                            <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
+                                rebum clita rebum dolor stet amet justo</p>
+                        </div>
+                        <div class="d-flex justify-content-between border-top p-4">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle me-2" src="static/picture/user.jpg" width="25" height="25"
+                                    alt="">
+                                <small>John Doe</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6">
+                    <div class="bg-light rounded overflow-hidden">
+                        <div class="p-4">
+                            <a class="h3 d-block mb-3" href="">Dolor clita vero elitr sea stet dolor justo diam</a>
+                            <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
+                                rebum clita rebum dolor stet amet justo</p>
+                        </div>
+                        <div class="d-flex justify-content-between border-top p-4">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle me-2" src="static/picture/user.jpg" width="25" height="25"
+                                    alt="">
+                                <small>John Doe</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-12 text-center">
                     <button class="btn btn-primary py-3 px-5">Load More</button>
                 </div>
@@ -111,20 +256,22 @@
             <div class="bg-light rounded p-5">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-white mb-4">
                     Leave a comment</h4>
-                <form id="review-form">
+                <form>
                     <div class="row g-3">
-                        <div class="col-12">
-                            <textarea class="form-control bg-white border-0" rows="5" placeholder="Comment" id="comment"></textarea>
+                        <div class="col-12 col-sm-6">
+                            <input type="text" class="form-control bg-white border-0" placeholder="Your Name"
+                                style="height: 55px;">
                         </div>
-                         <div class="col-12 sm-6">
-                            <select class="form-select w-25" style="height: 60px;" id="rating">
-                                <option selected="">Rating</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="2">4</option>
-                                <option value="3">5</option>
-                            </select>
+                        <div class="col-12 col-sm-6">
+                            <input type="email" class="form-control bg-white border-0" placeholder="Your Email"
+                                style="height: 55px;">
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control bg-white border-0" placeholder="Website"
+                                style="height: 55px;">
+                        </div>
+                        <div class="col-12">
+                            <textarea class="form-control bg-white border-0" rows="5" placeholder="Comment"></textarea>
                         </div>
                         <div class="col-12">
                             <button class="btn btn-primary w-100 py-3" type="submit">Leave Your Comment</button>
@@ -232,7 +379,4 @@
 
     <script src="static/js/main.js" type="64f10123938904b78188bb72-text/javascript"></script>
     <script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
-    <script src="/public/js/professorDetail.js"></script>
 </body>
