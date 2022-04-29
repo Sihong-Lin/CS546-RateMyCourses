@@ -131,12 +131,10 @@
                                                                                     class="icon ni ni-edit"></em><span>Edit
                                                                                     Course</span></a></div>
                                                                     </li>
-                                                                    <li>
-                                                                        <a onclick="deleteCourse('{{this._id}}')">
-                                                                            <em class="icon ni ni-delete"></em><span>Delete
-                                                                                Course</span>
-                                                                        </a>
-                                                                    </li>
+                                                                    <li><a id="courseId" value={{this._id}}
+                                                                            class="btn btn-primary eg-swal-av3"><em
+                                                                                class="icon ni ni-delete"></em><span>Delete
+                                                                                Course</span></a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -557,6 +555,35 @@
             });
 
             event.preventDefault();
+        });
+
+
+        $('.eg-swal-av3').on("click", function (event) {
+            event.preventDefault();
+            var courseId = $("#courseId").attr("value");
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: 'http://localhost:3000/course/' + courseId,
+                        success: function (result) {
+                            Swal.fire(
+                                'Deleted!',
+                                'The course has been deleted.',
+                                'success'
+                            )
+                            location.reload(true);
+                        }
+                    });             
+                }
+            });
+           
         });
     });
 

@@ -120,7 +120,8 @@
                                                     <div class="project">
                                                         <div class="project-head">
                                                             <a href="html/apps-kanban.html" class="project-title">
-                                                                <div><img class="user-avatar sq" src="static/picture/course-4.jpg" alt=""></div>
+                                                                <div><img class="user-avatar sq"
+                                                                        src="static/picture/course-4.jpg" alt=""></div>
                                                                 <div class="project-info">
                                                                     <h6 class="title">CS 546 Web Programming</h6>
                                                                     <span class="sub-text">Computer Science
@@ -144,9 +145,10 @@
                                                                                         class="icon ni ni-edit"></em><span>Edit
                                                                                         Course</span></a></div>
                                                                         </li>
-                                                                        <li><a href="#"><em
-                                                                                    class="icon ni ni-delete"></em><span>Delete
-                                                                                    Course</span></a></li>
+                                                                        <li><a id="courseId" value="123"
+                                                                                class="btn btn-primary eg-swal-av3"><em
+                                                                                class="icon ni ni-delete"></em><span>Delete
+                                                                                Course</span></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -506,13 +508,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="courseName">Course Name</label>
-                                    <input type="text" class="form-control form-control-lg" id="courseName" name="courseName" value="CS 546 Web Programming">
+                                    <input type="text" class="form-control form-control-lg" id="courseName"
+                                        name="courseName" value="CS 546 Web Programming">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="courseOwner">Course Owner</label>
-                                    <input type="text" class="form-control form-control-lg" id="courseOwner" name="courseOwner" value="Computer Science Program">
+                                    <input type="text" class="form-control form-control-lg" id="courseOwner"
+                                        name="courseOwner" value="Computer Science Program">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -520,10 +524,12 @@
                                     <label class="form-label" for="academicLevel">Academic Level</label>
                                     <div class="form-control-wrap ">
                                         <div class="form-control-select">
-                                            <select class="form-control required" data-msg="Required"
-                                                id="academicLevel" name="academicLevel" required>
-                                                <option selected="Graduate == Undergraduate" value="Undergraduate">Undergraduate</option>
-                                                <option selected="Graduate == Graduate" value="Graduate">Graduate</option>
+                                            <select class="form-control required" data-msg="Required" id="academicLevel"
+                                                name="academicLevel" required>
+                                                <option selected="Graduate == Undergraduate" value="Undergraduate">
+                                                    Undergraduate</option>
+                                                <option selected="Graduate == Graduate" value="Graduate">Graduate
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -570,8 +576,8 @@
                                     <label class="form-label" for="instructionalFormats">Instructional Format</label>
                                     <div class="form-control-wrap ">
                                         <div class="form-control-select">
-                                            <select class="form-control required" data-msg="Required" id="instructionalFormats"
-                                                name="instructionalFormats" required>
+                                            <select class="form-control required" data-msg="Required"
+                                                id="instructionalFormats" name="instructionalFormats" required>
                                                 <option value="Lecture">Lecture</option>
                                                 <option value="Thesis">Thesis</option>
                                             </select>
@@ -594,7 +600,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="typicalPeriodsOffered">Typical Periods Offered</label>
+                                    <label class="form-label" for="typicalPeriodsOffered">Typical Periods
+                                        Offered</label>
                                     <div class="form-control-wrap">
                                         <select class="form-select" multiple="multiple"
                                             data-placeholder="Select Multiple options" name="typicalPeriodsOffered">
@@ -608,25 +615,31 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="picture">Picture</label>
-                                    <input type="text" class="form-control form-control-lg" id="picture" name="picture" value="https://www.smartpassiveincome.com/wp-content/uploads/2020/04/How-to-Create-an-Online-Course.png">
+                                    <input type="text" class="form-control form-control-lg" id="picture" name="picture"
+                                        value="https://www.smartpassiveincome.com/wp-content/uploads/2020/04/How-to-Create-an-Online-Course.png">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="syllabus">Syllabus</label>
-                                    <input type="text" class="form-control form-control-lg" id="syllabus" name="syllabus" value="https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf">
+                                    <input type="text" class="form-control form-control-lg" id="syllabus"
+                                        name="syllabus"
+                                        value="https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="courseware">Courseware</label>
-                                    <input type="text" class="form-control form-control-lg" id="courseware" name="courseware" value="https://github.com/graffixnyc/CS-546">
+                                    <input type="text" class="form-control form-control-lg" id="courseware"
+                                        name="courseware" value="https://github.com/graffixnyc/CS-546">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="courseware">Description</label>
-                                    <input type="text" class="form-control form-control-lg" id="description" name="description" value="This course will provide students with a first strong approach of internet programming.">
+                                    <input type="text" class="form-control form-control-lg" id="description"
+                                        name="description"
+                                        value="This course will provide students with a first strong approach of internet programming.">
                                 </div>
                             </div>
                             <div class="col-12">
@@ -655,18 +668,20 @@
                 <div class="modal-body modal-body-lg">
                     <h5 class="title">Add Course</h5>
                     <div class="tab-content">
-                        
+
                         <div class="row gy-4">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="courseName">Course Name</label>
-                                    <input type="text" class="form-control form-control-lg" id="courseName" name="courseName" placeholder="e.g., CS 546 Web Programming">
+                                    <input type="text" class="form-control form-control-lg" id="courseName"
+                                        name="courseName" placeholder="e.g., CS 546 Web Programming">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="courseOwner">Course Owner</label>
-                                    <input type="text" class="form-control form-control-lg" id="courseOwner" name="courseOwner" placeholder="e.g., Computer Science Program">
+                                    <input type="text" class="form-control form-control-lg" id="courseOwner"
+                                        name="courseOwner" placeholder="e.g., Computer Science Program">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -674,8 +689,8 @@
                                     <label class="form-label" for="academicLevel">Academic Level</label>
                                     <div class="form-control-wrap ">
                                         <div class="form-control-select">
-                                            <select class="form-control required" data-msg="Required"
-                                                id="academicLevel" name="academicLevel" required>
+                                            <select class="form-control required" data-msg="Required" id="academicLevel"
+                                                name="academicLevel" required>
                                                 <option value="Undergraduate">Undergraduate</option>
                                                 <option value="Graduate">Graduate</option>
                                             </select>
@@ -724,8 +739,8 @@
                                     <label class="form-label" for="instructionalFormats">Instructional Format</label>
                                     <div class="form-control-wrap ">
                                         <div class="form-control-select">
-                                            <select class="form-control required" data-msg="Required" id="instructionalFormats"
-                                                name="instructionalFormats" required>
+                                            <select class="form-control required" data-msg="Required"
+                                                id="instructionalFormats" name="instructionalFormats" required>
                                                 <option value="Lecture">Lecture</option>
                                                 <option value="Thesis">Thesis</option>
                                             </select>
@@ -748,7 +763,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="typicalPeriodsOffered">Typical Periods Offered</label>
+                                    <label class="form-label" for="typicalPeriodsOffered">Typical Periods
+                                        Offered</label>
                                     <div class="form-control-wrap">
                                         <select class="form-select" multiple="multiple"
                                             data-placeholder="Select Multiple options" name="typicalPeriodsOffered">
@@ -762,25 +778,31 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="picture">Picture</label>
-                                    <input type="text" class="form-control form-control-lg" id="picture" name="picture" placeholder="e.g., https://www.smartpassiveincome.com/wp-content/uploads/2020/04/How-to-Create-an-Online-Course.png">
+                                    <input type="text" class="form-control form-control-lg" id="picture" name="picture"
+                                        placeholder="e.g., https://www.smartpassiveincome.com/wp-content/uploads/2020/04/How-to-Create-an-Online-Course.png">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="syllabus">Syllabus</label>
-                                    <input type="text" class="form-control form-control-lg" id="syllabus" name="syllabus" placeholder="e.g., https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf">
+                                    <input type="text" class="form-control form-control-lg" id="syllabus"
+                                        name="syllabus"
+                                        placeholder="e.g., https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="courseware">Courseware</label>
-                                    <input type="text" class="form-control form-control-lg" id="courseware" name="courseware" placeholder="e.g., https://github.com/graffixnyc/CS-546">
+                                    <input type="text" class="form-control form-control-lg" id="courseware"
+                                        name="courseware" placeholder="e.g., https://github.com/graffixnyc/CS-546">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="courseware">Description</label>
-                                    <input type="text" class="form-control form-control-lg" id="description" name="description" placeholder="e.g., This course will provide students with a first strong approach of internet programming.">
+                                    <input type="text" class="form-control form-control-lg" id="description"
+                                        name="description"
+                                        placeholder="e.g., This course will provide students with a first strong approach of internet programming.">
                                 </div>
                             </div>
                             <div class="col-12">
@@ -794,7 +816,7 @@
                                 </ul>
                             </div>
                         </div>
-                        
+
                     </div><!-- .tab-content -->
                 </div><!-- .modal-body -->
             </div><!-- .modal-content -->
@@ -806,6 +828,36 @@
     <!-- JavaScript -->
     <script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
     <script src="static/backstage/assets/js/scripts.js?ver=2.2.0"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('.eg-swal-av3').on("click", function (event) {
+                event.preventDefault();
+
+                var courseId = $("#courseId").attr("value");
+                alert(courseId)
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        Swal.fire(
+
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                });
+                event.preventDefault();
+            });
+
+        });
+    </script>
 </body>
 
 </html>
