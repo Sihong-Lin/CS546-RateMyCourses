@@ -12,6 +12,8 @@ const courseManageRoutes = require('./courseManage');
 const professorManageRoutes = require('./professorManage');
 const userManageRoutes = require('./userManage');
 
+
+
 const constructorMethod = (app) => {
     app.use('/login', loginRoutes);
     app.use('/logout', logoutRoutes);
@@ -27,13 +29,13 @@ const constructorMethod = (app) => {
     app.use('/professorManage', professorManageRoutes);
     app.use('/userManage', userManageRoutes);
 
+
     app.get('/', (req, res) => {
         return res.redirect('home');
-        //res.sendFile('home.html');
     });
 
-    app.use('*', (req, res) => {
-        res.status(404).json({ error: 'Page Not found' });
+    app.use('/*', (req, res) => {
+        res.redirect("/404.html");
     });
 };
 
