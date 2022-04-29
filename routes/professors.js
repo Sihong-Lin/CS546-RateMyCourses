@@ -16,8 +16,11 @@ router.get('/:id', async (req, res) => {
     console.log(id);
     try {
         let professor = await home.getProfById(id);
-        console.log(professor)
-        if (!professor.overallRating) professor.overallRating = 0;
+        if (!professor.rating) {
+            professor.rating = 0.0
+        } else {
+            professor.rating = professor.rating.toPrecision(2)
+        }
         res.render('professorDetail', professor);
     } catch (e) {
         console.log(e);
