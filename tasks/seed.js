@@ -43,9 +43,15 @@ const main = async () => {
         let review = 'nice!';
 
         let review1 = await professor.addProfReview(uid, pid, review, 5);
+        await professor.addProfReview(uid, pid, review, 5);
+        await professor.addProfReview(uid, pid, review, 2);
+        await professor.addProfReview(uid, pid, review, 3);
+        await professor.addProfReview(uid, pid, review, 4);
+        await professor.addProfReview(uid, pid, review, 2.3);
+        await professor.addProfReview(uid, pid, review, 5);
+        await professor.addProfReview(uid, pid, review, 3.34);
         let prof1 = await professor.getProfById(pid);
-        console.log(review1);
-        console.log(prof1);
+        console.log(prof1)
         
     } catch (e) {
         console.log(e);

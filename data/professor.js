@@ -2,6 +2,7 @@ const mongoCollections = require('../config/mongoCollections');
 const professors = mongoCollections.professors;
 const users = mongoCollections.users;
 const { ObjectId } = require('mongodb');
+const userData = require('../data/user')
 const { check } = require('prettier');
 const inputCheck = require('./inputCheck');
 
@@ -50,7 +51,7 @@ async function createProfessor(professorName, department, introduction, picture)
         department: department,
         introduction: introduction,
         picture: picture,
-        professorReviews: [],
+        reviews: [],
         courses: [],
         overallRating: null
     };
@@ -70,6 +71,12 @@ async function getProfById(id) {
     if (!professor) throw 'Professor not found';
     professor._id = professor._id.toString()
     return professor;
+}
+
+async function getTop3Professors() {
+    let professorList = await getAllProfessors();
+    let res = professorList.sort((a, b) => b.overallRating - a.overallRating).slice(0,3);
+    return res;
 }
 
 async function updateProf(id, updatedProf) {
@@ -126,20 +133,23 @@ async function addProfReview(uid, pid, comment, rating) {
     comment = inputCheck.checkComment(comment);
     rating = inputCheck.checkRating(rating);
 
+    const userCollection = await users();
+    const profCollection = await professors();
+    const user = await userData.getUser(uid)
+
     const profReview = {
-        _id: ObjectId(),
-        userId: ObjectId(uid),
-        professorId: Object(pid),
+        _id: ObjectId().toString(),
+        userId: uid,
+        professorId: pid,
+        username: user.username,
         comment: comment,
         rating: rating,
     };
-    const userCollection = await users();
-    const profCollection = await professors();
 
     // insert review into user
     const userUpdateInfo = await userCollection.updateOne(
         { _id: ObjectId(uid) },
-        { $push: { professorReviews: profReview } }
+        { $push: { reviews: profReview } }
     );
     if (!userUpdateInfo.modifiedCount && !userUpdateInfo.matchedCount)
         throw `No user found with ID of ${uid}`;
@@ -156,6 +166,8 @@ async function addProfReview(uid, pid, comment, rating) {
     await profCollection.updateOne({ _id: ObjectId(pid) }, [
         { $set: { rating: { $avg: '$reviews.rating' } } },
     ]);
+
+    
 
     return profReview;
 }
@@ -177,11 +189,12 @@ async function removeProfReview(id) {
 }
 
 module.exports = {
-    getAllProfessors: getAllProfessors,
-    createProfessor: createProfessor,
-    getProfById: getProfById,
-    updateProf: updateProf,
-    removeProf: removeProf,
-    addProfReview: addProfReview,
-    removeProfReview: removeProfReview
+    getAllProfessors,
+    createProfessor,
+    getProfById,
+    getTop3Professors,
+    updateProf,
+    removeProf,
+    addProfReview,
+    removeProfReview,
 };
