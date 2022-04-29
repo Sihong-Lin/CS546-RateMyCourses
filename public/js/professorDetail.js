@@ -10,7 +10,6 @@
             if (comment && rating) {
                 var requestConfig = {
                     method: 'POST',
-                    url: ocument.URL,
                     contentType: 'application/json',
                     data: JSON.stringify({
                         comment: comment,
