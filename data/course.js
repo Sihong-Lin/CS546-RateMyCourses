@@ -4,6 +4,16 @@ const courses = mongoCollections.courses;
 const { ObjectId } = require('mongodb');
 
 
+module.exports = {
+    createCourse,
+    getCourse,
+    removeCourse,
+    updateCourse,
+    createCourseReview, // create course review function will call call back function update rating, count and metrics
+    deleteCourseReview,
+    countCourses
+}
+
 async function createCourse(courseName, academicLevel, courseOwner, type,
     gradingBasis, units, description, typicalPeriodsOffered,
     instructionalFormats, syllabus, courseware, picture) {
@@ -342,12 +352,5 @@ async function countCourses() {
     const count = await courseCollection.countDocuments()
     return count
 }
-module.exports = {
-    createCourse,
-    getCourse,
-    removeCourse,
-    updateCourse,
-    createCourseReview, // create course review function will call call back function update rating, count and metrics
-    deleteCourseReview,
-    countCourses
-}
+
+
