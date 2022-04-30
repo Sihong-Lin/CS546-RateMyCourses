@@ -6,7 +6,7 @@ const { ObjectId } = require('mongodb');
 
 const main = async () => {
     const db = await connection.connectToDb();
-    await db.dropDatabase();
+    // await db.dropDatabase();
 
     console.log("1. Create first course"); 
     let firstCourseId = undefined

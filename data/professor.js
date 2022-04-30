@@ -188,6 +188,12 @@ async function removeProfReview(id) {
     return { deleted: true };
 }
 
+async function getDepartments() {
+    const profCollection = await professors();
+    const dpts = await profCollection.distinct('department');
+    return dpts;
+}
+
 module.exports = {
     getAllProfessors,
     createProfessor,
@@ -197,4 +203,5 @@ module.exports = {
     removeProf,
     addProfReview,
     removeProfReview,
+    getDepartments
 };

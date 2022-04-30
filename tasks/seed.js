@@ -35,6 +35,7 @@ const main = async () => {
             'My research yields techniques that improve the way programmers develop reliable and efficient concurrent software for multi-core and distributed systems.';
         let pic = "url to picture"
         let professor1 = await professor.createProfessor(name, department, intro, pic);
+        let professor2 = await professor.createProfessor(name, "Biomedical Engineering", intro, pic);
         console.log(professor1);
 
         // add a professor review
@@ -53,6 +54,9 @@ const main = async () => {
         let prof1 = await professor.getProfById(pid);
         console.log(prof1)
         
+        let dpts = await professor.getDepartments();
+        console.log(dpts);
+
     } catch (e) {
         console.log(e);
     }
