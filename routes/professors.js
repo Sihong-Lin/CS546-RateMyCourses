@@ -17,7 +17,7 @@ router.get('/:id', async (req, res) => {
     try {
         let professor = await home.getProfById(id);
         if (!professor.rating) {
-            professor.rating = 0.0
+            professor.rating = 0
         } else {
             professor.rating = professor.rating.toPrecision(2)
         }
@@ -30,12 +30,11 @@ router.get('/:id', async (req, res) => {
 // clean up this route
 router.post('/:id', async (req, res) => {
     let { id } = req.params;
-    console.log("1");
     if (!req.session.user) {
-        res.redirect('/login');
+        console.log(1);
+        res.redirect("../401.html");
         return;
     }
-    console.log("2");
     uid = req.session.user.userId;
     comment = req.body.comment;
     rating = parseInt(req.body.rating);
