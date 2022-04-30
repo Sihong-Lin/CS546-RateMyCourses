@@ -337,12 +337,17 @@ async function updateCourseRating(courseId) {
 }
 
 //async function getCoursesByKeywords(department, courseName)
-
+async function countCourses() {
+    const courseCollection = await courses();
+    const count = await courseCollection.countDocuments()
+    return count
+}
 module.exports = {
     createCourse,
     getCourse,
     removeCourse,
     updateCourse,
     createCourseReview, // create course review function will call call back function update rating, count and metrics
-    deleteCourseReview
+    deleteCourseReview,
+    countCourses
 }

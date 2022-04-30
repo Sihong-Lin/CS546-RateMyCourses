@@ -3,8 +3,11 @@ const course = require('../data/course');
 const professor = require('../data/professor');
 const connection = require('../config/mongoConnection');
 const { ObjectId } = require('mongodb');
+const inputCheck = require("../data/inputCheck")
+
 
 const main = async () => {
+    
     const db = await connection.connectToDb();
     await db.dropDatabase();
     let firstUserId = undefined
@@ -80,7 +83,7 @@ const main = async () => {
             'Lecture', // instructionalFormats
             'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
             'https://github.com/graffixnyc/CS-546', // courseware
-            'https://somepicture.com' // picture
+            'static/picture/course-2.jpg' // picture
         )
         firstCourseId = course1._id.toString()
         console.log(course1);
@@ -103,7 +106,7 @@ const main = async () => {
             'Lecture', // instructionalFormats
             'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
             'https://github.com/graffixnyc/CS-546', // courseware
-            'https://somepicture.com' // picture
+            'static/picture/course-3.jpg' // picture
         )
         secondCourseId = course2._id.toString()
         console.log(course2);
@@ -205,22 +208,16 @@ const main = async () => {
     // }
 
 
-    // console.log("2. log in first user");
-    // try {
-    //     let checkUser = await user.checkUser(
-    //         "zihengZhu",
-    //         "123456789"
-    //     )
-
-    //     const checkStatus = checkUser.authenticated
-    //     if(checkStatus) {
-    //         console.log(`First user login successfully`);
-    //     }else {
-    //         console.log("First user fail to login")
-    //     }
-    // } catch (e) {
-    //     console.log(e);
-    // } 
+    console.log("count course");
+    let count = undefined
+    try {
+        let count = await course.countCourses()
+           
+    } catch (e) {
+        console.log(e);
+    } 
+    console.log("total course are:" + count)
+    
 
     connection.closeConnection();
     console.log('Done!');
