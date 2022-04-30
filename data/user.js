@@ -6,6 +6,7 @@ const { ObjectId } = require('mongodb');
 const courses = mongoCollections.courses;
 const users = mongoCollections.users;
 const courseDBFunction = require('../data/course');
+const courseReviewDBFunction = require('../data/courseReview');
 const { get } = require('express/lib/request');
 
 module.exports = {
@@ -13,16 +14,30 @@ module.exports = {
     checkUser,
     getUser,
     createCourseReview,
-    deleteCourseReview
+    deleteCourseReview,
+    setUserRestrictStatus
 };
+
+async function setUserRestrictStatus(userId, restrictStatus) {
+    const userCollection = await users();
+    const updateInfo = await userCollection.updateOne(
+        { _id: ObjectId(userId) },
+        { $set: { restrictStatus: restrictStatus } }
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw 'Update user restrict status failed';
+    }
+    return { updateRestrictStatus: true }
+}
+
 async function checkUsernameRepeat(username) {
     const userCollection = await users();
-    let user = await userCollection.findOne({username: username})
-    if(user === null) {
+    let user = await userCollection.findOne({ username: username })
+    if (user === null) {
         return username
     } else {
         throw 'this username already existed'
-    }   
+    }
 }
 
 async function createUser(username, password) {
@@ -48,7 +63,7 @@ async function createUser(username, password) {
         throw 'Could not create user.';
     }
 
-    return { userInserted: true, insertedId: insertInfo.insertedId.toString()};
+    return { userInserted: true, insertedId: insertInfo.insertedId.toString() };
 }
 
 async function checkUser(username, password) {
@@ -59,8 +74,8 @@ async function checkUser(username, password) {
         throw e
     }
     const userCollection = await users();
-    let userInfo = await userCollection.findOne({username: username.toLowerCase()})
-    if(userInfo === null) {
+    let userInfo = await userCollection.findOne({ username: username.toLowerCase() })
+    if (userInfo === null) {
         throw 'Either the username or password is invalid'
     }
     let encrypted_password = userInfo.password
@@ -68,7 +83,7 @@ async function checkUser(username, password) {
     if (!passwordMatch) {
         throw 'Either the username or password is invalid'
     } else {
-        return {authenticated: true, userId: userInfo._id.toString(), role: userInfo.role };
+        return { authenticated: true, userId: userInfo._id.toString(), role: userInfo.role };
     }
 }
 
@@ -80,10 +95,23 @@ async function getUser(userId) {
     return user;
 }
 
-
-
 async function createCourseReview(userId, courseId, comment, metrics, rating) {
-    let username = (await getUser(userId)).username
+    let user = undefined
+    let username = undefined
+    
+    try {
+        user = await getUser(userId)
+    } catch(e) {
+        throw e
+    }
+
+    const restrictStatus = user.restrictStatus
+    if(restrictStatus) {
+        throw 'user restrict to write review'
+    } else {
+        username = user.username
+    }
+    
     try {
         userId = inputCheck.checkUserId(userId)
         courseId = inputCheck.checkCourseId(courseId)
@@ -94,7 +122,7 @@ async function createCourseReview(userId, courseId, comment, metrics, rating) {
         throw e
     }
 
-    if(await courseReviewIsExisted(userId, courseId)) {
+    if (await courseReviewIsExisted(userId, courseId)) {
         throw 'User already make comment to course'
     }
 
@@ -106,25 +134,34 @@ async function createCourseReview(userId, courseId, comment, metrics, rating) {
         metrics: metrics,
         rating: rating
     }
-    
+
     // add review to user
     const userCollection = await users();
     const userUpdateInfo = await userCollection.updateOne(
-        {_id: ObjectId(userId)},
-        { $push: { courseReviews: newCourseReview}}
+        { _id: ObjectId(userId) },
+        { $push: { courseReviews: newCourseReview } }
     )
-    if (!userUpdateInfo.matchedCount && !userUpdateInfo.modifiedCount){
+    if (!userUpdateInfo.matchedCount && !userUpdateInfo.modifiedCount) {
         throw 'fail to add course Review in user';
     }
 
     // add review to course
+    let courseOwner = undefined
     try {
         await courseDBFunction.createCourseReview(courseId, newCourseReview)
+        courseOwner = (await courseDBFunction.getCourse(courseId)).courseOwner
     }
-    catch(e) {
+    catch (e) {
         throw e
     }
-    return { courseReviewInserted: true}; 
+
+    // add review to courseReview
+    try {
+        await courseReviewDBFunction.createCourseReview(userId, courseId, courseOwner)
+    } catch (e) {
+        throw e
+    }
+    return { courseReviewInserted: true };
 }
 
 async function deleteCourseReview(userId, courseId) {
@@ -135,14 +172,14 @@ async function deleteCourseReview(userId, courseId) {
         throw e
     }
 
-    
+
     // delete review to user
     const userCollection = await users();
     const userUpdateInfo = await userCollection.updateOne(
-        {_id: ObjectId(userId)},
-        { $pull: {courseReviews:{courseId:courseId}}}
+        { _id: ObjectId(userId) },
+        { $pull: { courseReviews: { courseId: courseId } } }
     )
-    if (userUpdateInfo.modifiedCount == 0){
+    if (userUpdateInfo.modifiedCount == 0) {
         throw 'user dont have course Review to this course';
     }
 
@@ -150,18 +187,17 @@ async function deleteCourseReview(userId, courseId) {
     try {
         await courseDBFunction.deleteCourseReview(userId, courseId)
     }
-    catch(e) {
+    catch (e) {
         throw e
     }
-    return { courseReviewDelete: true}; 
+    return { courseReviewDelete: true };
 }
-
 
 async function courseReviewIsExisted(userId, courseId) {
     const user = await getUser(userId);
     const reviews = user.courseReviews
-    for(let i = 0; i < reviews.length; i++) {
-        if(reviews[i].courseId == courseId) {
+    for (let i = 0; i < reviews.length; i++) {
+        if (reviews[i].courseId == courseId) {
             return true;
         }
     }

@@ -142,7 +142,8 @@ function checkType(type) {
 
 function checkGradingBasis(gradingBasis) {
     if(!gradingBasis) throw 'You must provided gradingBasis'
-    if(!Array.isArray(gradingBasis)) throw 'GradingBasis must be an array'
+    if(typeof(gradingBasis) === 'string') return [gradingBasis]
+    else if(!Array.isArray(gradingBasis)) throw 'GradingBasis must be an array'
     if(gradingBasis.length === 0) throw 'gradingBasis cannot be empty'
     return gradingBasis
 }
@@ -165,7 +166,8 @@ function checkDescription(description) {
 
 function checkTypicalPeriodsOffered(typicalPeriodsOffered) {
     if(!typicalPeriodsOffered) throw 'You must provided typicalPeriodsOffered'
-    if(!Array.isArray(typicalPeriodsOffered)) throw 'typicalPeriodsOffered must be an array'
+    if(typeof(typicalPeriodsOffered) === 'string') return [typicalPeriodsOffered]
+    else if(!Array.isArray(typicalPeriodsOffered)) throw 'typicalPeriodsOffered must be an array'
     if(typicalPeriodsOffered.length === 0) throw 'typicalPeriodsOffered cannot be empty'
     return typicalPeriodsOffered
 }
