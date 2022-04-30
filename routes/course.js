@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => { // show course
 
 router.post('/:id', async (req, res) => { // create course review
     if (!isLoggedIn(req)) {
-        res.redirect("../login.html");
+        res.redirect("../401.html");
         return
     }
     const loginUser = req.session.user

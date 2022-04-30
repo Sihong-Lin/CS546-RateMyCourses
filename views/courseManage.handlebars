@@ -23,19 +23,19 @@
                     <div class="nk-sidebar-menu" data-simplebar>
                         <ul class="nk-menu">
                             <li class="nk-menu-item">
-                                <a href="backstage.html" class="nk-menu-link">
+                                <a href="backstage" class="nk-menu-link">
                                     <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
                                     <span class="nk-menu-text">Dashboard</span>
                                 </a>
                             </li><!-- .nk-menu-item -->
                             <li class="nk-menu-item">
-                                <a href="userManage.html" class="nk-menu-link">
+                                <a href="userManage" class="nk-menu-link">
                                     <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
                                     <span class="nk-menu-text">User Manage</span>
                                 </a>
                             </li><!-- .nk-menu-item -->
                             <li class="nk-menu-item">
-                                <a href="courseManage.html" class="nk-menu-link">
+                                <a href="courseManage" class="nk-menu-link">
                                     <span class="nk-menu-icon"><em class="icon ni ni-elementor"></em></span>
                                     <span class="nk-menu-text">Course Manage</span>
                                 </a>
@@ -47,13 +47,7 @@
                                 </a>
                             </li><!-- .nk-menu-item -->
                             <li class="nk-menu-item">
-                                <a href="logView.html" class="nk-menu-link">
-                                    <span class="nk-menu-icon"><em class="icon ni ni-calendar-check"></em></span>
-                                    <span class="nk-menu-text">Log View</span>
-                                </a>
-                            </li><!-- .nk-menu-item -->
-                            <li class="nk-menu-item">
-                                <a href="home.html" class="nk-menu-link">
+                                <a href="home" class="nk-menu-link">
                                     <span class="nk-menu-icon"><em class="icon ni ni-signout"></em></span>
                                     <span class="nk-menu-text">Sign Out</span>
                                 </a>
@@ -577,28 +571,32 @@
                                 'Deleted!',
                                 'The course has been deleted.',
                                 'success'
-                            )
-                            location.reload(true);
+                            ).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
+                                }
+                            });
+
                         }
-                    });             
+                    });
                 }
             });
-           
+
         });
     });
 
 
-
-    function deleteCourse(courseId) {
-        confirm_ = confirm('This action will delete current course! Are you sure?');
-        $.ajax({
-            type: 'DELETE',
-            url: 'http://localhost:3000/course/' + courseId,
-            success: function (result) {
-                alert('The course has been deleted.');
-                location.reload(true);
-            }
-        });
-    }
-
+    /*
+        function deleteCourse(courseId) {
+            confirm_ = confirm('This action will delete current course! Are you sure?');
+            $.ajax({
+                type: 'DELETE',
+                url: 'http://localhost:3000/course/' + courseId,
+                success: function (result) {
+                    alert('The course has been deleted.');
+                    location.reload(true);
+                }
+            });
+        }
+    */
 </script>
