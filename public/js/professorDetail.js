@@ -2,7 +2,7 @@
     var form = $('#review-form')
 
     form.submit(function (event) {
-        // event.preventDefault();
+        event.preventDefault();
         var comment = $('#comment').val(),
         rating = $('#rating').val();
         try {
