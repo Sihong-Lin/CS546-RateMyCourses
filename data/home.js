@@ -13,6 +13,7 @@ const {
     removeProf,
     addProfReview,
     removeProfReview,
+    getDepartments,
 } = require('../data/professor')
 
 module.exports = {
@@ -27,6 +28,7 @@ module.exports = {
     getTop5Courses,
     getAllCourses,
     searchCoursesByMajor,
+    getDepartments,
 };
 
 async function getAllCourses() {
