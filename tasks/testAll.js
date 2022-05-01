@@ -253,7 +253,12 @@ const departmentReivew = async () => {
     )
 
     let res = await home.getDepartmentReviewsCount()
+
+    let u1dc1 = await user.deleteCourseReview(firstUserId, firstCourseId);
+    let u1dp1 = await professor.removeProfReview(u1p1._id.toString());
+    let res2 = await home.getDepartmentReviewsCount()
     console.log(res)
+    console.log(res2)
     connection.closeConnection();
     console.log('Done!');
 }
@@ -354,7 +359,7 @@ function mergeDepartmentReview(departmentCourseReviewCount, departmentProfessorR
     })
     const departmentString = "[" + department.join(',') + "]"
     const courseReviewsString = "[" + courseReviews.join(',') + "]"
-    const professorReviewsString = "[" + courseReviews.join(',') + "]"
+    const professorReviewsString = "[" + professorReviews.join(',') + "]"
     return [departmentString, courseReviewsString, professorReviewsString]
 }
 

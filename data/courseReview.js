@@ -5,6 +5,7 @@ const { ObjectId } = require('mongodb');
 
 module.exports = {
     createCourseReview,
+    deleteCourseReview,
     countCourseReview,
     countCourseReviewByDepartment
 }
@@ -55,6 +56,16 @@ async function countCourseReviewByDepartment() {
         departmentCourseReviewCount.set(program, departmentCourseReviewCount.get(program) + 1)
     });
     return departmentCourseReviewCount
+}
+
+async function deleteCourseReview(userId, courseId) {
+    const courseReviewCollection = await courseReview();
+
+    const deletionInfo = await courseReviewCollection.deleteOne({ userId: userId, courseId: courseId });
+    if (!deletionInfo.deletedCount === 0) {
+        throw 'fail to delete review in course review';
+    }
+    return { courseReviewDeleted: true }
 }
 
 function courseOwnerToDepartment(courseOwner) {
