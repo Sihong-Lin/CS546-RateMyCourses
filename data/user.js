@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const inputCheck = require('./inputCheck');
+const sd = require('silly-datetime');
 const saltRound = 1;
 const mongoCollections = require('../config/mongoCollections');
 const { ObjectId } = require('mongodb');
@@ -8,6 +9,8 @@ const users = mongoCollections.users;
 const courseDBFunction = require('../data/course');
 const courseReviewDBFunction = require('../data/courseReview');
 const { get } = require('express/lib/request');
+const res = require('express/lib/response');
+
 
 module.exports = {
     createUser,
@@ -30,6 +33,18 @@ async function setUserRestrictStatus(userId, restrictStatus) {
     return { updateRestrictStatus: true }
 }
 
+async function setLastLogin(userId) {
+    const userCollection = await users();
+    const updateInfo = await userCollection.updateOne(
+        { _id: ObjectId(userId) },
+        { $set: { lastLogin: sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss')}}
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw 'Update user user last login information failed';
+    }
+    return { updateLastLogin: true }
+}
+
 async function checkUsernameRepeat(username) {
     const userCollection = await users();
     let user = await userCollection.findOne({ username: username })
@@ -40,7 +55,7 @@ async function checkUsernameRepeat(username) {
     }
 }
 
-async function createUser(username, password) {
+async function createUser(username, email, major, profilePicture, password) {
     try {
         username = inputCheck.checkUserName(username)
         username = await checkUsernameRepeat(username)
@@ -55,7 +70,10 @@ async function createUser(username, password) {
         courseReviews: [],
         professorReviews: [],
         restrictStatus: false,
-        profilePicture: "",
+        profilePicture: profilePicture,
+        email: email,
+        major: major,
+        lastLogin : "",
         role: "student"
     }
     const insertInfo = await userCollection.insertOne(newUser);
@@ -83,7 +101,10 @@ async function checkUser(username, password) {
     if (!passwordMatch) {
         throw 'Either the username or password is invalid'
     } else {
-        return { authenticated: true, userId: userInfo._id.toString(), role: userInfo.role };
+        let res = await setLastLogin(userInfo._id.toString());
+        if (res.updateLastLogin) {
+            return { authenticated: true, userId: userInfo._id.toString(), role: userInfo.role };
+        }
     }
 }
 

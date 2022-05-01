@@ -8,7 +8,7 @@ const inputCheck = require('../data/inputCheck');
 //页面初始化
 router.get('/', async (req, res) => {
     let courseList = await home.getAllCourses();
-    res.render('courseManage', { 
+    res.render('userManage', { 
         title: 'RateMyCourses - Course Manage', 
         allCourses: courseList
     });

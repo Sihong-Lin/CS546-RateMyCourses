@@ -25,6 +25,7 @@
     "express-handlebars": "^6.0.3",
     "express-session": "^1.17.2",
     "mongodb": "^4.4.0",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "silly-datetime": "^0.1.2"
   }
 }
