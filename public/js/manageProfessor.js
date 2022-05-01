@@ -14,7 +14,27 @@ $(document).ready(function () {
         };
         $.ajax(requestConfig).then(function () {
             alert('success');
-            // hide here doesn't work
+            // hide doesn't work for whatever reason
+            $('#professor-edit').modal('hide');
+        });
+    });
+
+    $("#createProfessor").submit(function (event) {
+        event.preventDefault();
+        var requestConfig = {
+            method: 'POST',
+            url: 'professors',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                professorName: $("#name1").val(),
+                department: $('#department1').val(),
+                introduction: $('#introduction1').val(),
+                picture: $('#picture1').val()
+            })
+        };
+        $.ajax(requestConfig).then(function () {
+            alert('success');
+            // hide doesn't work for whatever reason
             $('#professor-edit').modal('hide');
         });
     });

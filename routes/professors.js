@@ -14,11 +14,10 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    let { professorName, department, introduction, picture } = req.body;
+    console.log(req.body.professorName);
     try {
         if (req.session.user) {
-            let uid = req.session.user.userId;
-            let professor = await home.createProfessor(professorName, department, introduction, picture);
+            let professor = await home.createProfessor(req.body.professorName, req.body.department, req.body.introduction, req.body.picture);
             console.log(professor);
         } else {
             console.log("You are not authorized to create professor")
