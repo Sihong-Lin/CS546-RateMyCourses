@@ -16,13 +16,28 @@
                     data: JSON.stringify({
                         comment: comment,
                         rating: rating
-                    })
+                    }),
+                    statusCode: {
+                        200: function(res) {
+                            var newElement = $(res);
+                            // if (!newElement) console.log(1);
+                            comments.prepend(newElement);
+                        },
+                        401: function(res) {
+                            //console.log(res)
+                            //document.write($(res));
+                            $("body").html(res);
+                        }
+                    }
                 };
+                /*
                 $.ajax(requestConfig).then(function (res) {
                     var newElement = $(res);
                     // if (!newElement) console.log(1);
                     comments.prepend(newElement);
                 });
+                */
+                $.ajax(requestConfig)
             } else {
                 throw "comment or rating is missing"
             }

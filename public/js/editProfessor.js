@@ -1,9 +1,10 @@
 $(document).ready(function () {
-    $("editProfessor").submit(function (event) {
+    $("#editProfessor").submit(function (event) {
         event.preventDefault();
+        let professorId = $("#edit-form-submit").attr('pid');
         var requestConfig = {
             method: 'PUT',
-            url: document.URL,
+            url: 'professors/' + professorId,
             contentType: 'application/json',
             data: JSON.stringify({
                 professorName: $("#name").val(),
@@ -11,11 +12,17 @@ $(document).ready(function () {
                 introduction: $('#introduction').val()
             })
         };
-        $.ajax(requestConfig).done(function (response) { //
-            $("#server-results").html("ssssssssssssss");
+        $.ajax(requestConfig).then(function () {
+            alert('success');
+            // hide here doesn't work
+            $('#professor-edit').modal('hide');
         });
     });
 });
+
+function spawnForm(professorId) {
+    $('#edit-form-submit').attr('pid', professorId);
+}
 
 function deleteProfessor(professorId) {
     confirm_ = confirm('This action will delete current professor! Are you sure?');

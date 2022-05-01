@@ -13,6 +13,22 @@ router.get('/', async (req, res) => {
     });
 });
 
+router.post('/', async (req, res) => {
+    let { professorName, department, introduction, picture } = req.body;
+    try {
+        if (req.session.user) {
+            let uid = req.session.user.userId;
+            let professor = await home.createProfessor(professorName, department, introduction, picture);
+            console.log(professor);
+        } else {
+            console.log("You are not authorized to create professor")
+        }
+        return res.end();
+    } catch (e) {
+        console.log(e);
+    }
+});
+
 router.get('/:id', async (req, res) => {
     let { id } = req.params;
     console.log(id);
@@ -40,28 +56,30 @@ router.post('/:id', async (req, res) => {
             let uid = req.session.user.userId;
             let profReview = await home.addProfReview(uid, id, comment, rating);
             console.log(profReview);
-            res.render('partials/professor_comment', profReview);
+            res.status(200).render('partials/professor_comment', profReview);
         } else {
             console.log("entering redirect");
-            res.redirect("../public/401.html");
+            const path = require('path');
+            res.status(401).sendFile(path.join(__dirname, '../public', '401.html'));
         }
+        return res.end();
     } catch (e) {
         console.log(e);
     }
 });
 
+// this route updates professor successfully, but ajax never go on to callback after this
 router.put('/:id', async (req, res) => {
     let { id } = req.params;
     let updatedProf = req.body
     try {
-        if (req.session.user && req.session.user.role === 'manager') {
+        if (req.session.user) {
             let updated = await home.updateProf(id, updatedProf);
-            console.log(updated);
-            res.redirect('/professorManage')
         } else {
             console.log("entering redirect");
             res.redirect("../public/401.html");
         }
+        return res.end();
     } catch (e) {
         console.log(e);
     }
