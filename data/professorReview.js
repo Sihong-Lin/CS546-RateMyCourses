@@ -1,13 +1,15 @@
 const mongoCollections = require('../config/mongoCollections');
 const inputCheck = require('./inputCheck');
 const professorReview = mongoCollections.professorReview;
+const professor = mongoCollections.professors
 const { ObjectId } = require('mongodb');
 
 module.exports = {
     createProfessorReview,
     deleteProfessorReview,
     countProfessorReview,
-    countProfessorReviewByDepartment
+    countProfessorReviewByDepartment,
+    avgProfessorReview
 }
 
 
@@ -68,3 +70,10 @@ async function countProfessorReviewByDepartment() {
     return departmentProfessorReviewCount
 }
 
+async function avgProfessorReview() {
+    const professorCollection = await professor()
+    const professorReviewCollection = await professorReview();
+    const numOfProfessor = await professorCollection.countDocuments()
+    const numberOfProfessorReview = await professorReviewCollection.countDocuments() 
+    return (numberOfProfessorReview/numOfProfessor).toFixed(2);
+}

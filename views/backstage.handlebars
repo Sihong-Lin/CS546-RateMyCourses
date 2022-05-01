@@ -394,8 +394,14 @@
 
     <script>
         !function (NioApp, $) {
-
-            var orderOverview = {
+            var departments = "{{departments}}".split(",")
+            var courseReviews = "{{courseReviews}}".split(",").map(function(item) {
+                return parseInt(item, 10);
+            });
+            var professorReviews = "{{professorReviews}}".split(",").map(function(item) {
+                return parseInt(item, 10);
+            });
+            {{!-- var orderOverview = {
                 labels: ["Computer Science", "Biomedical Engineering", "Mechanical Engineering", "Electrical Engineering",
                     "Management", "Business Intelligence and Analytics", "Finance", "Physics & Engineering Physic",
                     "Chemistry", "Materials Engineering", "Civil Engineering", "Environmental Engineering"],
@@ -409,7 +415,22 @@
                     color: "#9cabff",
                     data: [4, 8, 13, 5, 4, 8, 7, 5, 4, 2, 0, 13, 6, 7]
                 }]
+            }; --}}
+
+            var orderOverview = {
+                labels: departments,
+                dataUnit: 'Reviews',
+                datasets: [{
+                    label: "Course",
+                    color: "#8feac5",
+                    data: courseReviews
+                }, {
+                    label: "Professors",
+                    color: "#9cabff",
+                    data: professorReviews
+                }]
             };
+
 
             function orderOverviewChart(selector, set_data) {
                 var $selector = selector ? $(selector) : $('.order-overview-chart');

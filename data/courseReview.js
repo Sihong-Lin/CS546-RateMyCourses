@@ -1,13 +1,15 @@
 const mongoCollections = require('../config/mongoCollections');
 const inputCheck = require('./inputCheck');
 const courseReview = mongoCollections.courseReview;
+const course = mongoCollections.courses
 const { ObjectId } = require('mongodb');
 
 module.exports = {
     createCourseReview,
     deleteCourseReview,
     countCourseReview,
-    countCourseReviewByDepartment
+    countCourseReviewByDepartment,
+    avgCourseReview
 }
 
 async function createCourseReview(userId, courseId, courseOwner) {
@@ -79,6 +81,13 @@ function courseOwnerToDepartment(courseOwner) {
     return department.trim();
 }
 
+async function avgCourseReview() {
+    const courseCollection = await course()
+    const courseReveiwReviewCollection = await courseReview();
+    const numberOfCourse = await courseCollection.countDocuments()
+    const numberOfCourseReview = await courseReveiwReviewCollection.countDocuments() 
+    return (numberOfCourseReview/numberOfCourse).toFixed(2);
+}
 
 
 
