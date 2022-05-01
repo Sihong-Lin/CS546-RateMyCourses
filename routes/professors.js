@@ -18,12 +18,13 @@ router.get('/:id', async (req, res) => {
     console.log(id);
     try {
         let professor = await home.getProfById(id);
+        // console.log(professor);
         if (!professor.rating) {
             professor.rating = 0
         } else {
             professor.rating = professor.rating.toPrecision(2)
         }
-        res.render('professorDetail', {professor: professor});
+        res.render('professorDetail', professor);
     } catch (e) {
         console.log(e);
     }
@@ -39,9 +40,27 @@ router.post('/:id', async (req, res) => {
             let uid = req.session.user.userId;
             let profReview = await home.addProfReview(uid, id, comment, rating);
             console.log(profReview);
+            res.render('partials/professor_comment', profReview);
         } else {
             console.log("entering redirect");
-            res.redirect("../401.html");
+            res.redirect("../public/401.html");
+        }
+    } catch (e) {
+        console.log(e);
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    let { id } = req.params;
+    let updatedProf = req.body
+    try {
+        if (req.session.user && req.session.user.role === 'manager') {
+            let updated = await home.updateProf(id, updatedProf);
+            console.log(updated);
+            res.redirect('/professorManage')
+        } else {
+            console.log("entering redirect");
+            res.redirect("../public/401.html");
         }
     } catch (e) {
         console.log(e);

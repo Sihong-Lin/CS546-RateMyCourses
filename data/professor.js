@@ -81,7 +81,8 @@ async function getTop3Professors() {
 
 async function updateProf(id, updatedProf) {
     id = inputCheck.checkUserId(id);
-
+    let profUpdateInfo = updatedProf;
+    /*
     let profUpdateInfo = {
         professorName: updatedProf.professorName,
         department: updatedProf.department,
@@ -89,6 +90,7 @@ async function updateProf(id, updatedProf) {
         picture: updatedProf.picture,
         // delete review?
     };
+    */
     const profCollection = await professors();
     const updateInfo = await profCollection.updateOne(
         { _id: ObjectId(id) },

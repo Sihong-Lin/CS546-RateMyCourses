@@ -117,12 +117,10 @@
                                                                         <div data-toggle="modal"
                                                                             data-target="#professor-edit"><a
                                                                                 href="#"><em
-                                                                                    class="icon ni ni-edit"></em><span>Edit
-                                                                                    Professor</span></a></div>
+                                                                                    class="icon ni ni-edit"></em><span>Edit Professor</span></a></div>
                                                                     </li>
                                                                     <li><a onclick="deleteProfessor('{{this._id}}')"><em
-                                                                                class="icon ni ni-delete"></em><span>Delete
-                                                                                Professor</span></a></li>
+                                                                                class="icon ni ni-delete"></em><span>Delete Professor</span></a></li>
 
 
                                                                 </ul>
@@ -200,45 +198,46 @@
                         <a class="nav-link active" data-toggle="tab" href="#personal">Personal</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#address">Address</a>
+                        <a class="nav-link" data-toggle="tab" href="#address">Profile Picture</a>
                     </li>
                 </ul><!-- .nav-tabs -->
 
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="personal">
-                        <div class="row gy-4">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="full-name" id="name">Full Name</label>
-                                    <input type="text" class="form-control form-control-lg" id="full-name" placeholder="jquery here">
+                        <form id="editP">
+                            <div class="row gy-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="full-name" id="name">Full Name</label>
+                                        <input type="text" class="form-control form-control-lg" id="full-name" placeholder="jquery here">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="display-name">Department</label>
+                                        <input type="text" class="form-control form-control-lg" id="department" placeholder="jquery here">
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group">
+                                        <label class="form-label" for="phone-no">Introduction</label>
+                                        <input type="text" class="form-control form-control-lg" id="introduction"
+                                            placeholder="jquery here">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                        <li>
+                                            <a href="#" class="btn btn-lg btn-primary" type="submit">Update Profile</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="display-name">Department</label>
-                                    <input type="text" class="form-control form-control-lg" id="department"
-                                        value="Ishtiyak" placeholder="jquery here">
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="form-group">
-                                    <label class="form-label" for="phone-no">Introduction</label>
-                                    <input type="text" class="form-control form-control-lg" id="introduction"
-                                        placeholder="jquery here">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                                    <li>
-                                        <a href="#" class="btn btn-lg btn-primary">Update Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        </form>
                     </div><!-- .tab-pane -->
                     <div class="tab-pane" id="address">
                         <div class="row gy-4">
@@ -299,44 +298,5 @@
 <!-- JavaScript -->
 <script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
 <script src="static/backstage/assets/js/scripts.js?ver=2.2.0"></script>
-
-<script>
-    $(document).ready(function () {
-        $("addCourseForm").submit(function (event) {
-            event.preventDefault();
-
-            var formData = {
-                //name: $("#name").val(),
-                //email: $("#email").val(),
-                //superheroAlias: $("#superheroAlias").val(),
-            };
-
-            $.ajax({
-                type: "POST",
-                url: "'http://localhost:3000/course",
-                data: formData,
-                dataType: "json",
-                encode: true,
-            }).done(function (response) { //
-                $("#server-results").html("ssssssssssssss");
-            });
-
-            event.preventDefault();
-        });
-    });
-
-
-
-    function deleteProfessor(professorId) {
-        confirm_ = confirm('This action will delete current professor! Are you sure?');
-        $.ajax({
-            type: 'DELETE',
-            url: 'http://localhost:3000/professor/' + professorId,
-            success: function (result) {
-                alert('The professor has been deleted.');
-                location.reload(true);
-            }
-        });
-    }
-
-</script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="/public/js/editProfessor.js"></script>
