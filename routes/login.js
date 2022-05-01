@@ -9,8 +9,6 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     let username = req.body.usernameInput;
     let password = req.body.passwordInput;
-    console.log(username)
-    console.log(password)
     try {
         if (!username || !password)
             throw 'Both username and password must be supplied.';

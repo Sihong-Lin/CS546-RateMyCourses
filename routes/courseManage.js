@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
 
 //新增course
 router.post('/', async (req, res) => { // create new course
-    console.log("ssssssss");
     let courseBody = req.body
     if(!courseBody) {
         res.status(400).json({error : 'You must provide data to create a course'})
@@ -34,8 +33,6 @@ router.post('/', async (req, res) => { // create new course
     let syllabus = undefined
     let courseware = undefined
     let picture = undefined
-
-    console.log(courseBody)
 
     try {
         courseName = inputCheck.checkCourseName(courseBody.courseName)

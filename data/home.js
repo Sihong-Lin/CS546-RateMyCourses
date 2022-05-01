@@ -40,18 +40,7 @@ module.exports = {
 async function getAllCourses() {
     const courseCollection = await courses();
     let courseList = await courseCollection
-        .find({}, {
-            projection: {
-                _id: 1,
-                courseName: 1,
-                metrics: 1,
-                type: 1,
-                overallRating: 1,
-                picture: 1,
-                description: 1
-            }
-        }
-        )
+        .find({})
         .toArray();
     for (let i = 0; i < courseList.length; i++) {
         let courseName = courseList[i].courseName;
@@ -68,22 +57,7 @@ async function getAllCourses() {
 async function getAllUsers() {
     const userCollection = await users();
     let userList = await userCollection
-        .find({}, {
-            projection: {
-                _id: 1,
-                username: 1,
-                email: 1,
-                major: 1,
-                lastLogin: 1,
-                role: 1,
-                profilePicture: 1, 
-                restrictStatus: 1,
-                courseReviews: 1, 
-                professorReviews: 1,
-                registrationTime: 1
-            }
-        }
-        )
+        .find({})
         .toArray();
     userList.forEach(user => {
         user._id = user._id.toString()
