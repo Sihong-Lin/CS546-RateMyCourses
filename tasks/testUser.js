@@ -16,6 +16,9 @@ const main = async () => {
     try {
         let createUser = await user.createUser(
             "zihengZhu",
+            "aaa@gmail.com", 
+            "Computer Science", 
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K9xcJVlIG31wI5COY_Qep5GahOMmCmLYEQ&usqp=CAU",
             "123456789"
         )
 
@@ -35,6 +38,9 @@ const main = async () => {
     try {
         let createUser = await user.createUser(
             "somebody",
+            "aaa@gmail.com", 
+            "Computer Science", 
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K9xcJVlIG31wI5COY_Qep5GahOMmCmLYEQ&usqp=CAU",
             "123456789"
         )
         const insertStatus = createUser.userInserted
@@ -53,6 +59,9 @@ const main = async () => {
     try {
         let createUser = await user.createUser(
             "JiangJinFu",
+            "aaa@gmail.com", 
+            "Computer Science", 
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K9xcJVlIG31wI5COY_Qep5GahOMmCmLYEQ&usqp=CAU",
             "123456789"
         )
         const insertStatus = createUser.userInserted

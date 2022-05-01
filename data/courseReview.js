@@ -1,12 +1,15 @@
 const mongoCollections = require('../config/mongoCollections');
 const inputCheck = require('./inputCheck');
 const courseReview = mongoCollections.courseReview;
+const course = mongoCollections.courses
 const { ObjectId } = require('mongodb');
 
 module.exports = {
     createCourseReview,
+    deleteCourseReview,
     countCourseReview,
-    getAllCourseReview
+    countCourseReviewByDepartment,
+    avgCourseReview
 }
 
 async function createCourseReview(userId, courseId, courseOwner) {
@@ -42,7 +45,7 @@ async function countCourseReview() {
 }
 
 
-async function getAllCourseReview() {
+async function countCourseReviewByDepartment() {
     const courseReviewCollection = await courseReview();
     const courseReviewCursor = await courseReviewCollection.find()
     const allCourseReview =  await courseReviewCursor.toArray()
@@ -57,6 +60,16 @@ async function getAllCourseReview() {
     return departmentCourseReviewCount
 }
 
+async function deleteCourseReview(userId, courseId) {
+    const courseReviewCollection = await courseReview();
+
+    const deletionInfo = await courseReviewCollection.deleteOne({ userId: userId, courseId: courseId });
+    if (!deletionInfo.deletedCount === 0) {
+        throw 'fail to delete review in course review';
+    }
+    return { courseReviewDeleted: true }
+}
+
 function courseOwnerToDepartment(courseOwner) {
     // Computer Science Program ==> Computer Science 
     // Finance Program ==> Finance
@@ -68,6 +81,13 @@ function courseOwnerToDepartment(courseOwner) {
     return department.trim();
 }
 
+async function avgCourseReview() {
+    const courseCollection = await course()
+    const courseReveiwReviewCollection = await courseReview();
+    const numberOfCourse = await courseCollection.countDocuments()
+    const numberOfCourseReview = await courseReveiwReviewCollection.countDocuments() 
+    return (numberOfCourseReview/numberOfCourse).toFixed(2);
+}
 
 
 

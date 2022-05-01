@@ -10,7 +10,7 @@ const main = async () => {
     
     let user1 = undefined
     try {
-        let createUser = await user.createUser("zihengZhu", "123456789");
+        let createUser = await user.createUser("user1", "aaa@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K9xcJVlIG31wI5COY_Qep5GahOMmCmLYEQ&usqp=CAU", "123456");
         user1 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -18,7 +18,7 @@ const main = async () => {
 
     let user2 = undefined
     try {
-        let createUser = await user.createUser("zihengZhu", "123456789");
+        let createUser = await user.createUser("user2", "aaa@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM7y6bqoR4ypvuCak8H_ZVl7oqspxE6MxK3g&usqp=CAU", "123456");
         user2 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -26,8 +26,7 @@ const main = async () => {
 
     let user3 = undefined
     try {
-        let createUser = await user.createUser("zihengZhu", "123456789");
-        user3 = createUser.insertedId;
+        let createUser = await user.createUser("user3", "aaa@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQstkseuO__x9bRa_ycRdOnCH0YcGaZhSF0wA&usqp=CAU", "123456");
     } catch (e) {
         console.log(e);
     }

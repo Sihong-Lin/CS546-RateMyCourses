@@ -12,7 +12,12 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res) => {
     let username = req.body.usernameInput;
+    let email = req.body.emailInput;
+    let major = req.body.majorInput;
+    let profilePicture = req.body.profilePictureInput;
     let password = req.body.passwordInput;
+
+
     try {
         if (!username || !password)
             throw 'Both username and password must be supplied.';
@@ -28,7 +33,7 @@ router.post('/', async (req, res) => {
     }
 
     try {
-        const result = await user.createUser(username, password);
+        const result = await user.createUser(username, email, major, profilePicture, password);
         if (result.userInserted == true) {
             res.redirect('/login.html');
         } else {

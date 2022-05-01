@@ -1,6 +1,8 @@
 const user = require('../data/user');
 const course = require('../data/course');
 const courseReviewDB = require('../data/courseReview')
+const professorReviewDB = require('../data/professorReview')
+const home = require('../data/home')
 const professor = require('../data/professor');
 const connection = require('../config/mongoConnection');
 const { ObjectId } = require('mongodb');
@@ -18,6 +20,32 @@ const departmentReivew = async () => {
     let secondCourseId = undefined
     let thirdCourseId = undefined
     let fourthCourseId = undefined
+    let fifthCourseId = undefined
+
+    let firstProfId = undefined
+    let secondProfId = undefined
+    let thirdProfId = undefined
+
+    firstProfId = (await professor.createProfessor(
+        'Eric Koskinen', 
+        "Computer Science",
+        "My research yields techniques that improve the way programmers develop",
+        "url to picture"
+    ))._id.toString()
+
+    secondProfId = (await professor.createProfessor(
+        'John Egg', 
+        "Mechanical Engineering",
+        "My research for egg improve the way programmers develop",
+        "url to picture"
+    ))._id.toString()
+
+    thirdProfId = (await professor.createProfessor(
+        'Ben hill', 
+        "Biomedical Engineering",
+        "My research to hill improve the way programmers develop",
+        "url to picture"
+    ))._id.toString()
 
     firstUserId = (await user.createUser(
         "zhuziheng",
@@ -79,12 +107,25 @@ const departmentReivew = async () => {
         'static/picture/course-2.jpg' // picture
     ))._id.toString()
 
-    
-
     fourthCourseId = (await course.createCourse( // ME program
         'ME 561 xxx xxx', // courseName
         'Graduate', // academicLevel
         'Mechanical Engineering Program', // courseOwner
+        'Core', // type
+        ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
+        3, // units
+        'Database is just databse', // description
+        ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
+        'Lecture', // instructionalFormats
+        'https://web.stevens.edu/academic_files/courses/syllabus/CS561syl.pdf', // syllabus
+        'https://github.com/graffixnyc/CS-561', // courseware
+        'static/picture/course-2.jpg' // picture
+    ))._id.toString()
+
+    fifthCourseId = (await course.createCourse( // ME program
+        'FN 561 xxx xxx', // courseName
+        'Graduate', // academicLevel
+        'Finance Program', // courseOwner
         'Core', // type
         ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
         3, // units
@@ -160,15 +201,75 @@ const departmentReivew = async () => {
         4
     )
 
-    const totalReviews = await courseReviewDB.countCourseReview()
-    console.log("total reviews are: " + totalReviews)
-    const departmentCourseReviewCount = await courseReviewDB.getAllCourseReview()
-    console.log(departmentCourseReviewCount)
+    let u3c5 = await user.createCourseReview( 
+        thirdUserId,
+        fifthCourseId,
+        "The lectures are quite easy to understand and so are the Labs. Only need to make sure that you are not careless while working on labs or else you'll lose points and that is something that the professor is always clear about. If you dedicatedly work on the labs and the project, you can easily score an Best professor at Stevens",
+        {difficulty: "Easy", chanceToGetA: 'Low', workLoad: 'Less'},
+        4
+    )
+
+
+    let u1p1 = await professor.addProfReview( 
+        firstUserId,
+        firstProfId,
+        "Prof is good guy",
+        4
+    )
+
+    let u1p2 = await professor.addProfReview( 
+        firstUserId,
+        secondProfId,
+        "Prof is bad guy",
+        1
+    )
+
+    let u1p3 = await professor.addProfReview( 
+        firstUserId,
+        thirdProfId,
+        "Prof is bad guy",
+        1
+    )
+
+    let u2p1 = await professor.addProfReview( 
+        secondUserId,
+        firstProfId,
+        "Prof is bad guy",
+        1
+    )
+
+    let u2p2 = await professor.addProfReview( 
+        secondUserId,
+        secondProfId,
+        "Prof is good guy",
+        5
+    )
+
+    let u3p3 = await professor.addProfReview( 
+        thirdUserId,
+        thirdProfId,
+        "Prof is good guy",
+        5
+    )
+
+    let res = await home.getDepartmentReviewsCount()
+    console.log(res)
+    console.log(typeof(res))
+    console.log(Array.isArray(res));
+
+    // let u1dc1 = await user.deleteCourseReview(firstUserId, firstCourseId);
+    // let u1dp1 = await professor.removeProfReview(u1p1._id.toString());
+    // let res2 = await home.getDepartmentReviewsCount()
+    // console.log(res2)
+    // let res3 = await professorReviewDB.avgProfessorReview()
+    // let res4 = await courseReviewDB.avgCourseReview()
+    // console.log(res3)
+    // console.log(res4)
     connection.closeConnection();
     console.log('Done!');
 }
 
-//departmentReivew()
+departmentReivew()
 
 const restrictUserTest = async () => {
     const db = await connection.connectToDb();
@@ -237,4 +338,35 @@ const restrictUserTest = async () => {
 }
 
 
-restrictUserTest()
+function mergeDepartmentReview(departmentCourseReviewCount, departmentProfessorReviewCount) {
+    const map = new Map()
+    departmentCourseReviewCount.forEach(function(value, key) {
+        if(!map.has(key)) {
+            map.set(key, {courseReviews: 0, professorReviews: 0});
+        }
+        map.get(key).courseReviews += value
+    })
+
+    departmentProfessorReviewCount.forEach(function(value, key) {
+        if(!map.has(key)) {
+            map.set(key, {courseReviews: 0, professorReviews: 0});
+        }
+        map.get(key).professorReviews += value
+    })
+
+    let department = []
+    let courseReviews = []
+    let professorReviews = []
+    const obj = Object.fromEntries(map)
+    Object.entries(obj).forEach(([key, value]) => {
+        department.push(key)
+        courseReviews.push(value.courseReviews)
+        professorReviews.push(value.professorReviews)
+    })
+    const departmentString = "[" + department.join(',') + "]"
+    const courseReviewsString = "[" + courseReviews.join(',') + "]"
+    const professorReviewsString = "[" + professorReviews.join(',') + "]"
+    return [departmentString, courseReviewsString, professorReviewsString]
+}
+
+//restrictUserTest()

@@ -5,6 +5,7 @@ const { ObjectId } = require('mongodb');
 const userData = require('../data/user')
 const { check } = require('prettier');
 const inputCheck = require('./inputCheck');
+const professorReviewDBfunction = require('../data/professorReview');
 
 async function getAllProfessors() {
     const professorCollection = await professors();
@@ -134,7 +135,7 @@ async function addProfReview(uid, pid, comment, rating) {
     pid = inputCheck.checkUserId(pid);
     comment = inputCheck.checkComment(comment);
     rating = inputCheck.checkRating(rating);
-
+    const department = (await getProfById(pid)).department
     const userCollection = await users();
     const profCollection = await professors();
     const user = await userData.getUser(uid)
@@ -169,7 +170,11 @@ async function addProfReview(uid, pid, comment, rating) {
         { $set: { rating: { $avg: '$reviews.rating' } } },
     ]);
 
-    
+    try {
+        await professorReviewDBfunction.createProfessorReview(uid, pid, department)
+    } catch (e) {
+        throw e
+    }
 
     return profReview;
 }
@@ -179,14 +184,20 @@ async function removeProfReview(id) {
 
     const profCollection = await professors();
     // find out the professor document this review belongs to
-    const prof = await profCollection.findOne({ 'reviews._id': { $eq: ObjectId(id) }});
+    const prof = await profCollection.findOne({ "reviews._id": { $eq: id }});
     if(!prof) throw "review does not exist";
-
+    
         // delete the review from the reviews
     await profCollection.updateOne({ _id: prof._id }, { $pull: { reviews: { _id: ObjectId(id)}}})
 
     // re-calculate avg rating
     await profCollection.updateOne({ _id: ObjectId(prof._id)}, [{$set: {rating: {$avg: "$reviews.rating"}}}])
+    const ids = await profCollection.aggregate([
+        {$unwind: '$reviews'},
+        {$match: {'reviews._id': id}},
+        {$project: {_id:0, userId: '$reviews.userId', professorId : '$reviews.professorId'}}
+    ]).toArray()
+    await professorReviewDBfunction.deleteProfessorReview(ids[0].userId, ids[0].professorId)
     return { deleted: true };
 }
 
@@ -194,6 +205,12 @@ async function getDepartments() {
     const profCollection = await professors();
     const dpts = await profCollection.distinct('department');
     return dpts;
+}
+
+async function countProfessors() {
+    const profCollection = await professors();
+    const count = await profCollection.countDocuments()
+    return count
 }
 
 module.exports = {
@@ -205,5 +222,6 @@ module.exports = {
     removeProf,
     addProfReview,
     removeProfReview,
-    getDepartments
+    getDepartments,
+    countProfessors
 };

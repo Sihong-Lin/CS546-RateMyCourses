@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const inputCheck = require('./inputCheck');
+const sd = require('silly-datetime');
 const saltRound = 1;
 const mongoCollections = require('../config/mongoCollections');
 const { ObjectId } = require('mongodb');
@@ -8,6 +9,8 @@ const users = mongoCollections.users;
 const courseDBFunction = require('../data/course');
 const courseReviewDBFunction = require('../data/courseReview');
 const { get } = require('express/lib/request');
+const res = require('express/lib/response');
+
 
 module.exports = {
     createUser,
@@ -15,19 +18,61 @@ module.exports = {
     getUser,
     createCourseReview,
     deleteCourseReview,
-    setUserRestrictStatus
+    setUserRestrictStatus,
+    removeUser
 };
 
-async function setUserRestrictStatus(userId, restrictStatus) {
+
+async function removeUser(userId) {
+    try {
+        userId = inputCheck.checkUserId(userId);
+
+    } catch (e) {
+        throw e
+    }
+    const userCollection = await users();
+    const deletionInfo = await userCollection.deleteOne({ _id: ObjectId(userId) });
+    if (deletionInfo.deletedCount === 0) {
+        throw `Could not delete user with id of ${userId}`;
+    }
+    console.log(333)
+    return 'The user has been successfully deleted!'
+}
+
+
+async function getUserById(id) {
+    id = inputCheck.checkUserId(id);
+    const userCollection = await users();
+    const user = await userCollection.findOne({ _id: ObjectId(id) });
+    if (!user) throw 'User not found';
+    user._id = user._id.toString()
+    return user;
+}
+
+async function setUserRestrictStatus(userId) {
+    const user = await getUserById(userId)
+    console.log(user)
     const userCollection = await users();
     const updateInfo = await userCollection.updateOne(
         { _id: ObjectId(userId) },
-        { $set: { restrictStatus: restrictStatus } }
+        { $set: { restrictStatus: !user.restrictStatus } }
     );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
         throw 'Update user restrict status failed';
     }
     return { updateRestrictStatus: true }
+}
+
+async function setLastLogin(userId) {
+    const userCollection = await users();
+    const updateInfo = await userCollection.updateOne(
+        { _id: ObjectId(userId) },
+        { $set: { lastLogin: sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss')}}
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw 'Update user user last login information failed';
+    }
+    return { updateLastLogin: true }
 }
 
 async function checkUsernameRepeat(username) {
@@ -40,7 +85,7 @@ async function checkUsernameRepeat(username) {
     }
 }
 
-async function createUser(username, password) {
+async function createUser(username, email, major, profilePicture, password) {
     try {
         username = inputCheck.checkUserName(username)
         username = await checkUsernameRepeat(username)
@@ -55,7 +100,11 @@ async function createUser(username, password) {
         courseReviews: [],
         professorReviews: [],
         restrictStatus: false,
-        profilePicture: "",
+        profilePicture: profilePicture,
+        email: email,
+        major: major,
+        registrationTime : sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss'),
+        lastLogin: "-",
         role: "student"
     }
     const insertInfo = await userCollection.insertOne(newUser);
@@ -83,7 +132,10 @@ async function checkUser(username, password) {
     if (!passwordMatch) {
         throw 'Either the username or password is invalid'
     } else {
-        return { authenticated: true, userId: userInfo._id.toString(), role: userInfo.role };
+        let res = await setLastLogin(userInfo._id.toString());
+        if (res.updateLastLogin) {
+            return { authenticated: true, userId: userInfo._id.toString(), role: userInfo.role };
+        }
     }
 }
 
@@ -186,6 +238,7 @@ async function deleteCourseReview(userId, courseId) {
     // delete review to course
     try {
         await courseDBFunction.deleteCourseReview(userId, courseId)
+        await courseReviewDBFunction.deleteCourseReview(userId, courseId)
     }
     catch (e) {
         throw e
