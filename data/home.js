@@ -100,9 +100,12 @@ function mergeDepartmentReview(departmentCourseReviewCount, departmentProfessorR
         courseReviews.push(value.courseReviews)
         professorReviews.push(value.professorReviews)
     })
-    const departmentString = "[" + department.join(',') + "]"
-    const courseReviewsString = "[" + courseReviews.join(',') + "]"
-    const professorReviewsString = "[" + professorReviews.join(',') + "]"
+    // const departmentString = "[" + department.join(',') + "]"
+    // const courseReviewsString = "[" + courseReviews.join(',') + "]"
+    // const professorReviewsString = "[" + professorReviews.join(',') + "]"
+    const departmentString = department.join(',')
+    const courseReviewsString = courseReviews.join(',')
+    const professorReviewsString = professorReviews.join(',')
     return [departmentString, courseReviewsString, professorReviewsString]
 }
 

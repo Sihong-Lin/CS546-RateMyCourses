@@ -253,12 +253,18 @@ const departmentReivew = async () => {
     )
 
     let res = await home.getDepartmentReviewsCount()
-
-    let u1dc1 = await user.deleteCourseReview(firstUserId, firstCourseId);
-    let u1dp1 = await professor.removeProfReview(u1p1._id.toString());
-    let res2 = await home.getDepartmentReviewsCount()
     console.log(res)
-    console.log(res2)
+    console.log(typeof(res))
+    console.log(Array.isArray(res));
+
+    // let u1dc1 = await user.deleteCourseReview(firstUserId, firstCourseId);
+    // let u1dp1 = await professor.removeProfReview(u1p1._id.toString());
+    // let res2 = await home.getDepartmentReviewsCount()
+    // console.log(res2)
+    // let res3 = await professorReviewDB.avgProfessorReview()
+    // let res4 = await courseReviewDB.avgCourseReview()
+    // console.log(res3)
+    // console.log(res4)
     connection.closeConnection();
     console.log('Done!');
 }

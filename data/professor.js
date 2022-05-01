@@ -205,6 +205,12 @@ async function getDepartments() {
     return dpts;
 }
 
+async function countProfessors() {
+    const profCollection = await professors();
+    const count = await profCollection.countDocuments()
+    return count
+}
+
 module.exports = {
     getAllProfessors,
     createProfessor,
@@ -214,5 +220,6 @@ module.exports = {
     removeProf,
     addProfReview,
     removeProfReview,
-    getDepartments
+    getDepartments,
+    countProfessors
 };
