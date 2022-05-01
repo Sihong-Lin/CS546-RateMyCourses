@@ -10,7 +10,7 @@ const main = async () => {
     await db.dropDatabase();
     try {
         // add user
-        let user1 = await user.createUser('jguo32', '123456');
+        let user1 = await user.createUser('jguo32', "aaa@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K9xcJVlIG31wI5COY_Qep5GahOMmCmLYEQ&usqp=CAU", '123456');
 
         // add a professor
         let name = 'Eric Koskinen';

@@ -73,7 +73,8 @@ async function createUser(username, email, major, profilePicture, password) {
         profilePicture: profilePicture,
         email: email,
         major: major,
-        lastLogin : "",
+        registrationTime : sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss'),
+        lastLogin: "-",
         role: "student"
     }
     const insertInfo = await userCollection.insertOne(newUser);

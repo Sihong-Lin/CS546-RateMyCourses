@@ -31,6 +31,7 @@ module.exports = {
     removeProfReview,
     getTop5Courses,
     getAllCourses,
+    getAllUsers,
     searchCoursesByMajor,
     getDepartments,
     getDepartmentReviewsCount
@@ -39,21 +40,23 @@ module.exports = {
 async function getAllCourses() {
     const courseCollection = await courses();
     let courseList = await courseCollection
-        .find({},{ 
-            projection: { _id: 1, 
-                            courseName: 1,
-                            metrics: 1,
-                            type: 1,
-                            overallRating: 1,
-                            picture: 1,
-                            description: 1
-                        } }
+        .find({}, {
+            projection: {
+                _id: 1,
+                courseName: 1,
+                metrics: 1,
+                type: 1,
+                overallRating: 1,
+                picture: 1,
+                description: 1
+            }
+        }
         )
-        .toArray(); 
+        .toArray();
     for (let i = 0; i < courseList.length; i++) {
         let courseName = courseList[i].courseName;
         let arr = courseName.split(" ");
-        courseList[i].courseIndex = arr[0] + " " +arr[1];
+        courseList[i].courseIndex = arr[0] + " " + arr[1];
         courseList[i].courseName = arr.slice(2).join(" ");
     }
     courseList.forEach(course => {
@@ -62,9 +65,35 @@ async function getAllCourses() {
     return courseList;
 }
 
+async function getAllUsers() {
+    const userCollection = await users();
+    let userList = await userCollection
+        .find({}, {
+            projection: {
+                _id: 1,
+                username: 1,
+                email: 1,
+                major: 1,
+                lastLogin: 1,
+                role: 1,
+                profilePicture: 1, 
+                restrictStatus: 1,
+                courseReviews: 1, 
+                professorReviews: 1,
+                registrationTime: 1
+            }
+        }
+        )
+        .toArray();
+    userList.forEach(user => {
+        user._id = user._id.toString()
+    })
+    return userList;
+}
+
 async function getTop5Courses() {
     let courseList = await getAllCourses();
-    let res = courseList.sort((a, b) => b.overallRating - a.overallRating).slice(0,5);
+    let res = courseList.sort((a, b) => b.overallRating - a.overallRating).slice(0, 5);
     return res;
 }
 
@@ -77,16 +106,16 @@ async function getDepartmentReviewsCount() {
 
 function mergeDepartmentReview(departmentCourseReviewCount, departmentProfessorReviewCount) {
     const map = new Map()
-    departmentCourseReviewCount.forEach(function(value, key) {
-        if(!map.has(key)) {
-            map.set(key, {courseReviews: 0, professorReviews: 0});
+    departmentCourseReviewCount.forEach(function (value, key) {
+        if (!map.has(key)) {
+            map.set(key, { courseReviews: 0, professorReviews: 0 });
         }
         map.get(key).courseReviews += value
     })
 
-    departmentProfessorReviewCount.forEach(function(value, key) {
-        if(!map.has(key)) {
-            map.set(key, {courseReviews: 0, professorReviews: 0});
+    departmentProfessorReviewCount.forEach(function (value, key) {
+        if (!map.has(key)) {
+            map.set(key, { courseReviews: 0, professorReviews: 0 });
         }
         map.get(key).professorReviews += value
     })
@@ -107,16 +136,16 @@ function mergeDepartmentReview(departmentCourseReviewCount, departmentProfessorR
 }
 
 async function searchCoursesByMajor(major) {
-   
+
 }
 
 const main = async () => {
     try {
         //console.log(await getAllCourses());
-    } catch(e) {
+    } catch (e) {
         console.log(e);
     }
-   
+
 }
 
 main();
