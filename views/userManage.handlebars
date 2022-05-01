@@ -128,7 +128,8 @@
                                                     </div>
                                                     <div class="nk-tb-col tb-col-lg"><span class="sub-text">Major</span>
                                                     </div>
-                                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">Registration Time</span></div>
+                                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">Registration
+                                                            Time</span></div>
                                                     <div class="nk-tb-col tb-col-lg"><span class="sub-text">Last
                                                             Login</span></div>
                                                     <div class="nk-tb-col tb-col-lg"><span class="sub-text">Role</span>
@@ -197,26 +198,27 @@
                                                                     </a>
                                                                 </div>
                                                             </li>
-                                                            <li class="nk-tb-action-hidden">
-                                                                <a href="#" class="btn btn-trigger btn-icon"
+                                                            <li class="nk-tb-action-hidden ">
+                                                                <a id="userId{{@index}}" value={{this._id}}
+                                                                    class="btn btn-trigger btn-icon eg-swal-success"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Suspend / Activate">
                                                                     <em class="icon ni ni-user-cross-fill"></em>
                                                                 </a>
                                                             </li>
                                                             <li class="nk-tb-action-hidden">
-                                                                <a href="#" class="btn btn-trigger btn-icon"
+                                                                <a id="userId{{@index}}" value={{this._id}}
+                                                                    class="btn btn-trigger btn-icon eg-swal-av3"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Delete User">
                                                                     <em class="icon ni ni-delete-fill"></em>
                                                                 </a>
                                                             </li>
-                                                            <li>
-                                                                <div class="drodown">
-                                                                    <a href="#"
-                                                                        class="dropdown-toggle btn btn-icon btn-trigger"><em
-                                                                            class="icon ni ni-more-h"></em></a>
-                                                                </div>
+                                                            <div class="drodown">
+                                                                <a href="#"
+                                                                    class="dropdown-toggle btn btn-icon btn-trigger"><em
+                                                                        class="icon ni ni-more-h"></em></a>
+                                                            </div>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -384,3 +386,64 @@
 <!-- JavaScript -->
 <script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
 <script src="static/backstage/assets/js/scripts.js?ver=2.2.0"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.eg-swal-success').on("click", function (event) {
+            event.preventDefault();
+            var index = $(".eg-swal-success").index(this);
+            var userId = $("#userId" + index).attr("value");
+            $.ajax({
+                type: 'PUT',
+                url: 'http://localhost:3000/userManage/status/' + userId,
+                success: function (result) {
+                    Swal.fire(
+                        'Good job!',
+                        'You reset the user status!',
+                        'success'
+                    ).then((result) => {
+                        if (result.value) {
+                            window.location.reload();
+                        }
+                    });
+
+                }
+            });
+        });
+
+        $('.eg-swal-av3').on("click", function (event) {
+            event.preventDefault();
+            var index = $(".eg-swal-av3").index(this);
+            var userId = $("#userId" + index).attr("value");
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: 'http://localhost:3000/userManage/' + userId,
+                        success: function (result) {
+                            Swal.fire(
+                                'Deleted!',
+                                'The user has been deleted.',
+                                'success'
+                            ).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
+        });
+    });
+
+
+
+</script>

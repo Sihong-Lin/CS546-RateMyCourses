@@ -125,7 +125,7 @@
                                                                                     class="icon ni ni-edit"></em><span>Edit
                                                                                     Course</span></a></div>
                                                                     </li>
-                                                                    <li><a id="courseId" value={{this._id}}
+                                                                    <li><a id="courseId{{@index}}" value={{this._id}}
                                                                             class="eg-swal-av3"><em
                                                                                 class="icon ni ni-delete"></em><span>Delete
                                                                                 Course</span></a></li>
@@ -554,7 +554,8 @@
 
         $('.eg-swal-av3').on("click", function (event) {
             event.preventDefault();
-            var courseId = $("#courseId").attr("value");
+            var index = $(".eg-swal-av3").index(this);
+            var courseId = $("#courseId" + index).attr("value");
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

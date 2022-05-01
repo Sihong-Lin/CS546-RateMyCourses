@@ -55,7 +55,6 @@ function checkUserId(userId) {
     if (userId.trim().length === 0) {
         throw 'userId cannot be an empty string or just spaces';
     }
-    userId = userId.trim();
     if (!ObjectId.isValid(userId)) throw 'invalid object ID';
     return userId
 }

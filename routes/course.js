@@ -50,7 +50,7 @@ router.post('/:id', async (req, res) => { // create course review
     res.status(200).json({reviewCreateStatus });
 });
 
-router.delete('/:id', async (req, res) => {  //delete course review
+router.delete('/:id', async (req, res) => {  
     const courseId = req.params.id;
 
     try {

@@ -18,14 +18,44 @@ module.exports = {
     getUser,
     createCourseReview,
     deleteCourseReview,
-    setUserRestrictStatus
+    setUserRestrictStatus,
+    removeUser
 };
 
-async function setUserRestrictStatus(userId, restrictStatus) {
+
+async function removeUser(userId) {
+    try {
+        userId = inputCheck.checkUserId(userId);
+
+    } catch (e) {
+        throw e
+    }
+    const userCollection = await users();
+    const deletionInfo = await userCollection.deleteOne({ _id: ObjectId(userId) });
+    if (deletionInfo.deletedCount === 0) {
+        throw `Could not delete user with id of ${userId}`;
+    }
+    console.log(333)
+    return 'The user has been successfully deleted!'
+}
+
+
+async function getUserById(id) {
+    id = inputCheck.checkUserId(id);
+    const userCollection = await users();
+    const user = await userCollection.findOne({ _id: ObjectId(id) });
+    if (!user) throw 'User not found';
+    user._id = user._id.toString()
+    return user;
+}
+
+async function setUserRestrictStatus(userId) {
+    const user = await getUserById(userId)
+    console.log(user)
     const userCollection = await users();
     const updateInfo = await userCollection.updateOne(
         { _id: ObjectId(userId) },
-        { $set: { restrictStatus: restrictStatus } }
+        { $set: { restrictStatus: !user.restrictStatus } }
     );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
         throw 'Update user restrict status failed';
