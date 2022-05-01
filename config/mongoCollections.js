@@ -24,5 +24,6 @@ module.exports = {
     users: getCollectionFn('users'),
     courses: getCollectionFn('courses'),
     professors: getCollectionFn('professors'),
-    courseReview: getCollectionFn('courseReview')
+    courseReview: getCollectionFn('courseReview'),
+    professorReview: getCollectionFn('professorReview')
 };

@@ -5,6 +5,7 @@ const { ObjectId } = require('mongodb');
 const userData = require('../data/user')
 const { check } = require('prettier');
 const inputCheck = require('./inputCheck');
+const professorReviewDBfunction = require('../data/professorReview');
 
 async function getAllProfessors() {
     const professorCollection = await professors();
@@ -132,7 +133,7 @@ async function addProfReview(uid, pid, comment, rating) {
     pid = inputCheck.checkUserId(pid);
     comment = inputCheck.checkComment(comment);
     rating = inputCheck.checkRating(rating);
-
+    const department = (await getProfById(pid)).department
     const userCollection = await users();
     const profCollection = await professors();
     const user = await userData.getUser(uid)
@@ -167,7 +168,11 @@ async function addProfReview(uid, pid, comment, rating) {
         { $set: { rating: { $avg: '$reviews.rating' } } },
     ]);
 
-    
+    try {
+        await professorReviewDBfunction.createProfessorReview(uid, pid, department)
+    } catch (e) {
+        throw e
+    }
 
     return profReview;
 }

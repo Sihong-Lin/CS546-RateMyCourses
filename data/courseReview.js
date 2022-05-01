@@ -6,7 +6,7 @@ const { ObjectId } = require('mongodb');
 module.exports = {
     createCourseReview,
     countCourseReview,
-    getAllCourseReview
+    countCourseReviewByDepartment
 }
 
 async function createCourseReview(userId, courseId, courseOwner) {
@@ -42,7 +42,7 @@ async function countCourseReview() {
 }
 
 
-async function getAllCourseReview() {
+async function countCourseReviewByDepartment() {
     const courseReviewCollection = await courseReview();
     const courseReviewCursor = await courseReviewCollection.find()
     const allCourseReview =  await courseReviewCursor.toArray()
