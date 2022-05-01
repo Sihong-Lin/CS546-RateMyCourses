@@ -5,6 +5,7 @@ const { ObjectId } = require('mongodb');
 
 module.exports = {
     createProfessorReview,
+    deleteProfessorReview,
     countProfessorReview,
     countProfessorReviewByDepartment
 }
@@ -34,6 +35,17 @@ async function createProfessorReview(userId, professorId, department) {
     const newId = newInsertInformation.insertedId.toString();
     return newId
 }
+
+async function deleteProfessorReview(userId, professorId) {
+    const professorReviewCollection = await professorReview();
+
+    const deletionInfo = await professorReviewCollection.deleteOne({ userId: userId, professorId: professorId });
+    if (!deletionInfo.deletedCount === 0) {
+        throw 'fail to delete review in professor review';
+    }
+    return { professorReviewDeleted: true }
+}
+
 
 async function countProfessorReview() {
     const professorReviewCollection = await professorReview();

@@ -207,6 +207,7 @@ async function deleteCourseReview(userId, courseId) {
     // delete review to course
     try {
         await courseDBFunction.deleteCourseReview(userId, courseId)
+        await courseReviewDBFunction.deleteCourseReview(userId, courseId)
     }
     catch (e) {
         throw e
