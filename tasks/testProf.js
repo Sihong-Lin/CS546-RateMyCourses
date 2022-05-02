@@ -24,9 +24,7 @@ const main = async () => {
         let professor1 = await professor.createProfessor(
             'HanTian',
             "Computer Science",
-            'All of the ML profs at Stevens know what they're talking about, 
-    but Tian Han is actually able to communicate the concepts clearly, which is huge. 
-    The HWs are hard but fair, but the midterm and final are both especially scary.',
+            "All of the ML profs at Stevens know what they re talking about",
             "/"
         )
         let uid = user1.insertedId.toString();
@@ -1157,7 +1155,34 @@ const main = async () => {
         let delettionInfo = await removeProfReview(review1Id);
         console.log(delettionInfo);
         console.log(await professor.getProfById(pid))
-
+        
+       
+        let professor4 = await professor.createProfessor(
+            'Dominic Duggan',
+            "Computer Science",
+            'You actually will learn a lot in his class, and Prof. Duggan is a good teacher. But its simply not worth it to take this class! ',
+            "/"
+        )
+        
+        let pid4 = professor4._id.toString();
+        let review4 = 'nice!';
+        for (let i = 0; i < 3; i++) {
+            await professor.addProfReview(uid, pid4, review4, 2);
+        }
+        
+          
+        let professor5 = await professor.createProfessor(
+            'Enrique Dunn',
+            "Computer Science",
+            'Very Solid professor. The concepts covered were interesting, but it can be hard to pay attention over zoom.',
+            "/"
+        )
+        
+        let pid5 = professor5._id.toString();
+        let review5 = 'nice!';
+        for (let i = 0; i < 3; i++) {
+            await professor.addProfReview(uid, pid5, review5, 3.3);
+        }
 
         // update professor
         professor1.introduction = "My research yields techniques that improve the way programmers develop reliable and efficient concurrent software for multi-core and distributed systems";
