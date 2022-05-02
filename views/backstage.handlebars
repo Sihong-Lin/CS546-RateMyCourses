@@ -118,24 +118,24 @@
                                                                 <div class="row g-4">
                                                                     <div class="col-sm-6 col-xxl-12">
                                                                         <div class="nk-order-ovwg-data buy">
-                                                                            <div class="amount">129 <small>Course
+                                                                            <div class="amount"> {{numberOfCourses}} <small>Course
                                                                                     Reviews</small></div>
-                                                                            <div class="info">among total <strong>68
-                                                                                    courses</strong></div>
+                                                                            <div class="info">among total <strong>{{numberOfCourseReviews}}
+                                                                                     courses</strong></div>
                                                                             <div class="title"><em
                                                                                     class="icon ni ni-arrow-down-left"></em>
-                                                                                Average 1.89 reviews/course</div>
+                                                                                Average {{avgCourseReview}} reviews/course</div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6 col-xxl-12">
                                                                         <div class="nk-order-ovwg-data sell">
-                                                                            <div class="amount">158 <small>Professor
+                                                                            <div class="amount">{{numberOfProfessors}} <small>Professor
                                                                                     Reviews</small></div>
-                                                                            <div class="info">among total <strong>43
+                                                                            <div class="info">among total <strong>{{numberOfProfessorReviews}}
                                                                                     professors</strong></div>
                                                                             <div class="title"><em
                                                                                     class="icon ni ni-arrow-up-left"></em>
-                                                                                Average 1.89 professors/course</div>
+                                                                                Average {{avgProfessorReview}} professors/course</div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -165,7 +165,7 @@
                                                             <div class="nk-wg-action-content">
                                                                 <em class="icon ni ni-users-fill"></em>
                                                                 <div class="title">User Manage</div>
-                                                                <p>There are total <strong>1,004 users</strong> in
+                                                                <p>There are total <strong>{{numberOfUsers}} users</strong> in
                                                                     RateMyCourses system.</p>
                                                             </div>
                                                             <a href="userManage.html"
@@ -178,7 +178,7 @@
                                                             <div class="nk-wg-action-content">
                                                                 <em class="icon ni ni-todo-fill"></em>
                                                                 <div class="title">Course Manage</div>
-                                                                <p>There are total <strong>68 courses</strong> in
+                                                                <p>There are total <strong>{{numberOfCourses}} courses</strong> in
                                                                     RateMyCourses system.</p>
                                                             </div>
                                                             <a href="courseManage.html"
@@ -191,7 +191,7 @@
                                                             <div class="nk-wg-action-content">
                                                                 <em class="icon ni ni-user-list-fill"></em>
                                                                 <div class="title">Professor Manage</div>
-                                                                <p>There are total <strong>43 professors</strong> in
+                                                                <p>There are total <strong>{{numberOfProfessors}} professors</strong> in
                                                                     RateMyCourses system.</p>
                                                             </div>
                                                             <a href="professorManage.html"
@@ -214,45 +214,17 @@
                                                     </div>
                                                 </div>
                                                 <ul class="nk-activity">
+                                                    {{#each top5Courses}}
                                                     <li class="nk-activity-item">
                                                         <div class="nk-activity-media user-avatar bg-success"><img
                                                                 src="./images/avatar/c-sm.jpg" alt=""></div>
                                                         <div class="nk-activity-data">
-                                                            <div class="label">Keith Jensen requested to Widthdrawl.
+                                                            <div class="label">{{this.courseName}}
                                                             </div>
-                                                            <span class="time">2 hours ago</span>
+                                                            <span class="time">Rating: {{this.overallRating}} /5</span>
                                                         </div>
                                                     </li>
-                                                    <li class="nk-activity-item">
-                                                        <div class="nk-activity-media user-avatar bg-warning">HS</div>
-                                                        <div class="nk-activity-data">
-                                                            <div class="label">Harry Simpson placed a Order.</div>
-                                                            <span class="time">2 hours ago</span>
-                                                        </div>
-                                                    </li>
-                                                    <li class="nk-activity-item">
-                                                        <div class="nk-activity-media user-avatar bg-azure">SM</div>
-                                                        <div class="nk-activity-data">
-                                                            <div class="label">Stephanie Marshall got a huge bonus.
-                                                            </div>
-                                                            <span class="time">2 hours ago</span>
-                                                        </div>
-                                                    </li>
-                                                    <li class="nk-activity-item">
-                                                        <div class="nk-activity-media user-avatar bg-purple"><img
-                                                                src="./images/avatar/d-sm.jpg" alt=""></div>
-                                                        <div class="nk-activity-data">
-                                                            <div class="label">Nicholas Carr deposited funds.</div>
-                                                            <span class="time">2 hours ago</span>
-                                                        </div>
-                                                    </li>
-                                                    <li class="nk-activity-item">
-                                                        <div class="nk-activity-media user-avatar bg-pink">TM</div>
-                                                        <div class="nk-activity-data">
-                                                            <div class="label">Timothy Moreno placed a Order.</div>
-                                                            <span class="time">2 hours ago</span>
-                                                        </div>
-                                                    </li>
+                                                    {{/each}}
                                                 </ul>
                                             </div><!-- .card -->
                                         </div><!-- .col -->
@@ -263,50 +235,22 @@
                                                 <div class="card-inner border-bottom">
                                                     <div class="card-title-group">
                                                         <div class="card-title">
-                                                            <h6 class="title">Top 3 Highest Rated Professors</h6>
+                                                            <h6 class="title">Top 5 Highest Rated Professors</h6>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <ul class="nk-activity">
+                                                    {{#each top5Professors}}
                                                     <li class="nk-activity-item">
                                                         <div class="nk-activity-media user-avatar bg-success"><img
                                                                 src="./images/avatar/c-sm.jpg" alt=""></div>
                                                         <div class="nk-activity-data">
-                                                            <div class="label">Keith Jensen requested to Widthdrawl.
+                                                            <div class="label">{{this.professorName}}
                                                             </div>
-                                                            <span class="time">2 hours ago</span>
+                                                            <span class="time">Rating: {{this.rating}} /5</span>
                                                         </div>
                                                     </li>
-                                                    <li class="nk-activity-item">
-                                                        <div class="nk-activity-media user-avatar bg-warning">HS</div>
-                                                        <div class="nk-activity-data">
-                                                            <div class="label">Harry Simpson placed a Order.</div>
-                                                            <span class="time">2 hours ago</span>
-                                                        </div>
-                                                    </li>
-                                                    <li class="nk-activity-item">
-                                                        <div class="nk-activity-media user-avatar bg-azure">SM</div>
-                                                        <div class="nk-activity-data">
-                                                            <div class="label">Stephanie Marshall got a huge bonus.
-                                                            </div>
-                                                            <span class="time">2 hours ago</span>
-                                                        </div>
-                                                    </li>
-                                                    <li class="nk-activity-item">
-                                                        <div class="nk-activity-media user-avatar bg-purple"><img
-                                                                src="./images/avatar/d-sm.jpg" alt=""></div>
-                                                        <div class="nk-activity-data">
-                                                            <div class="label">Nicholas Carr deposited funds.</div>
-                                                            <span class="time">2 hours ago</span>
-                                                        </div>
-                                                    </li>
-                                                    <li class="nk-activity-item">
-                                                        <div class="nk-activity-media user-avatar bg-pink">TM</div>
-                                                        <div class="nk-activity-data">
-                                                            <div class="label">Timothy Moreno placed a Order.</div>
-                                                            <span class="time">2 hours ago</span>
-                                                        </div>
-                                                    </li>
+                                                    {{/each}}
                                                 </ul>
                                             </div><!-- .card -->
                                         </div><!-- .col -->
@@ -325,31 +269,13 @@
                                                                 id="TrafficChannelDoughnutData"></canvas>
                                                         </div>
                                                         <div class="traffic-channel-group g-3">
+                                                            {{#each studentMajorDistribution}}
                                                             <div class="traffic-channel-data">
                                                                 <div class="title"><span class="dot dot-lg sq"
-                                                                        data-bg="#9cabff"></span><span>Organic
-                                                                        Search</span></div>
-                                                                <div class="amount">4,305 <small>58.63%</small></div>
+                                                                        data-bg="#9cabff"></span><span>{{this.major}}</span></div>
+                                                                <div class="amount">{{this.numberOfStudent}} ppl<small>{{this.precentage}}%</small></div>
                                                             </div>
-                                                            <div class="traffic-channel-data">
-                                                                <div class="title"><span class="dot dot-lg sq"
-                                                                        data-bg="#b8acff"></span><span>Social
-                                                                        Media</span></div>
-                                                                <div class="amount">859 <small>23.94%</small></div>
-                                                            </div>
-                                                            <div class="traffic-channel-data">
-                                                                <div class="title"><span class="dot dot-lg sq"
-                                                                        data-bg="#ffa9ce"></span><span>Referrals</span>
-                                                                </div>
-                                                                <div class="amount">482 <small>12.94%</small></div>
-                                                            </div>
-                                                            <div class="traffic-channel-data">
-                                                                <div class="title"><span class="dot dot-lg sq"
-                                                                        data-bg="#f9db7b"></span><span>Others</span>
-                                                                </div>
-                                                                <div class="amount">138 <small>4.49%</small></div>
-                                                            </div>
-                                                            
+                                                            {{/each}}
                                                         </div><!-- .traffic-channel-group -->
                                                     </div><!-- .traffic-channel -->
                                                 </div>
@@ -399,6 +325,10 @@
                 return parseInt(item, 10);
             });
             var professorReviews = "{{professorReviews}}".split(",").map(function(item) {
+                return parseInt(item, 10);
+            });
+            var major = "{{major}}".split(",")
+            var students = "{{numberOfstudentsByMajor}}".split(",").map(function(item) {
                 return parseInt(item, 10);
             });
             {{!-- var orderOverview = {
@@ -547,6 +477,17 @@
 
 
             var TrafficChannelDoughnutData = {
+                labels: major,
+                dataUnit: 'People',
+                legend: false,
+                datasets: [{
+                    borderColor: "#fff",
+                    background: ["#003366", "#80ff00", "#00cc00", "#994c00", "#996633", "#2eb8b8", "#bf80ff", "#990099", "#33ffbb", "#ff884d", "#ff1ac6", " #6666ff"],
+                    data: students
+                }]
+            };
+
+            {{!-- var TrafficChannelDoughnutData = {
                 labels: ["Computer Science", "Biomedical Engineering", "Mechanical Engineering", "Electrical Engineering",
                     "Management", "Business Intelligence and Analytics", "Finance", "Physics & Engineering Physic",
                     "Chemistry", "Materials Engineering", "Civil Engineering", "Environmental Engineering"],
@@ -557,7 +498,7 @@
                     background: ["#003366", "#80ff00", "#00cc00", "#994c00", "#996633", "#2eb8b8", "#bf80ff", "#990099", "#33ffbb", "#ff884d", "#ff1ac6", " #6666ff"],
                     data: [7, 5, 11, 2, 6, 5, 8, 12, 11, 8, 4, 6]
                 }]
-            };
+            }; --}}
             
             function analyticsDoughnut(selector, set_data) {
                 var $selector = selector ? $(selector) : $('.analytics-doughnut');

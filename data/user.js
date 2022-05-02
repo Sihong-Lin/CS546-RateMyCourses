@@ -19,7 +19,10 @@ module.exports = {
     createCourseReview,
     deleteCourseReview,
     setUserRestrictStatus,
-    removeUser
+    removeUser,
+    countUsers,
+    countUserByMajor,
+    studentMajorDistribution
 };
 
 
@@ -254,3 +257,56 @@ async function courseReviewIsExisted(userId, courseId) {
     return false;
 }
 
+async function countUsers() {
+    const userCollection = await users();
+    const count = await userCollection.countDocuments()
+    return count
+}
+
+
+async function countUserByMajor() {
+    const userCollection = await users();
+    const userCursor = await userCollection.find()
+    const allUsers =  await userCursor.toArray()
+    const majorUserCount = new Map()
+    allUsers.forEach(user => {
+        let major = user.major
+        if(!majorUserCount.has(major)) {
+            majorUserCount.set(major, 0)
+        }
+        majorUserCount.set(major, majorUserCount.get(major) + 1)
+    });
+    const obj = Object.fromEntries(majorUserCount)
+    let major = []
+    let numberOfStudent = []
+    Object.entries(obj).forEach(([key, value]) => {
+        major.push(key)
+        numberOfStudent.push(value)
+    })
+    const majorString = major.join(',')
+    const numberOfStudentString = numberOfStudent.join(',')
+   
+    return [majorString, numberOfStudentString]
+}
+
+async function studentMajorDistribution() {
+    const userCollection = await users();
+    const totalUserAmount = await userCollection.countDocuments()
+    const userCursor = await userCollection.find()
+    const allUsers =  await userCursor.toArray()
+    const majorUserCount = new Map()
+    allUsers.forEach(user => {
+        let major = user.major
+        if(!majorUserCount.has(major)) {
+            majorUserCount.set(major, 0)
+        }
+        majorUserCount.set(major, majorUserCount.get(major) + 1)
+    });
+    let res = []
+    for(const pair of majorUserCount.entries()) {
+        var object = {major: pair[0], numberOfStudent: pair[1], precentage: (pair[1]/totalUserAmount * 100).toFixed(2)}
+        res.push(object)
+    }
+    res.sort((a, b) => b.numberOfStudent - a.numberOfStudent)
+    return res
+}

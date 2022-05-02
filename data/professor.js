@@ -74,9 +74,9 @@ async function getProfById(id) {
     return professor;
 }
 
-async function getTop3Professors() {
+async function getTop5Professors() {
     let professorList = await getAllProfessors();
-    let res = professorList.sort((a, b) => b.rating - a.rating).slice(0,3);
+    let res = professorList.sort((a, b) => b.rating - a.rating).slice(0,5);
     return res;
 }
 
@@ -217,7 +217,7 @@ module.exports = {
     getAllProfessors,
     createProfessor,
     getProfById,
-    getTop3Professors,
+    getTop5Professors,
     updateProf,
     removeProf,
     addProfReview,

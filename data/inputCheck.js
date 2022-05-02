@@ -36,7 +36,7 @@ function checkUserName(userName) {
     if (typeof userName != 'string') throw 'userName is not a string';
     userName = userName.trim();
     if (userName.length == 0) throw 'userName cannot be an empty string or just spaces';
-    if (!/^[a-zA-Z0-9]{4,}$/.test(userName)) throw 'userName is not vaild';
+    //if (!/^[a-zA-Z0-9]{4,}$/.test(userName)) throw 'userName is not vaild';
     return userName;
 }
 

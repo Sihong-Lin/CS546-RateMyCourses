@@ -15,6 +15,9 @@ const departmentReivew = async () => {
     let firstUserId = undefined
     let secondUserId = undefined
     let thirdUserId = undefined
+    let fourthUserId = undefined
+    let fifthUserId = undefined
+    let sixtUserId = undefined
 
     let firstCourseId = undefined
     let secondCourseId = undefined
@@ -47,20 +50,56 @@ const departmentReivew = async () => {
         "url to picture"
     ))._id.toString()
 
-    firstUserId = (await user.createUser(
-        "zhuziheng",
+    firstUserId = (await user.createUser( //(username, email, major, profilePicture, password)
+        "meicheng du",
+        "email url",
+        "Chemistry",
+        "picture url",
         "123456789"
     )).insertedId
 
     secondUserId = (await user.createUser(
         "wuyifan",
+        "email url",
+        "Mechanical Engineering",
+        "picture url",
         "123456789"
     )).insertedId
 
     thirdUserId = (await user.createUser(
         "jangjinfu",
+        "email url",
+        "computer science",
+        "picture url",
         "123456789"
     )).insertedId
+    
+    fourthUserId = (await user.createUser(
+        "ziheng zhu",
+        "email url",
+        "computer science",
+        "picture url",
+        "123456789"
+    )).insertedId
+
+    fifthUserId = (await user.createUser( //(username, email, major, profilePicture, password)
+        "qian yu",
+        "email url",
+        "Chemistry",
+        "picture url",
+        "123456789"
+    )).insertedId
+
+    sixtUserId = (await user.createUser( //(username, email, major, profilePicture, password)
+        "xing chen",
+        "email url",
+        "Materials Engineering",
+        "picture url",
+        "123456789"
+    )).insertedId
+
+    
+
 
     firstCourseId = (await course.createCourse( // CS program
         'CS 546 Web Programming', // courseName
@@ -252,11 +291,17 @@ const departmentReivew = async () => {
         5
     )
 
-    let res = await home.getDepartmentReviewsCount()
-    console.log(res)
-    console.log(typeof(res))
-    console.log(Array.isArray(res));
-
+    let map = await user.countUserByMajor()
+    console.log(map)
+    let mapSort = await user.studentMajorDistribution()
+    console.log(mapSort)
+    
+    // let res = await home.getDepartmentReviewsCount()
+    // console.log(res)
+    // console.log(typeof(res))
+    // console.log(Array.isArray(res));
+    // let a = await home.getAllCourses()
+    // console.log(a);
     // let u1dc1 = await user.deleteCourseReview(firstUserId, firstCourseId);
     // let u1dp1 = await professor.removeProfReview(u1p1._id.toString());
     // let res2 = await home.getDepartmentReviewsCount()
