@@ -15,17 +15,17 @@ module.exports = {
 }
 
 async function createCourse(courseName, academicLevel, courseOwner, type,
-    gradingBasis, units, description, typicalPeriodsOffered,
+    units, description, 
     instructionalFormats, syllabus, courseware, picture) {
     try {
         courseName = inputCheck.checkCourseName(courseName);
         academicLevel = inputCheck.checkAcademicLevel(academicLevel);
         courseOwner = inputCheck.checkCourseOwner(courseOwner);
         type = inputCheck.checkType(type);
-        gradingBasis = inputCheck.checkGradingBasis(gradingBasis);
+      //  gradingBasis = inputCheck.checkGradingBasis(gradingBasis);
         units = inputCheck.checkUnits(units);
         description = inputCheck.checkDescription(description);
-        typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(typicalPeriodsOffered);
+       // typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(typicalPeriodsOffered);
         instructionalFormats = inputCheck.checkInstructionalFormats(instructionalFormats);
         syllabus = inputCheck.checkSyllabus(syllabus);
         courseware = inputCheck.checkCourseware(courseware);
@@ -44,10 +44,10 @@ async function createCourse(courseName, academicLevel, courseOwner, type,
         academicLevel: academicLevel,
         courseOwner: courseOwner,
         type: type,
-        gradingBasis: gradingBasis,
+       // gradingBasis: gradingBasis,
         units: units,
         description: description,
-        typicalPeriodsOffered: typicalPeriodsOffered,
+      //  typicalPeriodsOffered: typicalPeriodsOffered,
         instructionalFormats: instructionalFormats,
         syllabus: syllabus,
         courseware: courseware,
@@ -91,17 +91,17 @@ async function removeCourse(courseId) {
 }
 
 async function updateCourse(courseId, courseName, academicLevel, courseOwner, type,
-    gradingBasis, units, description, typicalPeriodsOffered,
+    units, description, 
     instructionalFormats, syllabus, courseware, picture) {
     try {
         courseName = inputCheck.checkCourseName(courseName);
         academicLevel = inputCheck.checkAcademicLevel(academicLevel);
         courseOwner = inputCheck.checkCourseOwner(courseOwner);
         type = inputCheck.checkType(type);
-        gradingBasis = inputCheck.checkGradingBasis(gradingBasis);
+      //  gradingBasis = inputCheck.checkGradingBasis(gradingBasis);
         units = inputCheck.checkUnits(units);
         description = inputCheck.checkDescription(description);
-        typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(typicalPeriodsOffered);
+      //  typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(typicalPeriodsOffered);
         instructionalFormats = inputCheck.checkInstructionalFormats(instructionalFormats);
         syllabus = inputCheck.checkSyllabus(syllabus);
         courseware = inputCheck.checkCourseware(courseware);
@@ -121,10 +121,10 @@ async function updateCourse(courseId, courseName, academicLevel, courseOwner, ty
         academicLevel: academicLevel,
         courseOwner: courseOwner,
         type: type,
-        gradingBasis: gradingBasis,
+     //   gradingBasis: gradingBasis,
         units: units,
         description: description,
-        typicalPeriodsOffered: typicalPeriodsOffered,
+     //   typicalPeriodsOffered: typicalPeriodsOffered,
         instructionalFormats: instructionalFormats,
         syllabus: syllabus,
         courseware: courseware,

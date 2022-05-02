@@ -79,8 +79,11 @@ router.delete('/:id', async (req, res) => {
 });
 
 router.put('/edit/:id', async (req, res) => {  // edit course
+    console.log(111111111)
     const courseId = req.params.id
     const courseBody = req.body
+    console.log(courseId)
+    console.log(courseBody)
     if(!courseBody) {
         res.status(400).json({error : 'You must provide data to update a course'})
         return
@@ -89,10 +92,10 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     let academicLevel = undefined
     let courseOwner = undefined
     let type = undefined
-    let gradingBasis = undefined
+   // let gradingBasis = undefined
     let units = undefined
     let description = undefined
-    let typicalPeriodsOffered = undefined
+  //  let typicalPeriodsOffered = undefined
     let instructionalFormats = undefined
     let syllabus = undefined
     let courseware = undefined
@@ -127,7 +130,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     }
 
     try {
-        gradingBasis = inputCheck.checkGradingBasis(courseBody.gradingBasis)
+      //  gradingBasis = inputCheck.checkGradingBasis(courseBody.gradingBasis)
     }catch(e) {
         res.status(400).json(e);
         return
@@ -148,7 +151,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     }
 
     try {
-        typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(courseBody.typicalPeriodsOffered)
+     //   typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(courseBody.typicalPeriodsOffered)
     }catch(e) {
         res.status(400).json(e);
         return
@@ -189,10 +192,10 @@ router.put('/edit/:id', async (req, res) => {  // edit course
             academicLevel, 
             courseOwner, 
             type, 
-            gradingBasis,
+          //  gradingBasis,
             units,
             description,
-            typicalPeriodsOffered,
+          //  typicalPeriodsOffered,
             instructionalFormats,
             syllabus,
             courseware,
@@ -210,14 +213,15 @@ router.post('/', async (req, res) => { // create new course
         res.status(400).json({error : 'You must provide data to create a course'})
         return
     }
+    console.log(courseBody)
     let courseName = undefined
     let academicLevel = undefined
     let courseOwner = undefined
     let type = undefined
-    let gradingBasis = undefined
+   // let gradingBasis = undefined
     let units = undefined
     let description = undefined
-    let typicalPeriodsOffered = undefined
+  //  let typicalPeriodsOffered = undefined
     let instructionalFormats = undefined
     let syllabus = undefined
     let courseware = undefined
@@ -226,6 +230,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         courseName = inputCheck.checkCourseName(courseBody.courseName)
     }catch(e) {
+        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -233,6 +238,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         academicLevel = inputCheck.checkAcademicLevel(courseBody.academicLevel)
     }catch(e) {
+        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -240,6 +246,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         courseOwner = inputCheck.checkCourseOwner(courseBody.courseOwner)
     }catch(e) {
+        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -247,13 +254,15 @@ router.post('/', async (req, res) => { // create new course
     try {
         type = inputCheck.checkType(courseBody.type)
     }catch(e) {
+        console.log(e)
         res.status(400).json(e);
         return
     }
 
     try {
-        gradingBasis = inputCheck.checkGradingBasis(courseBody.gradingBasis)
+       // gradingBasis = inputCheck.checkGradingBasis(courseBody.gradingBasis)
     }catch(e) {
+        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -261,6 +270,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         units = inputCheck.checkUnits(courseBody.units)
     }catch(e) {
+        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -268,13 +278,15 @@ router.post('/', async (req, res) => { // create new course
     try {
         description = inputCheck.checkDescription(courseBody.description)
     }catch(e) {
+        console.log(e)
         res.status(400).json(e);
         return
     }
 
     try {
-        typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(courseBody.typicalPeriodsOffered)
+      //  typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(courseBody.typicalPeriodsOffered)
     }catch(e) {
+        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -282,6 +294,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         instructionalFormats = inputCheck.checkInstructionalFormats(courseBody.instructionalFormats)
     }catch(e) {
+        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -289,6 +302,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         syllabus = inputCheck.checkSyllabus(courseBody.syllabus)
     }catch(e) {
+        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -296,6 +310,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         courseware = inputCheck.checkCourseware(courseBody.courseware)
     }catch(e) {
+        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -303,9 +318,11 @@ router.post('/', async (req, res) => { // create new course
     try {
         picture = inputCheck.checkCoursePicture(courseBody.picture)
     }catch(e) {
+        console.log(e)
         res.status(400).json(e);
         return
     }
+ 
 
     try {
         const newCourse = await course.createCourse(
@@ -313,10 +330,10 @@ router.post('/', async (req, res) => { // create new course
             academicLevel, 
             courseOwner, 
             type, 
-            gradingBasis,
+           // gradingBasis,
             units,
             description,
-            typicalPeriodsOffered,
+          //  typicalPeriodsOffered,
             instructionalFormats,
             syllabus,
             courseware,

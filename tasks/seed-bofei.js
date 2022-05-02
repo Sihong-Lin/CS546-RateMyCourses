@@ -42,10 +42,8 @@ const main = async () => {
             'Graduate', // academicLevel
             'Computer Science Program', // courseOwner
             'Core', // type
-            ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
             3, // units
             'This course will provide students with a first strong approach of internet programming. It will give the basic knowledge on how the Internet works and how to create advanced web sites by the use of script languages, after learning the basics of HTML. The course will teach the students how to create a complex global site through the creation of individual working modules, giving them the skills required in any business such as proper team work and coordination between groups.', // description
-            ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
             'Lecture', // instructionalFormats
             'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
             'https://github.com/graffixnyc/CS-546', // courseware
@@ -64,10 +62,8 @@ const main = async () => {
             'Graduate', // academicLevel
             'Computer Science Program', // courseOwner
             'Elective', // type
-            ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
             3, // units
             'Introduction to IP networking. Examination of all layers of the OSI stack. Detailed examination of the IP, ICMP, UDP, and TCP protocols. Basic concepts of network design: end-to-end principle, routing, encapsulation, flow control, congestion control, and security. Detailed coverage of TCP. Some treatment of important Internet applications and services. Emphasis on network layer and above. Assignments focus on protocols and software.', // description
-            ['Fall Semester', 'Spring Semester'], // typicalPeriodsOffered
             'Lecture', // instructionalFormats
             'https://web.stevens.edu/academic_files/courses/syllabus/CS521syl.pdf', // syllabus
             'https://www.studocu.com/en-us/course/stevens-institute-of-technology/tcpip-networking/4691927', // courseware（复制课名随便找点相关网址粘上去）
