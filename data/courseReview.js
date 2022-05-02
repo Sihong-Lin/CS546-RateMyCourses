@@ -73,12 +73,16 @@ async function deleteCourseReview(userId, courseId) {
 function courseOwnerToDepartment(courseOwner) {
     // Computer Science Program ==> Computer Science 
     // Finance Program ==> Finance
-    const arr = courseOwner.split(" ");
+    // Finance ==> Finance
     let department = ""
-    for(let i = 0; i < arr.length - 1; i++) {
-        department += arr[i] + " ";
+    const arr = courseOwner.split(" ");
+    if(arr[arr.length-1] == "Program") {
+        for(let i = 0; i < arr.length - 1; i++) {
+            department += arr[i] + " ";
+        }
+        return department.trim();
     }
-    return department.trim();
+    return courseOwner
 }
 
 async function avgCourseReview() {

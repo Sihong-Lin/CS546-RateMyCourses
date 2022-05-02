@@ -104,7 +104,7 @@ const departmentReivew = async () => {
     firstCourseId = (await course.createCourse( // CS program
         'CS 546 Web Programming', // courseName
         'Graduate', // academicLevel
-        'Computer Science Program', // courseOwner
+        'Computer Science', // courseOwner
         'Core', // type
         ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
         3, // units
@@ -134,7 +134,7 @@ const departmentReivew = async () => {
     thirdCourseId = (await course.createCourse( // ME program
         'ME 333 Mechanical System', // courseName
         'Graduate', // academicLevel
-        'Mechanical Engineering Program', // courseOwner
+        'Mechanical Engineering', // courseOwner
         'Core', // type
         ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
         3, // units
