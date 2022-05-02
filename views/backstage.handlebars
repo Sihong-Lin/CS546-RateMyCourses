@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="./images/favicon.png">
+    <!-- Page Title  -->
+    <title>Crypto Dashboard | DashLite Admin Template</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="static/backstage/assets/css/dashlite.css?ver=2.2.0">
+    <link id="skin-default" rel="stylesheet" href="static/backstage/assets/css/theme.css?ver=2.2.0">
+</head>
+
+<body class="nk-body bg-lighter npc-general has-sidebar ">
+    <div class="nk-app-root">
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- sidebar @s -->
+            <div class="nk-sidebar nk-sidebar-fixed is-dark " data-content="sidebarMenu">
+                <div class="nk-sidebar-element nk-sidebar-head">
+                    <div class="nk-sidebar-brand">
+                        <a href="html/index.html" class="logo-link">
+                            <span class="nk-block-title page-title">RateMyCourses</span>
+                        </a>
+                    </div>
+                    <div class="nk-menu-trigger mr-n2">
+                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em
+                                class="icon ni ni-arrow-left"></em></a>
+                    </div>
+                </div><!-- .nk-sidebar-element -->
+                <div class="nk-sidebar-element">
+                    <div class="nk-sidebar-content">
+                        <div class="nk-sidebar-menu" data-simplebar>
+                            <ul class="nk-menu">
+                                <li class="nk-menu-item">
+                                    <a href="backstage" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+                                        <span class="nk-menu-text">Dashboard</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="userManage" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-text">User Manage</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="courseManage" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-elementor"></em></span>
+                                        <span class="nk-menu-text">Course Manage</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="professorManage" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list-fill"></em></span>
+                                        <span class="nk-menu-text">Professor Manage</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="home" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-signout"></em></span>
+                                        <span class="nk-menu-text">Sign Out</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                            </ul><!-- .nk-menu -->
+                        </div><!-- .nk-sidebar-menu -->
+                    </div><!-- .nk-sidebar-content -->
+                </div><!-- .nk-sidebar-element -->
+            </div>
+            <!-- sidebar @e -->
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+
+                <!-- main header @e -->
+                <!-- content @s -->
+                <div class="nk-content ">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <div class="nk-content-body">
+
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">Overview</h3>
+                                            <div class="nk-block-des text-soft">
+                                                <p>Welcome to RateMyProfessor Backstage.</p>
+                                            </div>
+                                        </div><!-- .nk-block-head-content -->
+                                    </div><!-- .nk-block-between -->
+                                </div><!-- .nk-block-head -->
+
+                                <div class="nk-block">
+                                    <div class="row g-gs">
+
+                                        <div class="col-lg-8">
+                                            <div class="card card-bordered h-100">
+                                                <div class="card-inner">
+                                                    <div class="card-title-group align-start mb-3">
+                                                        <div class="card-title">
+                                                            <h6 class="title">Reviews Statistics</h6>
+                                                        </div>
+                                                    </div><!-- .card-title-group -->
+                                                    <div class="nk-order-ovwg">
+                                                        <div class="row g-4 align-end">
+                                                            <div class="col-xxl-8">
+                                                                <div class="nk-order-ovwg-ck">
+                                                                    <canvas class="order-overview-chart"
+                                                                        id="orderOverview"></canvas>
+                                                                </div>
+                                                            </div><!-- .col -->
+                                                            <div class="col-xxl-4">
+                                                                <div class="row g-4">
+                                                                    <div class="col-sm-6 col-xxl-12">
+                                                                        <div class="nk-order-ovwg-data buy">
+                                                                            <div class="amount">129 <small>Course
+                                                                                    Reviews</small></div>
+                                                                            <div class="info">among total <strong>68
+                                                                                    courses</strong></div>
+                                                                            <div class="title"><em
+                                                                                    class="icon ni ni-arrow-down-left"></em>
+                                                                                Average 1.89 reviews/course</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6 col-xxl-12">
+                                                                        <div class="nk-order-ovwg-data sell">
+                                                                            <div class="amount">158 <small>Professor
+                                                                                    Reviews</small></div>
+                                                                            <div class="info">among total <strong>43
+                                                                                    professors</strong></div>
+                                                                            <div class="title"><em
+                                                                                    class="icon ni ni-arrow-up-left"></em>
+                                                                                Average 1.89 professors/course</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div><!-- .col -->
+                                                        </div>
+                                                    </div><!-- .nk-order-ovwg -->
+                                                </div><!-- .card-inner -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+
+                                        <div class="col-lg-4">
+                                            <div class="card card-bordered h-100">
+                                                <div class="card-inner-group">
+                                                    <div class="card-inner card-inner-md">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Management Center</h6>
+                                                            </div>
+                                                            <div class="card-title">
+                                                                <p><a href="#" class="link link-sm"></a></p>
+                                                                <p><a href="#" class="link link-sm"></a></p>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                    <div class="card-inner">
+                                                        <div class="nk-wg-action">
+                                                            <div class="nk-wg-action-content">
+                                                                <em class="icon ni ni-users-fill"></em>
+                                                                <div class="title">User Manage</div>
+                                                                <p>There are total <strong>1,004 users</strong> in
+                                                                    RateMyCourses system.</p>
+                                                            </div>
+                                                            <a href="userManage.html"
+                                                                class="btn btn-icon btn-trigger mr-n2"><em
+                                                                    class="icon ni ni-forward-ios"></em></a>
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                    <div class="card-inner">
+                                                        <div class="nk-wg-action">
+                                                            <div class="nk-wg-action-content">
+                                                                <em class="icon ni ni-todo-fill"></em>
+                                                                <div class="title">Course Manage</div>
+                                                                <p>There are total <strong>68 courses</strong> in
+                                                                    RateMyCourses system.</p>
+                                                            </div>
+                                                            <a href="courseManage.html"
+                                                                class="btn btn-icon btn-trigger mr-n2"><em
+                                                                    class="icon ni ni-forward-ios"></em></a>
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                    <div class="card-inner">
+                                                        <div class="nk-wg-action">
+                                                            <div class="nk-wg-action-content">
+                                                                <em class="icon ni ni-user-list-fill"></em>
+                                                                <div class="title">Professor Manage</div>
+                                                                <p>There are total <strong>43 professors</strong> in
+                                                                    RateMyCourses system.</p>
+                                                            </div>
+                                                            <a href="professorManage.html"
+                                                                class="btn btn-icon btn-trigger mr-n2"><em
+                                                                    class="icon ni ni-forward-ios"></em></a>
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                </div><!-- .card-inner-group -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+
+
+                                        <div class="col-md-6 col-xxl-4">
+                                            <div class="card card-bordered card-full">
+                                                <div class="card-inner border-bottom">
+                                                    <div class="card-title-group">
+                                                        <div class="card-title">
+                                                            <h6 class="title">Top 5 Most Popular Courses</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="nk-activity">
+                                                    <li class="nk-activity-item">
+                                                        <div class="nk-activity-media user-avatar bg-success"><img
+                                                                src="./images/avatar/c-sm.jpg" alt=""></div>
+                                                        <div class="nk-activity-data">
+                                                            <div class="label">Keith Jensen requested to Widthdrawl.
+                                                            </div>
+                                                            <span class="time">2 hours ago</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="nk-activity-item">
+                                                        <div class="nk-activity-media user-avatar bg-warning">HS</div>
+                                                        <div class="nk-activity-data">
+                                                            <div class="label">Harry Simpson placed a Order.</div>
+                                                            <span class="time">2 hours ago</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="nk-activity-item">
+                                                        <div class="nk-activity-media user-avatar bg-azure">SM</div>
+                                                        <div class="nk-activity-data">
+                                                            <div class="label">Stephanie Marshall got a huge bonus.
+                                                            </div>
+                                                            <span class="time">2 hours ago</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="nk-activity-item">
+                                                        <div class="nk-activity-media user-avatar bg-purple"><img
+                                                                src="./images/avatar/d-sm.jpg" alt=""></div>
+                                                        <div class="nk-activity-data">
+                                                            <div class="label">Nicholas Carr deposited funds.</div>
+                                                            <span class="time">2 hours ago</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="nk-activity-item">
+                                                        <div class="nk-activity-media user-avatar bg-pink">TM</div>
+                                                        <div class="nk-activity-data">
+                                                            <div class="label">Timothy Moreno placed a Order.</div>
+                                                            <span class="time">2 hours ago</span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+
+
+                                        <div class="col-md-6 col-xxl-4">
+                                            <div class="card card-bordered card-full">
+                                                <div class="card-inner border-bottom">
+                                                    <div class="card-title-group">
+                                                        <div class="card-title">
+                                                            <h6 class="title">Top 3 Highest Rated Professors</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="nk-activity">
+                                                    <li class="nk-activity-item">
+                                                        <div class="nk-activity-media user-avatar bg-success"><img
+                                                                src="./images/avatar/c-sm.jpg" alt=""></div>
+                                                        <div class="nk-activity-data">
+                                                            <div class="label">Keith Jensen requested to Widthdrawl.
+                                                            </div>
+                                                            <span class="time">2 hours ago</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="nk-activity-item">
+                                                        <div class="nk-activity-media user-avatar bg-warning">HS</div>
+                                                        <div class="nk-activity-data">
+                                                            <div class="label">Harry Simpson placed a Order.</div>
+                                                            <span class="time">2 hours ago</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="nk-activity-item">
+                                                        <div class="nk-activity-media user-avatar bg-azure">SM</div>
+                                                        <div class="nk-activity-data">
+                                                            <div class="label">Stephanie Marshall got a huge bonus.
+                                                            </div>
+                                                            <span class="time">2 hours ago</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="nk-activity-item">
+                                                        <div class="nk-activity-media user-avatar bg-purple"><img
+                                                                src="./images/avatar/d-sm.jpg" alt=""></div>
+                                                        <div class="nk-activity-data">
+                                                            <div class="label">Nicholas Carr deposited funds.</div>
+                                                            <span class="time">2 hours ago</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="nk-activity-item">
+                                                        <div class="nk-activity-media user-avatar bg-pink">TM</div>
+                                                        <div class="nk-activity-data">
+                                                            <div class="label">Timothy Moreno placed a Order.</div>
+                                                            <span class="time">2 hours ago</span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+
+                                        <div class="col-md-6 col-xxl-4">
+                                            <div class="card card-bordered h-100">
+                                                <div class="card-inner">
+                                                    <div class="card-title-group align-start mb-3">
+                                                        <div class="card-title">
+                                                            <h6 class="title">Student Major Distribution</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="traffic-channel">
+                                                        <div class="traffic-channel-doughnut-ck">
+                                                            <canvas class="analytics-doughnut"
+                                                                id="TrafficChannelDoughnutData"></canvas>
+                                                        </div>
+                                                        <div class="traffic-channel-group g-3">
+                                                            <div class="traffic-channel-data">
+                                                                <div class="title"><span class="dot dot-lg sq"
+                                                                        data-bg="#9cabff"></span><span>Organic
+                                                                        Search</span></div>
+                                                                <div class="amount">4,305 <small>58.63%</small></div>
+                                                            </div>
+                                                            <div class="traffic-channel-data">
+                                                                <div class="title"><span class="dot dot-lg sq"
+                                                                        data-bg="#b8acff"></span><span>Social
+                                                                        Media</span></div>
+                                                                <div class="amount">859 <small>23.94%</small></div>
+                                                            </div>
+                                                            <div class="traffic-channel-data">
+                                                                <div class="title"><span class="dot dot-lg sq"
+                                                                        data-bg="#ffa9ce"></span><span>Referrals</span>
+                                                                </div>
+                                                                <div class="amount">482 <small>12.94%</small></div>
+                                                            </div>
+                                                            <div class="traffic-channel-data">
+                                                                <div class="title"><span class="dot dot-lg sq"
+                                                                        data-bg="#f9db7b"></span><span>Others</span>
+                                                                </div>
+                                                                <div class="amount">138 <small>4.49%</small></div>
+                                                            </div>
+                                                            
+                                                        </div><!-- .traffic-channel-group -->
+                                                    </div><!-- .traffic-channel -->
+                                                </div>
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+
+
+
+
+                                    </div><!-- .row -->
+                                </div><!-- .nk-block -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content @e -->
+                <!-- footer @s -->
+                <div class="nk-footer">
+                    <div class="container-fluid">
+                        <div class="nk-footer-wrap">
+                            <p class="mb-md-0">Copyright &copy; 2022. CS 546 Group 36 All rights reserved.</p>
+                            <div class="nk-footer-links">
+                                <ul class="nav nav-sm">
+                                    <li class="nav-item"><a class="nav-link" href="#">Terms</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer @e -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+    </div>
+    <!-- app-root @e -->
+    <!-- JavaScript -->
+    <script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
+
+
+    <script>
+        !function (NioApp, $) {
+
+            var orderOverview = {
+                labels: ["Computer Science", "Biomedical Engineering", "Mechanical Engineering", "Electrical Engineering",
+                    "Management", "Business Intelligence and Analytics", "Finance", "Physics & Engineering Physic",
+                    "Chemistry", "Materials Engineering", "Civil Engineering", "Environmental Engineering"],
+                dataUnit: 'Reviews',
+                datasets: [{
+                    label: "Course",
+                    color: "#8feac5",
+                    data: [7, 5, 11, 2, 6, 5, 8, 12, 11, 8, 4, 6, 9, 12]
+                }, {
+                    label: "Professors",
+                    color: "#9cabff",
+                    data: [4, 8, 13, 5, 4, 8, 7, 5, 4, 2, 0, 13, 6, 7]
+                }]
+            };
+
+            function orderOverviewChart(selector, set_data) {
+                var $selector = selector ? $(selector) : $('.order-overview-chart');
+                $selector.each(function () {
+                    var $self = $(this),
+                        _self_id = $self.attr('id'),
+                        _get_data = typeof set_data === 'undefined' ? eval(_self_id) : set_data,
+                        _d_legend = typeof _get_data.legend === 'undefined' ? false : _get_data.legend;
+
+                    var selectCanvas = document.getElementById(_self_id).getContext("2d");
+                    var chart_data = [];
+
+                    for (var i = 0; i < _get_data.datasets.length; i++) {
+                        chart_data.push({
+                            label: _get_data.datasets[i].label,
+                            data: _get_data.datasets[i].data,
+                            // Styles
+                            backgroundColor: _get_data.datasets[i].color,
+                            borderWidth: 2,
+                            borderColor: 'transparent',
+                            hoverBorderColor: 'transparent',
+                            borderSkipped: 'bottom',
+                            barPercentage: .8,
+                            categoryPercentage: .6
+                        });
+                    }
+
+                    var chart = new Chart(selectCanvas, {
+                        type: 'bar',
+                        data: {
+                            labels: _get_data.labels,
+                            datasets: chart_data
+                        },
+                        options: {
+                            legend: {
+                                display: _get_data.legend ? _get_data.legend : false,
+                                labels: {
+                                    boxWidth: 30,
+                                    padding: 20,
+                                    fontColor: '#6783b8'
+                                }
+                            },
+                            maintainAspectRatio: false,
+                            tooltips: {
+                                enabled: true,
+                                rtl: NioApp.State.isRTL,
+                                callbacks: {
+                                    title: function title(tooltipItem, data) {
+                                        return data.datasets[tooltipItem[0].datasetIndex].label;
+                                    },
+                                    label: function label(tooltipItem, data) {
+                                        return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
+                                    }
+                                },
+                                backgroundColor: '#eff6ff',
+                                titleFontSize: 13,
+                                titleFontColor: '#6783b8',
+                                titleMarginBottom: 6,
+                                bodyFontColor: '#9eaecf',
+                                bodyFontSize: 12,
+                                bodySpacing: 4,
+                                yPadding: 10,
+                                xPadding: 10,
+                                footerMarginTop: 0,
+                                displayColors: false
+                            },
+                            scales: {
+                                yAxes: [{
+                                    display: true,
+                                    stacked: _get_data.stacked ? _get_data.stacked : false,
+                                    position: NioApp.State.isRTL ? "right" : "left",
+                                    ticks: {
+                                        beginAtZero: true,
+                                        fontSize: 11,
+                                        fontColor: '#9eaecf',
+                                        padding: 10,
+                                        callback: function callback(value, index, values) {
+                                            return value + ' Reviews';
+                                        },
+                                        min: 0,
+                                        max: 15,
+                                        stepSize: 3
+                                    },
+                                    gridLines: {
+                                        color: NioApp.hexRGB("#526484", .2),
+                                        tickMarkLength: 0,
+                                        zeroLineColor: NioApp.hexRGB("#526484", .2)
+                                    }
+                                }],
+                                xAxes: [{
+                                    display: true,
+                                    stacked: _get_data.stacked ? _get_data.stacked : false,
+                                    ticks: {
+                                        fontSize: 9,
+                                        fontColor: '#9eaecf',
+                                        source: 'auto',
+                                        padding: 10,
+                                        reverse: NioApp.State.isRTL
+                                    },
+                                    gridLines: {
+                                        color: "transparent",
+                                        tickMarkLength: 0,
+                                        zeroLineColor: 'transparent'
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                });
+            } // init chart
+            NioApp.coms.docReady.push(function () {
+                orderOverviewChart();
+            });
+
+
+            var TrafficChannelDoughnutData = {
+                labels: ["Computer Science", "Biomedical Engineering", "Mechanical Engineering", "Electrical Engineering",
+                    "Management", "Business Intelligence and Analytics", "Finance", "Physics & Engineering Physic",
+                    "Chemistry", "Materials Engineering", "Civil Engineering", "Environmental Engineering"],
+                dataUnit: 'People',
+                legend: false,
+                datasets: [{
+                    borderColor: "#fff",
+                    background: ["#003366", "#80ff00", "#00cc00", "#994c00", "#996633", "#2eb8b8", "#bf80ff", "#990099", "#33ffbb", "#ff884d", "#ff1ac6", " #6666ff"],
+                    data: [7, 5, 11, 2, 6, 5, 8, 12, 11, 8, 4, 6]
+                }]
+            };
+            
+            function analyticsDoughnut(selector, set_data) {
+                var $selector = selector ? $(selector) : $('.analytics-doughnut');
+                $selector.each(function () {
+                    var $self = $(this),
+                        _self_id = $self.attr('id'),
+                        _get_data = typeof set_data === 'undefined' ? eval(_self_id) : set_data;
+
+                    var selectCanvas = document.getElementById(_self_id).getContext("2d");
+                    var chart_data = [];
+
+                    for (var i = 0; i < _get_data.datasets.length; i++) {
+                        chart_data.push({
+                            backgroundColor: _get_data.datasets[i].background,
+                            borderWidth: 2,
+                            borderColor: _get_data.datasets[i].borderColor,
+                            hoverBorderColor: _get_data.datasets[i].borderColor,
+                            data: _get_data.datasets[i].data
+                        });
+                    }
+
+                    var chart = new Chart(selectCanvas, {
+                        type: 'doughnut',
+                        data: {
+                            labels: _get_data.labels,
+                            datasets: chart_data
+                        },
+                        options: {
+                            legend: {
+                                display: _get_data.legend ? _get_data.legend : false,
+                                labels: {
+                                    boxWidth: 12,
+                                    padding: 20,
+                                    fontColor: '#6783b8'
+                                }
+                            },
+                            rotation: -1.5,
+                            cutoutPercentage: 70,
+                            maintainAspectRatio: false,
+                            tooltips: {
+                                enabled: true,
+                                rtl: NioApp.State.isRTL,
+                                callbacks: {
+                                    title: function title(tooltipItem, data) {
+                                        return data['labels'][tooltipItem[0]['index']];
+                                    },
+                                    label: function label(tooltipItem, data) {
+                                        return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
+                                    }
+                                },
+                                backgroundColor: '#fff',
+                                borderColor: '#eff6ff',
+                                borderWidth: 2,
+                                titleFontSize: 13,
+                                titleFontColor: '#6783b8',
+                                titleMarginBottom: 6,
+                                bodyFontColor: '#9eaecf',
+                                bodyFontSize: 12,
+                                bodySpacing: 4,
+                                yPadding: 10,
+                                xPadding: 10,
+                                footerMarginTop: 0,
+                                displayColors: false
+                            }
+                        }
+                    });
+                });
+            } // init chart
+
+
+            NioApp.coms.docReady.push(function () {
+                analyticsDoughnut();
+            });
+
+
+
+        }(NioApp, jQuery);
+
+    </script>
+
+</body>
+
+</html>

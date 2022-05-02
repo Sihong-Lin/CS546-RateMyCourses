@@ -16,12 +16,13 @@ const getCollectionFn = (collection) => {
 
 /*
   Three collections are created for:
-    - users 
-    - courses
-    - professors
+    - users
+    - courses, with course review
+    - professors, with professor review
 */
 module.exports = {
     users: getCollectionFn('users'),
     courses: getCollectionFn('courses'),
     professors: getCollectionFn('professors'),
+    courseReview: getCollectionFn('courseReview')
 };
