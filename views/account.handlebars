@@ -30,7 +30,7 @@
         <div class="row gx-5">
             <div class="col-lg-3 mb-3 mb-lg-0" style="min-height: 300px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100 rounded-circle" src="static/picture/profile-1.jpg"
+                    <img class="position-absolute w-100 h-100 rounded-circle" src="{{userInfo.profilePicture}}"
                         style="object-fit: cover;">
                 </div>
             </div>
@@ -55,33 +55,38 @@
         <div class="row gx-5">
 
             <div class="col-lg-6 mb-5 mb-lg-0">
-                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-4">Course Reviews
-                </h4>
+                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-4">Course Reviews</h4>
+                
+                {{each courseReviews}}
                 <div class="d-flex mb-4">
                     <img src="static/picture/user.jpg" class="img-fluid rounded-circle"
                         style="width: 45px; height: 45px;">
                     <div class="ps-3">
-                        <h6><a href="">CS546 Web programming</a> &nbsp <small><i>Rating: 4.0/5.0</i></small></h6>
-                        <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore</p>
+                        <h6><a href="">{{this.courseName}}</a> &nbsp <small><i>Rating: {{this.rating}}/5.0</i></small></h6>
+                        <p>{{this.comment}}</p>
+                        <h6><small>Difficulty: {{this.metrics.difficulty}} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Chance To Get A: {{this.metrics.chanceToGetA}}  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp WorkLoad: {{this.metrics.workLoad}}</small></h6>
                         <button class="btn btn-sm btn-light">Edit</button>
                         <button class="btn btn-sm btn-light">Delete</button>
                     </div>
                 </div>
+                {{/each}}
             </div>
 
             <div class="col-lg-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-4">Professor Reviews
                 </h4>
+                {{each professorReviews}}
                 <div class="d-flex mb-4">
                     <img src="static/picture/user.jpg" class="img-fluid rounded-circle"
                         style="width: 45px; height: 45px;">
                     <div class="ps-3">
-                        <h6><a href="">Patrick Hill</a> &nbsp <small><i>Rating: 4.0/5.0</i></small></h6>
-                        <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore</p>
+                        <h6><a href="">{{this.professorName}}</a> &nbsp <small><i>Rating: {{this.rating}}/5.0</i></small></h6>
+                        <p>{{this.comment}}</p>
                         <button class="btn btn-sm btn-light">Edit</button>
                         <button class="btn btn-sm btn-light">Delete</button>
                     </div>
                 </div>
+                {{/each}}
             </div>
 
 

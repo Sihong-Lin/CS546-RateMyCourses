@@ -11,18 +11,25 @@ router.get('/', async (req, res) => {
     let userId = req.session.user.userId;
     let userInfo = await user.getUserById(userId);
 
+    let professorReviews = await user.getProfessorReviewById(userId);
+    let courseReviews = await user.getCourseReviewById(userId);
 
-    await user.
+    console.log(professorReviews)
+    console.log(courseReviews)
 
- //   let topProfessors = await home.getTop5Professors();
-  //  let topCourses = await home.getTop5Courses();
     res.render('account', 
                 { 
                     title: 'RateMyCourses - Account',
                     userInfo: userInfo
-                  //  topCourses: topCourses,
+                    //professorReviews: professorReviews,
+                   // courseReviews: courseReviews
                 }
     );
+});
+
+router.get('/', async (req, res) => {
+    let courseList = await home.getAllCourses();
+    res.render('courses', { title: 'RateMyCourses - Courses', allCourses: courseList});
 });
 
 const isLoggedIn = function (req) {
