@@ -273,4 +273,5 @@ module.exports = {
     countProfessors,
     getTop5ProfessorsByMajor,
     getProfessorByKeywords,
+    updateAllImage,
 }
