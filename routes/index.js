@@ -11,7 +11,7 @@ const backstageRoutes = require('./backstage');
 const courseManageRoutes = require('./courseManage');
 const professorManageRoutes = require('./professorManage');
 const userManageRoutes = require('./userManage');
-
+const accountRoutes = require('./account');
 
 
 const constructorMethod = (app) => {
@@ -28,6 +28,8 @@ const constructorMethod = (app) => {
     app.use('/courseManage', courseManageRoutes);
     app.use('/professorManage', professorManageRoutes);
     app.use('/userManage', userManageRoutes);
+    app.use('/account', accountRoutes);
+
 
 
     app.get('/', (req, res) => {
