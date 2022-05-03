@@ -6,6 +6,7 @@ const home = require('../data/home');
 router.get('/', async (req, res) => {
     let professorList = await home.getAllProfessors();
     let dpts = await home.getDepartments();
+    console.log(professorList[0])
     res.render('professors', { 
         title: 'RateMyCourses - Courses', 
         allProfessors: professorList,
