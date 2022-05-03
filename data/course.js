@@ -385,6 +385,7 @@ function courseOwnerToDepartment(courseOwner) {
 
 async function getCoursesByKeywords(department, keyword) {
     const departmentCourses = await getCoursesByDepartment(department)
+    if(keyword == undefined) return departmentCourses
     let courseList = []
     departmentCourses.forEach(course => {
         const courseName = course.courseName
@@ -405,9 +406,9 @@ function matchKeyword(courseName, keyword) {
     return false;
 }
 
-// async function getCourseReviewById(usedId) {
 
-// }
+
+
 async function getTop5CourseByMajor(major) {
     const departmentCourse = await getCoursesByDepartment(major)
     let res = departmentCourse.sort((a, b) => b.overallRating - a.overallRating).slice(0, 5);

@@ -302,7 +302,7 @@ const departmentReivew = async () => {
     // console.log(res4)
     // let res = await course.getTop5CourseByMajor("finance")
 
-    let res = await user.getCourseReviewById(secondUserId)
+    let res = await professor.getTop5ProfessorsByMajor("computer science")
     console.log(res);
     connection.closeConnection();
     console.log('Done!');
