@@ -22,8 +22,7 @@ module.exports = {
     removeUser,
     countUsers,
     countUserByMajor,
-    studentMajorDistribution,
-    getUserById
+    studentMajorDistribution
 };
 
 
@@ -311,4 +310,3 @@ async function studentMajorDistribution() {
     res.sort((a, b) => b.numberOfStudent - a.numberOfStudent)
     return res
 }
-

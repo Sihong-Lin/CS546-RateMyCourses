@@ -11,7 +11,9 @@ module.exports = {
     updateCourse,
     createCourseReview, // create course review function will call call back function update rating, count and metrics
     deleteCourseReview,
-    countCourses
+    countCourses,
+    getCoursesByKeywords,
+    getTop5CourseByMajor
 }
 
 async function createCourse(courseName, academicLevel, courseOwner, type,
@@ -346,11 +348,70 @@ async function updateCourseRating(courseId) {
     return { updateOverallRating: true }
 }
 
-//async function getCoursesByKeywords(department, courseName)
+
 async function countCourses() {
     const courseCollection = await courses();
     const count = await courseCollection.countDocuments()
     return count
 }
 
+
+async function getCoursesByDepartment(department) {
+    const courseCollection = await courses();
+    let courseList = await courseCollection.find({}).toArray();
+    let departmentCourses = []
+    courseList.forEach(course => {
+        if(courseOwnerToDepartment(course.courseOwner).toLowerCase() == department.toLowerCase()) {
+            departmentCourses.push(course);
+        }
+    })
+    return departmentCourses
+}
+
+function courseOwnerToDepartment(courseOwner) {
+    // Computer Science Program ==> Computer Science 
+    // Finance Program ==> Finance
+    // Finance ==> Finance
+    let department = ""
+    const arr = courseOwner.split(" ");
+    if(arr[arr.length-1] == "Program") {
+        for(let i = 0; i < arr.length - 1; i++) {
+            department += arr[i] + " ";
+        }
+        return department.trim();
+    }
+    return courseOwner
+}
+
+async function getCoursesByKeywords(department, keyword) {
+    const departmentCourses = await getCoursesByDepartment(department)
+    if(keyword == undefined) return departmentCourses
+    let courseList = []
+    departmentCourses.forEach(course => {
+        const courseName = course.courseName
+        if(matchKeyword(courseName, keyword)) {
+            courseList.push(course)
+        }
+    })
+    return courseList
+}
+
+function matchKeyword(courseName, keyword) {
+    const words = courseName.split(" ");
+    for(let i = 0; i < words.length; i++) {
+        if(words[i].indexOf(keyword) != -1) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
+
+async function getTop5CourseByMajor(major) {
+    const departmentCourse = await getCoursesByDepartment(major)
+    let res = departmentCourse.sort((a, b) => b.overallRating - a.overallRating).slice(0, 5);
+    return res;
+}
 

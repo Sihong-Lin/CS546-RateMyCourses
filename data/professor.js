@@ -213,6 +213,47 @@ async function countProfessors() {
     return count
 }
 
+async function getProfessorByKeywords(department, keyword) {
+    const departmentProfessors = await getProfessorByDepartment(department)
+    if(keyword == undefined) return departmentProfessors
+    let professorList = []
+    departmentProfessors.forEach(professor => {
+        const professorName = professor.professorName
+        if(matchKeyword(professorName, keyword)) {
+            professorList.push(professor)
+        }
+    })
+    return professorList
+}
+
+function matchKeyword(courseName, keyword) {
+    const words = courseName.split(" ");
+    for(let i = 0; i < words.length; i++) {
+        if(words[i].indexOf(keyword) != -1) {
+            return true;
+        }
+    }
+    return false;
+}
+
+async function getTop5ProfessorsByMajor(major) {
+    const departmentProfessors = await getProfessorByDepartment(major)
+    let res = departmentProfessors.sort((a, b) => b.rating - a.rating).slice(0, 5);
+    return res;
+}
+
+async function getProfessorByDepartment(department) {
+    const professorCollection = await professors();
+    let professorList = await professorCollection.find({}).toArray();
+    let departmentProfessors = []
+    professorList.forEach(professor => {
+        if(professor.department.toLowerCase() == department.toLowerCase()) {
+            departmentProfessors.push(professor);
+        }
+    })
+    return departmentProfessors
+}
+
 module.exports = {
     getAllProfessors,
     createProfessor,
@@ -223,5 +264,7 @@ module.exports = {
     addProfReview,
     removeProfReview,
     getDepartments,
-    countProfessors
+    countProfessors,
+    getTop5ProfessorsByMajor,
+    getProfessorByKeywords
 };
