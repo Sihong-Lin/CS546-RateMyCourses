@@ -27,7 +27,8 @@ const main = async () => {
             await professor.addProfReview(uid, pid, review, 5);
         }
         */
-          /*
+
+        /*
         let professor2 = await professor.createProfessor(
             'Edward Amoroso',
             "Computer Science",
@@ -1113,7 +1114,6 @@ const main = async () => {
 
     try {
         let user1 = await user.createUser('jguo32', "aaa@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K9xcJVlIG31wI5COY_Qep5GahOMmCmLYEQ&usqp=CAU", '123456');
-        /*
         let professor1 = await professor.createProfessor(
             'Eric Koskinen',
             "Computer Science",
@@ -1126,8 +1126,6 @@ const main = async () => {
         for (let i = 0; i < 3; i++) {
             await professor.addProfReview(uid, pid, review, 5);
         }
-        */
-
     } catch (e) {
         console.log(e);
     }
