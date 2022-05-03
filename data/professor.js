@@ -213,10 +213,6 @@ async function countProfessors() {
     return count
 }
 
-async function updateAllImage() {
-    const profCollection = await professors();
-    await profCollection.updateMany({}, {$set: { "piture" : "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2022-04/220419-nicholas-meriwether-se-1206p-374c94.jpg" }});
-    return { updated: true };
 async function getProfessorByKeywords(department, keyword) {
     const departmentProfessors = await getProfessorByDepartment(department)
     if(keyword == undefined) return departmentProfessors
@@ -269,7 +265,6 @@ module.exports = {
     removeProfReview,
     getDepartments,
     countProfessors,
-    updateAllImage,
     getTop5ProfessorsByMajor,
     getProfessorByKeywords
 };
