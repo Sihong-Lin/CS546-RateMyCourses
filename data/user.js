@@ -24,7 +24,8 @@ module.exports = {
     countUserByMajor,
     studentMajorDistribution,
     getProfessorReviewById,
-    getCourseReviewById
+    getCourseReviewById,
+    getUserById
 };
 
 
