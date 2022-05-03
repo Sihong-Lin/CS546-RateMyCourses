@@ -135,6 +135,7 @@ async function addProfReview(uid, pid, comment, rating) {
     pid = inputCheck.checkUserId(pid);
     comment = inputCheck.checkComment(comment);
     rating = inputCheck.checkRating(rating);
+    const professorName = (await getProfById(pid)).professorName
     const department = (await getProfById(pid)).department
     const userCollection = await users();
     const profCollection = await professors();
@@ -144,6 +145,7 @@ async function addProfReview(uid, pid, comment, rating) {
         _id: ObjectId().toString(),
         userId: uid,
         professorId: pid,
+        professorName: professorName,
         username: user.username,
         comment: comment,
         rating: rating,
@@ -152,7 +154,7 @@ async function addProfReview(uid, pid, comment, rating) {
     // insert review into user
     const userUpdateInfo = await userCollection.updateOne(
         { _id: ObjectId(uid) },
-        { $push: { reviews: profReview } }
+        { $push: { professorReviews: profReview } }
     );
     if (!userUpdateInfo.modifiedCount && !userUpdateInfo.matchedCount)
         throw `No user found with ID of ${uid}`;

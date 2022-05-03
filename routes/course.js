@@ -19,8 +19,15 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => { // show course
-    let courseDetail = await course.getCourse(req.params.id);
-    res.render('course', { title: courseDetail.courseName, courseDetail: courseDetail});
+    let courseDetail = undefined
+    try {
+        courseDetail = await course.getCourse(req.params.id);
+        res.render('course', { title: courseDetail.courseName, courseDetail: courseDetail});
+    } catch (e) {
+        res.render('404')
+        return
+    }
+    
 });
 
 router.post('/:id', async (req, res) => { // create course review
