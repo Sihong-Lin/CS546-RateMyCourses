@@ -12,7 +12,7 @@
                     <a href="home" class="nav-item nav-link">Home</a>
                     <a href="courses" class="nav-item nav-link">Courses</a>
                     <a href="professors" class="nav-item nav-link">Professors</a>
-                    <a href="account" class="nav-item nav-link">Account</a>
+                    <a href="account" class="nav-item nav-link active">Account</a>
                     <a href="backstage" class="nav-item nav-link">Backstage</a>
                     <a href="login.html" class="nav-item nav-link">Sign in</a>
                 </div>
@@ -30,137 +30,159 @@
         <div class="row gx-5">
             <div class="col-lg-3 mb-3 mb-lg-0" style="min-height: 300px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100 rounded"
-                        src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2022-04/220419-nicholas-meriwether-se-1206p-374c94.jpg"
+                    <img class="position-absolute w-100 h-100 rounded-circle" src="static/picture/profile-1.jpg"
                         style="object-fit: cover;">
                 </div>
             </div>
             <div class="col-lg-7">
                 <div class="mb-4">
                     <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Course Info</h5>
-                    <h1 class="display-10">{{courseDetail.courseName}}</h1>
-                    <h4 class="display-10">Academic Level: <dfn>{{courseDetail.academicLevel}}</dfn> </h4>
-                    <h4 class="display-10">Course Owner: <dfn>{{courseDetail.courseOwner}}</dfn> </h4>
-                    <h4 class="display-10">Typical Periods Offered: <dfn>{{courseDetail.typicalPeriodsOffered}}</dfn>
-                    </h4>
-                    <h4 class="display-10">Grading Basis: <dfn>{{courseDetail.gradingBasis}}</dfn> </h4>
-                    <h4 class="display-10">Instructional Formats: <dfn>{{courseDetail.instructionalFormats}}</dfn></h4>
-                    <h4 class="display-10">Type: <dfn class="display-10">{{courseDetail.type}}</dfn></h4>
-                    <h4 class="display-10">Difficulty: <dfn class="display-10">{{courseDetail.metrics.difficulty}}</dfn>
-                    </h4>
-                    <h4 class="display-10">WorkLoad: <dfn class="display-10">{{courseDetail.metrics.workLoad}}</dfn>
-                    </h4>
-                    <h4 class="display-10">Chance To Get A: <dfn
-                            class="display-10">{{courseDetail.metrics.chanceToGetA}}</dfn></h4>
-                    <h4 class="display-10">Overall Rating: <dfn class="display-10">{{courseDetail.overallRating}}</dfn>
-                    </h4>
-                    <h4 class="display-10">description: </h4>
-                    <p>{{courseDetail.description}}</p>
+                    <h4 class="display-10">Username: &nbsp {{userInfo.username}}</h4>
+                    <h4 class="display-10">Email: &nbsp {{userInfo.email}}</h4>
+                    <h4 class="display-10">Major: &nbsp {{userInfo.major}} </h4>
+                    <h4 class="display-10">Role: &nbsp {{userInfo.role}}</h4>
+                    <h4 class="display-10">Registration Time: &nbsp {{userInfo.registrationTime}}</h4>
+                    <h4 class="display-10">Last Login: &nbsp {{userInfo.lastLogin}}</h4>
+                    <h4 class="display-10">Restrict Status: &nbsp {{userInfo.restrictStatus}}</h4>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row gx-5">
+
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-4">Course Reviews
+                </h4>
+                <div class="d-flex mb-4">
+                    <img src="static/picture/user.jpg" class="img-fluid rounded-circle"
+                        style="width: 45px; height: 45px;">
+                    <div class="ps-3">
+                        <h6><a href="">CS546 Web programming</a> &nbsp <small><i>Rating: 4.0/5.0</i></small></h6>
+                        <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore</p>
+                        <button class="btn btn-sm btn-light">Edit</button>
+                        <button class="btn btn-sm btn-light">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-4">Professor Reviews
+                </h4>
+                <div class="d-flex mb-4">
+                    <img src="static/picture/user.jpg" class="img-fluid rounded-circle"
+                        style="width: 45px; height: 45px;">
+                    <div class="ps-3">
+                        <h6><a href="">Patrick Hill</a> &nbsp <small><i>Rating: 4.0/5.0</i></small></h6>
+                        <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore</p>
+                        <button class="btn btn-sm btn-light">Edit</button>
+                        <button class="btn btn-sm btn-light">Delete</button>
+                    </div>
+                </div>
+            </div>
 
 
-
-
-
-
+        </div>
+    </div>
+</div>
 
 
 
 <div class="container-fluid py-5">
     <div class="container">
         <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-            <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Comments Post</h5>
-            <h1 class="display-4">Course's Latest Comments Posts</h1>
+            <h5 class="d-inline-block text-primary border-bottom border-5">Course Recommendation</h5>
+            <h1 class="display-4">Some recommended courses for you</h1>
         </div>
+        <div class="owl-carousel price-carousel position-relative" style="padding: 0 45px 45px 45px;">
+            <div class="bg-light rounded text-center">
+                <div class="position-relative">
+                    <img class="img-fluid rounded-top" src="static/picture/course-1.jpg" alt="">
+                    <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
+                        style="background: rgba(29, 42, 77, .8);">
 
-        <div class="row g-5">
-            {{#each courseDetail.courseReviews}}
-            <div class="col-xl-4 col-lg-6">
-
-                <div class="bg-light rounded overflow-hidden">
-                    <div class="p-4">
-                        <h6 class="ms-3">Rating: {{this.rating}}</h6>
-                        <p class="m-0">{{this.comment}}</p>
-                    </div>
-                    <div class="d-flex justify-content-between border-top p-4">
-                        <div class="d-flex align-items-center">
-                            <img class="rounded-circle me-2" src="/static/picture/user.jpg" width="25" height="25"
-                                alt="">
-                            <small>{{this.username}}</small>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <small class="ms-3">Difficulty: {{this.metrics.difficulty}}</small>
-                            <small class="ms-3">ChanceToGetA: {{this.metrics.chanceToGetA}}</small>
-                            <small class="ms-3">WorkLoad: {{this.metrics.workLoad}}</small>
-                        </div>
+                        <h1 class="display-4 text-white mb-0">
+                            <small class="align-top fw-normal" style="font-size: 22px; line-height: 45px;"></small>CS
+                            546<small class="align-bottom fw-normal"
+                                style="font-size: 16px; line-height: 40px;"></small>
+                        </h1>
+                        <h3 class="text-white">Web Programming</h3>
                     </div>
                 </div>
+                <div class="text-center py-5">
+                    <p>Computer science program core course</p>
+                    <p>Medium Difficulty</p>
+                    <p>High chance to get A</p>
+                    <p>Hard workLoad</p>
+                    <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">More Details</a>
+                </div>
             </div>
-            {{/each}}
-            <div class="col-12 text-center">
-                <button class="btn btn-primary py-3 px-5">Load More</button>
+            <div class="bg-light rounded text-center">
+                <div class="position-relative">
+                    <img class="img-fluid rounded-top" src="static/picture/course-2.jpg" alt="">
+                    <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
+                        style="background: rgba(29, 42, 77, .8);">
+                        <h1 class="display-4 text-white mb-0">
+                            <small class="align-top fw-normal" style="font-size: 22px; line-height: 45px;"></small>FE
+                            535<small class="align-bottom fw-normal"
+                                style="font-size: 16px; line-height: 40px;"></small>
+                        </h1>
+                        <h3 class="text-white">Intro Financial Risk Management</h3>
+                    </div>
+                </div>
+                <div class="text-center py-5">
+                    <p>Computer science program core course</p>
+                    <p>Medium Difficulty</p>
+                    <p>High chance to get A</p>
+                    <p>Hard workLoad</p>
+                    <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">More Details</a>
+                </div>
+            </div>
+            <div class="bg-light rounded text-center">
+                <div class="position-relative">
+                    <img class="img-fluid rounded-top" src="static/picture/course-3.jpg" alt="">
+                    <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
+                        style="background: rgba(29, 42, 77, .8);">
+                        <h1 class="display-4 text-white mb-0">
+                            <small class="align-top fw-normal" style="font-size: 22px; line-height: 45px;"></small>CS
+                            511<small class="align-bottom fw-normal"
+                                style="font-size: 16px; line-height: 40px;"></small>
+                        </h1>
+                        <h3 class="text-white">Concurrent Programming</h3>
+                    </div>
+                </div>
+                <div class="text-center py-5">
+                    <p>Computer science program core course</p>
+                    <p>Medium Difficulty</p>
+                    <p>High chance to get A</p>
+                    <p>Hard workLoad</p>
+                    <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">More Details</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
-<div class="container-fluid py-5">
+<div class="container-fluid pt-5">
     <div class="container">
-        <div class="bg-light rounded p-5">
-            <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-white mb-4">
-                Leave a comment</h4>
-            <form method="POST">
-                <div class="row g-3">
-                    <div class="col-12">
-                        <span>
-                            <h6>Difficulty:    </h6>
-                            <input type="radio" name="Difficulty" value="Easy" required/>Easy
-                            <input type="radio" name="Difficulty" value="Medium"/>Medium
-                            <input type="radio" name="Difficulty" value="Hard"/>Hard
-                        </span>
-                    </div>
-                    <div class="col-12">
-                        <span>
-                            <h6>ChanceToGetA:    </h6>
-                            <input type="radio" name="ChanceToGetA" value="Low" required/>Low 
-                            <input type="radio" name="ChanceToGetA" value="Medium" />Medium
-                            <input type="radio" name="ChanceToGetA" value="High"/>High
-                        </span>
-                    </div>
-                    <div class="col-12">
-                        <span>
-                            <h6>WorkLoad:    </h6>
-                            <input type="radio" name="WorkLoad" value="Less" required/>Less
-                            <input type="radio" name="WorkLoad" value="Medium"/>Medium
-                            <input type="radio" name="WorkLoad" value="Plenty"/>Plenty
-                        </span>
-                    </div>
-                    <div class="col-12">
-                        <textarea name= "comment"class="form-control bg-white border-0" rows="5" placeholder="Comment" required></textarea>
-                    </div>
-                    
-                    <div class="col-12 sm-6">
-                            <select class="form-select w-25" style="height: 60px;" name="rating" required>
-                                <option selected="">Rating</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="2">4</option>
-                                <option value="3">5</option>
-                            </select>
-                    </div>
-                    <div class="col-12">
-                        <button class="btn btn-primary w-100 py-3" type="submit">Leave Your Comment</button>
-                    </div>
-                </div>
-            </form>
+        <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+            <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Find A Course</h5>
+            <h1 class="display-4 mb-4">Find your interested course</h1>
+        </div>
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                <select class="form-select border-primary w-25" style="height: 60px;">
+                    <option selected="">Department</option>
+                    <option value="1">Department 1</option>
+                    <option value="2">Department 2</option>
+                    <option value="3">Department 3</option>
+                </select>
+                <input type="text" class="form-control border-primary w-50" placeholder="Keyword">
+                <button class="btn btn-dark border-0 w-25">Search</button>
+            </div>
         </div>
     </div>
 </div>
