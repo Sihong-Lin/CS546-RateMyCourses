@@ -22,7 +22,8 @@ module.exports = {
     removeUser,
     countUsers,
     countUserByMajor,
-    studentMajorDistribution
+    studentMajorDistribution,
+    getUserById
 };
 
 
