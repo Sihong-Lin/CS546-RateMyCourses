@@ -22,7 +22,9 @@ module.exports = {
     removeUser,
     countUsers,
     countUserByMajor,
-    studentMajorDistribution
+    studentMajorDistribution,
+    getProfessorReviewById,
+    getCourseReviewById
 };
 
 
@@ -310,3 +312,14 @@ async function studentMajorDistribution() {
     res.sort((a, b) => b.numberOfStudent - a.numberOfStudent)
     return res
 }
+
+async function getCourseReviewById(userId) {
+    const user = await getUserById(userId);
+    return user.courseReviews
+}
+
+async function getProfessorReviewById(userId) {
+    const user = await getUserById(userId);
+    return user.professorReviews
+}
+//iiii111111
