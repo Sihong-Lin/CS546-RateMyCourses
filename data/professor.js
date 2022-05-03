@@ -271,7 +271,6 @@ module.exports = {
     removeProfReview,
     getDepartments,
     countProfessors,
-    updateAllImage,
     getTop5ProfessorsByMajor,
     getProfessorByKeywords,
 }
