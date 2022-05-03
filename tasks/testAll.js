@@ -6,7 +6,8 @@ const home = require('../data/home')
 const professor = require('../data/professor');
 const connection = require('../config/mongoConnection');
 const { ObjectId } = require('mongodb');
-const inputCheck = require("../data/inputCheck")
+const inputCheck = require("../data/inputCheck");
+const { courses } = require('../config/mongoCollections');
 
 const departmentReivew = async () => {
     
@@ -106,10 +107,8 @@ const departmentReivew = async () => {
         'Graduate', // academicLevel
         'Computer Science', // courseOwner
         'Core', // type
-        ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
         3, // units
         'This course will provide students with a first strong approach of internet programming', // description
-        ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
         'Lecture', // instructionalFormats
         'https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf', // syllabus
         'https://github.com/graffixnyc/CS-546', // courseware
@@ -121,10 +120,8 @@ const departmentReivew = async () => {
         'Graduate', // academicLevel
         'Computer Science Program', // courseOwner
         'Core', // type
-        ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
         3, // units
         'Database is just databse', // description
-        ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
         'Lecture', // instructionalFormats
         'https://web.stevens.edu/academic_files/courses/syllabus/CS561syl.pdf', // syllabus
         'https://github.com/graffixnyc/CS-561', // courseware
@@ -136,10 +133,8 @@ const departmentReivew = async () => {
         'Graduate', // academicLevel
         'Mechanical Engineering', // courseOwner
         'Core', // type
-        ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
         3, // units
         'Database is just databse', // description
-        ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
         'Lecture', // instructionalFormats
         'https://web.stevens.edu/academic_files/courses/syllabus/ME-333syl.pdf', // syllabus
         'https://github.com/graffixnyc/ME-333', // courseware
@@ -147,14 +142,12 @@ const departmentReivew = async () => {
     ))._id.toString()
 
     fourthCourseId = (await course.createCourse( // ME program
-        'ME 561 xxx xxx', // courseName
+        'ME 561 Mechanical Programming', // courseName
         'Graduate', // academicLevel
         'Mechanical Engineering Program', // courseOwner
         'Core', // type
-        ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
         3, // units
         'Database is just databse', // description
-        ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
         'Lecture', // instructionalFormats
         'https://web.stevens.edu/academic_files/courses/syllabus/CS561syl.pdf', // syllabus
         'https://github.com/graffixnyc/CS-561', // courseware
@@ -162,14 +155,12 @@ const departmentReivew = async () => {
     ))._id.toString()
 
     fifthCourseId = (await course.createCourse( // ME program
-        'FN 561 xxx xxx', // courseName
+        'FN 561 Finance Accounting', // courseName
         'Graduate', // academicLevel
         'Finance Program', // courseOwner
         'Core', // type
-        ['Audit', 'Graded', 'Pass/Fail'], // gradingBasis
         3, // units
         'Database is just databse', // description
-        ['Fall Semester', 'Spring Semester', 'Summer Session'], // typicalPeriodsOffered
         'Lecture', // instructionalFormats
         'https://web.stevens.edu/academic_files/courses/syllabus/CS561syl.pdf', // syllabus
         'https://github.com/graffixnyc/CS-561', // courseware
@@ -291,11 +282,10 @@ const departmentReivew = async () => {
         5
     )
 
-    let map = await user.countUserByMajor()
-    console.log(map)
-    let mapSort = await user.studentMajorDistribution()
-    console.log(mapSort)
-    
+    // let map = await user.countUserByMajor()
+    // console.log(map)
+    // let mapSort = await user.studentMajorDistribution()
+    // console.log(mapSort)
     // let res = await home.getDepartmentReviewsCount()
     // console.log(res)
     // console.log(typeof(res))
@@ -310,6 +300,10 @@ const departmentReivew = async () => {
     // let res4 = await courseReviewDB.avgCourseReview()
     // console.log(res3)
     // console.log(res4)
+    // let res = await course.getTop5CourseByMajor("finance")
+
+    let res = await user.getCourseReviewById(secondUserId)
+    console.log(res);
     connection.closeConnection();
     console.log('Done!');
 }
