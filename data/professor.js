@@ -217,6 +217,45 @@ async function updateAllImage() {
     const profCollection = await professors();
     await profCollection.updateMany({}, {$set: { "piture" : "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2022-04/220419-nicholas-meriwether-se-1206p-374c94.jpg" }});
     return { updated: true };
+async function getProfessorByKeywords(department, keyword) {
+    const departmentProfessors = await getProfessorByDepartment(department)
+    if(keyword == undefined) return departmentProfessors
+    let professorList = []
+    departmentProfessors.forEach(professor => {
+        const professorName = professor.professorName
+        if(matchKeyword(professorName, keyword)) {
+            professorList.push(professor)
+        }
+    })
+    return professorList
+}
+
+function matchKeyword(courseName, keyword) {
+    const words = courseName.split(" ");
+    for(let i = 0; i < words.length; i++) {
+        if(words[i].indexOf(keyword) != -1) {
+            return true;
+        }
+    }
+    return false;
+}
+
+async function getTop5ProfessorsByMajor(major) {
+    const departmentProfessors = await getProfessorByDepartment(major)
+    let res = departmentProfessors.sort((a, b) => b.rating - a.rating).slice(0, 5);
+    return res;
+}
+
+async function getProfessorByDepartment(department) {
+    const professorCollection = await professors();
+    let professorList = await professorCollection.find({}).toArray();
+    let departmentProfessors = []
+    professorList.forEach(professor => {
+        if(professor.department.toLowerCase() == department.toLowerCase()) {
+            departmentProfessors.push(professor);
+        }
+    })
+    return departmentProfessors
 }
 
 module.exports = {
@@ -231,4 +270,6 @@ module.exports = {
     getDepartments,
     countProfessors,
     updateAllImage,
+    getTop5ProfessorsByMajor,
+    getProfessorByKeywords
 };
