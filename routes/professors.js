@@ -75,11 +75,28 @@ router.put('/:id', async (req, res) => {
     try {
         if (req.session.user) {
             let updated = await home.updateProf(id, updatedProf);
+            res.status(200).json("professro successfully updated");
         } else {
             console.log("entering redirect");
             res.redirect("../public/401.html");
         }
         return res.end();
+    } catch (e) {
+        console.log(e);
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    let { id } = req.params;
+    try {
+        if (req.session.user) {
+            let deleteInfo = await home.removeProf(id);
+            console.log(deleteInfo);
+            res.status(200).send("Professor successfully deleted");
+        } else {
+            res.status(401).send("You are not authorized to delete a professor");
+        }
+        return;
     } catch (e) {
         console.log(e);
     }

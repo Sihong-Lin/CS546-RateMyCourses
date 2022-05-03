@@ -45,13 +45,33 @@ function spawnForm(professorId) {
 }
 
 function deleteProfessor(professorId) {
-    confirm_ = confirm('This action will delete current professor! Are you sure?');
-    $.ajax({
-        type: 'DELETE',
-        url: 'http://localhost:3000/professor/' + professorId,
-        success: function (result) {
-            alert('The professor has been deleted.');
-            location.reload(true);
+    var requestConfig = {
+        method: 'DELETE',
+        url: 'http://localhost:3000/professors/' + professorId,
+        statusCode: {
+            200: function(res) {
+                Swal.fire(
+                    'Deleted!',
+                    'The course has been deleted.',
+                    'success'
+                ).then((result) => {
+                    if (result.value) {
+                        window.location.reload();
+                    }
+                });
+            },
+            401: function(res) {
+                alert(res)
+            }
         }
-    });
+    };
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        $.ajax(requestConfig)
+    })
 }

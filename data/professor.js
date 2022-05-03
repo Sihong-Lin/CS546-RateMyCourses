@@ -26,6 +26,17 @@ async function getAllProfessors() {
     return professorList;
 }
 
+async function getAllProfs() {
+    const professorCollection = await professors();
+    let professorList = await professorCollection
+        .find({})
+        .toArray();
+    professorList.forEach(professor => {
+        professor._id = professor._id.toString()
+    })
+    return professorList;
+}
+
     /*
         Professor: {
             “_id”: ObjectId(“624724af974aef308ff7cc6a”),
@@ -262,6 +273,7 @@ async function getProfessorByDepartment(department) {
 
 module.exports = {
     getAllProfessors,
+    getAllProfs,
     createProfessor,
     getProfById,
     getTop5Professors,
