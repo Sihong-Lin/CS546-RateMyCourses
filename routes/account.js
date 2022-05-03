@@ -14,15 +14,13 @@ router.get('/', async (req, res) => {
     let professorReviews = await user.getProfessorReviewById(userId);
     let courseReviews = await user.getCourseReviewById(userId);
 
-    console.log(professorReviews)
-    console.log(courseReviews)
 
     res.render('account', 
                 { 
                     title: 'RateMyCourses - Account',
-                    userInfo: userInfo
-                    //professorReviews: professorReviews,
-                   // courseReviews: courseReviews
+                    userInfo: userInfo,
+                    professorReviews: professorReviews,
+                    courseReviews: courseReviews
                 }
     );
 });

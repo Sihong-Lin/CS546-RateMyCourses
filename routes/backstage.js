@@ -23,7 +23,6 @@ router.get('/', async (req, res) => {
     const top5Courses = await home.getTop5Courses()
     const top5Professors = await home.getTop5Professors()
     const studentMajorDistribution = await user.studentMajorDistribution()
-    console.log(top5Professors)
     res.render('backstage', { 
         title: 'RateMyCourses - Backstage', 
         numberOfUsers : numberOfUsers,

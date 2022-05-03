@@ -86,11 +86,8 @@ router.delete('/:id', async (req, res) => {
 });
 
 router.put('/edit/:id', async (req, res) => {  // edit course
-    console.log(111111111)
     const courseId = req.params.id
     const courseBody = req.body
-    console.log(courseId)
-    console.log(courseBody)
     if(!courseBody) {
         res.status(400).json({error : 'You must provide data to update a course'})
         return
@@ -220,7 +217,6 @@ router.post('/', async (req, res) => { // create new course
         res.status(400).json({error : 'You must provide data to create a course'})
         return
     }
-    console.log(courseBody)
     let courseName = undefined
     let academicLevel = undefined
     let courseOwner = undefined
