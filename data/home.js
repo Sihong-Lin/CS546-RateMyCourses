@@ -9,6 +9,7 @@ const professorReviewDB = require('../data/professorReview')
 
 const {
     getAllProfessors,
+    getAllProfs,
     createProfessor,
     getProfById,
     getTop5Professors,
@@ -22,6 +23,7 @@ const {
 
 module.exports = {
     getAllProfessors,
+    getAllProfs,
     createProfessor,
     getProfById,
     getTop5Professors,
