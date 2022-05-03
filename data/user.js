@@ -153,7 +153,7 @@ async function getUser(userId) {
 async function createCourseReview(userId, courseId, comment, metrics, rating) {
     let user = undefined
     let username = undefined
-    
+    let courseName = (await courseDBFunction.getCourse(courseId)).courseName
     try {
         user = await getUser(userId)
     } catch(e) {
@@ -184,6 +184,7 @@ async function createCourseReview(userId, courseId, comment, metrics, rating) {
     let newCourseReview = {
         username: username,
         userId: userId,
+        courseName: courseName,
         courseId: courseId,
         comment: comment,
         metrics: metrics,
