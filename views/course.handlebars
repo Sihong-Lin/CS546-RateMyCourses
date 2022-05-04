@@ -31,7 +31,7 @@
             <div class="col-lg-3 mb-3 mb-lg-0" style="min-height: 300px;">
                 <div class="position-relative h-100">
                     <img class="position-absolute w-100 h-100 rounded"
-                        src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2022-04/220419-nicholas-meriwether-se-1206p-374c94.jpg"
+                        src={{courseDetail.picture}}
                         style="object-fit: cover;">
                 </div>
             </div>
@@ -41,9 +41,6 @@
                     <h1 class="display-10">{{courseDetail.courseName}}</h1>
                     <h4 class="display-10">Academic Level: <dfn>{{courseDetail.academicLevel}}</dfn> </h4>
                     <h4 class="display-10">Course Owner: <dfn>{{courseDetail.courseOwner}}</dfn> </h4>
-                    <h4 class="display-10">Typical Periods Offered: <dfn>{{courseDetail.typicalPeriodsOffered}}</dfn>
-                    </h4>
-                    <h4 class="display-10">Grading Basis: <dfn>{{courseDetail.gradingBasis}}</dfn> </h4>
                     <h4 class="display-10">Instructional Formats: <dfn>{{courseDetail.instructionalFormats}}</dfn></h4>
                     <h4 class="display-10">Type: <dfn class="display-10">{{courseDetail.type}}</dfn></h4>
                     <h4 class="display-10">Difficulty: <dfn class="display-10">{{courseDetail.metrics.difficulty}}</dfn>
@@ -61,13 +58,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
 
 
 
@@ -102,9 +92,9 @@
                 </div>
             </div>
             {{/each}}
-            <div class="col-12 text-center">
+            {{!-- <div class="col-12 text-center">
                 <button class="btn btn-primary py-3 px-5">Load More</button>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

@@ -5,9 +5,11 @@ const saltRound = 1;
 const mongoCollections = require('../config/mongoCollections');
 const { ObjectId } = require('mongodb');
 const courses = mongoCollections.courses;
+const professors = mongoCollections.professors;
 const users = mongoCollections.users;
 const courseDBFunction = require('../data/course');
 const courseReviewDBFunction = require('../data/courseReview');
+const professorReviewDBFunction = require('../data/professorReview');
 const { get } = require('express/lib/request');
 const res = require('express/lib/response');
 
@@ -35,6 +37,15 @@ async function removeUser(userId) {
     } catch (e) {
         throw e
     }
+    const user = await getUserById(userId)
+    const professorReviews = user.professorReviews
+    const courseReviews = user.courseReviews
+    try {
+        await deleteProfessorReviewsByUser(professorReviews)
+        await deleteCourseReviewsByUser(courseReviews)
+    } catch (e) {
+        throw e
+    }
     const userCollection = await users();
     const deletionInfo = await userCollection.deleteOne({ _id: ObjectId(userId) });
     if (deletionInfo.deletedCount === 0) {
@@ -42,6 +53,47 @@ async function removeUser(userId) {
     }
     return 'The user has been successfully deleted!'
 }
+
+async function deleteProfessorReviewsByUser(professorReviews) {
+    for (let i = 0; i < professorReviews.length; i++) {
+        const pid = professorReviews[i].professorId
+        const uid = professorReviews[i].userId
+        const professorCollection = await professors()
+        try {
+            await professorReviewDBFunction.deleteProfessorReview(uid, pid)
+            await professorCollection.updateOne(
+                { _id: ObjectId(pid) },
+                { $pull: { reviews: { userId: uid } } }
+            )
+            await professorCollection.updateOne({ _id: ObjectId(pid)}, [{$set: {rating: {$avg: "$reviews.rating"}}}])
+        } catch (e) {
+            throw e
+        }
+    }
+    return { allProfessorReviewsDelete: true }
+}
+
+async function deleteCourseReviewsByUser(courseReviews) {
+    for (let i = 0; i < courseReviews.length; i++) {
+        const cid = courseReviews[i].courseId
+        const uid = courseReviews[i].userId
+        const courseCount = courseReviews[i].metrics
+        const courseCollection = await courses()
+        try {
+            await courseReviewDBFunction.deleteCourseReview(uid, cid)
+            await courseCollection.updateOne(
+                { _id: ObjectId(cid) },
+                { $pull: { courseReviews: { userId: uid } } }
+            )
+            await courseDBFunction.updateCourseRating(cid)
+            await courseDBFunction.decreaseCourseCount(cid,courseCount)
+        } catch (e) {
+            throw e
+        }
+    }
+    return { allCourseReviewsDelete: true }
+}
+
 
 
 async function getUserById(id) {
@@ -70,7 +122,7 @@ async function setLastLogin(userId) {
     const userCollection = await users();
     const updateInfo = await userCollection.updateOne(
         { _id: ObjectId(userId) },
-        { $set: { lastLogin: sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss')}}
+        { $set: { lastLogin: sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss') } }
     );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
         throw 'Update user user last login information failed';
@@ -106,7 +158,7 @@ async function createUser(username, email, major, profilePicture, password) {
         profilePicture: profilePicture,
         email: email,
         major: major,
-        registrationTime : sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss'),
+        registrationTime: sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss'),
         lastLogin: "-",
         role: "student"
     }
@@ -156,17 +208,17 @@ async function createCourseReview(userId, courseId, comment, metrics, rating) {
     let courseName = (await courseDBFunction.getCourse(courseId)).courseName
     try {
         user = await getUser(userId)
-    } catch(e) {
+    } catch (e) {
         throw e
     }
 
     const restrictStatus = user.restrictStatus
-    if(restrictStatus) {
+    if (restrictStatus) {
         throw 'user restrict to write review'
     } else {
         username = user.username
     }
-    
+
     try {
         userId = inputCheck.checkUserId(userId)
         courseId = inputCheck.checkCourseId(courseId)
@@ -250,6 +302,9 @@ async function deleteCourseReview(userId, courseId) {
     return { courseReviewDelete: true };
 }
 
+
+
+
 async function courseReviewIsExisted(userId, courseId) {
     const user = await getUser(userId);
     const reviews = user.courseReviews
@@ -271,11 +326,11 @@ async function countUsers() {
 async function countUserByMajor() {
     const userCollection = await users();
     const userCursor = await userCollection.find()
-    const allUsers =  await userCursor.toArray()
+    const allUsers = await userCursor.toArray()
     const majorUserCount = new Map()
     allUsers.forEach(user => {
         let major = user.major
-        if(!majorUserCount.has(major)) {
+        if (!majorUserCount.has(major)) {
             majorUserCount.set(major, 0)
         }
         majorUserCount.set(major, majorUserCount.get(major) + 1)
@@ -289,7 +344,7 @@ async function countUserByMajor() {
     })
     const majorString = major.join(',')
     const numberOfStudentString = numberOfStudent.join(',')
-   
+
     return [majorString, numberOfStudentString]
 }
 
@@ -297,18 +352,18 @@ async function studentMajorDistribution() {
     const userCollection = await users();
     const totalUserAmount = await userCollection.countDocuments()
     const userCursor = await userCollection.find()
-    const allUsers =  await userCursor.toArray()
+    const allUsers = await userCursor.toArray()
     const majorUserCount = new Map()
     allUsers.forEach(user => {
         let major = user.major
-        if(!majorUserCount.has(major)) {
+        if (!majorUserCount.has(major)) {
             majorUserCount.set(major, 0)
         }
         majorUserCount.set(major, majorUserCount.get(major) + 1)
     });
     let res = []
-    for(const pair of majorUserCount.entries()) {
-        var object = {major: pair[0], numberOfStudent: pair[1], precentage: (pair[1]/totalUserAmount * 100).toFixed(2)}
+    for (const pair of majorUserCount.entries()) {
+        var object = { major: pair[0], numberOfStudent: pair[1], precentage: (pair[1] / totalUserAmount * 100).toFixed(2) }
         res.push(object)
     }
     res.sort((a, b) => b.numberOfStudent - a.numberOfStudent)

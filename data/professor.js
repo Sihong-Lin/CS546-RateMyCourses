@@ -10,14 +10,16 @@ const professorReviewDBfunction = require('../data/professorReview');
 async function getAllProfessors() {
     const professorCollection = await professors();
     let professorList = await professorCollection
-        .find({},{ 
-            projection: { _id: 1, 
-                            professorName: 1,
-                            department: 1,
-                            introduction: 1,
-                            rating: 1,
-                            picture: 1,
-                        } }
+        .find({}, {
+            projection: {
+                _id: 1,
+                professorName: 1,
+                department: 1,
+                introduction: 1,
+                rating: 1,
+                picture: 1,
+            }
+        }
         )
         .toArray();
     professorList.forEach(professor => {
@@ -37,19 +39,19 @@ async function getAllProfs() {
     return professorList;
 }
 
-    /*
-        Professor: {
-            “_id”: ObjectId(“624724af974aef308ff7cc6a”),
-            “professorName”: ​​“Patrick, Hill”,
-            “department”: “Computer Science”,
-            “introduction”: “Professor in the Computer Science department at Stevens Institute of 
-                            Technology”
-            “rating”: 4.5,
-            “reviews” : ["62215a7ebd69a460a6193411", "62215a7ebd69a460a6193412"],
-            “courses” : ["62215a7ebd69a460a6193413", "62215a7ebd69a460a6193414"],
-            “picture”: “http://georgetownheckler.com/wp-content/uploads/2016/09/prof.jpg”
-        }
-    */
+/*
+    Professor: {
+        “_id”: ObjectId(“624724af974aef308ff7cc6a”),
+        “professorName”: ​​“Patrick, Hill”,
+        “department”: “Computer Science”,
+        “introduction”: “Professor in the Computer Science department at Stevens Institute of 
+                        Technology”
+        “rating”: 4.5,
+        “reviews” : ["62215a7ebd69a460a6193411", "62215a7ebd69a460a6193412"],
+        “courses” : ["62215a7ebd69a460a6193413", "62215a7ebd69a460a6193414"],
+        “picture”: “http://georgetownheckler.com/wp-content/uploads/2016/09/prof.jpg”
+    }
+*/
 async function createProfessor(professorName, department, introduction, picture) {
 
     professorName = inputCheck.checkProfessorName(professorName);
@@ -77,7 +79,7 @@ async function createProfessor(professorName, department, introduction, picture)
 
 async function getProfById(id) {
     id = inputCheck.checkUserId(id);
-    
+
     const profCollection = await professors();
     const professor = await profCollection.findOne({ _id: ObjectId(id) });
     if (!professor) throw 'Professor not found';
@@ -87,7 +89,7 @@ async function getProfById(id) {
 
 async function getTop5Professors() {
     let professorList = await getAllProfessors();
-    let res = professorList.sort((a, b) => b.rating - a.rating).slice(0,5);
+    let res = professorList.sort((a, b) => b.rating - a.rating).slice(0, 5);
     return res;
 }
 
@@ -117,6 +119,22 @@ async function removeProf(id) {
     id = inputCheck.checkUserId(id)
 
     const profCollection = await professors();
+    const userCollection = await users();
+    const professor = await getProfById(id)
+    const professorReviews = professor.reviews
+    for (let i = 0; i < professorReviews.length; i++) {
+        const pid = professorReviews[i].professorId
+        const uid = professorReviews[i].userId
+        try {
+            await professorReviewDBfunction.deleteProfessorReview(uid, pid)
+            const userUpdateInfo = await userCollection.updateOne(
+                { _id: ObjectId(uid) },
+                { $pull: { professorReviews: { professorId: pid } } }
+            )
+        } catch (e) {
+            throw e 
+        }
+    }
     const deletionInfo = await profCollection.deleteOne({
         _id: ObjectId(id),
     });
@@ -126,19 +144,19 @@ async function removeProf(id) {
     return { deleted: true };
 }
 
-    /* 
-    ProfessoReview: {
-        “_id”: ObjectId(“624724af974aef308ff7cc6b”),
-        “userId”: "62215a7ebd69a460a6193418",
-        “professorId”: "624724af974aef308ff7cc6a",
-        “comment”: “At first I thought Hill was super arrogant, and was about to give a low score. 
-            But now, having taken both CS546 and CS554, I think that these classes prepared 
-            me more than anything for the workforce. Even if the assignments can be a heavy 
-            load at times, nothing ever felt unfair. I've also thought Hill is likable now, despite 
-            my initial reaction.”
-        “rating”: 5
-    }
-    */
+/* 
+ProfessoReview: {
+    “_id”: ObjectId(“624724af974aef308ff7cc6b”),
+    “userId”: "62215a7ebd69a460a6193418",
+    “professorId”: "624724af974aef308ff7cc6a",
+    “comment”: “At first I thought Hill was super arrogant, and was about to give a low score. 
+        But now, having taken both CS546 and CS554, I think that these classes prepared 
+        me more than anything for the workforce. Even if the assignments can be a heavy 
+        load at times, nothing ever felt unfair. I've also thought Hill is likable now, despite 
+        my initial reaction.”
+    “rating”: 5
+}
+*/
 
 async function addProfReview(uid, pid, comment, rating) {
 
@@ -197,18 +215,18 @@ async function removeProfReview(id) {
 
     const profCollection = await professors();
     // find out the professor document this review belongs to
-    const prof = await profCollection.findOne({ "reviews._id": { $eq: id }});
-    if(!prof) throw "review does not exist";
-    
-        // delete the review from the reviews
-    await profCollection.updateOne({ _id: prof._id }, { $pull: { reviews: { _id: ObjectId(id)}}})
+    const prof = await profCollection.findOne({ "reviews._id": { $eq: id } });
+    if (!prof) throw "review does not exist";
+
+    // delete the review from the reviews
+    await profCollection.updateOne({ _id: prof._id }, { $pull: { reviews: { _id: ObjectId(id) } } })
 
     // re-calculate avg rating
-    await profCollection.updateOne({ _id: ObjectId(prof._id)}, [{$set: {rating: {$avg: "$reviews.rating"}}}])
+    await profCollection.updateOne({ _id: ObjectId(prof._id) }, [{ $set: { rating: { $avg: "$reviews.rating" } } }])
     const ids = await profCollection.aggregate([
-        {$unwind: '$reviews'},
-        {$match: {'reviews._id': id}},
-        {$project: {_id:0, userId: '$reviews.userId', professorId : '$reviews.professorId'}}
+        { $unwind: '$reviews' },
+        { $match: { 'reviews._id': id } },
+        { $project: { _id: 0, userId: '$reviews.userId', professorId: '$reviews.professorId' } }
     ]).toArray()
     await professorReviewDBfunction.deleteProfessorReview(ids[0].userId, ids[0].professorId)
     return { deleted: true };
@@ -228,17 +246,17 @@ async function countProfessors() {
 
 async function updateAllImage() {
     const profCollection = await professors();
-    await profCollection.updateMany({}, {$set: { "picture" : "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2022-04/220419-nicholas-meriwether-se-1206p-374c94.jpg" }});
+    await profCollection.updateMany({}, { $set: { "picture": "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2022-04/220419-nicholas-meriwether-se-1206p-374c94.jpg" } });
     return { updated: true };
 }
 
 async function getProfessorByKeywords(department, keyword) {
     const departmentProfessors = await getProfessorByDepartment(department)
-    if(keyword == undefined) return departmentProfessors
+    if (keyword == undefined) return departmentProfessors
     let professorList = []
     departmentProfessors.forEach(professor => {
         const professorName = professor.professorName
-        if(matchKeyword(professorName, keyword)) {
+        if (matchKeyword(professorName, keyword)) {
             professorList.push(professor)
         }
     })
@@ -247,8 +265,8 @@ async function getProfessorByKeywords(department, keyword) {
 
 function matchKeyword(courseName, keyword) {
     const words = courseName.split(" ");
-    for(let i = 0; i < words.length; i++) {
-        if(words[i].indexOf(keyword) != -1) {
+    for (let i = 0; i < words.length; i++) {
+        if (words[i].indexOf(keyword) != -1) {
             return true;
         }
     }
@@ -266,7 +284,7 @@ async function getProfessorByDepartment(department) {
     let professorList = await professorCollection.find({}).toArray();
     let departmentProfessors = []
     professorList.forEach(professor => {
-        if(professor.department.toLowerCase() == department.toLowerCase()) {
+        if (professor.department.toLowerCase() == department.toLowerCase()) {
             departmentProfessors.push(professor);
         }
     })
