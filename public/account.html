@@ -118,7 +118,10 @@
                             <h6><a href="">Patrick Hill</a> &nbsp <small><i>Rating: 4.0/5.0</i></small></h6>
                             <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore</p>
                             <button class="btn btn-sm btn-light">Edit</button>
-                            <button class="btn btn-sm btn-light">Delete</button>
+                            <button id ="eg-swal-av3">Delete</button>
+                            <li><a class="eg-swal-av3"><em
+                                    class="icon ni ni-delete"></em><span>Delete
+                                    Course</span></a></li>
                         </div>
                     </div>
                 </div>
@@ -322,6 +325,38 @@
 
     <script src="static/js/main.js" type="64f10123938904b78188bb72-text/javascript"></script>
     <script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
+    <script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
+   
+
+    <script>
+        $(document).ready(function () {
+            $('.eg-swal-av3').on("click", function (event) {
+                alert(111)
+                event.preventDefault();
+
+                var courseId = $("#courseId").attr("value");
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        Swal.fire(
+
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                });
+                event.preventDefault();
+            });
+
+        });
+    </script>
 </body>
 
 </html>
