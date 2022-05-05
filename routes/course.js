@@ -85,6 +85,25 @@ router.delete('/:id', async (req, res) => {
     */
 });
 
+
+
+router.put('/deleteCourseReview', async (req, res) => {  
+ 
+    let userId = req.body.userId;
+    let courseId = req.body.courseId;
+    let reviewDeleteStatus = undefined
+    try {
+        reviewDeleteStatus = await user.deleteCourseReview(userId, courseId);
+        console.log(reviewDeleteStatus)
+    } catch (e) {
+        res.status(500).json(e);
+        return
+    }
+    
+    res.status(200).json({reviewDeleteStatus: true});
+    
+});
+
 router.put('/edit/:id', async (req, res) => {  // edit course
     const courseId = req.params.id
     const courseBody = req.body

@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="mb-4">
-                        <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Course Info</h5>
+                        <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">User Info</h5>
                         <h4 class="display-10">Username: &nbsp jguo32</h4>
                         <h4 class="display-10">Email: &nbsp aaa@gmail.com</h4>
                         <h4 class="display-10">Major: &nbsp Computer Science </h4>
@@ -88,13 +88,16 @@
         </div>
     </div>
 
+
+
+
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row gx-5">
 
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-4">Course Reviews
-                    </h4>
+                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-4">Course Reviews</h4>
+                   
                     <div class="d-flex mb-4">
                         <img src="static/picture/user.jpg" class="img-fluid rounded-circle"
                             style="width: 45px; height: 45px;">
@@ -102,10 +105,49 @@
                             <h6><a href="">CS546 Web programming</a> &nbsp <small><i>Rating: 4.0/5.0</i></small></h6>
                             <p>Diam amet duo labore stet elitr invidunt ea clistet elitr invidunt ea clita ipsum voluptua, tempor labore</p>
                             <h6><small>Difficulty: Easy &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Chance To Get A: Low  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp workLoad: Plenty</small></h6>
-                            <button class="btn btn-sm btn-light">Edit</button>
-                            <button class="btn btn-sm btn-light">Delete</button>
+                            <a data-toggle="modal" data-target="#cour-edit" class="eg-swal-av3-cour-edit"><button class="btn btn-sm btn-light">Edit</button></a>
+                            <a class="eg-swal-av3-cour-delete"><button class="btn btn-sm btn-light">Delete</button></a>
                         </div>
+
+                        <div class="modal fade" tabindex="-1" role="dialog" id="cour-edit">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <a href="#" class="close" data-dismiss="modal"><em
+                                            class="icon ni ni-cross-sm"></em></a>
+                                    <div class="modal-body modal-body-lg">
+                                        <h5 class="title">Update Course Comment</h5>
+                                        <div class="tab-content">
+                                            <div class="row gy-4">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        
+                                                        <input type="text"
+                                                            class="form-control form-control-lg"
+                                                            id="description" name="description"
+                                                            value="This course will provide students with a first strong approach of internet programming.">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <ul
+                                                        class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="btn btn-lg btn-primary">Update</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" data-dismiss="modal"
+                                                                class="link link-light">Cancel</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div><!-- .tab-pane -->
+                                    </div><!-- .modal-body -->
+                                </div><!-- .modal-content -->
+                            </div><!-- .modal-dialog -->
+                        </div><!-- .modal -->
                     </div>
+                    
                 </div>
 
                 <div class="col-lg-6">
@@ -117,12 +159,47 @@
                         <div class="ps-3">
                             <h6><a href="">Patrick Hill</a> &nbsp <small><i>Rating: 4.0/5.0</i></small></h6>
                             <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore</p>
-                            <button class="btn btn-sm btn-light">Edit</button>
-                            <button id ="eg-swal-av3">Delete</button>
-                            <li><a class="eg-swal-av3"><em
-                                    class="icon ni ni-delete"></em><span>Delete
-                                    Course</span></a></li>
+                            <a data-toggle="modal" data-target="#prof-edit" class="eg-swal-av3-prof-edit"><button class="btn btn-sm btn-light">Edit</button></a>
+                            <a class="eg-swal-av3-prof-delete"><button class="btn btn-sm btn-light">Delete</button></a>
                         </div>
+
+                        <div class="modal fade" tabindex="-1" role="dialog" id="prof-edit">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <a href="#" class="close" data-dismiss="modal"><em
+                                            class="icon ni ni-cross-sm"></em></a>
+                                    <div class="modal-body modal-body-lg">
+                                        <h5 class="title">Update Professor Comment</h5>
+                                        <div class="tab-content">
+                                            <div class="row gy-4">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        
+                                                        <input type="text"
+                                                            class="form-control form-control-lg"
+                                                            id="description" name="description"
+                                                            value="This course will provide students with a first strong approach of internet programming.">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <ul
+                                                        class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="btn btn-lg btn-primary">Update</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" data-dismiss="modal"
+                                                                class="link link-light">Cancel</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div><!-- .tab-pane -->
+                                    </div><!-- .modal-body -->
+                                </div><!-- .modal-content -->
+                            </div><!-- .modal-dialog -->
+                        </div><!-- .modal -->
                     </div>
                 </div>
 
@@ -330,12 +407,8 @@
 
     <script>
         $(document).ready(function () {
-            $('.eg-swal-av3').on("click", function (event) {
-                alert(111)
+            $('.eg-swal-av3-cour-delete').on("click", function (event) {
                 event.preventDefault();
-
-                var courseId = $("#courseId").attr("value");
-
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -347,12 +420,49 @@
                         Swal.fire(
 
                             'Deleted!',
-                            'Your file has been deleted.',
+                            'The course review has been deleted.',
                             'success'
                         )
                     }
                 });
+            });
+
+            $('.eg-swal-av3-cour-edit').on("click", function (event) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'The course comment has been updated',
+                    showConfirmButton: true,
+                });
+            });
+
+            $('.eg-swal-av3-prof-delete').on("click", function (event) {
                 event.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        Swal.fire(
+
+                            'Deleted!',
+                            'The professor review has been deleted.',
+                            'success'
+                        )
+                    }
+                });
+            });
+
+            $('.eg-swal-av3-prof-edit').on("click", function (event) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'The professor comment has been updated',
+                    showConfirmButton: true,
+                });
             });
 
         });

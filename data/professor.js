@@ -217,10 +217,11 @@ async function removeProfReview(id) {
     // find out the professor document this review belongs to
     const prof = await profCollection.findOne({ "reviews._id": { $eq: id } });
     if (!prof) throw "review does not exist";
-
+    console.log(prof)
+    console.log(id)
     // delete the review from the reviews
     await profCollection.updateOne({ _id: prof._id }, { $pull: { reviews: { _id: ObjectId(id) } } })
-
+   
     // re-calculate avg rating
     await profCollection.updateOne({ _id: ObjectId(prof._id) }, [{ $set: { rating: { $avg: "$reviews.rating" } } }])
     const ids = await profCollection.aggregate([
@@ -229,6 +230,7 @@ async function removeProfReview(id) {
         { $project: { _id: 0, userId: '$reviews.userId', professorId: '$reviews.professorId' } }
     ]).toArray()
     await professorReviewDBfunction.deleteProfessorReview(ids[0].userId, ids[0].professorId)
+
     return { deleted: true };
 }
 
