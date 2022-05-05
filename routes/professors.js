@@ -6,7 +6,7 @@ const home = require('../data/home');
 router.get('/', async (req, res) => {
     let professorList = await home.getAllProfessors();
     let dpts = await home.getDepartments();
-    console.log(professorList[0])
+    // console.log(professorList[0])
     res.render('professors', { 
         title: 'RateMyCourses - Courses', 
         allProfessors: professorList,
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
     console.log(id);
     try {
         let professor = await home.getProfById(id);
-        // console.log(professor);
+        console.log(professor);
         if (!professor.rating) {
             professor.rating = 0
         } else {
@@ -67,7 +67,7 @@ router.post('/:id', async (req, res) => {
     }
 });
 
-// this route updates professor successfully, but ajax never go on to callback after this
+
 router.put('/:id', async (req, res) => {
     let { id } = req.params;
     let updatedProf = req.body

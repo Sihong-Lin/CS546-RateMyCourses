@@ -20,7 +20,7 @@ $(document).ready(function () {
                     statusCode: {
                         200: function(res) {
                             Swal.fire({
-                                title: "Professor Added",
+                                title: "Comment Added",
                                 text: "Please log in",
                                 icon: 'success',
                                 showCancelButton: false,
@@ -37,9 +37,12 @@ $(document).ready(function () {
                                 text: "Please log in",
                                 icon: 'warning',
                                 showCancelButton: true,
-                                confirmButtonText: 'Log in'
-                            }).then(() => {
-                                window.location = "http://localhost:3000/login.html";
+                                confirmButtonText: 'Log in',
+                                // closeOnCancel: true
+                            }).then((res) => {
+                                if (res.isConfirmed) {
+                                    window.location = "http://localhost:3000/login.html";
+                                }
                             })
                         }
                     }
