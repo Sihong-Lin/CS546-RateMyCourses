@@ -281,7 +281,8 @@ const departmentReivew = async () => {
         "Prof is good guy",
         5
     )
-    let ru1 = await professor.removeProf(firstProfId)
+    let update_u1_c1 = await courseReviewDB.updateCourseReviewComment(firstUserId, firstCourseId, "this is a new comment")
+    console.log(update_u1_c1)
     // let dc1 = await course.removeCourse(firstCourseId)
     // let dc2 = await course.removeCourse(secondCourseId)
     // let dc3 = await course.removeCourse(thirdCourseId)

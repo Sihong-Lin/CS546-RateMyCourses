@@ -128,7 +128,7 @@ async function removeProf(id) {
         try {
             await professorReviewDBfunction.deleteProfessorReview(uid, pid)
             const userUpdateInfo = await userCollection.updateOne(
-                { _id: ObjectId(uid) },
+                { _id: ObjectId() },
                 { $pull: { professorReviews: { professorId: pid } } }
             )
         } catch (e) {
