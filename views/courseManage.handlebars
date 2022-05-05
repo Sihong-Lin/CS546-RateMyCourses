@@ -173,6 +173,7 @@
                                                     <div class="tab-content">
                                                         <form id="editCourseForm">
                                                             <div class="row gy-4">
+                                                                
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="form-label"
@@ -185,6 +186,7 @@
                                                                             value="{{this.courseIndex}} {{this.courseName}}">
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="form-label"
@@ -194,73 +196,41 @@
                                                                             class="form-control form-control-lg"
                                                                             id="courseOwner-edit{{@index}}"
                                                                             name="courseOwner"
-                                                                            value="{{this.courseOwner}}">
+                                                                            value="{{this.courseOwner}}" required>
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="form-label"
                                                                             for="academicLevel">Academic Level</label>
-                                                                        <div class="form-control-wrap ">
-                                                                            <div class="form-control-select">
-                                                                                <select class="form-control required"
-                                                                                    data-msg="Required"
-                                                                                    id="academicLevel-edit{{@index}}"
-                                                                                    name="academicLevel" required>
-                                                                                  
-                                                                                    <option value="Undergraduate">
-                                                                                        Undergraduate</option>
-                                                                                    <option value="Graduate">
-                                                                                        Graduate</option>
-                                                                               
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
+                                                                        <input type="text"
+                                                                            class="form-control form-control-lg"
+                                                                            id="academicLevel-edit{{@index}}"
+                                                                            name="academicLevel"
+                                                                            value="{{this.academicLevel}}">    
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="form-label"
                                                                             for="type">Type</label>
-                                                                        <div class="form-control-wrap ">
-                                                                            <div class="form-control-select">
-                                                                                <select class="form-control required"
-                                                                                    data-msg="Required"
-                                                                                    id="type-edit{{@index}}" name="type"
-                                                                                    required>
-                                                                                    <option selected="Core == Core"
-                                                                                        value="Core">Core</option>
-                                                                                    <option selected="Core == Elective"
-                                                                                        value="Elective">Elective
-                                                                                    </option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
+                                                                        <input type="text"
+                                                                            class="form-control form-control-lg"
+                                                                            id="type-edit{{@index}}"
+                                                                            name="type"
+                                                                            value="{{this.type}}">  
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="form-label"
                                                                             for="units">Units</label>
-                                                                        <div class="form-control-wrap ">
-                                                                            <div class="form-control-select">
-                                                                                <select class="form-control required"
-                                                                                    data-msg="Required"
-                                                                                    id="units-edit{{@index}}"
-                                                                                    name="units" required>
-                                                                                    <option value="1">1</option>
-                                                                                    <option value="2">2</option>
-                                                                                    <option value="3">3</option>
-                                                                                    <option value="4">4</option>
-                                                                                    <option value="5">5</option>
-                                                                                    <option value="6">6</option>
-                                                                                    <option value="7">7</option>
-                                                                                    <option value="8">8</option>
-                                                                                    <option value="9">9</option>
-                                                                                    <option value="10">10</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
+                                                                        <input type="text"
+                                                                            class="form-control form-control-lg"
+                                                                            id="units-edit{{@index}}"
+                                                                            name="units"
+                                                                            value="{{this.units}}">     
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -268,20 +238,11 @@
                                                                         <label class="form-label"
                                                                             for="instructionalFormats">Instructional
                                                                             Format</label>
-                                                                        <div class="form-control-wrap ">
-                                                                            <div class="form-control-select">
-                                                                                <select class="form-control required"
-                                                                                    data-msg="Required"
-                                                                                    id="instructionalFormats-edit{{@index}}"
-                                                                                    name="instructionalFormats"
-                                                                                    required>
-                                                                                    <option value="Lecture">Lecture
-                                                                                    </option>
-                                                                                    <option value="Thesis">Thesis
-                                                                                    </option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
+                                                                         <input type="text"
+                                                                            class="form-control form-control-lg"
+                                                                            id="instructionalFormats-edit{{@index}}"
+                                                                            name="instructionalFormats"
+                                                                            value="{{this.instructionalFormats}}">     
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12">
@@ -412,66 +373,30 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="academicLevel-add">Academic Level</label>
-                                    <div class="form-control-wrap ">
-                                        <div class="form-control-select">
-                                            <select class="form-control required" data-msg="Required"
-                                                id="academicLevel-add" name="academicLevel-add" required>
-                                                <option value="Undergraduate">Undergraduate</option>
-                                                <option value="Graduate">Graduate</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="academicLevel-add"
+                                        name="academicLevel-add" placeholder="e.g., Graduate or Undergraduate">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="type-add">Type</label>
-                                    <div class="form-control-wrap ">
-                                        <div class="form-control-select">
-                                            <select class="form-control required" data-msg="Required" id="type-add"
-                                                name="type-add" required>
-                                                <option value="Core">Core</option>
-                                                <option value="Elective">Elective</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="type-add"
+                                        name="type-add" placeholder="e.g., Core or Elective">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="units-add">Units</label>
-                                    <div class="form-control-wrap ">
-                                        <div class="form-control-select">
-                                            <select class="form-control required" data-msg="Required" id="units-add"
-                                                name="units-add" required>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="units-add"
+                                        name="units-add" placeholder="e.g., 3">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="instructionalFormats-add">Instructional
                                         Format</label>
-                                    <div class="form-control-wrap ">
-                                        <div class="form-control-select">
-                                            <select class="form-control required" data-msg="Required"
-                                                id="instructionalFormats-add" name="instructionalFormats-add" required>
-                                                <option value="Lecture">Lecture</option>
-                                                <option value="Thesis">Thesis</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="instructionalFormats-add"
+                                        name="instructionalFormats-add" placeholder="e.g., Lecture or Thesis">    
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -649,20 +574,4 @@
         });
     });
 
-    Handlebars.registerHelper('select', function (value, options) {
-        // Create a select element 
-        var select = document.createElement('select');
-
-        // Populate it with the option HTML
-        select.innerHTML = options.fn(this);
-
-        // Set the value
-        select.value = value;
-
-        // Find the selected node, if it exists, add the selected attribute to it
-        if (select.children[select.selectedIndex])
-            select.children[select.selectedIndex].setAttribute('selected', 'selected');
-
-        return select.innerHTML;
-    });
 </script>

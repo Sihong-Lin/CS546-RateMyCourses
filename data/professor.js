@@ -211,6 +211,7 @@ async function addProfReview(uid, pid, comment, rating) {
 }
 
 async function removeProfReview(id) {
+
     id = inputCheck.checkUserId(id);
 
     const profCollection = await professors();
