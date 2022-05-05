@@ -176,7 +176,7 @@ async function addProfReview(uid, pid, comment, rating) {
     const user = await userData.getUser(uid)
 
     const profReview = {
-        _id: ObjectId().toString(),
+        _id: ObjectId(),
         userId: uid,
         professorId: pid,
         professorName: professorName,
@@ -211,8 +211,37 @@ async function addProfReview(uid, pid, comment, rating) {
     } catch (e) {
         throw e
     }
-
+    profReview._id = profReview._id.toString();
     return profReview;
+}
+
+async function getProfReview(reviewId) {
+    const profCollection = await professors();
+    const prof = await profCollection.findOne(
+        { reviews: { $elemMatch: { _id: ObjectId(reviewId) } } }
+    );
+    if (!prof) throw "review does not exist"
+    let review = prof.reviews.find(e => e._id.toString() === reviewId )
+    return review;
+}
+
+async function updateProfReview(rid, pid, comment, rating) {
+
+    rid = inputCheck.checkUserId(rid);
+    pid = inputCheck.checkUserId(pid);
+    comment = inputCheck.checkComment(comment);
+    rating = inputCheck.checkRating(rating);
+
+    const profCollection = await professors();
+
+    const updateInfo = await profCollection.updateOne(
+        { _id: ObjectId(pid),  "reviews._id": ObjectId(rid)},
+        { $set: { "reviews.$.comment": comment, "reviews.$.rating": rating } },
+    );
+    
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
+        throw 'Update failed';
+    return await this.getProfReview(rid);
 }
 
 async function removeProfReview(id) {
@@ -221,7 +250,7 @@ async function removeProfReview(id) {
 
     const profCollection = await professors();
     // find out the professor document this review belongs to
-    const prof = await profCollection.findOne({ "reviews._id": { $eq: id } });
+    const prof = await profCollection.findOne({ "reviews._id": ObjectId(id) });
     if (!prof) throw "review does not exist";
     console.log(prof)
     console.log(id)
@@ -308,6 +337,8 @@ module.exports = {
     updateProf,
     removeProf,
     addProfReview,
+    getProfReview,
+    updateProfReview,
     removeProfReview,
     getDepartments,
     countProfessors,

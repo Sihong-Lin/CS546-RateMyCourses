@@ -101,4 +101,53 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+router.get('/comments/:id', async (req, res) => {
+    let { id } = req.params;
+    console.log(id);
+    try {
+        if (req.session.user) {
+            let review = await home.getProfReview(id);
+            res.status(200).json(review);
+        } else {
+            res.status(401).send("You are not authorized to view this content")
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
+});
+
+router.put('/comments/:id', async (req, res) => {
+    let { id } = req.params;
+    console.log(id);
+    try {
+        if (req.session.user) {
+            let updatedReview = await home.updateProfReview(id, req.body.professorId, req.body.comment, req.body.rating);
+            res.status(200).json(updatedReview);
+        } else {
+            res.status(401).send("You are not authorized to delete this content")
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
+});
+
+router.delete('/comments/:id', async (req, res) => {
+    let { id } = req.params;
+    console.log(id);
+    try {
+        if (req.session.user) {
+            let deleteInfo = await home.removeProfReview(id);
+            res.status(200).json(deleteInfo);
+        } else {
+            res.status(401).send("You are not authorized to delete this content")
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
+});
+
+
 module.exports = router;

@@ -16,6 +16,8 @@ const {
     updateProf,
     removeProf,
     addProfReview,
+    getProfReview,
+    updateProfReview,
     removeProfReview,
     getDepartments,
 } = require('../data/professor');
@@ -30,6 +32,8 @@ module.exports = {
     updateProf,
     removeProf,
     addProfReview,
+    getProfReview,
+    updateProfReview,
     removeProfReview,
     getTop5Courses,
     getAllCourses,
