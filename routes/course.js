@@ -19,8 +19,15 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => { // show course
-    let courseDetail = await course.getCourse(req.params.id);
-    res.render('course', { title: courseDetail.courseName, courseDetail: courseDetail});
+    let courseDetail = undefined
+    try {
+        courseDetail = await course.getCourse(req.params.id);
+        res.render('course', { title: courseDetail.courseName, courseDetail: courseDetail});
+    } catch (e) {
+        res.render('404')
+        return
+    }
+    
 });
 
 router.post('/:id', async (req, res) => { // create course review
@@ -78,12 +85,28 @@ router.delete('/:id', async (req, res) => {
     */
 });
 
+
+
+router.put('/deleteCourseReview', async (req, res) => {  
+ 
+    let userId = req.body.userId;
+    let courseId = req.body.courseId;
+    let reviewDeleteStatus = undefined
+    try {
+        reviewDeleteStatus = await user.deleteCourseReview(userId, courseId);
+        console.log(reviewDeleteStatus)
+    } catch (e) {
+        res.status(500).json(e);
+        return
+    }
+    
+    res.status(200).json({reviewDeleteStatus: true});
+    
+});
+
 router.put('/edit/:id', async (req, res) => {  // edit course
-    console.log(111111111)
     const courseId = req.params.id
     const courseBody = req.body
-    console.log(courseId)
-    console.log(courseBody)
     if(!courseBody) {
         res.status(400).json({error : 'You must provide data to update a course'})
         return
@@ -213,7 +236,6 @@ router.post('/', async (req, res) => { // create new course
         res.status(400).json({error : 'You must provide data to create a course'})
         return
     }
-    console.log(courseBody)
     let courseName = undefined
     let academicLevel = undefined
     let courseOwner = undefined

@@ -9,12 +9,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="home" class="nav-item nav-link">Home</a>
-                    <a href="courses" class="nav-item nav-link">Courses</a>
-                    <a href="professors" class="nav-item nav-link">Professors</a>
-                    <a href="account" class="nav-item nav-link active">Account</a>
-                    <a href="backstage" class="nav-item nav-link">Backstage</a>
+                    <a href="home.html" class="nav-item nav-link">Home</a>
+                    <a href="courses.html" class="nav-item nav-link">Courses</a>
+                    <a href="professors.html" class="nav-item nav-link">Professors</a>
                     <a href="login.html" class="nav-item nav-link">Sign in</a>
+                    <a href="account.html" class="nav-item nav-link active">Account</a>
+                    <a href="backstage.html" class="nav-item nav-link">Backstage</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Other Templates</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="professorDetails.html" class="dropdown-item">professorDetails</a>
+                            <a href="detail.html" class="dropdown-item">Blog Detail</a>
+                            <a href="team.html" class="dropdown-item">The Team</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="search.html" class="dropdown-item">Search</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -30,20 +40,20 @@
         <div class="row gx-5">
             <div class="col-lg-3 mb-3 mb-lg-0" style="min-height: 300px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100 rounded-circle" src="static/picture/profile-1.jpg"
+                    <img class="position-absolute w-100 h-100 rounded-circle" src="{{userInfo.profilePicture}}"
                         style="object-fit: cover;">
                 </div>
             </div>
             <div class="col-lg-7">
                 <div class="mb-4">
-                    <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Course Info</h5>
+                    <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">User Info</h5>
                     <h4 class="display-10">Username: &nbsp {{userInfo.username}}</h4>
                     <h4 class="display-10">Email: &nbsp {{userInfo.email}}</h4>
                     <h4 class="display-10">Major: &nbsp {{userInfo.major}} </h4>
                     <h4 class="display-10">Role: &nbsp {{userInfo.role}}</h4>
+                    <h4 class="display-10">Restrict Status: &nbsp {{userInfo.restrictStatus}}</h4>
                     <h4 class="display-10">Registration Time: &nbsp {{userInfo.registrationTime}}</h4>
                     <h4 class="display-10">Last Login: &nbsp {{userInfo.lastLogin}}</h4>
-                    <h4 class="display-10">Restrict Status: &nbsp {{userInfo.restrictStatus}}</h4>
                 </div>
             </div>
         </div>
@@ -54,36 +64,121 @@
     <div class="container">
         <div class="row gx-5">
 
+
             <div class="col-lg-6 mb-5 mb-lg-0">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-4">Course Reviews
                 </h4>
+
+                {{#each courseReviews}}
                 <div class="d-flex mb-4">
                     <img src="static/picture/user.jpg" class="img-fluid rounded-circle"
                         style="width: 45px; height: 45px;">
                     <div class="ps-3">
-                        <h6><a href="">CS546 Web programming</a> &nbsp <small><i>Rating: 4.0/5.0</i></small></h6>
-                        <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore</p>
-                        <button class="btn btn-sm btn-light">Edit</button>
-                        <button class="btn btn-sm btn-light">Delete</button>
+                        <h6><a href="{{concat '/course/' this.courseId}}">{{this.courseName}}</a> &nbsp <small><i>Rating: {{this.rating}}/5.0</i></small>
+                        </h6>
+                        <p>{{this.comment}}</p>
+                        <h6><small>Difficulty: {{this.metrics.difficulty}} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Chance To Get
+                                A: {{this.metrics.chanceToGetA}}
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp workLoad: {{this.metrics.workLoad}}</small></h6>
+                        <a data-toggle="modal" data-target="#cour-edit{{@index}}" class="eg-swal-av3-cour-edit"><button
+                                class="btn btn-sm btn-light">Edit</button></a>
+                        <a id="courseId{{@index}}" value="{{this.courseId}} {{this.userId}}" class="eg-swal-av3-cour-delete"><button class="btn btn-sm btn-light">Delete</button></a>
                     </div>
+
+                    <div class="modal fade" tabindex="-1" role="dialog" id="cour-edit{{@index}}">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                                <div class="modal-body modal-body-lg">
+                                    <h5 class="title">Update Course Comment</h5>
+                                    <div class="tab-content">
+                                        <div class="row gy-4">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+
+                                                    <input type="text" class="form-control form-control-lg"
+                                                        id="description" name="description"
+                                                        value="This course will provide students with a first strong approach of internet programming.">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                                    <li>
+                                                        <a href="#" class="btn btn-lg btn-primary">Update</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" data-dismiss="modal"
+                                                            class="link link-light">Cancel</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div><!-- .tab-pane -->
+                                </div><!-- .modal-body -->
+                            </div><!-- .modal-content -->
+                        </div><!-- .modal-dialog -->
+                    </div><!-- .modal -->
                 </div>
+                {{/each}}
+
             </div>
+
+
 
             <div class="col-lg-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-4">Professor Reviews
                 </h4>
+
+                {{#each professorReviews}}
                 <div class="d-flex mb-4">
                     <img src="static/picture/user.jpg" class="img-fluid rounded-circle"
                         style="width: 45px; height: 45px;">
                     <div class="ps-3">
-                        <h6><a href="">Patrick Hill</a> &nbsp <small><i>Rating: 4.0/5.0</i></small></h6>
-                        <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore</p>
-                        <button class="btn btn-sm btn-light">Edit</button>
-                        <button class="btn btn-sm btn-light">Delete</button>
+                        <h6><a href="{{concat '/professors/' this.professorId}}">{{this.professorName}}</a> &nbsp <small><i>Rating:
+                                    {{this.rating}}/5.0</i></small></h6>
+                        <p>{{this.comment}}</p>
+                        <a data-toggle="modal" data-target="#prof-edit{{@index}}" class="eg-swal-av3-prof-edit"><button
+                                class="btn btn-sm btn-light">Edit</button></a>
+                        <a id="professorReviewId{{@index}}" value="{{this._id}}" class="eg-swal-av3-prof-delete"><button class="btn btn-sm btn-light">Delete</button></a>
                     </div>
-                </div>
-            </div>
 
+                    <div class="modal fade" tabindex="-1" role="dialog" id="prof-edit{{@index}}">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                                <div class="modal-body modal-body-lg">
+                                    <h5 class="title">Update Professor Comment</h5>
+                                    <div class="tab-content">
+                                        <div class="row gy-4">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+
+                                                    <input type="text" class="form-control form-control-lg"
+                                                        id="description" name="description"
+                                                        value="This course will provide students with a first strong approach of internet programming.">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                                    <li>
+                                                        <a href="#" class="btn btn-lg btn-primary">Update</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" data-dismiss="modal"
+                                                            class="link link-light">Cancel</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div><!-- .tab-pane -->
+                                </div><!-- .modal-body -->
+                            </div><!-- .modal-content -->
+                        </div><!-- .modal-dialog -->
+                    </div><!-- .modal -->
+                </div>
+                {{/each}}
+
+            </div>
 
         </div>
     </div>
@@ -283,3 +378,116 @@
 
 <script src="static/js/main.js" type="64f10123938904b78188bb72-text/javascript"></script>
 <script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
+<script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $(".eg-swal-av3-cour-delete").on("click", function (event) {
+            event.preventDefault();
+            var index = $(".eg-swal-av3-cour-delete").index(this);
+            var str = $("#courseId" + index).attr("value");
+            let arr = str.split(" ");
+            var formData = {
+                courseId: arr[0],
+                userId: arr[1]
+            };
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "PUT",
+                        url: "http://localhost:3000/course/deleteCourseReview/" ,
+                        data: formData,
+                        dataType: "json",
+                        encode: true,
+                        success: function (result) {
+                            Swal.fire(
+                                'Deleted!',
+                                'The course review has been deleted.',
+                                'success'
+                            ).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                    })
+                }
+            });
+        });
+
+
+        $(".eg-swal-av3-prof-delete").on("click", function (event) {
+            event.preventDefault();
+            var index = $(".eg-swal-av3-prof-delete").index(this);
+            var reviewId = $("#professorReviewId" + index).attr("value");
+            alert(reviewId)
+            var formData = {
+                reviewId: reviewId
+            };
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "PUT",
+                        url: "http://localhost:3000/professor/deleteProfessorReview/",
+                        data: formData,
+                        dataType: "json",
+                        encode: true,
+                        success: function (result) {
+                            Swal.fire(
+                                'Deleted!',
+                                'The professor review has been deleted.',
+                                'success'
+                            ).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
+                                }
+                            });
+
+                        }
+                    });
+                }
+            });
+        });
+
+
+
+
+
+
+
+        $('.eg-swal-av3-cour-edit').on("click", function (event) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'The course comment has been updated',
+                showConfirmButton: true,
+            });
+        });
+
+
+
+        $('.eg-swal-av3-prof-edit').on("click", function (event) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'The professor comment has been updated',
+                showConfirmButton: true,
+            });
+        });
+
+    });
+</script>

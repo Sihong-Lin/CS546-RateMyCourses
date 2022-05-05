@@ -281,7 +281,12 @@ const departmentReivew = async () => {
         "Prof is good guy",
         5
     )
-
+    let ru1 = await professor.removeProf(firstProfId)
+    // let dc1 = await course.removeCourse(firstCourseId)
+    // let dc2 = await course.removeCourse(secondCourseId)
+    // let dc3 = await course.removeCourse(thirdCourseId)
+    // let dc4 = await course.removeCourse(fourthCourseId) 
+    // let dc5 = await course.removeCourse(fifthCourseId) 
     // let map = await user.countUserByMajor()
     // console.log(map)
     // let mapSort = await user.studentMajorDistribution()
@@ -302,8 +307,8 @@ const departmentReivew = async () => {
     // console.log(res4)
     // let res = await course.getTop5CourseByMajor("finance")
 
-    let res = await professor.getTop5ProfessorsByMajor("computer science")
-    console.log(res);
+    // let res = await professor.getTop5ProfessorsByMajor("computer science")
+    // console.log(res);
     connection.closeConnection();
     console.log('Done!');
 }
