@@ -59,7 +59,7 @@ async function createProfessor(professorName, department, introduction, picture)
 
     const professorsCollection = await professors();
     let newProfessor = {
-        professorName: professorName,
+        // professorName: professorName,
         department: department,
         introduction: introduction,
         picture: picture,
@@ -68,10 +68,15 @@ async function createProfessor(professorName, department, introduction, picture)
         rating: null
     };
 
-    const newInsertInformation = await professorsCollection.insertOne(newProfessor);
-    if (newInsertInformation.insertedCount === 0) throw 'Insert failed!';
+    const newInsertInformation = await professorsCollection.updateOne(
+        { professorName: professorName },
+        { $setOnInsert: newProfessor },
+        { upsert: true }
+    );
+    console.log(newInsertInformation);
+    if (newInsertInformation.upsertedCount === 0) throw `Professor ${professorName} already exists`;
     return await this.getProfById(
-        newInsertInformation.insertedId.toString()
+        newInsertInformation.upsertedId.toString()
     );
 }
 

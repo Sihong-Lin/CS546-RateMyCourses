@@ -19,13 +19,13 @@ router.post('/', async (req, res) => {
     try {
         if (req.session.user) {
             let professor = await home.createProfessor(req.body.professorName, req.body.department, req.body.introduction, req.body.picture);
-            console.log(professor);
+            res.status(200).json(professor);
         } else {
             console.log("You are not authorized to create professor")
+            res.status(401).send("You are not authorized to create professor");
         }
-        return res.end();
     } catch (e) {
-        console.log(e);
+        res.status(400).send(e);
     }
 });
 
@@ -59,10 +59,9 @@ router.post('/:id', async (req, res) => {
             res.status(200).render('partials/professor_comment', profReview);
         } else {
             console.log("entering redirect");
-            const path = require('path');
-            res.status(401).sendFile(path.join(__dirname, '../public', '401.html'));
+            res.status(401).send("You are not authroized to post a comment")
         }
-        return res.end();
+        // return res.end();
     } catch (e) {
         console.log(e);
     }

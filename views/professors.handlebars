@@ -63,7 +63,7 @@
                         <div class="mt-auto p-4">
                             <h3>{{this.professorName}}</h3>
                             <h6 class="fw-normal fst-italic text-primary mb-4">{{this.department}}</h6>
-                            <p class="m-0">{{this.introduction}}</p>
+                            <p class="m-0" name="intro">{{this.introduction}}</p>
                         </div>
                         <div class="col-12 text-center">
                             <a href={{concat '/professors/' this._id}} class="btn btn-primary rounded-pill py-2 px-3 my-3">More Details</a>
@@ -169,3 +169,5 @@
 
 <script src="static/js/main.js" type="64f10123938904b78188bb72-text/javascript"></script>
 <script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="public/js/professors.js"></script>

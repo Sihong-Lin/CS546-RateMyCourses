@@ -97,7 +97,7 @@
                                 </div><!-- .nk-block-between -->
                             </div><!-- .nk-block-head -->
                             <div class="nk-block">
-                                <div class="row g-gs">
+                                <div class="row g-gs" id="allProfs">
 
                                     {{#each allProfessors}}
                                     <div class="col-sm-6 col-lg-4 col-xxl-3">
@@ -118,7 +118,7 @@
                                                                     <li>
                                                                         <div data-toggle="modal"
                                                                             data-target="#professor-edit"><a
-                                                                                onclick="spawnForm('{{this._id}}')"
+                                                                                onclick="spawnForm('{{this._id}}', '{{this.professorName}}', '{{this.department}}', '{{this.introduction}}')"
                                                                                 href="#"><em 
                                                                                 class="icon ni ni-edit"></em><span>Edit Professor</span></a></div>
                                                                     </li>
@@ -142,7 +142,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="team-details">
-                                                        <p>{{this.introduction}}</p>
+                                                        <p name="intro" id={{ concat this._id '_intro' }}>{{this.introduction}}</p>
                                                     </div>
                                                     <ul class="team-statistics">
                                                         <li><span>{{this.courses.length}}</span><span>Courses</span></li>
@@ -214,20 +214,19 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-label" for="name">Full Name</label>
-                                            <input type="text" class="form-control form-control-lg" id="name" placeholder="jquery here">
+                                            <input type="text" class="form-control form-control-lg" id="name">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-label" for="department">Department</label>
-                                            <input type="text" class="form-control form-control-lg" id="department" placeholder="jquery here">
+                                            <input type="text" class="form-control form-control-lg" id="department">
                                         </div>
                                     </div>
                                     <div class="col-sm">
                                         <div class="form-group">
                                             <label class="form-label" for="introduction">Introduction</label>
-                                            <input type="text" class="form-control form-control-lg" id="introduction"
-                                                placeholder="jquery here">
+                                            <input type="text" class="form-control form-control-lg" id="introduction">
                                         </div>
                                     </div>
                                     <div class="col-12">
