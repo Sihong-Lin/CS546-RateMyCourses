@@ -9,8 +9,9 @@ module.exports = {
     deleteCourseReview,
     countCourseReview,
     countCourseReviewByDepartment,
-    avgCourseReview
+    avgCourseReview,
 }
+
 
 async function createCourseReview(userId, courseId, courseOwner) {
 

@@ -9,12 +9,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="home.html" class="nav-item nav-link">Home</a>
-                    <a href="courses.html" class="nav-item nav-link">Courses</a>
-                    <a href="professors.html" class="nav-item nav-link">Professors</a>
-                    <a href="login.html" class="nav-item nav-link">Sign in</a>
-                    <a href="account.html" class="nav-item nav-link active">Account</a>
-                    <a href="backstage.html" class="nav-item nav-link">Backstage</a>
+                    <a href="home" class="nav-item nav-link">Home</a>
+                    <a href="courses" class="nav-item nav-link">Courses</a>
+                    <a href="professors" class="nav-item nav-link">Professors</a>
+                    <a href="login" class="nav-item nav-link">Sign in</a>
+                    <a href="account" class="nav-item nav-link active">Account</a>
+                    <a href="backstage" class="nav-item nav-link">Backstage</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Other Templates</a>
                         <div class="dropdown-menu m-0">
@@ -74,7 +74,8 @@
                     <img src="static/picture/user.jpg" class="img-fluid rounded-circle"
                         style="width: 45px; height: 45px;">
                     <div class="ps-3">
-                        <h6><a href="{{concat '/course/' this.courseId}}">{{this.courseName}}</a> &nbsp <small><i>Rating: {{this.rating}}/5.0</i></small>
+                        <h6><a href="{{concat '/course/' this.courseId}}">{{this.courseName}}</a> &nbsp
+                            <small><i>Rating: {{this.rating}}/5.0</i></small>
                         </h6>
                         <p>{{this.comment}}</p>
                         <h6><small>Difficulty: {{this.metrics.difficulty}} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Chance To Get
@@ -82,7 +83,8 @@
                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp workLoad: {{this.metrics.workLoad}}</small></h6>
                         <a data-toggle="modal" data-target="#cour-edit{{@index}}" class="eg-swal-av3-cour-edit"><button
                                 class="btn btn-sm btn-light">Edit</button></a>
-                        <a id="courseId{{@index}}" value="{{this.courseId}} {{this.userId}}" class="eg-swal-av3-cour-delete"><button class="btn btn-sm btn-light">Delete</button></a>
+                        <a id="courseId{{@index}}" value="{{this.courseId}} {{this.userId}}"
+                            class="eg-swal-av3-cour-delete"><button class="btn btn-sm btn-light">Delete</button></a>
                     </div>
 
                     <div class="modal fade" tabindex="-1" role="dialog" id="cour-edit{{@index}}">
@@ -97,8 +99,8 @@
                                                 <div class="form-group">
 
                                                     <input type="text" class="form-control form-control-lg"
-                                                        id="description" name="description"
-                                                        value="This course will provide students with a first strong approach of internet programming.">
+                                                        id="cour-comment-edit{{@index}}" name="cour-comment"
+                                                        value="{{this.comment}}">
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -134,12 +136,14 @@
                     <img src="static/picture/user.jpg" class="img-fluid rounded-circle"
                         style="width: 45px; height: 45px;">
                     <div class="ps-3">
-                        <h6><a href="{{concat '/professors/' this.professorId}}">{{this.professorName}}</a> &nbsp <small><i>Rating:
+                        <h6><a href="{{concat '/professors/' this.professorId}}">{{this.professorName}}</a> &nbsp
+                            <small><i>Rating:
                                     {{this.rating}}/5.0</i></small></h6>
                         <p>{{this.comment}}</p>
                         <a data-toggle="modal" data-target="#prof-edit{{@index}}" class="eg-swal-av3-prof-edit"><button
                                 class="btn btn-sm btn-light">Edit</button></a>
-                        <a id="professorReviewId{{@index}}" value="{{this._id}}" class="eg-swal-av3-prof-delete"><button class="btn btn-sm btn-light">Delete</button></a>
+                        <a id="professorReviewId{{@index}}" value="{{this._id}}" class="eg-swal-av3-prof-delete"><button
+                                class="btn btn-sm btn-light">Delete</button></a>
                     </div>
 
                     <div class="modal fade" tabindex="-1" role="dialog" id="prof-edit{{@index}}">
@@ -154,8 +158,8 @@
                                                 <div class="form-group">
 
                                                     <input type="text" class="form-control form-control-lg"
-                                                        id="description" name="description"
-                                                        value="This course will provide students with a first strong approach of internet programming.">
+                                                        id="prof-comment-edit{{@index}}" name="prof-comment"
+                                                        value="{{this.comment}}">
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -403,7 +407,7 @@
                 if (result.value) {
                     $.ajax({
                         type: "PUT",
-                        url: "http://localhost:3000/course/deleteCourseReview/" ,
+                        url: "http://localhost:3000/course/deleteCourseReview/",
                         data: formData,
                         dataType: "json",
                         encode: true,
@@ -463,31 +467,79 @@
             });
         });
 
-
-
-
-
-
-
         $('.eg-swal-av3-cour-edit').on("click", function (event) {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'The course comment has been updated',
-                showConfirmButton: true,
-            });
+            event.preventDefault();
+            var index = $(".eg-swal-av3-cour-edit").index(this);
+            var str = $("#courseId" + index).attr("value");
+            let arr = str.split(" ");
+            let comment = $("#cour-comment-edit" + index).val();
+            var formData = {
+                courseId: arr[0],
+                userId: arr[1],
+                courComment: comment
+            };
+            $.ajax({
+                type: "PUT",
+                url: "http://localhost:3000/course/editCourseReview/",
+                data: formData,
+                dataType: "json",
+                encode: true,
+                success: function (result) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'The Course comment has been updated',
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            })
+            
         });
 
 
 
         $('.eg-swal-av3-prof-edit').on("click", function (event) {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'The professor comment has been updated',
-                showConfirmButton: true,
-            });
+            event.preventDefault();
+            var index = $(".eg-swal-av3-prof-edit").index(this);
+            var str = $("#professorId" + index).attr("value");
+            let arr = str.split(" ");
+            let comment = $("#prof-comment-edit" + index).val();
+            var formData = {
+                courseId: arr[0],
+                userId: arr[1],
+                profComment: comment
+            };
+            $.ajax({
+                type: "PUT",
+                url: "http://localhost:3000/course/CourseReview/",
+                data: formData,
+                dataType: "json",
+                encode: true,
+                success: function (result) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'The Course comment has been updated',
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            })
+            
         });
+
+
+
+
+
+
 
     });
 </script>
