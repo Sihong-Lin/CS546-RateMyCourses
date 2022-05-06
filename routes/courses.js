@@ -10,9 +10,20 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const body = req.body;
-    let courseList = await courseDB.getCoursesByKeywords(body.department, body.keyword);
-    res.render('courses', { title: 'RateMyCourses - Courses', allCourses: courseList});
+
+
+    try {
+        console.log(111)
+        const body = req.body;
+        let courseList = await courseDB.getCoursesByKeywords(body.department, body.keyword);
+        res.render('courses', { title: 'RateMyCourses - Courses', allCourses: courseList});
+      
+    } catch (e) {
+        res.status(500).json(e);
+        return
+    }
+    console.log(111)
+   
 });
 
 
