@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const home = require('../data/home');
+const professor = require('../data/professor');
 
 //Professors页面初始化
 router.get('/', async (req, res) => {
@@ -14,8 +15,24 @@ router.get('/', async (req, res) => {
     });
 });
 
+router.put('/editProfessorReview/', async (req, res) => {  
+    let userId = req.body.userId;
+    let professorId = req.body.professorId;
+    let reviewId = req.body.reviewId;
+    let newComment = req.body.newComment;
+    let reviewEditStatus = undefined
+    try {
+        reviewEditStatus = await professor.updateProfReview(userId, reviewId, professorId, newComment)
+    } catch (e) {
+        res.status(500).json(e);
+        return
+    }
+    
+    res.status(200).json({reviewEditStatus: true});
+    
+});
+
 router.post('/', async (req, res) => {
-    console.log(req.body.professorName);
     try {
         if (req.session.user) {
             let professor = await home.createProfessor(req.body.professorName, req.body.department, req.body.introduction, req.body.picture);
@@ -31,10 +48,8 @@ router.post('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     let { id } = req.params;
-    console.log(id);
     try {
         let professor = await home.getProfById(id);
-        console.log(professor);
         if (!professor.rating) {
             professor.rating = 0
         } else {
@@ -55,7 +70,6 @@ router.post('/:id', async (req, res) => {
         if (req.session.user) {
             let uid = req.session.user.userId;
             let profReview = await home.addProfReview(uid, id, comment, rating);
-            console.log(profReview);
             res.status(200).render('partials/professor_comment', profReview);
         } else {
             console.log("entering redirect");
@@ -90,7 +104,6 @@ router.delete('/:id', async (req, res) => {
     try {
         if (req.session.user) {
             let deleteInfo = await home.removeProf(id);
-            console.log(deleteInfo);
             res.status(200).send("Professor successfully deleted");
         } else {
             res.status(401).send("You are not authorized to delete a professor");
@@ -103,7 +116,6 @@ router.delete('/:id', async (req, res) => {
 
 router.get('/comments/:id', async (req, res) => {
     let { id } = req.params;
-    console.log(id);
     try {
         if (req.session.user) {
             let review = await home.getProfReview(id);
@@ -119,7 +131,6 @@ router.get('/comments/:id', async (req, res) => {
 
 router.put('/comments/:id', async (req, res) => {
     let { id } = req.params;
-    console.log(id);
     try {
         if (req.session.user) {
             let updatedReview = await home.updateProfReview(id, req.body.professorId, req.body.comment, req.body.rating);
@@ -135,7 +146,6 @@ router.put('/comments/:id', async (req, res) => {
 
 router.delete('/comments/:id', async (req, res) => {
     let { id } = req.params;
-    console.log(id);
     try {
         if (req.session.user) {
             let deleteInfo = await home.removeProfReview(id);

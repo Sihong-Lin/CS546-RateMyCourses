@@ -1,4 +1,4 @@
-// const { ConsoleLogger } = require('aws-amplify/node_modules/@aws-amplify/core');
+
 const express = require('express');
 const router = express.Router();
 const course = require('../data/course');
@@ -94,7 +94,6 @@ router.put('/deleteCourseReview', async (req, res) => {
     let reviewDeleteStatus = undefined
     try {
         reviewDeleteStatus = await user.deleteCourseReview(userId, courseId);
-        console.log(reviewDeleteStatus)
     } catch (e) {
         res.status(500).json(e);
         return
@@ -105,21 +104,19 @@ router.put('/deleteCourseReview', async (req, res) => {
 });
 
 
-router.put('/editCourseReview', async (req, res) => {  
- 
+router.put('/editCourseReview/', async (req, res) => {  
     let userId = req.body.userId;
     let courseId = req.body.courseId;
-    let comment = req.body.comment;
+    let newComment = req.body.newComment;
     let reviewEditStatus = undefined
     try {
-        reviewDeleteStatus = await user.
-        console.log(reviewDeleteStatus)
+        reviewEditStatus = await course.updateCourseReviewComment(userId, courseId, newComment)
     } catch (e) {
         res.status(500).json(e);
         return
     }
     
-    res.status(200).json({reviewDeleteStatus: true});
+    res.status(200).json({reviewEditStatus: true});
     
 });
 
@@ -271,7 +268,6 @@ router.post('/', async (req, res) => { // create new course
     try {
         courseName = inputCheck.checkCourseName(courseBody.courseName)
     }catch(e) {
-        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -279,7 +275,6 @@ router.post('/', async (req, res) => { // create new course
     try {
         academicLevel = inputCheck.checkAcademicLevel(courseBody.academicLevel)
     }catch(e) {
-        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -287,7 +282,6 @@ router.post('/', async (req, res) => { // create new course
     try {
         courseOwner = inputCheck.checkCourseOwner(courseBody.courseOwner)
     }catch(e) {
-        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -295,7 +289,6 @@ router.post('/', async (req, res) => { // create new course
     try {
         type = inputCheck.checkType(courseBody.type)
     }catch(e) {
-        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -303,7 +296,6 @@ router.post('/', async (req, res) => { // create new course
     try {
        // gradingBasis = inputCheck.checkGradingBasis(courseBody.gradingBasis)
     }catch(e) {
-        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -311,7 +303,6 @@ router.post('/', async (req, res) => { // create new course
     try {
         units = inputCheck.checkUnits(courseBody.units)
     }catch(e) {
-        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -319,7 +310,6 @@ router.post('/', async (req, res) => { // create new course
     try {
         description = inputCheck.checkDescription(courseBody.description)
     }catch(e) {
-        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -327,7 +317,6 @@ router.post('/', async (req, res) => { // create new course
     try {
       //  typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(courseBody.typicalPeriodsOffered)
     }catch(e) {
-        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -335,7 +324,6 @@ router.post('/', async (req, res) => { // create new course
     try {
         instructionalFormats = inputCheck.checkInstructionalFormats(courseBody.instructionalFormats)
     }catch(e) {
-        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -343,7 +331,6 @@ router.post('/', async (req, res) => { // create new course
     try {
         syllabus = inputCheck.checkSyllabus(courseBody.syllabus)
     }catch(e) {
-        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -351,7 +338,6 @@ router.post('/', async (req, res) => { // create new course
     try {
         courseware = inputCheck.checkCourseware(courseBody.courseware)
     }catch(e) {
-        console.log(e)
         res.status(400).json(e);
         return
     }
@@ -359,7 +345,6 @@ router.post('/', async (req, res) => { // create new course
     try {
         picture = inputCheck.checkCoursePicture(courseBody.picture)
     }catch(e) {
-        console.log(e)
         res.status(400).json(e);
         return
     }

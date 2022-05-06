@@ -40,7 +40,6 @@ async function getTopCoursesByUserId(id) {
         courseList[i].courseIndex = arr[0] + " " + arr[1];
         courseList[i].courseName = arr.slice(2).join(" ");
     }
-    console.log(courseList)
     courseList.forEach(course => {
         course._id = course._id.toString()
     })

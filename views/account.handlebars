@@ -81,7 +81,7 @@
                         <h6><small>Difficulty: {{this.metrics.difficulty}} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Chance To Get
                                 A: {{this.metrics.chanceToGetA}}
                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp workLoad: {{this.metrics.workLoad}}</small></h6>
-                        <a data-toggle="modal" data-target="#cour-edit{{@index}}" class="eg-swal-av3-cour-edit"><button
+                        <a data-toggle="modal" data-target="#cour-edit{{@index}}"><button
                                 class="btn btn-sm btn-light">Edit</button></a>
                         <a id="courseId{{@index}}" value="{{this.courseId}} {{this.userId}}"
                             class="eg-swal-av3-cour-delete"><button class="btn btn-sm btn-light">Delete</button></a>
@@ -106,7 +106,8 @@
                                             <div class="col-12">
                                                 <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                                                     <li>
-                                                        <a href="#" class="btn btn-lg btn-primary">Update</a>
+                                                        <a href="#"
+                                                            class="btn btn-lg btn-primary eg-swal-av3-cour-edit">Update</a>
                                                     </li>
                                                     <li>
                                                         <a href="#" data-dismiss="modal"
@@ -138,11 +139,12 @@
                     <div class="ps-3">
                         <h6><a href="{{concat '/professors/' this.professorId}}">{{this.professorName}}</a> &nbsp
                             <small><i>Rating:
-                                    {{this.rating}}/5.0</i></small></h6>
+                                    {{this.rating}}/5.0</i></small>
+                        </h6>
                         <p>{{this.comment}}</p>
-                        <a data-toggle="modal" data-target="#prof-edit{{@index}}" class="eg-swal-av3-prof-edit"><button
-                                class="btn btn-sm btn-light">Edit</button></a>
-                        <a id="professorReviewId{{@index}}" value="{{this._id}}" class="eg-swal-av3-prof-delete"><button
+                        <a data-toggle="modal" data-target="#prof-edit{{@index}}"><button
+                                class="btn btn-sm btn-light">Edit</button></a>      
+                        <a id="professorId{{@index}}" value="{{this.professorId}} {{this._id}} {{this.userId}}" class="eg-swal-av3-prof-delete"><button
                                 class="btn btn-sm btn-light">Delete</button></a>
                     </div>
 
@@ -165,7 +167,7 @@
                                             <div class="col-12">
                                                 <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                                                     <li>
-                                                        <a href="#" class="btn btn-lg btn-primary">Update</a>
+                                                        <a href="#" class="btn btn-lg btn-primary eg-swal-av3-prof-edit">Update</a>
                                                     </li>
                                                     <li>
                                                         <a href="#" data-dismiss="modal"
@@ -197,7 +199,7 @@
             <h1 class="display-4">Some recommended courses for you</h1>
         </div>
         <div class="owl-carousel price-carousel position-relative" style="padding: 0 45px 45px 45px;">
-            
+
             {{#each topCourses}}
             <div class="bg-light rounded text-center">
                 <div class="position-relative">
@@ -206,8 +208,9 @@
                         style="background: rgba(29, 42, 77, .8);">
 
                         <h1 class="display-4 text-white mb-0">
-                            <small class="align-top fw-normal" style="font-size: 22px; line-height: 45px;"></small>{{this.courseIndex}}<small class="align-bottom fw-normal"
-                                style="font-size: 16px; line-height: 40px;"></small>
+                            <small class="align-top fw-normal"
+                                style="font-size: 22px; line-height: 45px;"></small>{{this.courseIndex}}<small
+                                class="align-bottom fw-normal" style="font-size: 16px; line-height: 40px;"></small>
                         </h1>
                         <h3 class="text-white">{{this.courseName}}</h3>
                     </div>
@@ -217,7 +220,8 @@
                     <p>Difficulty: {{this.metrics.difficulty}}</p>
                     <p>Chance to get A: {{this.metrics.chanceToGetA}}</p>
                     <p>Workload: {{this.metrics.workLoad}}</p>
-                    <a href="{{concat '/course/' this._id}}" class="btn btn-primary rounded-pill py-3 px-5 my-2">More Details</a>
+                    <a href="{{concat '/course/' this._id}}" class="btn btn-primary rounded-pill py-3 px-5 my-2">More
+                        Details</a>
                 </div>
             </div>
             {{/each}}
@@ -383,6 +387,10 @@
                                     window.location.reload();
                                 }
                             });
+                        },
+                        error: function (request, status, error) {
+                            Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                            event.preventDefault();
                         }
                     })
                 }
@@ -393,7 +401,8 @@
         $(".eg-swal-av3-prof-delete").on("click", function (event) {
             event.preventDefault();
             var index = $(".eg-swal-av3-prof-delete").index(this);
-            var reviewId = $("#professorReviewId" + index).attr("value");
+            var str = $("#professorId" + index).attr("value");
+            let reviewId = str.split(" ")[1];
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -416,6 +425,10 @@
                                 }
                             });
 
+                        },
+                        error: function (request, status, error) {
+                            Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                            event.preventDefault();
                         }
                     });
                 }
@@ -431,7 +444,7 @@
             var formData = {
                 courseId: arr[0],
                 userId: arr[1],
-                courComment: comment
+                newComment: comment
             };
             $.ajax({
                 type: "PUT",
@@ -450,9 +463,13 @@
                             window.location.reload();
                         }
                     });
+                },
+                error: function (request, status, error) {
+                    Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                    event.preventDefault();
                 }
             })
-            
+
         });
 
 
@@ -464,13 +481,14 @@
             let arr = str.split(" ");
             let comment = $("#prof-comment-edit" + index).val();
             var formData = {
-                courseId: arr[0],
-                userId: arr[1],
-                profComment: comment
+                professorId: arr[0],
+                reviewId: arr[1],
+                userId: arr[2],
+                newComment: comment
             };
             $.ajax({
                 type: "PUT",
-                url: "http://localhost:3000/course/CourseReview/",
+                url: "http://localhost:3000/professor/editProfessorReview/",
                 data: formData,
                 dataType: "json",
                 encode: true,
@@ -485,9 +503,12 @@
                             window.location.reload();
                         }
                     });
+                },
+                error: function (request, status, error) {
+                    Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                    event.preventDefault();
                 }
             })
-            
         });
 
 

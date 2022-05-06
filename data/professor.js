@@ -75,7 +75,6 @@ async function createProfessor(professorName, department, introduction, picture)
         { $setOnInsert: newProfessor },
         { upsert: true }
     );
-    console.log(newInsertInformation);
     if (newInsertInformation.upsertedCount === 0) throw `Professor ${professorName} already exists`;
     return await this.getProfById(
         newInsertInformation.upsertedId.toString()
@@ -133,7 +132,7 @@ async function removeProf(id) {
         try {
             await professorReviewDBfunction.deleteProfessorReview(uid, pid)
             const userUpdateInfo = await userCollection.updateOne(
-                { _id: ObjectId() },
+                { _id: ObjectId(uid) },
                 { $pull: { professorReviews: { professorId: pid } } }
             )
         } catch (e) {
@@ -225,22 +224,34 @@ async function getProfReview(reviewId) {
     return review;
 }
 
-async function updateProfReview(rid, pid, comment, rating) {
-
+async function updateProfReview(uid, rid, pid, comment) {
+    uid = inputCheck.checkUserId(uid);
     rid = inputCheck.checkUserId(rid);
     pid = inputCheck.checkUserId(pid);
     comment = inputCheck.checkComment(comment);
-    rating = inputCheck.checkRating(rating);
 
     const profCollection = await professors();
+    const userCollection = await users();
+    
 
     const updateInfo = await profCollection.updateOne(
         { _id: ObjectId(pid),  "reviews._id": ObjectId(rid)},
-        { $set: { "reviews.$.comment": comment, "reviews.$.rating": rating } },
+        { $set: { "reviews.$.comment": comment} },
     );
-    
+    const updateProfessorReviewInUser = await userCollection.updateOne(
+        {_id: ObjectId(uid),"professorReviews._id" : ObjectId(rid)}, 
+        {
+            $set: {
+                "professorReviews.$.comment" : comment
+            }
+        }
+    )
+
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
         throw 'Update failed';
+    if (updateProfessorReviewInUser.modifiedCount === 0) {
+        throw 'could not professor review in user';
+    }
     return await this.getProfReview(rid);
 }
 
@@ -249,17 +260,18 @@ async function removeProfReview(id) {
     id = inputCheck.checkUserId(id);
 
     const profCollection = await professors();
+    const userCollection = await users();
+
     // find out the professor document this review belongs to
     const prof = await profCollection.findOne({ "reviews._id": ObjectId(id) });
-    if (!prof) throw "review does not exist";
-    console.log(prof)
-    console.log(id)
+    const user = await userCollection.findOne({ "professorReviews._id": ObjectId(id) });
+    if (!prof && !user) throw "review does not exist";
     // delete the review from the reviews
     await profCollection.updateOne({ _id: prof._id }, { $pull: { reviews: { _id: ObjectId(id) } } })
-   
+    await userCollection.updateOne({ _id: user._id }, { $pull: { professorReviews: { _id: ObjectId(id) } } })
     // re-calculate avg rating
-    /*
     await profCollection.updateOne({ _id: ObjectId(prof._id) }, [{ $set: { rating: { $avg: "$reviews.rating" } } }])
+    /*
     const ids = await profCollection.aggregate([
         { $unwind: '$reviews' },
         { $match: { 'reviews._id': id } },

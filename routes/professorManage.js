@@ -19,7 +19,6 @@ router.get('/', async (req, res) => {
 
         // professor.numberOfReview = professor.reviews.length;
     })
-    console.log(professorList[0])
     res.render('professorManage', { 
         title: 'RateMyCourses - Professor Manage', 
         allProfessors: professorList
