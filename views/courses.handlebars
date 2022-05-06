@@ -35,7 +35,7 @@
             <div class="input-group">
                 <select class="form-select border-primary w-25" style="height: 60px;">
                     <option selected="">Department</option>
-                    <option value="1">Department 1</option>
+                    <option value="1">Computer Science</option>
                     <option value="2">Department 2</option>
                     <option value="3">Department 3</option>
                 </select>
@@ -174,3 +174,57 @@
 
 <script src="static/js/main.js" type="64f10123938904b78188bb72-text/javascript"></script>
 <script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
+<script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
+
+<script>
+    $(document).ready(function () {
+
+        
+
+
+        $(".eg-swal-av3-cour-delete").on("click", function (event) {
+            event.preventDefault();
+            var index = $(".eg-swal-av3-cour-delete").index(this);
+            var str = $("#courseId" + index).attr("value");
+            let arr = str.split(" ");
+            var formData = {
+                courseId: arr[0],
+                userId: arr[1]
+            };
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "PUT",
+                        url: "http://localhost:3000/course/deleteCourseReview/",
+                        data: formData,
+                        dataType: "json",
+                        encode: true,
+                        success: function (result) {
+                            Swal.fire(
+                                'Deleted!',
+                                'The course review has been deleted.',
+                                'success'
+                            ).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
+                                }
+                            });
+                        },
+                        error: function (request, status, error) {
+                            Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                            event.preventDefault();
+                        }
+                    })
+                }
+            });
+        });
+
+
+    });
+</script>
