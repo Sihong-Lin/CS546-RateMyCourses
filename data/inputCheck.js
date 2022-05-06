@@ -149,8 +149,10 @@ function checkGradingBasis(gradingBasis) {
 
 function checkUnits(units) {
     if(!units) throw 'You must provided unit'
-    //if(typeof(units) !== 'number') throw 'unit is not a number'
-    return parseInt(units)
+    units = parseInt(units)
+    if(!Number.isInteger(units)) throw 'unit is not a integer'
+    if(units < 1 || units > 4) throw 'unit must in range of 1 to 4'
+    return units
 }
 
 function checkDescription(description) {
@@ -192,13 +194,17 @@ function checkSyllabus(syllabus) {
 }
 
 function checkCourseware(courseware) {
-    if(!courseware) throw 'You must provided courseware'
-    if(typeof(courseware) !== 'string') throw 'courseware is not a string'
-    courseware = courseware.trim();
-    if (courseware.trim().length === 0) {
-        throw 'courseware cannot be an empty string or just spaces';
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator  
+    if(!!pattern.test(courseware)) {
+        return courseware
+    } else {
+        throw 'invaild courseware url'
     }
-    return courseware
 }
 
 function checkCourseId(courseId) {
@@ -213,12 +219,19 @@ function checkCourseId(courseId) {
 }
 
 function checkCoursePicture(coursePicture) {
-    if(!coursePicture) throw 'You must provided course picture'
-    if(typeof(coursePicture) !== 'string') throw 'Course Picture is not a string'
-    coursePicture = coursePicture.trim();
-    if (coursePicture.trim().length === 0) {
-        throw 'Course Picture cannot be an empty string or just spaces';
-    }
+    // if(!coursePicture) throw 'You must provided course picture'
+    // if(typeof(coursePicture) !== 'string') throw 'Course Picture is not a string'
+    // var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    // '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    // '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    // '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    // '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    // '(\\#[-a-z\\d_]*)?$','i'); // fragment locator  
+    // if(!!pattern.test(coursePicture)) {
+    //     return coursePicture
+    // } else {
+    //     throw 'invaild course picture url'
+    // }
     return coursePicture
 }
 /* input checking for professor */
@@ -254,11 +267,18 @@ function checkIntroduction(introduction) {
 }
 
 function checkProfessorPicture(professorPicture) {
-    if(!professorPicture) throw 'You must provided professor picture'
-    if(typeof(professorPicture) !== 'string') throw 'Professor Picture is not a string'
-    professorPicture = professorPicture.trim();
-    if (professorPicture.trim().length === 0) {
-        throw 'Professor Picture cannot be an empty string or just spaces';
-    }
+    // if(!professorPicture) throw 'You must provided course picture'
+    // if(typeof(professorPicture) !== 'string') throw 'Course Picture is not a string'
+    // var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    // '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    // '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    // '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    // '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    // '(\\#[-a-z\\d_]*)?$','i'); // fragment locator  
+    // if(!!pattern.test(professorPicture)) {
+    //     return professorPicture
+    // } else {
+    //     throw 'invaild professor picture url'
+    // }
     return professorPicture
 }

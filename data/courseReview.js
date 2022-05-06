@@ -11,7 +11,6 @@ module.exports = {
     countCourseReview,
     countCourseReviewByDepartment,
     avgCourseReview,
-    updateCourseReviewComment
 }
 
 
@@ -97,41 +96,4 @@ async function avgCourseReview() {
 }
 
 
-async function updateCourseReviewComment(userId, courseId, newComment) {
-    try {
-        userId = inputCheck.checkUserId(userId);
-        courseId = inputCheck.checkCourseId(courseId);
-        newComment = inputCheck.checkComment(newComment);
-    } catch (e) {
-        throw e
-    }
-    const courseCollection = await course();
-    const userCollection = await user();
-    const updateCourseReviewInCourse = await courseCollection.updateOne(
-        {_id: ObjectId(courseId),"courseReviews.userId"  : userId}, 
-        {
-            $set: {
-                "courseReviews.$.comment" : newComment
-            }
-        }
-    )
-
-    const updateCourseReviewInUser = await userCollection.updateOne(
-        {_id: ObjectId(userId),"courseReviews.courseId"  : courseId}, 
-        {
-            $set: {
-                "courseReviews.$.comment" : newComment
-            }
-        }
-    )
-    
-    if (updateCourseReviewInCourse.modifiedCount === 0) {
-        throw 'could not update course review in course';
-    }
-
-    if (updateCourseReviewInUser.modifiedCount === 0) {
-        throw 'could not update course review in user';
-    }
-    return {updateCourseReviewComment: true}
-}
 

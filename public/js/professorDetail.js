@@ -1,4 +1,4 @@
-(function ($) {
+$(document).ready(function () {
     var form = $('#review-form'),
     comments = $('#comments'),
     _id = $("#review-form").attr("value");
@@ -19,14 +19,31 @@
                     }),
                     statusCode: {
                         200: function(res) {
-                            var newElement = $(res);
-                            // if (!newElement) console.log(1);
-                            comments.prepend(newElement);
+                            Swal.fire({
+                                title: "Comment Added",
+                                text: "Please log in",
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonText: 'confirm'
+                            }).then(() => {
+                                // var newElement = $(res);
+                                // comments.prepend(newElement);
+                                window.location.reload();
+                            })
                         },
                         401: function(res) {
-                            //console.log(res)
-                            //document.write($(res));
-                            $("body").html(res);
+                            Swal.fire({
+                                title: "You are not authorized to add comment",
+                                text: "Please log in",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Log in',
+                                // closeOnCancel: true
+                            }).then((res) => {
+                                if (res.isConfirmed) {
+                                    window.location = "http://localhost:3000/login.html";
+                                }
+                            })
                         }
                     }
                 };
@@ -45,4 +62,4 @@
             console.log(e);
         }
     })
-})(window.jQuery);
+});

@@ -281,8 +281,8 @@ const departmentReivew = async () => {
         "Prof is good guy",
         5
     )
-    let update_u1_c1 = await courseReviewDB.updateCourseReviewComment(firstUserId, firstCourseId, "this is a new comment")
-    console.log(update_u1_c1)
+    
+    console.log(inputCheck.checkCourseware("http://georgetownheckler.com/wp-content/uploads/2016/09/prof.jpg"))
     // let dc1 = await course.removeCourse(firstCourseId)
     // let dc2 = await course.removeCourse(secondCourseId)
     // let dc3 = await course.removeCourse(thirdCourseId)
