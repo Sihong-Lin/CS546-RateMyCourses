@@ -1,41 +1,153 @@
 const express = require('express');
 const router = express.Router();
-const professor = require('../data/professor');
-const user = require('../data/user');
-const inputCheck = require('../data/inputCheck');
+const home = require('../data/home');
 
-
-router.delete('/:id', async (req, res) => {  //半成品
-    const professorId = req.params.id;
-    try {
-        removeProfessorStatus = await professor.removeProf(professorId);
-    } catch (e) {
-        res.status(500).json(e);
-        return
-    }
-    
-    res.status(200).json({removeProfessorStatus });
-    
-    
+//Professors页面初始化
+router.get('/', async (req, res) => {
+    let professorList = await home.getAllProfessors();
+    let dpts = await home.getDepartments();
+    // console.log(professorList[0])
+    res.render('professors', { 
+        title: 'RateMyCourses - Courses', 
+        allProfessors: professorList,
+        dpts: dpts
+    });
 });
 
-router.put('/deleteProfessorReview', async (req, res) => {  
-    let reviewId = req.body.reviewId;
-    let reviewDeleteStatus = undefined
+router.post('/', async (req, res) => {
+    console.log(req.body.professorName);
     try {
-        reviewDeleteStatus = await professor.removeProfReview(reviewId);
+        if (req.session.user) {
+            let professor = await home.createProfessor(req.body.professorName, req.body.department, req.body.introduction, req.body.picture);
+            res.status(200).json(professor);
+        } else {
+            console.log("You are not authorized to create professor")
+            res.status(401).send("You are not authorized to create professor");
+        }
     } catch (e) {
-        res.status(500).json(e);
-        return
+        res.status(400).send(e);
     }
-    
-    res.status(200).json({removeReviewStatus: true});
+});
+
+router.get('/:id', async (req, res) => {
+    let { id } = req.params;
+    console.log(id);
+    try {
+        let professor = await home.getProfById(id);
+        console.log(professor);
+        if (!professor.rating) {
+            professor.rating = 0
+        } else {
+            professor.rating = professor.rating.toPrecision(2)
+        }
+        res.render('professorDetail', professor);
+    } catch (e) {
+        console.log(e);
+    }
+});
+
+// clean up this route
+router.post('/:id', async (req, res) => {
+    let { id } = req.params;
+    let comment = req.body.comment;
+    let rating = parseInt(req.body.rating);
+    try {
+        if (req.session.user) {
+            let uid = req.session.user.userId;
+            let profReview = await home.addProfReview(uid, id, comment, rating);
+            console.log(profReview);
+            res.status(200).render('partials/professor_comment', profReview);
+        } else {
+            console.log("entering redirect");
+            res.status(401).send("You are not authroized to post a comment")
+        }
+        // return res.end();
+    } catch (e) {
+        console.log(e);
+    }
 });
 
 
+router.put('/:id', async (req, res) => {
+    let { id } = req.params;
+    let updatedProf = req.body
+    try {
+        if (req.session.user) {
+            let updated = await home.updateProf(id, updatedProf);
+            res.status(200).json("professro successfully updated");
+        } else {
+            console.log("entering redirect");
+            res.redirect("../public/401.html");
+        }
+        return res.end();
+    } catch (e) {
+        console.log(e);
+    }
+});
 
+router.delete('/:id', async (req, res) => {
+    let { id } = req.params;
+    try {
+        if (req.session.user) {
+            let deleteInfo = await home.removeProf(id);
+            console.log(deleteInfo);
+            res.status(200).send("Professor successfully deleted");
+        } else {
+            res.status(401).send("You are not authorized to delete a professor");
+        }
+        return;
+    } catch (e) {
+        console.log(e);
+    }
+});
 
+router.get('/comments/:id', async (req, res) => {
+    let { id } = req.params;
+    console.log(id);
+    try {
+        if (req.session.user) {
+            let review = await home.getProfReview(id);
+            res.status(200).json(review);
+        } else {
+            res.status(401).send("You are not authorized to view this content")
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
+});
 
+router.put('/comments/:id', async (req, res) => {
+    let { id } = req.params;
+    console.log(id);
+    try {
+        if (req.session.user) {
+            let updatedReview = await home.updateProfReview(id, req.body.professorId, req.body.comment, req.body.rating);
+            res.status(200).json(updatedReview);
+        } else {
+            res.status(401).send("You are not authorized to delete this content")
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
+});
+
+router.delete('/comments/:id', async (req, res) => {
+    let { id } = req.params;
+    console.log(id);
+    try {
+        if (req.session.user) {
+            let deleteInfo = await home.removeProfReview(id);
+            res.status(200).json(deleteInfo);
+        } else {
+            res.status(401).send("You are not authorized to delete this content")
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
+});
 
 
 module.exports = router;

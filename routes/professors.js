@@ -6,7 +6,7 @@ const home = require('../data/home');
 router.get('/', async (req, res) => {
     let professorList = await home.getAllProfessors();
     let dpts = await home.getDepartments();
-    console.log(professorList[0])
+    // console.log(professorList[0])
     res.render('professors', { 
         title: 'RateMyCourses - Courses', 
         allProfessors: professorList,
@@ -19,13 +19,13 @@ router.post('/', async (req, res) => {
     try {
         if (req.session.user) {
             let professor = await home.createProfessor(req.body.professorName, req.body.department, req.body.introduction, req.body.picture);
-            console.log(professor);
+            res.status(200).json(professor);
         } else {
             console.log("You are not authorized to create professor")
+            res.status(401).send("You are not authorized to create professor");
         }
-        return res.end();
     } catch (e) {
-        console.log(e);
+        res.status(400).send(e);
     }
 });
 
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
     console.log(id);
     try {
         let professor = await home.getProfById(id);
-        // console.log(professor);
+        console.log(professor);
         if (!professor.rating) {
             professor.rating = 0
         } else {
@@ -59,16 +59,15 @@ router.post('/:id', async (req, res) => {
             res.status(200).render('partials/professor_comment', profReview);
         } else {
             console.log("entering redirect");
-            const path = require('path');
-            res.status(401).sendFile(path.join(__dirname, '../public', '401.html'));
+            res.status(401).send("You are not authroized to post a comment")
         }
-        return res.end();
+        // return res.end();
     } catch (e) {
         console.log(e);
     }
 });
 
-// this route updates professor successfully, but ajax never go on to callback after this
+
 router.put('/:id', async (req, res) => {
     let { id } = req.params;
     let updatedProf = req.body
@@ -101,5 +100,54 @@ router.delete('/:id', async (req, res) => {
         console.log(e);
     }
 });
+
+router.get('/comments/:id', async (req, res) => {
+    let { id } = req.params;
+    console.log(id);
+    try {
+        if (req.session.user) {
+            let review = await home.getProfReview(id);
+            res.status(200).json(review);
+        } else {
+            res.status(401).send("You are not authorized to view this content")
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
+});
+
+router.put('/comments/:id', async (req, res) => {
+    let { id } = req.params;
+    console.log(id);
+    try {
+        if (req.session.user) {
+            let updatedReview = await home.updateProfReview(id, req.body.professorId, req.body.comment, req.body.rating);
+            res.status(200).json(updatedReview);
+        } else {
+            res.status(401).send("You are not authorized to delete this content")
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
+});
+
+router.delete('/comments/:id', async (req, res) => {
+    let { id } = req.params;
+    console.log(id);
+    try {
+        if (req.session.user) {
+            let deleteInfo = await home.removeProfReview(id);
+            res.status(200).json(deleteInfo);
+        } else {
+            res.status(401).send("You are not authorized to delete this content")
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
+});
+
 
 module.exports = router;

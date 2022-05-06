@@ -47,13 +47,13 @@
             <div class="col-lg-7">
                 <div class="mb-4">
                     <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">User Info</h5>
-                    <h4 class="display-10">Username: &nbsp {{userInfo.username}}</h4>
-                    <h4 class="display-10">Email: &nbsp {{userInfo.email}}</h4>
-                    <h4 class="display-10">Major: &nbsp {{userInfo.major}} </h4>
-                    <h4 class="display-10">Role: &nbsp {{userInfo.role}}</h4>
-                    <h4 class="display-10">Restrict Status: &nbsp {{userInfo.restrictStatus}}</h4>
-                    <h4 class="display-10">Registration Time: &nbsp {{userInfo.registrationTime}}</h4>
-                    <h4 class="display-10">Last Login: &nbsp {{userInfo.lastLogin}}</h4>
+                    <h4 class="display-10">Username: &nbsp&nbsp {{userInfo.username}}</h4>
+                    <h4 class="display-10">Email: &nbsp&nbsp {{userInfo.email}}</h4>
+                    <h4 class="display-10">Major: &nbsp&nbsp {{userInfo.major}} </h4>
+                    <h4 class="display-10">Role: &nbsp&nbsp {{userInfo.role}}</h4>
+                    <h4 class="display-10">Restrict Status: &nbsp&nbsp {{userInfo.restrictStatus}}</h4>
+                    <h4 class="display-10">Registration Time: &nbsp&nbsp {{userInfo.registrationTime}}</h4>
+                    <h4 class="display-10">Last Login: &nbsp&nbsp {{userInfo.lastLogin}}</h4>
                 </div>
             </div>
         </div>
@@ -432,10 +432,6 @@
             event.preventDefault();
             var index = $(".eg-swal-av3-prof-delete").index(this);
             var reviewId = $("#professorReviewId" + index).attr("value");
-            alert(reviewId)
-            var formData = {
-                reviewId: reviewId
-            };
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -445,11 +441,8 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        type: "PUT",
-                        url: "http://localhost:3000/professor/deleteProfessorReview/",
-                        data: formData,
-                        dataType: "json",
-                        encode: true,
+                        type: "DELETE",
+                        url: "http://localhost:3000/professors/comments/" + reviewId,
                         success: function (result) {
                             Swal.fire(
                                 'Deleted!',

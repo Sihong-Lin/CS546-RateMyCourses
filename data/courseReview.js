@@ -93,8 +93,3 @@ async function avgCourseReview() {
     const numberOfCourseReview = await courseReveiwReviewCollection.countDocuments() 
     return (numberOfCourseReview/numberOfCourse).toFixed(2);
 }
-
-
-
- 
-

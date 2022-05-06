@@ -173,7 +173,7 @@
                                                     <div class="tab-content">
                                                         <form id="editCourseForm">
                                                             <div class="row gy-4">
-                                                                
+
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="form-label"
@@ -208,7 +208,7 @@
                                                                             class="form-control form-control-lg"
                                                                             id="academicLevel-edit{{@index}}"
                                                                             name="academicLevel"
-                                                                            value="{{this.academicLevel}}">    
+                                                                            value="{{this.academicLevel}}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -217,9 +217,8 @@
                                                                             for="type">Type</label>
                                                                         <input type="text"
                                                                             class="form-control form-control-lg"
-                                                                            id="type-edit{{@index}}"
-                                                                            name="type"
-                                                                            value="{{this.type}}">  
+                                                                            id="type-edit{{@index}}" name="type"
+                                                                            value="{{this.type}}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -228,9 +227,8 @@
                                                                             for="units">Units</label>
                                                                         <input type="text"
                                                                             class="form-control form-control-lg"
-                                                                            id="units-edit{{@index}}"
-                                                                            name="units"
-                                                                            value="{{this.units}}">     
+                                                                            id="units-edit{{@index}}" name="units"
+                                                                            value="{{this.units}}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -238,11 +236,11 @@
                                                                         <label class="form-label"
                                                                             for="instructionalFormats">Instructional
                                                                             Format</label>
-                                                                         <input type="text"
+                                                                        <input type="text"
                                                                             class="form-control form-control-lg"
                                                                             id="instructionalFormats-edit{{@index}}"
                                                                             name="instructionalFormats"
-                                                                            value="{{this.instructionalFormats}}">     
+                                                                            value="{{this.instructionalFormats}}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12">
@@ -395,8 +393,9 @@
                                 <div class="form-group">
                                     <label class="form-label" for="instructionalFormats-add">Instructional
                                         Format</label>
-                                    <input type="text" class="form-control form-control-lg" id="instructionalFormats-add"
-                                        name="instructionalFormats-add" placeholder="e.g., Lecture or Thesis">    
+                                    <input type="text" class="form-control form-control-lg"
+                                        id="instructionalFormats-add" name="instructionalFormats-add"
+                                        placeholder="e.g., Lecture or Thesis">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -494,7 +493,12 @@
                             window.location.reload();
                         }
                     });
+                },
+                error: function (request, status, error) {
+                    Swal.fire(request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                    event.preventDefault();
                 }
+
             })
 
 
@@ -535,6 +539,10 @@
                             window.location.reload();
                         }
                     });
+                },
+                error: function (request, status, error) {
+                    Swal.fire(request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                    event.preventDefault();
                 }
             })
         });
@@ -566,6 +574,10 @@
                                 }
                             });
 
+                        },
+                        error: function (request, status, error) {
+                            Swal.fire(request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                            event.preventDefault();
                         }
                     });
                 }
