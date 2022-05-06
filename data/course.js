@@ -18,7 +18,8 @@ module.exports = {
     getTop5CourseByMajor,
     updateCourseCount,
     updateCourseRating,
-    decreaseCourseCount
+    decreaseCourseCount,
+    updateCourseReviewComment
 }
 
 async function createCourse(courseName, academicLevel, courseOwner, type,
@@ -77,6 +78,14 @@ async function getCourse(courseId) {
     courseId = inputCheck.checkCourseId(courseId);
     const courseCollection = await courses();
     let course = await courseCollection.findOne({ _id: ObjectId(courseId) });
+    let reviews = course.courseReviews;
+    for (let i = 0; i < reviews.length; i++) {
+        let userId = reviews[i].userId
+        const userCollection = await users();
+        const user = await userCollection.findOne({ _id: ObjectId(userId) });
+        if (!user) throw 'User not found';
+        reviews[i].profilePicture = user.profilePicture;
+    }
     if (course === null) throw 'No course with that id';
     return course;
 }
@@ -435,3 +444,43 @@ async function removeUserCourseReview(courseId, userId) {
         { $pull: { courseReviews: { courseId: courseId } } }
     )
 }  
+
+async function updateCourseReviewComment(userId, courseId, newComment) {
+    try {
+        userId = inputCheck.checkUserId(userId);
+        courseId = inputCheck.checkCourseId(courseId);
+        newComment = inputCheck.checkComment(newComment);
+    } catch (e) {
+        throw e
+    }
+    const courseCollection = await courses();
+    const userCollection = await users();
+    const updateCourseReviewInCourse = await courseCollection.updateOne(
+        {_id: ObjectId(courseId),"courseReviews.userId"  : userId}, 
+        {
+            $set: {
+                "courseReviews.$.comment" : newComment
+            }
+        }
+    )
+
+    const updateCourseReviewInUser = await userCollection.updateOne(
+        {_id: ObjectId(userId),"courseReviews.courseId"  : courseId}, 
+        {
+            $set: {
+                "courseReviews.$.comment" : newComment
+            }
+        }
+    )
+    
+    if (updateCourseReviewInCourse.modifiedCount === 0) {
+        throw 'could not update course review in course';
+    }
+
+    if (updateCourseReviewInUser.modifiedCount === 0) {
+        throw 'could not update course review in user';
+    }
+    return {updateCourseReviewComment: true}
+}
+
+

@@ -302,6 +302,66 @@
         </div>
     </div>
 
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="bg-light rounded p-5">
+                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-white mb-4">
+                    Leave a comment</h4>
+                <form method="POST">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <span>
+                                <h6>Difficulty:    </h6>
+                                <input type="radio" name="Difficulty" value="Easy" required/>&nbsp Easy
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="radio" name="Difficulty" value="Medium"/>&nbsp Medium
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="radio" name="Difficulty" value="Hard"/>&nbsp Hard
+                            </span>
+                        </div>
+                        <div class="col-12">
+                            <span>
+                                <h6>ChanceToGetA:    </h6>
+                                <input type="radio" name="ChanceToGetA" value="Low" required/>&nbsp Low 
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="radio" name="ChanceToGetA" value="Medium" />&nbsp Medium
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="radio" name="ChanceToGetA" value="High"/>&nbsp High
+                            </span>
+                        </div>
+                        <div class="col-12">
+                            <span>
+                                <h6>WorkLoad:    </h6>
+                                <input type="radio" name="WorkLoad" value="Less" required/>&nbsp Less
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="radio" name="WorkLoad" value="Medium"/>&nbsp Medium
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="radio" name="WorkLoad" value="Plenty"/>&nbsp Plenty
+                            </span>
+                        </div>
+                        <div class="col-12">
+                            <textarea name= "comment"class="form-control bg-white border-0" rows="5" placeholder="Comment" required></textarea>
+                        </div>
+                        
+                        <div class="col-12 sm-6">
+                                <select class="form-select w-25" style="height: 60px;" name="rating" required>
+                                    <option selected="">Rating</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="2">4</option>
+                                    <option value="3">5</option>
+                                </select>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit">Leave Your Comment</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
  
 

@@ -122,16 +122,5 @@ async function searchCoursesByMajor(major) {
 
 }
 
-const main = async () => {
-    try {
-        //console.log(await getAllCourses());
-    } catch (e) {
-        console.log(e);
-    }
-
-}
-
-main();
-
 
 

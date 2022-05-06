@@ -62,13 +62,13 @@
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="logView.html" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-calendar-check"></em></span>
-                                        <span class="nk-menu-text">Log View</span>
+                                    <a href="home" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-home"></em></span>
+                                        <span class="nk-menu-text">Back to Home</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="home.html" class="nk-menu-link">
+                                    <a href="" class="nk-menu-link sign-out">
                                         <span class="nk-menu-icon"><em class="icon ni ni-signout"></em></span>
                                         <span class="nk-menu-text">Sign Out</span>
                                     </a>
@@ -622,6 +622,53 @@
         }(NioApp, jQuery);
 
     </script>
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        $(".sign-out").on("click", function (event) {
+            event.preventDefault();
+            alert("sssssssss")
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to be signed out!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, sign out!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:3000/logout/",
+                        success: function (result) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'You have successfully signed out',
+                                showConfirmButton: true,
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.href = "home";
+                                }
+                            });
+                        },
+                        error: function (request, status, error) {
+                            Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                            event.preventDefault();
+                        }
+                    })
+                }
+            });
+        });
+    });
+</script>   
 
 </body>
 

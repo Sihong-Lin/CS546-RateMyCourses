@@ -16,19 +16,38 @@ const res = require('express/lib/response');
 
 module.exports = {
     createUser,
+    createAdmin,
     checkUser,
     getUser,
     createCourseReview,
     deleteCourseReview,
     setUserRestrictStatus,
+    changeUserRole,
     removeUser,
     countUsers,
     countUserByMajor,
     studentMajorDistribution,
     getProfessorReviewById,
     getCourseReviewById,
-    getUserById
+    getUserById,
+    getTopCoursesByUserId
 };
+
+async function getTopCoursesByUserId(id) {
+    let user = await getUserById(id);
+    let courseList = await courseDBFunction.getTop5CourseByMajor(user.major);
+    for (let i = 0; i < courseList.length; i++) {
+        let courseName = courseList[i].courseName;
+        let arr = courseName.split(" ");
+        courseList[i].courseIndex = arr[0] + " " + arr[1];
+        courseList[i].courseName = arr.slice(2).join(" ");
+    }
+    courseList.forEach(course => {
+        course._id = course._id.toString()
+    })
+    return courseList;
+
+}
 
 
 async function removeUser(userId) {
@@ -114,6 +133,20 @@ async function setUserRestrictStatus(userId) {
     );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
         throw 'Update user restrict status failed';
+    }
+    return { updateRestrictStatus: true }
+}
+
+async function changeUserRole(userId) {
+    const user = await getUserById(userId)
+    const userCollection = await users();
+    let updatedRole = user.role == "student" ? "administrator" : "student";
+    const updateInfo = await userCollection.updateOne(
+        { _id: ObjectId(userId) },
+        { $set: { role: updatedRole } }
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw 'Update user role failed';
     }
     return { updateRestrictStatus: true }
 }
@@ -378,4 +411,41 @@ async function getCourseReviewById(userId) {
 async function getProfessorReviewById(userId) {
     const user = await getUserById(userId);
     return user.professorReviews
+}
+
+
+
+
+
+
+
+
+async function createAdmin(username, email, major, profilePicture, password) {
+    try {
+        username = inputCheck.checkUserName(username)
+        username = await checkUsernameRepeat(username)
+        password = inputCheck.checkPassword(password)
+    } catch (e) {
+        throw e
+    }
+    const userCollection = await users();
+    let newUser = {
+        username: username.toLowerCase(),
+        password: await bcrypt.hash(password, saltRound),
+        courseReviews: [],
+        professorReviews: [],
+        restrictStatus: false,
+        profilePicture: profilePicture,
+        email: email,
+        major: major,
+        registrationTime: sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss'),
+        lastLogin: "-",
+        role: "administrator"
+    }
+    const insertInfo = await userCollection.insertOne(newUser);
+    if (!insertInfo.acknowledged || !insertInfo.insertedId) {
+        throw 'Could not create user.';
+    }
+
+    return { userInserted: true, insertedId: insertInfo.insertedId.toString() };
 }

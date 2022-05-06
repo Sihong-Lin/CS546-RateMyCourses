@@ -13,6 +13,8 @@ const departmentReivew = async () => {
     
     const db = await connection.connectToDb();
     await db.dropDatabase();
+
+    let adminId = undefined
     let firstUserId = undefined
     let secondUserId = undefined
     let thirdUserId = undefined
@@ -50,6 +52,14 @@ const departmentReivew = async () => {
         "My research to hill improve the way programmers develop",
         "url to picture"
     ))._id.toString()
+
+    adminId = (await user.createAdmin( //(username, email, major, profilePicture, password)
+        "admin",
+        "admin@gmail.com",
+        "Computer Science",
+        "https://freesvg.org/img/administrator.png",
+        "123456"
+    )).insertedId
 
     firstUserId = (await user.createUser( //(username, email, major, profilePicture, password)
         "meicheng du",
@@ -281,7 +291,8 @@ const departmentReivew = async () => {
         "Prof is good guy",
         5
     )
-    let ru1 = await professor.removeProf(firstProfId)
+    
+    console.log(inputCheck.checkCourseware("http://georgetownheckler.com/wp-content/uploads/2016/09/prof.jpg"))
     // let dc1 = await course.removeCourse(firstCourseId)
     // let dc2 = await course.removeCourse(secondCourseId)
     // let dc3 = await course.removeCourse(thirdCourseId)

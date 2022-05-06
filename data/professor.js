@@ -75,7 +75,6 @@ async function createProfessor(professorName, department, introduction, picture)
         { $setOnInsert: newProfessor },
         { upsert: true }
     );
-    console.log(newInsertInformation);
     if (newInsertInformation.upsertedCount === 0) throw `Professor ${professorName} already exists`;
     return await this.getProfById(
         newInsertInformation.upsertedId.toString()
@@ -89,6 +88,14 @@ async function getProfById(id) {
     const professor = await profCollection.findOne({ _id: ObjectId(id) });
     if (!professor) throw 'Professor not found';
     professor._id = professor._id.toString()
+    let professorReviews = professor.reviews;
+    for (let i = 0; i < professorReviews.length; i++) {
+        let userId = professorReviews[i].userId
+        const userCollection = await users();
+        const user = await userCollection.findOne({ _id: ObjectId(userId) });
+        if (!user) throw 'User not found';
+        professorReviews[i].profilePicture = user.profilePicture;
+    }
     return professor;
 }
 
@@ -225,22 +232,34 @@ async function getProfReview(reviewId) {
     return review;
 }
 
-async function updateProfReview(rid, pid, comment, rating) {
-
+async function updateProfReview(uid, rid, pid, comment) {
+    uid = inputCheck.checkUserId(uid);
     rid = inputCheck.checkUserId(rid);
     pid = inputCheck.checkUserId(pid);
     comment = inputCheck.checkComment(comment);
-    rating = inputCheck.checkRating(rating);
 
     const profCollection = await professors();
+    const userCollection = await users();
+    
 
     const updateInfo = await profCollection.updateOne(
         { _id: ObjectId(pid),  "reviews._id": ObjectId(rid)},
-        { $set: { "reviews.$.comment": comment, "reviews.$.rating": rating } },
+        { $set: { "reviews.$.comment": comment} },
     );
-    
+    const updateProfessorReviewInUser = await userCollection.updateOne(
+        {_id: ObjectId(uid),"professorReviews._id" : ObjectId(rid)}, 
+        {
+            $set: {
+                "professorReviews.$.comment" : comment
+            }
+        }
+    )
+
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
         throw 'Update failed';
+    if (updateProfessorReviewInUser.modifiedCount === 0) {
+        throw 'could not professor review in user';
+    }
     return await this.getProfReview(rid);
 }
 

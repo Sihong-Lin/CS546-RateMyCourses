@@ -2,6 +2,7 @@ const mongoCollections = require('../config/mongoCollections');
 const inputCheck = require('./inputCheck');
 const courseReview = mongoCollections.courseReview;
 const course = mongoCollections.courses
+const user = mongoCollections.users
 const { ObjectId } = require('mongodb');
 
 module.exports = {
@@ -95,6 +96,4 @@ async function avgCourseReview() {
 }
 
 
-
- 
 
