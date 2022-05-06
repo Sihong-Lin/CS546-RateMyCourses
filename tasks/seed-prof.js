@@ -6,7 +6,7 @@ const { ObjectId } = require('mongodb');
 
 const main = async () => {
     const db = await connection.connectToDb();
-    await db.dropDatabase();
+    // await db.dropDatabase();
     try {
 
         let user1 = await user.createUser('jguo32', "aaa@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K9xcJVlIG31wI5COY_Qep5GahOMmCmLYEQ&usqp=CAU", '123456');
@@ -635,6 +635,7 @@ const main = async () => {
             await professor.addProfReview(uid, pid46, review46, 4.2);
         }
         
+        /*
         let professor47 = await professor.createProfessor(
             'Kathryn Abel',
             "Business Intelligence and Analytics",
@@ -647,6 +648,7 @@ const main = async () => {
         for (let i = 0; i < 3; i++) {
             await professor.addProfReview(uid, pid47, review47, 3.2);
         }
+        */
         
         let professor48 = await professor.createProfessor(
             'Allen Parker',
@@ -743,7 +745,7 @@ const main = async () => {
         
 
     //Physics & Engineering Physic 6条
-                
+        /*        
         let professor55 = await professor.createProfessor(
             'Andrew Gonzalez',
             "Physics & Engineering Physic",
@@ -756,19 +758,7 @@ const main = async () => {
         for (let i = 0; i < 3; i++) {
             await professor.addProfReview(uid, pid55, review55, 4.6);
         }
-        
-        let professor56 = await professor.createProfessor(
-            'Homasadat Deilamy',
-            "Physics & Engineering Physic",
-            'The professor is very good at this fied',
-            "/"
-        )
-        
-        let pid56 = professor56._id.toString();
-        let review56 = 'nice!';
-        for (let i = 0; i < 3; i++) {
-            await professor.addProfReview(uid, pid56, review56, 3.2);
-        }
+        */
         
         let professor57 = await professor.createProfessor(
             'Nishika Jain',
@@ -794,32 +784,6 @@ const main = async () => {
         let review58 = 'nice!';
         for (let i = 0; i < 3; i++) {
             await professor.addProfReview(uid, pid58, review58, 3.5);
-        }
-        
-        let professor59 = await professor.createProfessor(
-            'Homasadat Deilamy',
-            "Physics & Engineering Physic",
-            'this professor is kind',
-            "/"
-        )
-        
-        let pid59 = professor59._id.toString();
-        let review59 = 'nice!';
-        for (let i = 0; i < 3; i++) {
-            await professor.addProfReview(uid, pid59, review59, 3.2);
-        }
-        
-        let professor60 = await professor.createProfessor(
-            'Homasadat Deilamy',
-            "Physics & Engineering Physic",
-            'this professor is an excellent teacher',
-            "/"
-        )
-        
-        let pid60 = professor60._id.toString();
-        let review60 = 'nice!';
-        for (let i = 0; i < 3; i++) {
-            await professor.addProfReview(uid, pid60, review60, 4.6);
         }
         
         
@@ -881,48 +845,9 @@ const main = async () => {
         
 
     //Materials Engineering 5条
-            
-        let professor65 = await professor.createProfessor(
-            'Louis Mayer',
-            "Materials Engineering",
-            ' learned a lot. Always made the lectures interesting.  ',
-            "/"
-        )
-        
-        let pid65 = professor65._id.toString();
-        let review65 = 'nice!';
-        for (let i = 0; i < 3; i++) {
-            await professor.addProfReview(uid, pid65, review65, 2.8);
-        }
-        
-        let professor66 = await professor.createProfessor(
-            'Louis Mayer',
-            "Materials Engineering",
-            ' learned a lot. Always made the lectures interesting.  ',
-            "/"
-        )
-        
-        let pid66 = professor66._id.toString();
-        let review66 = 'nice!';
-        for (let i = 0; i < 3; i++) {
-            await professor.addProfReview(uid, pid66, review66, 2.8);
-        }
-
-        let professor67 = await professor.createProfessor(
-            'Louis Mayer',
-            "Materials Engineering",
-            ' He does make the material much harder than it has to be, but he does very good reviews before the tests and it is usually the same problems that will be on the test.  ',
-            "/"
-        )
-        
-        let pid67 = professor67._id.toString();
-        let review67 = 'nice!';
-        for (let i = 0; i < 3; i++) {
-            await professor.addProfReview(uid, pid67, review67, 2.8);
-        }
 
         let professor68 = await professor.createProfessor(
-            'Louis Mayer',
+            'Louis Mayery',
             "Materials Engineering",
             ' He is a great teacher, and makes the material very easy to understand.  ',
             "/"
@@ -934,24 +859,11 @@ const main = async () => {
             await professor.addProfReview(uid, pid68, review68, 3.8);
         }
         
-        let professor69 = await professor.createProfessor(
-            'Louis Mayer',
-            "Materials Engineering",
-            '  His lectures are not mandatory, however when you go it is always fun because he adds real life stories into the lecture which are really interesting.  ',
-            "/"
-        )
-
-        let pid69 = professor69._id.toString();
-        let review69 = 'nice!';
-        for (let i = 0; i < 3; i++) {
-            await professor.addProfReview(uid, pid69, review69, 4.8);
-        }
-        
     //Civil Engineering 2条
         
 
         let professor70 = await professor.createProfessor(
-            'Louis Mayer',
+            'Louis Mayor',
             "Civil Engineering",
             ' Excellent professor. Really knows his stuff. Does not use textbook.  ',
             "/"
@@ -964,7 +876,7 @@ const main = async () => {
         }
         
         let professor71 = await professor.createProfessor(
-            'Louis Mayer',
+            'Louis Maya',
             "Civil Engineering",
             'Excellent prof. who is very knowledgeable but explains concepts clearly.',
             "/"
@@ -979,7 +891,7 @@ const main = async () => {
     //Environmental Engineering 3
         
         let professor72 = await professor.createProfessor(
-            'Louis Mayer',
+            'Louis Maye',
             "Civil Engineering",
             'Excellent prof. who is very knowledgeable but explains concepts clearly.',
             "/"
@@ -1004,9 +916,7 @@ const main = async () => {
             await professor.addProfReview(uid, pid73, review73, 4.4);
         }
 
-        await professor.updateAllImage()
-        console.log(await professor.getProfById(pid73));
-
+        await professor.updateAllImage();
         /*
         let professor74 = await professor.createProfessor(
             'Louis Mayer',
