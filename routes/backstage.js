@@ -8,6 +8,10 @@ const courseReview = require('../data/courseReview')
 const professorReview = require('../data/professorReview')
 //Backstage页面初始化
 router.get('/', async (req, res) => {
+    if (!isLoggedIn(req)) {
+        res.redirect("../401.html");
+        return
+    }
     const departmentReviews = await home.getDepartmentReviewsCount()
     const majorNumberOfStudents = await user.countUserByMajor()
     const numberOfCourses = await course.countCourses();
@@ -42,6 +46,17 @@ router.get('/', async (req, res) => {
         studentMajorDistribution: studentMajorDistribution
     });
 });
+
+const isLoggedIn = function (req) {
+    if(req.session.user != undefined) {
+        if (req.session.user.role != "administrator") {
+            return false;
+        }
+        return true;
+    } else {
+        return false;
+    }
+};
 
 
 module.exports = router;

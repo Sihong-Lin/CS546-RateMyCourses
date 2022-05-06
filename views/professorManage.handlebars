@@ -48,6 +48,12 @@
                             </li><!-- .nk-menu-item -->
                             <li class="nk-menu-item">
                                 <a href="home" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-home"></em></span>
+                                    <span class="nk-menu-text">Back to Home</span>
+                                </a>
+                            </li><!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a href="null" class="nk-menu-link sign-out">
                                     <span class="nk-menu-icon"><em class="icon ni ni-signout"></em></span>
                                     <span class="nk-menu-text">Sign Out</span>
                                 </a>
@@ -83,8 +89,7 @@
                                                     <div class="toggle-expand-content" data-content="pageMenu">
                                                         <ul class="nk-block-tools g-3">
                                                             <li class="nk-block-tools-opt"><a href="#"
-                                                                    data-toggle="modal"
-                                                                    data-target="#professor-create"
+                                                                    data-toggle="modal" data-target="#professor-create"
                                                                     class="btn btn-primary"><em
                                                                         class="icon ni ni-plus"></em><span>Add
                                                                         Professor</span></a></li>
@@ -119,11 +124,13 @@
                                                                         <div data-toggle="modal"
                                                                             data-target="#professor-edit"><a
                                                                                 onclick="spawnForm('{{this._id}}')"
-                                                                                href="#"><em 
-                                                                                class="icon ni ni-edit"></em><span>Edit Professor</span></a></div>
+                                                                                href="#"><em
+                                                                                    class="icon ni ni-edit"></em><span>Edit
+                                                                                    Professor</span></a></div>
                                                                     </li>
                                                                     <li><a onclick="deleteProfessor('{{this._id}}')"><em
-                                                                                class="icon ni ni-delete"></em><span>Delete Professor</span></a></li>
+                                                                                class="icon ni ni-delete"></em><span>Delete
+                                                                                Professor</span></a></li>
 
 
                                                                 </ul>
@@ -133,8 +140,7 @@
                                                     <div class="user-card user-card-s2">
                                                         <div class="user-avatar lg bg-primary">
                                                             <img class="position-absolute w-100 h-100 rounded-circle"
-                                                                src="{{this.picture}}"
-                                                                style="object-fit: cover;">
+                                                                src="{{this.picture}}" style="object-fit: cover;">
                                                         </div>
                                                         <div class="user-info">
                                                             <h6>{{this.professorName}}</h6>
@@ -145,8 +151,10 @@
                                                         <p>{{this.introduction}}</p>
                                                     </div>
                                                     <ul class="team-statistics">
-                                                        <li><span>{{this.courses.length}}</span><span>Courses</span></li>
-                                                        <li><span>{{this.reviews.length}}</span><span>Reviews</span></li>
+                                                        <li><span>{{this.courses.length}}</span><span>Courses</span>
+                                                        </li>
+                                                        <li><span>{{this.reviews.length}}</span><span>Reviews</span>
+                                                        </li>
                                                         <li><span>{{this.rating}}</span><span>Rating</span></li>
                                                     </ul>
                                                     <div class="team-view">
@@ -206,83 +214,37 @@
                 </ul><!-- .nav-tabs -->
 
 
-                    <div class="tab-content">
+                <div class="tab-content">
 
-                        <div class="tab-pane active" id="personal">
-                            <form id="editProfessor">
-                                <div class="row gy-4">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label" for="name">Full Name</label>
-                                            <input type="text" class="form-control form-control-lg" id="name" placeholder="jquery here">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label" for="department">Department</label>
-                                            <input type="text" class="form-control form-control-lg" id="department" placeholder="jquery here">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm">
-                                        <div class="form-group">
-                                            <label class="form-label" for="introduction">Introduction</label>
-                                            <input type="text" class="form-control form-control-lg" id="introduction"
-                                                placeholder="jquery here">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                                            <li>
-                                                <input type="submit" class="btn btn-lg btn-primary" id="edit-form-submit" value="Update Profile" >
-                                            </li>
-                                            <li>
-                                                <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </form>
-                        </div><!-- .tab-pane -->
-
-                        <div class="tab-pane" id="address">
+                    <div class="tab-pane active" id="personal">
+                        <form id="editProfessor">
                             <div class="row gy-4">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="address-l1">Address Line 1</label>
-                                        <input type="text" class="form-control form-control-lg" id="address-l1"
-                                            value="2337 Kildeer Drive">
+                                        <label class="form-label" for="name">Full Name</label>
+                                        <input type="text" class="form-control form-control-lg" id="name"
+                                            placeholder="jquery here">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="address-l2">Address Line 2</label>
-                                        <input type="text" class="form-control form-control-lg" id="address-l2" value="">
+                                        <label class="form-label" for="department">Department</label>
+                                        <input type="text" class="form-control form-control-lg" id="department"
+                                            placeholder="jquery here">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm">
                                     <div class="form-group">
-                                        <label class="form-label" for="address-st">State</label>
-                                        <input type="text" class="form-control form-control-lg" id="address-st"
-                                            value="Kentucky">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label" for="address-county">Country</label>
-                                        <select class="form-select" id="address-county" data-ui="lg">
-                                            <option>Canada</option>
-                                            <option>United State</option>
-                                            <option>United Kindom</option>
-                                            <option>Australia</option>
-                                            <option>India</option>
-                                            <option>Bangladesh</option>
-                                        </select>
+                                        <label class="form-label" for="introduction">Introduction</label>
+                                        <input type="text" class="form-control form-control-lg" id="introduction"
+                                            placeholder="jquery here">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                                         <li>
-                                            <a href="#" class="btn btn-lg btn-primary">Update Address</a>
+                                            <input type="submit" class="btn btn-lg btn-primary" id="edit-form-submit"
+                                                value="Update Profile">
                                         </li>
                                         <li>
                                             <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
@@ -290,9 +252,58 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div><!-- .tab-pane -->
+                        </form>
+                    </div><!-- .tab-pane -->
 
-                    </div><!-- .tab-content -->
+                    <div class="tab-pane" id="address">
+                        <div class="row gy-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="address-l1">Address Line 1</label>
+                                    <input type="text" class="form-control form-control-lg" id="address-l1"
+                                        value="2337 Kildeer Drive">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="address-l2">Address Line 2</label>
+                                    <input type="text" class="form-control form-control-lg" id="address-l2" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="address-st">State</label>
+                                    <input type="text" class="form-control form-control-lg" id="address-st"
+                                        value="Kentucky">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="address-county">Country</label>
+                                    <select class="form-select" id="address-county" data-ui="lg">
+                                        <option>Canada</option>
+                                        <option>United State</option>
+                                        <option>United Kindom</option>
+                                        <option>Australia</option>
+                                        <option>India</option>
+                                        <option>Bangladesh</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                    <li>
+                                        <a href="#" class="btn btn-lg btn-primary">Update Address</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- .tab-pane -->
+
+                </div><!-- .tab-content -->
                 </form>
 
             </div><!-- .modal-body -->
@@ -337,7 +348,7 @@
                                         <input type="text" class="form-control form-control-lg" id="introduction1">
                                     </div>
                                 </div>
-                                 <div class="col-sm">
+                                <div class="col-sm">
                                     <div class="form-group">
                                         <label class="form-label" for="picture1">Picture</label>
                                         <input type="text" class="form-control form-control-lg" id="picture1">
@@ -346,7 +357,8 @@
                                 <div class="col-12">
                                     <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                                         <li>
-                                            <input type="submit" class="btn btn-lg btn-primary" id="create-form-submit" value="Add Professor" >
+                                            <input type="submit" class="btn btn-lg btn-primary" id="create-form-submit"
+                                                value="Add Professor">
                                         </li>
                                         <li>
                                             <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
@@ -415,5 +427,45 @@
 <!-- JavaScript -->
 <script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
 <script src="static/backstage/assets/js/scripts.js?ver=2.2.0"></script>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="/public/js/manageProfessor.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $(".sign-out").on("click", function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to be signed out!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, sign out!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:3000/logout/",
+                        success: function (result) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'You have successfully signed out',
+                                showConfirmButton: true,
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.href = "home";
+                                }
+                            });
+                        },
+                        error: function (request, status, error) {
+                            Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                            event.preventDefault();
+                        }
+                    })
+                }
+            });
+        });
+    });
+</script>

@@ -16,6 +16,7 @@ const res = require('express/lib/response');
 
 module.exports = {
     createUser,
+    createAdmin,
     checkUser,
     getUser,
     createCourseReview,
@@ -395,4 +396,41 @@ async function getCourseReviewById(userId) {
 async function getProfessorReviewById(userId) {
     const user = await getUserById(userId);
     return user.professorReviews
+}
+
+
+
+
+
+
+
+
+async function createAdmin(username, email, major, profilePicture, password) {
+    try {
+        username = inputCheck.checkUserName(username)
+        username = await checkUsernameRepeat(username)
+        password = inputCheck.checkPassword(password)
+    } catch (e) {
+        throw e
+    }
+    const userCollection = await users();
+    let newUser = {
+        username: username.toLowerCase(),
+        password: await bcrypt.hash(password, saltRound),
+        courseReviews: [],
+        professorReviews: [],
+        restrictStatus: false,
+        profilePicture: profilePicture,
+        email: email,
+        major: major,
+        registrationTime: sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss'),
+        lastLogin: "-",
+        role: "administrator"
+    }
+    const insertInfo = await userCollection.insertOne(newUser);
+    if (!insertInfo.acknowledged || !insertInfo.insertedId) {
+        throw 'Could not create user.';
+    }
+
+    return { userInserted: true, insertedId: insertInfo.insertedId.toString() };
 }

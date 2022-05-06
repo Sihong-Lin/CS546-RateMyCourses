@@ -13,6 +13,8 @@ const departmentReivew = async () => {
     
     const db = await connection.connectToDb();
     await db.dropDatabase();
+
+    let adminId = undefined
     let firstUserId = undefined
     let secondUserId = undefined
     let thirdUserId = undefined
@@ -50,6 +52,14 @@ const departmentReivew = async () => {
         "My research to hill improve the way programmers develop",
         "url to picture"
     ))._id.toString()
+
+    adminId = (await user.createAdmin( //(username, email, major, profilePicture, password)
+        "admin",
+        "admin@gmail.com",
+        "Computer Science",
+        "https://freesvg.org/img/administrator.png",
+        "123456"
+    )).insertedId
 
     firstUserId = (await user.createUser( //(username, email, major, profilePicture, password)
         "meicheng du",
