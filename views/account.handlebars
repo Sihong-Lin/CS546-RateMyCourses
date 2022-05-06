@@ -55,6 +55,8 @@
                     <h4 class="display-10">Registration Time: &nbsp&nbsp {{userInfo.registrationTime}}</h4>
                     <h4 class="display-10">Last Login: &nbsp&nbsp {{userInfo.lastLogin}}</h4>
                 </div>
+                <p>Want to sign out?<a class="switcher-text2 inline-text sign-out">
+                        &nbsp&nbsp Sign out</a></p>
             </div>
         </div>
     </div>
@@ -143,9 +145,9 @@
                         </h6>
                         <p>{{this.comment}}</p>
                         <a data-toggle="modal" data-target="#prof-edit{{@index}}"><button
-                                class="btn btn-sm btn-light">Edit</button></a>      
-                        <a id="professorId{{@index}}" value="{{this.professorId}} {{this._id}} {{this.userId}}" class="eg-swal-av3-prof-delete"><button
-                                class="btn btn-sm btn-light">Delete</button></a>
+                                class="btn btn-sm btn-light">Edit</button></a>
+                        <a id="professorId{{@index}}" value="{{this.professorId}} {{this._id}} {{this.userId}}"
+                            class="eg-swal-av3-prof-delete"><button class="btn btn-sm btn-light">Delete</button></a>
                     </div>
 
                     <div class="modal fade" tabindex="-1" role="dialog" id="prof-edit{{@index}}">
@@ -167,7 +169,8 @@
                                             <div class="col-12">
                                                 <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                                                     <li>
-                                                        <a href="#" class="btn btn-lg btn-primary eg-swal-av3-prof-edit">Update</a>
+                                                        <a href="#"
+                                                            class="btn btn-lg btn-primary eg-swal-av3-prof-edit">Update</a>
                                                     </li>
                                                     <li>
                                                         <a href="#" data-dismiss="modal"
@@ -353,6 +356,41 @@
 
 <script>
     $(document).ready(function () {
+
+        $(".sign-out").on("click", function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to be signed out!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, sign out!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:3000/logout/",
+                        success: function (result) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'You have successfully signed out',
+                                showConfirmButton: true,
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.href = "home";
+                                }
+                            });
+                        },
+                        error: function (request, status, error) {
+                            Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                            event.preventDefault();
+                        }
+                    })
+                }
+            });
+        });
+
 
         $(".eg-swal-av3-cour-delete").on("click", function (event) {
             event.preventDefault();
