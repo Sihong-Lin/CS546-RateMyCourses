@@ -197,9 +197,11 @@
             <h1 class="display-4">Some recommended courses for you</h1>
         </div>
         <div class="owl-carousel price-carousel position-relative" style="padding: 0 45px 45px 45px;">
+            
+            {{#each topCourses}}
             <div class="bg-light rounded text-center">
                 <div class="position-relative">
-                    <img class="img-fluid rounded-top" src="static/picture/course-1.jpg" alt="">
+                    <img class="img-fluid rounded-top" src="{{this.picture}}" alt="">
                     <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
                         style="background: rgba(29, 42, 77, .8);">
 
@@ -208,62 +210,23 @@
                             546<small class="align-bottom fw-normal"
                                 style="font-size: 16px; line-height: 40px;"></small>
                         </h1>
-                        <h3 class="text-white">Web Programming</h3>
+                        <h3 class="text-white">{{}}</h3>
                     </div>
                 </div>
                 <div class="text-center py-5">
-                    <p>Computer science program core course</p>
-                    <p>Medium Difficulty</p>
-                    <p>High chance to get A</p>
-                    <p>Hard workLoad</p>
+                    <p>{{this.metrics.type}} course</p>
+                    <p>{{this.metrics.difficulty}} Difficulty</p>
+                    <p>{{this.metrics.chanceToGetA}} chance to get A</p>
+                    <p>{{this.metrics.workLoad}} workLoad</p>
                     <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">More Details</a>
                 </div>
             </div>
-            <div class="bg-light rounded text-center">
-                <div class="position-relative">
-                    <img class="img-fluid rounded-top" src="static/picture/course-2.jpg" alt="">
-                    <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
-                        style="background: rgba(29, 42, 77, .8);">
-                        <h1 class="display-4 text-white mb-0">
-                            <small class="align-top fw-normal" style="font-size: 22px; line-height: 45px;"></small>FE
-                            535<small class="align-bottom fw-normal"
-                                style="font-size: 16px; line-height: 40px;"></small>
-                        </h1>
-                        <h3 class="text-white">Intro Financial Risk Management</h3>
-                    </div>
-                </div>
-                <div class="text-center py-5">
-                    <p>Computer science program core course</p>
-                    <p>Medium Difficulty</p>
-                    <p>High chance to get A</p>
-                    <p>Hard workLoad</p>
-                    <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">More Details</a>
-                </div>
-            </div>
-            <div class="bg-light rounded text-center">
-                <div class="position-relative">
-                    <img class="img-fluid rounded-top" src="static/picture/course-3.jpg" alt="">
-                    <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
-                        style="background: rgba(29, 42, 77, .8);">
-                        <h1 class="display-4 text-white mb-0">
-                            <small class="align-top fw-normal" style="font-size: 22px; line-height: 45px;"></small>CS
-                            511<small class="align-bottom fw-normal"
-                                style="font-size: 16px; line-height: 40px;"></small>
-                        </h1>
-                        <h3 class="text-white">Concurrent Programming</h3>
-                    </div>
-                </div>
-                <div class="text-center py-5">
-                    <p>Computer science program core course</p>
-                    <p>Medium Difficulty</p>
-                    <p>High chance to get A</p>
-                    <p>Hard workLoad</p>
-                    <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">More Details</a>
-                </div>
-            </div>
+            {{/each}}
+
         </div>
     </div>
 </div>
+
 
 <div class="container-fluid pt-5">
     <div class="container">

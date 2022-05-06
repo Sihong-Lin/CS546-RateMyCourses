@@ -27,8 +27,14 @@ module.exports = {
     studentMajorDistribution,
     getProfessorReviewById,
     getCourseReviewById,
-    getUserById
+    getUserById,
+    getTopCoursesByUserId
 };
+
+async function getTopCoursesByUserId(id) {
+    let user = await getUserById(id);
+    return courseDBFunction.getTop5CourseByMajor(user.major);
+}
 
 
 async function removeUser(userId) {

@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     let professorReviews = await user.getProfessorReviewById(userId);
     let courseReviews = await user.getCourseReviewById(userId);
 
-    //let topCourses = await user.getTopCoursesById(userId);
+    let topCourses = await user.getTopCoursesByUserId(userId);
     res.render('account', 
                 { 
                     title: 'RateMyCourses - Account',
