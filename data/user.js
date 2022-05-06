@@ -33,7 +33,19 @@ module.exports = {
 
 async function getTopCoursesByUserId(id) {
     let user = await getUserById(id);
-    return courseDBFunction.getTop5CourseByMajor(user.major);
+    let courseList = await courseDBFunction.getTop5CourseByMajor(user.major);
+    for (let i = 0; i < courseList.length; i++) {
+        let courseName = courseList[i].courseName;
+        let arr = courseName.split(" ");
+        courseList[i].courseIndex = arr[0] + " " + arr[1];
+        courseList[i].courseName = arr.slice(2).join(" ");
+    }
+    console.log(courseList)
+    courseList.forEach(course => {
+        course._id = course._id.toString()
+    })
+    return courseList;
+
 }
 
 
