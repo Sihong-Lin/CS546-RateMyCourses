@@ -75,73 +75,30 @@
                                     <div class="nk-block-head-content">
                                         <h3 class="nk-block-title page-title">Users List</h3>
                                         <div class="nk-block-des text-soft">
-                                            <p>You have total 2,595 users.</p>
+                                            <p>You have total {{allUsers.length}} users.</p>
                                         </div>
-                                    </div><!-- .nk-block-head-content -->
-                                    <div class="nk-block-head-content">
-                                        <div class="toggle-wrap nk-block-tools-toggle">
-                                            <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1"
-                                                data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
-                                            <div class="toggle-expand-content" data-content="pageMenu">
-                                                <ul class="nk-block-tools g-3">
-                                                    <li class="nk-block-tools-opt"><a href="#"
-                                                            class="btn btn-primary"><em
-                                                                class="icon ni ni-plus"></em><span>Add User</span></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div><!-- .toggle-wrap -->
                                     </div><!-- .nk-block-head-content -->
                                 </div><!-- .nk-block-between -->
                             </div><!-- .nk-block-head -->
                             <div class="nk-block">
                                 <div class="card card-bordered card-stretch">
                                     <div class="card-inner-group">
-                                        <div class="card-inner position-relative card-tools-toggle">
-                                            <div class="card-title-group">
-                                                <div class="card-tools">
-                                                </div><!-- .card-tools -->
-                                                <div class="card-tools mr-n1">
-                                                    <ul class="btn-toolbar gx-1">
-                                                        <li>
-                                                            <a href="#" class="btn btn-icon search-toggle toggle-search"
-                                                                data-target="search"><em
-                                                                    class="icon ni ni-search"></em></a>
-                                                        </li><!-- li -->
-                                                    </ul><!-- .btn-toolbar -->
-                                                </div><!-- .card-tools -->
-                                            </div><!-- .card-title-group -->
-                                            <div class="card-search search-wrap" data-search="search">
-                                                <div class="card-body">
-                                                    <div class="search-content">
-                                                        <a href="#" class="search-back btn btn-icon toggle-search"
-                                                            data-target="search"><em
-                                                                class="icon ni ni-arrow-left"></em></a>
-                                                        <input type="text"
-                                                            class="form-control border-transparent form-focus-none"
-                                                            placeholder="Search by user or email">
-                                                        <button class="search-submit btn btn-icon"><em
-                                                                class="icon ni ni-search"></em></button>
-                                                    </div>
-                                                </div>
-                                            </div><!-- .card-search -->
-                                        </div><!-- .card-inner -->
                                         <div class="card-inner p-0">
                                             <div class="nk-tb-list nk-tb-ulist">
                                                 <div class="nk-tb-item nk-tb-head">
-                                                    <div class="nk-tb-col"><span class="sub-text">User</span></div>
-                                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">Email</span>
+                                                    <div class="nk-tb-col"><span class="tb-lead">User</span></div>
+                                                    <div class="nk-tb-col tb-col-lg"><span class="tb-lead">Email</span>
                                                     </div>
-                                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">Major</span>
+                                                    <div class="nk-tb-col tb-col-lg"><span class="tb-lead">Major</span>
                                                     </div>
-                                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">Registration
+                                                    <div class="nk-tb-col tb-col-lg"><span class="tb-lead">Registration
                                                             Time</span></div>
-                                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">Last
+                                                    <div class="nk-tb-col tb-col-lg"><span class="tb-lead">Last
                                                             Login</span></div>
-                                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">Role</span>
+                                                    <div class="nk-tb-col tb-col-lg"><span class="tb-lead">Role</span>
                                                     </div>
                                                     <div class="nk-tb-col tb-col-lg"><span
-                                                            class="sub-text">Status</span></div>
+                                                            class="tb-lead">Status</span></div>
                                                     <div class="nk-tb-col nk-tb-col-tools text-right"></div>
                                                 </div><!-- .nk-tb-item -->
 
@@ -188,21 +145,13 @@
                                                     </div>
                                                     <div class="nk-tb-col nk-tb-col-tools">
                                                         <ul class="nk-tb-actions gx-1">
-                                                            <li class="nk-tb-action-hidden">
-                                                                <a href="#" class="btn btn-trigger btn-icon"
+                                                            <li class="nk-tb-action-hidden ">
+                                                                <a id="userId{{@index}}" value={{this._id}}
+                                                                    class="btn btn-trigger btn-icon change-role"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="View Details">
-                                                                    <em class="icon ni ni-eye-fill"></em>
+                                                                    title="Change Role">
+                                                                    <em class="icon ni ni-exchange"></em>
                                                                 </a>
-                                                            </li>
-                                                            <li class="nk-tb-action-hidden">
-                                                                <div data-toggle="modal" data-target="#profile-edit">
-                                                                    <a href="#" class="btn btn-trigger btn-icon"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="Edit User">
-                                                                        <em class="icon ni ni-edit-fill"></em>
-                                                                    </a>
-                                                                </div>
                                                             </li>
                                                             <li class="nk-tb-action-hidden ">
                                                                 <a id="userId{{@index}}" value={{this._id}}
@@ -265,128 +214,6 @@
     <!-- main @e -->
 </div>
 
-<!-- @@ Profile Edit Modal @e -->
-<div class="modal fade" tabindex="-1" role="dialog" id="profile-edit">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-            <div class="modal-body modal-body-lg">
-                <h5 class="title">Update Profile</h5>
-                <ul class="nk-nav nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#personal">Personal</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#address">Address</a>
-                    </li>
-                </ul><!-- .nav-tabs -->
-
-
-                <div class="tab-content">
-                    <div class="tab-pane active" id="personal">
-                        <div class="row gy-4">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="full-name">Full Name</label>
-                                    <input type="text" class="form-control form-control-lg" id="full-name"
-                                        value="Abu Bin Ishtiyak" placeholder="Enter Full name">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="display-name">Display Name</label>
-                                    <input type="text" class="form-control form-control-lg" id="display-name"
-                                        value="Ishtiyak" placeholder="Enter display name">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="phone-no">Phone Number</label>
-                                    <input type="text" class="form-control form-control-lg" id="phone-no" value="+880"
-                                        placeholder="Phone Number">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="birth-day">Date of Birth</label>
-                                    <input type="text" class="form-control form-control-lg date-picker" id="birth-day"
-                                        placeholder="Enter your name">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="latest-sale">
-                                    <label class="custom-control-label" for="latest-sale">Use full name to display
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                                    <li>
-                                        <a href="#" class="btn btn-lg btn-primary">Update Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div><!-- .tab-pane -->
-                    <div class="tab-pane" id="address">
-                        <div class="row gy-4">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="address-l1">Address Line 1</label>
-                                    <input type="text" class="form-control form-control-lg" id="address-l1"
-                                        value="2337 Kildeer Drive">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="address-l2">Address Line 2</label>
-                                    <input type="text" class="form-control form-control-lg" id="address-l2" value="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="address-st">State</label>
-                                    <input type="text" class="form-control form-control-lg" id="address-st"
-                                        value="Kentucky">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="address-county">Country</label>
-                                    <select class="form-select" id="address-county" data-ui="lg">
-                                        <option>Canada</option>
-                                        <option>United State</option>
-                                        <option>United Kindom</option>
-                                        <option>Australia</option>
-                                        <option>India</option>
-                                        <option>Bangladesh</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                                    <li>
-                                        <a href="#" class="btn btn-lg btn-primary">Update Address</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div><!-- .tab-pane -->
-                </div><!-- .tab-content -->
-
-
-            </div><!-- .modal-body -->
-        </div><!-- .modal-content -->
-    </div><!-- .modal-dialog -->
-</div><!-- .modal -->
-
 
 <!-- app-root @e -->
 <!-- JavaScript -->
@@ -395,6 +222,29 @@
 
 <script>
     $(document).ready(function () {
+        $('.change-role').on("click", function (event) {
+            event.preventDefault();
+            var index = $(".change-role").index(this);
+            var userId = $("#userId" + index).attr("value");
+            $.ajax({
+                type: 'PUT',
+                url: 'http://localhost:3000/userManage/role/' + userId,
+                success: function (result) {
+                    Swal.fire(
+                        'Good job!',
+                        'You have changed the user role!',
+                        'success'
+                    ).then((result) => {
+                        if (result.value) {
+                            window.location.reload();
+                        }
+                    });
+
+                }
+            });
+        });
+
+
         $('.eg-swal-success').on("click", function (event) {
             event.preventDefault();
             var index = $(".eg-swal-success").index(this);

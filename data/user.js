@@ -22,6 +22,7 @@ module.exports = {
     createCourseReview,
     deleteCourseReview,
     setUserRestrictStatus,
+    changeUserRole,
     removeUser,
     countUsers,
     countUserByMajor,
@@ -132,6 +133,20 @@ async function setUserRestrictStatus(userId) {
     );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
         throw 'Update user restrict status failed';
+    }
+    return { updateRestrictStatus: true }
+}
+
+async function changeUserRole(userId) {
+    const user = await getUserById(userId)
+    const userCollection = await users();
+    let updatedRole = user.role == "student" ? "administrator" : "student";
+    const updateInfo = await userCollection.updateOne(
+        { _id: ObjectId(userId) },
+        { $set: { role: updatedRole } }
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw 'Update user role failed';
     }
     return { updateRestrictStatus: true }
 }

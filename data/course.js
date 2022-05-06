@@ -78,6 +78,14 @@ async function getCourse(courseId) {
     courseId = inputCheck.checkCourseId(courseId);
     const courseCollection = await courses();
     let course = await courseCollection.findOne({ _id: ObjectId(courseId) });
+    let reviews = course.courseReviews;
+    for (let i = 0; i < reviews.length; i++) {
+        let userId = reviews[i].userId
+        const userCollection = await users();
+        const user = await userCollection.findOne({ _id: ObjectId(userId) });
+        if (!user) throw 'User not found';
+        reviews[i].profilePicture = user.profilePicture;
+    }
     if (course === null) throw 'No course with that id';
     return course;
 }
