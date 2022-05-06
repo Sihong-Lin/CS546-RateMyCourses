@@ -183,7 +183,7 @@
                                                                             class="form-control form-control-lg"
                                                                             id="courseName-edit{{@index}}"
                                                                             name="courseName"
-                                                                            value="{{this.courseIndex}} {{this.courseName}}">
+                                                                            value="{{this.courseIndex}} {{this.courseName}}" required="required">
                                                                     </div>
                                                                 </div>
 
@@ -196,7 +196,7 @@
                                                                             class="form-control form-control-lg"
                                                                             id="courseOwner-edit{{@index}}"
                                                                             name="courseOwner"
-                                                                            value="{{this.courseOwner}}" required>
+                                                                            value="{{this.courseOwner}}" required="required">
                                                                     </div>
                                                                 </div>
 
@@ -208,7 +208,7 @@
                                                                             class="form-control form-control-lg"
                                                                             id="academicLevel-edit{{@index}}"
                                                                             name="academicLevel"
-                                                                            value="{{this.academicLevel}}">
+                                                                            value="{{this.academicLevel}}" required="required">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -218,7 +218,7 @@
                                                                         <input type="text"
                                                                             class="form-control form-control-lg"
                                                                             id="type-edit{{@index}}" name="type"
-                                                                            value="{{this.type}}">
+                                                                            value="{{this.type}}" required="required">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -228,7 +228,7 @@
                                                                         <input type="text"
                                                                             class="form-control form-control-lg"
                                                                             id="units-edit{{@index}}" name="units"
-                                                                            value="{{this.units}}">
+                                                                            value="{{this.units}}" required="required">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -240,7 +240,7 @@
                                                                             class="form-control form-control-lg"
                                                                             id="instructionalFormats-edit{{@index}}"
                                                                             name="instructionalFormats"
-                                                                            value="{{this.instructionalFormats}}">
+                                                                            value="{{this.instructionalFormats}}" required="required">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12">
@@ -250,7 +250,7 @@
                                                                         <input type="text"
                                                                             class="form-control form-control-lg"
                                                                             id="picture-edit{{@index}}" name="picture"
-                                                                            value="{{this.picture}}">
+                                                                            value="{{this.picture}}" required="required">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12">
@@ -260,7 +260,7 @@
                                                                         <input type="text"
                                                                             class="form-control form-control-lg"
                                                                             id="syllabus-edit{{@index}}" name="syllabus"
-                                                                            value="{{this.syllabus}}">
+                                                                            value="{{this.syllabus}}" required="required">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12">
@@ -271,7 +271,7 @@
                                                                             class="form-control form-control-lg"
                                                                             id="courseware-edit{{@index}}"
                                                                             name="courseware"
-                                                                            value="{{this.courseware}}">
+                                                                            value="{{this.courseware}}" required="required">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12">
@@ -282,7 +282,7 @@
                                                                             class="form-control form-control-lg"
                                                                             id="description-edit{{@index}}"
                                                                             name="description"
-                                                                            value="{{this.description}}">
+                                                                            value="{{this.description}}" required="required">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12">
@@ -358,35 +358,35 @@
                                 <div class="form-group">
                                     <label class="form-label" for="courseName-add">Course Name</label>
                                     <input type="text" class="form-control form-control-lg" id="courseName-add"
-                                        name="courseName-add" placeholder="e.g., CS 546 Web Programming">
+                                        name="courseName-add" placeholder="e.g., CS 546 Web Programming" required="required">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="courseOwner-add">Course Owner</label>
                                     <input type="text" class="form-control form-control-lg" id="courseOwner-add"
-                                        name="courseOwner-add" placeholder="e.g., Computer Science Program">
+                                        name="courseOwner-add" placeholder="e.g., Computer Science Program" required="required">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="academicLevel-add">Academic Level</label>
                                     <input type="text" class="form-control form-control-lg" id="academicLevel-add"
-                                        name="academicLevel-add" placeholder="e.g., Graduate or Undergraduate">
+                                        name="academicLevel-add" placeholder="e.g., Graduate or Undergraduate" required="required">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="type-add">Type</label>
                                     <input type="text" class="form-control form-control-lg" id="type-add"
-                                        name="type-add" placeholder="e.g., Core or Elective">
+                                        name="type-add" placeholder="e.g., Core or Elective" required="required">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="units-add">Units</label>
                                     <input type="text" class="form-control form-control-lg" id="units-add"
-                                        name="units-add" placeholder="e.g., 3">
+                                        name="units-add" placeholder="e.g., 3" required="required">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -395,7 +395,7 @@
                                         Format</label>
                                     <input type="text" class="form-control form-control-lg"
                                         id="instructionalFormats-add" name="instructionalFormats-add"
-                                        placeholder="e.g., Lecture or Thesis">
+                                        placeholder="e.g., Lecture or Thesis" required="required">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -403,7 +403,7 @@
                                     <label class="form-label" for="picture-add">Picture</label>
                                     <input type="text" class="form-control form-control-lg" id="picture-add"
                                         name="picture-add"
-                                        placeholder="e.g., https://www.smartpassiveincome.com/wp-content/uploads/2020/04/How-to-Create-an-Online-Course.png">
+                                        placeholder="e.g., https://www.smartpassiveincome.com/wp-content/uploads/2020/04/How-to-Create-an-Online-Course.png" required="required">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -411,14 +411,14 @@
                                     <label class="form-label" for="syllabus-add">Syllabus</label>
                                     <input type="text" class="form-control form-control-lg" id="syllabus-add"
                                         name="syllabus-add"
-                                        placeholder="e.g., https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf">
+                                        placeholder="e.g., https://web.stevens.edu/academic_files/courses/syllabus/CS546syl.pdf" required="required">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="courseware-add">Courseware</label>
                                     <input type="text" class="form-control form-control-lg" id="courseware-add"
-                                        name="courseware-add" placeholder="e.g., https://github.com/graffixnyc/CS-546">
+                                        name="courseware-add" placeholder="e.g., https://github.com/graffixnyc/CS-546" required="required">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -426,7 +426,7 @@
                                     <label class="form-label" for="courseware-add">Description</label>
                                     <input type="text" class="form-control form-control-lg" id="description-add"
                                         name="description-add"
-                                        placeholder="e.g., This course will provide students with a first strong approach of internet programming.">
+                                        placeholder="e.g., This course will provide students with a first strong approach of internet programming." required="required">
                                 </div>
                             </div>
                             <div class="col-12">
@@ -495,7 +495,7 @@
                     });
                 },
                 error: function (request, status, error) {
-                    Swal.fire(request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                    Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
                     event.preventDefault();
                 }
 
@@ -541,7 +541,7 @@
                     });
                 },
                 error: function (request, status, error) {
-                    Swal.fire(request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                    Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
                     event.preventDefault();
                 }
             })
@@ -576,7 +576,7 @@
 
                         },
                         error: function (request, status, error) {
-                            Swal.fire(request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                            Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
                             event.preventDefault();
                         }
                     });

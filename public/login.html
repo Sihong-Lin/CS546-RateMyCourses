@@ -2,22 +2,12 @@
 <html class="no-js" lang="">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Xmee | Login and Register Form Html Templates</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="static/css/style.css" rel="stylesheet">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="static/login/css/bootstrap.min.css">
 	<!-- Fontawesome CSS -->
-	<link rel="stylesheet" href="static/login/css/fontawesome-all.min.css">
-	<!-- Flaticon CSS -->
-	<link rel="stylesheet" href="static/login/css/flaticon.css">
-	<!-- Star Animation CSS -->
 	<link rel="stylesheet" href="static/login/css/star-animation.css">
 	<!-- Google Web Fonts -->
-	<link href="static/login/css/css.css" rel="stylesheet">
-	<!-- Custom CSS -->
 	<link rel="stylesheet" href="static/login/css/loginstyle.css">
 </head>
 
@@ -78,6 +68,7 @@
 									<button type="submit" class="fxt-btn-fill">Log in</button>
 								</div>
 							</form>
+							<a class="eg-swal-av3-prof-delete"><button class="btn btn-sm btn-light">Delete</button></a>
 						</div>
 						<div class="fxt-footer">
 							<p>Don't have an account?<a href="register.html" class="switcher-text2 inline-text">Register</a></p>
@@ -97,7 +88,26 @@
 	<script src="static/login/js/validator.min.js"></script>
 	<!-- Custom Js -->
 	<script src="static/login/js/loginmain.js"></script>
+	<script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
+    <script>
+        $(document).ready(function () {
+
+
+            $('.eg-swal-av3-prof-delete').on("click", function (event) {
+                event.preventDefault();
+                Swal.fire("Error: " , "s", "success");
+            });
+
+
+        });
+    </script>
 
 </body>
 
 </html>
+
+
+
+
+
+

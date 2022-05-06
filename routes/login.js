@@ -7,36 +7,29 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    let username = req.body.usernameInput;
-    let password = req.body.passwordInput;
+    let username = req.body.username;
+    let password = req.body.password;
     try {
         if (!username || !password)
             throw 'Both username and password must be supplied.';
         //if (!checkUsername(username)) throw 'Provided username is invalid.';
         //if (!checkPassword(password)) throw 'Provided password is invalid.';
     } catch (err) {
-        res.status(400).render('login', {
-            hasError: true,
-            title: 'login',
-            error: err,
-        });
+        res.status(400).json(err);
         return;
     } 
     try {
         const result = await user.checkUser(username, password);
         if (result.authenticated == true) {
             req.session.user = { username: username , userId : result.userId , role : result.role};
-            res.redirect('/');
+            res.status(200).json({ login: true });
+            return;
         } else {
-            res.status(500).render('login', { error: 'Internal Server Error' });
+            res.status(500).json('Internal Server Error'); 
             return;
         }
     } catch (err) {
-        res.status(400).render('login', {
-            hasError: true,
-            title: 'login',
-            error: err,
-        });
+        res.status(400).json(err);
         return;
     }
 });
