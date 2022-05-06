@@ -13,7 +13,7 @@
         <div class='line3'></div>
     </div>
 </div>
-<section class="fxt-template-animation fxt-template-layout22" data-bg-image="static/login/picture/stevens-2.jpg">
+<section class="fxt-template-animation fxt-template-layout22" data-bg-image="static/login/picture/stevens-1.jpg">
     <!-- Star Animation Start Here -->
     <div class="star-animation">
         <div id="stars1"></div>
@@ -28,7 +28,7 @@
             <div class="col-lg-6 col-12 fxt-none-991">
                 <div class="fxt-header">
                     <div class="fxt-transformY-50 fxt-transition-delay-1">
-                        <a href="https://www.stevens.edu/" class="fxt-logo"><img src="static/login/picture/logo-1.png"
+                        <a href="https://www.stevens.edu/" class="fxt-logo"><img src="static/login/picture/logo-4.png"
                                 alt="Logo"></a>
                     </div>
                     <div class="fxt-transformY-50 fxt-transition-delay-2">
@@ -45,14 +45,30 @@
             <div class="col-lg-6 col-12 fxt-bg-color">
                 <div class="fxt-content">
                     <div class="fxt-form">
-                        <h2>Login</h2>
-                        <p>Login into your pages account</p>
+                        <h2>Register</h2>
+                        <p>Create an account</p>
 
-                        <form id="loginForm">
+                        <form id="signupForm">
                             <div class="form-group">
                                 <label for="username" class="input-label">Username</label>
                                 <input type="text" id="username" class="form-control" name="usernameInput"
-                                    placeholder="username" required="required">
+                                    placeholder="Username" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="input-label">Email</label>
+                                <input type="text" id="email" class="form-control" name="emailInput"
+                                    placeholder="e.g., slin29@stevens.edu" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="major" class="input-label">Major</label>
+                                <input type="text" id="major" class="form-control" name="majorInput"
+                                    placeholder="e.g., Computer Science" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="profilePicture" class="input-label">Image</label>
+                                <input type="text" id="profilePicture" class="form-control" name="profilePictureInput"
+                                    placeholder="e.g., https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+                                    required="required">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="input-label">Password</label>
@@ -61,13 +77,13 @@
                                 <i toggle="#password" class="fa fa-fw fa-eye toggle-password field-icon"></i>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="fxt-btn-fill">Log in</button>
+                                <button type="submit" class="fxt-btn-fill">Register</button>
                             </div>
                         </form>
                     </div>
                     <div class="fxt-footer">
-                        <p>Don't have an account?<a href="signup" class="switcher-text2 inline-text">Register</a></p>
-                        <a href="home" class="switcher-text2 inline-text">Return to home page</a>
+                        <p>Already have an account?<a href="login" class="switcher-text2 inline-text">Log in</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -89,16 +105,20 @@
     $(document).ready(function () {
 
 
-         $("#loginForm").submit(function (event) {
+        $("#signupForm").submit(function (event) {
             event.preventDefault();
-
+      
             var formData = {
                 username: $("#username").val(),
+                email: $("#email").val(),
+                major: $("#major").val(),
+                profilePicture: $("#profilePicture").val(),
                 password: $("#password").val(),
             };
+      
             $.ajax({
                 type: "POST",
-                url: "http://localhost:3000/login",
+                url: "http://localhost:3000/signup",
                 data: formData,
                 dataType: "json",
                 encode: true,
@@ -106,11 +126,11 @@
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'You have successfully logged in',
+                        title: 'You have successfully signed up',
                         showConfirmButton: true,
                     }).then((result) => {
                         if (result.value) {
-                            window.location.href = "home";
+                            window.location.href = "login";
                         }
                     });
                 },

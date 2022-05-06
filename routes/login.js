@@ -12,8 +12,8 @@ router.post('/', async (req, res) => {
     try {
         if (!username || !password)
             throw 'Both username and password must be supplied.';
-        //if (!checkUsername(username)) throw 'Provided username is invalid.';
-        //if (!checkPassword(password)) throw 'Provided password is invalid.';
+        if (!checkUsername(username)) throw 'Provided username is invalid.';
+        if (!checkPassword(password)) throw 'Provided password is invalid.';
     } catch (err) {
         res.status(400).json(err);
         return;
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
             res.status(200).json({ login: true });
             return;
         } else {
-            res.status(500).json('Internal Server Error'); 
+            res.status(500).json('Internal Server Error');
             return;
         }
     } catch (err) {
@@ -39,15 +39,14 @@ function checkUsername(input) {
     if (typeof input != 'string') return false;
     input = input.trim();
     if (input.length == 0) return false;
-    if (!/^[a-zA-Z0-9]{4,}$/.test(input)) return false;
     return true;
 }
 
 function checkPassword(input) {
     if (input == undefined) return false;
     if (typeof input != 'string') return false;
-    if (input.length < 6) return false;
-    if (/[ ]{1,}/.test(input)) return false;
+    input = input.trim();
+    if (input.length == 0) return false;
     return true;
 }
 
