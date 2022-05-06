@@ -88,6 +88,14 @@ async function getProfById(id) {
     const professor = await profCollection.findOne({ _id: ObjectId(id) });
     if (!professor) throw 'Professor not found';
     professor._id = professor._id.toString()
+    let professorReviews = professor.reviews;
+    for (let i = 0; i < professorReviews.length; i++) {
+        let userId = professorReviews[i].userId
+        const userCollection = await users();
+        const user = await userCollection.findOne({ _id: ObjectId(userId) });
+        if (!user) throw 'User not found';
+        professorReviews[i].profilePicture = user.profilePicture;
+    }
     return professor;
 }
 
