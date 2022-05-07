@@ -56,6 +56,7 @@
 
 
 
+
     <div class="container-fluid pt-5">
         <div class="container">
             <div class="text-center mx-auto mb-5" style="max-width: 500px;">
@@ -64,20 +65,26 @@
             </div>
             <div class="mx-auto" style="width: 100%; max-width: 600px;">
                 <div class="input-group">
-                    <select class="form-select border-primary w-25" style="height: 60px;" id="search-department" name="search-department">
+                    <select class="form-select border-primary w-25" style="height: 60px;" id="search-department"
+                        name="search-department">
                         <option selected="">Department</option>
                         <option value="Computer Science">Computer Science</option>
                         <option value="2">Department 2</option>
                         <option value="3">Department 3</option>
                     </select>
-                    <input type="text" class="form-control border-primary w-50" placeholder="Keyword" id="search-keyword" name="search-keyword">
+                    <input type="text" class="form-control border-primary w-50" placeholder="Keyword"
+                        id="search-keyword" name="search-keyword">
                     <button class="btn btn-dark border-0 w-25 searchButton">Search</button>
                 </div>
             </div>
         </div>
     </div>
-
-
+    <div>
+        <h1 class="display-4 mb-4" id="noCourse">No Course Found</h1>
+    </div>
+    <div>
+        <ul id="showList"></ul>
+    </div>
 
 
 
@@ -102,25 +109,51 @@
 
 <script>
     $(document).ready(function () {
-
-
-
-
+        var $showList = $('#showList')
+        $('#showList').hide();
+        $('#noCourse').hide();
         $(".searchButton").click(function () {
             event.preventDefault();
-            var formData = {
-                department: $("#search-department").val(),
-                keyword: $("#search-keyword").val()
-            };
+
+            var keyword = $("#search-keyword").val().trim()
+            var department = $("#search-department").val()
+            console.log(keyword)
+            console.log(department)
+
+            $.ajax({
+                type: 'Post',
+                url: "http://localhost:3000/courses",
+                data: {
+                    department: department,
+                    keyword: keyword
+                },
+                success: function (courses) {
+                    console.log(courses);
+                    if (courses.length == 0) {
+                        $('#noCourse').show();
+                    } else {
+                        $('#showList').empty();
+                        $('#showList').hide();
+                        $.each(courses, function (i, course) {
+                            $showList.append(`<li><a class="link" href='http://localhost:3000/course/${course._id}'>${course.courseName}</a></li>`)
+                        })
+                        $('#showList').show();
+                    }
+                },
+                error: function () {
+                    alert('error loading courses')
+                }
+            })
+
             /*
             let department = $("#search-department").val();
             alert(department)
             let keyword = $("#search-keyword").val();
             alert(keyword)
             */
-            
-          
-            
+
+
+
         });
 
 

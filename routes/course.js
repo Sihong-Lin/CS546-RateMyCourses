@@ -15,7 +15,7 @@ const isLoggedIn = function (req) {
 
 
 router.get('/', async (req, res) => {
-    res.redirect('home');
+    res.redirect('courses');
 });
 
 router.get('/:id', async (req, res) => { // show course

@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
         }
         res.render('professorDetail', professor);
     } catch (e) {
-        console.log(e);
+        res.status(404).send(e);
     }
 });
 
@@ -59,7 +59,7 @@ router.post('/:id', async (req, res) => {
         }
         // return res.end();
     } catch (e) {
-        console.log(e);
+        res.status(500).send(e);
     }
 });
 
@@ -77,7 +77,7 @@ router.put('/:id', async (req, res) => {
         }
         return res.end();
     } catch (e) {
-        console.log(e);
+        res.status(500).send(e);
     }
 });
 
@@ -92,7 +92,7 @@ router.delete('/:id', async (req, res) => {
         }
         return;
     } catch (e) {
-        console.log(e);
+        res.status(500).send(e);
     }
 });
 
@@ -107,7 +107,7 @@ router.get('/comments/:id', async (req, res) => {
         }
     } catch (e) {
         console.log(e);
-        res.status(400).send(e);
+        res.status(404).send(e);
     }
 });
 
