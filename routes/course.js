@@ -25,6 +25,7 @@ router.get('/:id', async (req, res) => { // show course
         courseDetail = await course.getCourse(xss(req.params.id));
         res.render('course', { title: courseDetail.courseName, courseDetail: courseDetail});
     } catch (e) {
+        console.log(e);
         res.render('404')
         return
     }
@@ -51,6 +52,7 @@ router.post('/:id', async (req, res) => { // create course review
     try {
         reviewCreateStatus = await user.createCourseReview(xss(userId), xss(courseId), xss(comment), metrics, rating);
     } catch (e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -63,11 +65,13 @@ router.delete('/:id', async (req, res) => {
     try {
         courseId = inputCheck.checkCourseId(xss(req.params.id));
     } catch (e) {
+        console.log(e);
         throw e
     }
     try {
         removeCourseStatus = await course.removeCourse(xss(courseId));
     } catch (e) {
+        console.log(e);
         res.status(500).json(e);
         return
     }
@@ -86,12 +90,14 @@ router.put('/deleteCourseReview', async (req, res) => {
         userId = inputCheck.checkUserId(xss(req.body.userId));
         courseId = inputCheck.checkCourseId(xss(req.body.courseId))
     } catch (e) {
+        console.log(e);
         throw e
     }
     
     try {
         reviewDeleteStatus = await user.deleteCourseReview(xss(userId), xss(courseId));
     } catch (e) {
+        console.log(e);
         res.status(500).json(e);
         return
     }
@@ -110,12 +116,14 @@ router.put('/editCourseReview/', async (req, res) => {
         courseId = inputCheck.checkCourseId(xss(req.body.courseId))
         newComment = inputCheck.checkComment(xss(req.body.newComment))
     } catch (e) {
+        console.log(e);
         throw e
     }
     let reviewEditStatus = undefined
     try {
         reviewEditStatus = await course.updateCourseReviewComment(xss(userId), xss(courseId), xss(newComment))
     } catch (e) {
+        console.log(e);
         res.status(500).json(e);
         return
     }
@@ -145,6 +153,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     try {
         courseName = inputCheck.checkCourseName(xss(courseBody.courseName))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -152,6 +161,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     try {
         academicLevel = inputCheck.checkAcademicLevel(xss(courseBody.academicLevel))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -159,6 +169,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     try {
         courseOwner = inputCheck.checkCourseOwner(xss(courseBody.courseOwner))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -166,6 +177,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     try {
         type = inputCheck.checkType(xss(courseBody.type))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -173,6 +185,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     try {
       //  gradingBasis = inputCheck.checkGradingBasis(courseBody.gradingBasis)
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -180,6 +193,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     try {
         units = inputCheck.checkUnits(courseBody.units)
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -187,6 +201,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     try {
         description = inputCheck.checkDescription(xss(courseBody.description))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -194,6 +209,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     try {
      //   typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(courseBody.typicalPeriodsOffered)
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -201,6 +217,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     try {
         instructionalFormats = inputCheck.checkInstructionalFormats(xss(courseBody.instructionalFormats))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -208,6 +225,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     try {
         syllabus = inputCheck.checkSyllabus(xss(courseBody.syllabus))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -215,6 +233,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     try {
         courseware = inputCheck.checkCourseware(xss(courseBody.courseware))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -222,6 +241,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     try {
         picture = inputCheck.checkCoursePicture(courseBody.picture)
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -243,6 +263,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
             xss(picture))
         res.json(newCourse);
     }catch (e) {
+        console.log(e);
         res.sendStatus(500).json({e})
         return
     }
@@ -270,6 +291,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         courseName = inputCheck.checkCourseName(xss(courseBody.courseName))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -277,6 +299,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         academicLevel = inputCheck.checkAcademicLevel(xss(courseBody.academicLevel))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -284,6 +307,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         courseOwner = inputCheck.checkCourseOwner(xss(courseBody.courseOwner))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -291,6 +315,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         type = inputCheck.checkType(xss(courseBody.type))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -298,6 +323,7 @@ router.post('/', async (req, res) => { // create new course
     try {
        // gradingBasis = inputCheck.checkGradingBasis(courseBody.gradingBasis)
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -305,6 +331,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         units = inputCheck.checkUnits(courseBody.units)
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -312,6 +339,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         description = inputCheck.checkDescription(xss(courseBody.description))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -319,6 +347,7 @@ router.post('/', async (req, res) => { // create new course
     try {
       //  typicalPeriodsOffered = inputCheck.checkTypicalPeriodsOffered(courseBody.typicalPeriodsOffered)
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -326,6 +355,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         instructionalFormats = inputCheck.checkInstructionalFormats(xss(courseBody.instructionalFormats))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -333,6 +363,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         syllabus = inputCheck.checkSyllabus(xss(courseBody.syllabus))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -340,6 +371,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         courseware = inputCheck.checkCourseware(xss(courseBody.courseware))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -347,6 +379,7 @@ router.post('/', async (req, res) => { // create new course
     try {
         picture = inputCheck.checkCoursePicture(xss(courseBody.picture))
     }catch(e) {
+        console.log(e);
         res.status(400).json(e);
         return
     }
@@ -368,10 +401,11 @@ router.post('/', async (req, res) => { // create new course
             xss(picture))
         res.json(newCourse);
     }catch (e) {
+        console.log(e);
         res.sendStatus(500)
         return
     }
-})  
+})
 
 
 
