@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const user = require('../data/user');
-
+const inputCheck = require('../data/inputCheck');
 router.get('/', (req, res) => {
     if (req.session.user) {
         return res.redirect('/private');
@@ -17,6 +17,11 @@ router.post('/', async (req, res) => {
     let profilePicture = req.body.profilePicture;
     let password = req.body.password;
     try {
+        inputCheck.checkUserName(username)
+        inputCheck.checkEmail(email)
+        inputCheck.checkDepartment(major)
+        inputCheck.checkCoursePicture(profilePicture)
+        inputCheck.checkPassword(password)
         if (!username || !password)
             throw 'Both username and password must be supplied.';
         if (!checkUsername(username)) throw 'Provided username is invalid.';
