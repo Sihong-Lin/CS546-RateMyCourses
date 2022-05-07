@@ -1,6 +1,7 @@
 const { ObjectId } = require('mongodb');
 
 module.exports = {
+    checkEmail,
     /*User data input check*/
     checkUserName,
     checkPassword,
@@ -221,16 +222,10 @@ function checkCourseId(courseId) {
 function checkCoursePicture(coursePicture) {
     // if(!coursePicture) throw 'You must provided course picture'
     // if(typeof(coursePicture) !== 'string') throw 'Course Picture is not a string'
-    // var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    // '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-    // '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    // '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    // '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    // '(\\#[-a-z\\d_]*)?$','i'); // fragment locator  
-    // if(!!pattern.test(coursePicture)) {
+    // if(coursePicture.match(/^https?:\/\/.+\/.+$/)) {
     //     return coursePicture
     // } else {
-    //     throw 'invaild course picture url'
+    //     throw 'picture is invaild'
     // }
     return coursePicture
 }
@@ -269,16 +264,21 @@ function checkIntroduction(introduction) {
 function checkProfessorPicture(professorPicture) {
     // if(!professorPicture) throw 'You must provided course picture'
     // if(typeof(professorPicture) !== 'string') throw 'Course Picture is not a string'
-    // var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    // '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-    // '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    // '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    // '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    // '(\\#[-a-z\\d_]*)?$','i'); // fragment locator  
-    // if(!!pattern.test(professorPicture)) {
+    // if(professorPicture.match(/^https?:\/\/.+\/.+$/)) {
     //     return professorPicture
     // } else {
-    //     throw 'invaild professor picture url'
+    //     throw 'picture is invaild'
     // }
     return professorPicture
+    
+}
+
+function checkEmail(email) {
+    if(!email) throw 'You must provided email'
+    if(typeof(email) !== 'string') throw 'Email is not a string'
+    if(email.toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+        return email
+    } else {
+        throw 'email is not right'
+    }
 }

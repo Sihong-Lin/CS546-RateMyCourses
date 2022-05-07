@@ -725,7 +725,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 507 Introduction to Microelectronics and Photonics', // courseName
             'Graduate', // academicLevel
-            'Electrical Engineering', // courseOwner
+            'Electrical Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'An overview of microelectronics and photonics science and technology. It provides the student who wishes to specialize in their application, physics or fabrication with the necessary knowledge of how the different aspects are interrelated. It is taught in three modules: design and applications, taught by EE faculty; operation of electronic and photonic devices, taught by Physics faculty; fabrication and reliability, taught by the materials faculty.', // description
@@ -745,7 +745,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 515 Photonics I', // courseName
             'Graduate', // academicLevel
-            'Electrical Engineering', // courseOwner
+            'Electrical Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'This course will cover topics encompassing the fundamental subject matter for the design of optical systems. Topics will include optical system analysis, optical instrument analysis, applications of thin-film coatings and opto-mechanical system design in the first term. The second term will cover the subjects of photometry and radiometry, spectrographic and spectrophotometric systems, infrared radiation measurement and instrumentation, lasers in optical systems and photon- electron conversion.', // description
@@ -765,7 +765,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 517 Digital and Computer Systems Architecture', // courseName
             'Graduate', // academicLevel
-            'Electrical Engineering', // courseOwner
+            'Electrical Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'This course covers the design and architecture of computer and digital systems in the system design region starting from the transistor/logic gate level to below the device driver level/system monitor level. The systems considered in the course will go beyond the computer chips or CPUs discussed in a typical computer architecture course, but will include complex logic devices such as application specific integrated circuits (ASICs), the core-designs for field programmable gate arrays (FPGAs), system-on-a-chip (SoC) designs, ARM, and other application-specific architectures. Printed circuit board-level architectural considerations for multiple complex digital circuits will also be discussed.', // description
@@ -785,7 +785,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 548 Digital Signal Processing', // courseName
             'Graduate', // academicLevel
-            'Electrical Engineering', // courseOwner
+            'Electrical Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'Review  of  mathematics  of  signals  and  systems  including  sampling  theorem,  Fourier  transform,  z-transform,  Hilbert transform; algorithms for fast computation: DFT, DCT computation, convolution; filter design techniques: FIR and IIR filter design, time and frequency domain methods, window method and other approximation theory based methods; structures for realization of discrete time systems: direct form, parallel form, lattice structure and other state-space canonical forms (e.g., orthogonal filters and related structures); roundoff and quantization effects in digital filters: analysis of sensitivity to coefficient quantization, limit cycle in IIR filters, scaling to prevent overflow, role of special structures.', // description
@@ -805,7 +805,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 551 Engineering Programming: Python', // courseName
             'Graduate', // academicLevel
-            'Electrical Engineering', // courseOwner
+            'Electrical Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'This course presents tool, techniques, algorithms, and programming techniques using the Python programming language for data intensive applications and decision making. The course formally introduces techniques to: (i) gather,(ii) store, and (iii) process large volumes of data to make informed decisions. Such techniques find applicability in many engineering application areas, including communications systems, embedded systems, smart grids, robotics, Internet, and enterprise networks, or any network where information flows and alters decision making.', // description
@@ -825,7 +825,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 552 Engineering Programming: Java', // courseName
             'Graduate', // academicLevel
-            'Electrical Engineering', // courseOwner
+            'Electrical Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'This course is a hands-on intensive introduction to solving engineering problem using Java. The focus is on building real applications including an electrical CAD package, molecular modelers, and controlling network communications. In the process, Java and object-oriented programming are mastered in order to implement efficient solutions to the target applications.', // description
@@ -845,7 +845,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 553 Engineering Programming: C++', // courseName
             'Graduate', // academicLevel
-            'Electrical Engineering', // courseOwner
+            'Electrical Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'This course teaches a deep knowledge of C++ by focusing on common engineering problems. The focus is on engineering applications. In the beginning, the course covers computational goals to including statistics, smoothing data, numerical integration and calculation of volumes to teach/review basic programming logic, loops and function calls. Then we focus on more complex tasks such as simulation, localization and path planning for robotics, and teach object-oriented programming as part of an efficient solution to these engineering problems. By the end of the course, students will have a thorough knowledge of C++.', // description
@@ -865,7 +865,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 560 Fundamentals of Remote Sensing', // courseName
             'Graduate', // academicLevel
-            'Electrical Engineering', // courseOwner
+            'Electrical Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'This course exposes the student to the physical principles underlying remote sensing of ocean, atmosphere, and land by electromagnetic and acoustic passive and active sensors: radars, lidars, infrared and microwaves thermal sensors, sonars, sodars, infrasound/seismic detectors. Topics include fundamental concepts of electromagnetic and acoustic wave interactions with oceanic, atmospheric, and land environment, as well as with natural and man-made objects. Examples from selected sensors will be used to illustrate the information extraction process, and applications of the data for environmental monitoring, oceanography, meteorology, and security/military objectives.', // description
@@ -885,7 +885,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MGT 506 Economics for Managers', // courseName
             'Graduate', // academicLevel
-            'Management', // courseOwner
+            'Management Program', // courseOwner
             'Elective', // type
             3, // units
             'This course introduces managers to the essence of business economics – the theories, concepts and ideas that form the economist’s tool kit encompassing both the microeconomic and macroeconomic environments. Microeconomic topics include demand and supply, elasticity, consumer choice, production, cost, profit maximization, market structure, and game theory while the Macroeconomic topics will be GDP, inflation, unemployment, aggregate demand, aggregate supply, fiscal and monetary policies. In addition the basic concepts in international trade and finance will be discussed.', // description
@@ -905,7 +905,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MGT 609 Project Management Fundamentals', // courseName
             'Graduate', // academicLevel
-            'Management', // courseOwner
+            'Management Program', // courseOwner
             'Elective', // type
             3, // units
             'This course deals with the basic problems of managing a project, defined as a temporary organization built for the purpose of achieving a specific objective. Both operational and conceptual issues will be considered. Operational issues include definition, planning, implementation, control, and evaluation of the project. Conceptual issues include project management vs. hierarchical management, matrix organization, project authority, motivation, and morale. Cases will be used to illustrate problems in project management and how to resolve them.', // description
@@ -925,7 +925,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MGT 610 Strategic Perspectives on Project Management', // courseName
             'Graduate', // academicLevel
-            'Management', // courseOwner
+            'Management Program', // courseOwner
             'Elective', // type
             3, // units
             'This course provides a theoretical perspective on project management for a better understanding of project implementation in modern organizations. The course is based on the premise that success in project leadership depends on a proper managerial style and attitude, and not on specific tools for planning and controlling. The course focuses on developing the manager’s conceptual thinking and on building “the project manager’s mind.” The course helps managers see the entire project landscape and the long-term issues that are critical to project success. It will also address the organizational aspects of initiating and running the program.', // description
@@ -945,7 +945,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MGT 611 Project Analytics', // courseName
             'Graduate', // academicLevel
-            'Management', // courseOwner
+            'Management Program', // courseOwner
             'Elective', // type
             3, // units
             'Formalized procedures, tools, and techniques used in conceptual and detailed planning of the project. Development of work breakdown structure as the foundation for project cost and project duration. Application of project data in monitoring the project progress and in formulating remedial actions in response to unexpected occurrences.', // description
@@ -965,7 +965,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MGT 612 Leader Development', // courseName
             'Graduate', // academicLevel
-            'Management', // courseOwner
+            'Management Program', // courseOwner
             'Elective', // type
             3, // units
             'Project success depends, largely, on the human side. Success in motivating project workers, organizing and leading project teams, communication and sharing information, and conflict resolution, are just a few areas that are critical for project success. However, being primarily technical people, many project managers tend to neglect these “soft” issues, assuming they are less important or that they should be addressed by direct functional managers. The purpose of this course is to increase awareness of project managers to the critical issues of managing people and to present some of the theories and practices of leading project workers and teams.', // description
@@ -985,7 +985,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 500 Business Analytics: Data, Models & Decisions', // courseName
             'Graduate', // academicLevel
-            'Business Intelligence and Analytics', // courseOwner
+            'Business Intelligence and Analytics Program', // courseOwner
             'Elective', // type
             3, // units
             'Many managerial decisions - regardless of their functional orientation - are increasingly based on analysis using quantitative models from the discipline of management science. Management science tools, techniques and concepts (e.g., data, models, and software programs) have dramatically changed the way businesses operate in manufacturing, service operations, marketing, transportation, and finance. Business Analytics explores data-driven methods that are used to analyze and solve complex business problems. Students will acquire analytical skills in building, applying and evaluating various models with hands-on computer applications. Topics include descriptive statistics, time-series analysis, regression models, decision analysis, Monte Carlo simulation, and optimization models.', // description
@@ -1005,7 +1005,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 610 Applied Analytics', // courseName
             'Graduate', // academicLevel
-            'Business Intelligence and Analytics', // courseOwner
+            'Business Intelligence and Analytics Program', // courseOwner
             'Elective', // type
             3, // units
             'Applied Analytics is a capstone course for the analytic-focused MBA program. It is intended to integrate all previously taken coursed in the program by presenting a set of increasingly complex business problems. These problems can be solved through analytic skill taught in this and previous courses. In particular, the course is intended to reinforce the understanding of analysis as way to build models that can focus attention on parts of the system that can be improved through intervention. The early part of the course uses synthetic data and empirical data readily available for analysis. The second part of the course encourages students to state and solve their own problem, gathering their own data as a part of the analytic process.', // description
@@ -1025,7 +1025,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 650 Optimization and Process Analytics', // courseName
             'Graduate', // academicLevel
-            'Business Intelligence and Analytics', // courseOwner
+            'Business Intelligence and Analytics Program', // courseOwner
             'Elective', // type
             3, // units
             'This course covers basic concepts in optimization and heuristic search with an emphasis on process improvement and optimization. This course emphasizes the application of mathematical optimization models over the underlying mathematics of their algorithms. While the skills developed in this course can be applied to a very broad range of business problems, the practice examples and student exercises will focus on the following areas: healthcare, logistics and supply chain optimization, capital budgeting, asset management, portfolio analysis. Most of the student exercises will involve the use of Microsoft Excel’s “Solver” add-on package for mathematical optimization.', // description
@@ -1045,7 +1045,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 652 Multivariate Data Analysis I', // courseName
             'Graduate', // academicLevel
-            'Business Intelligence and Analyticss', // courseOwner
+            'Business Intelligence and Analytics Program', // courseOwner
             'Elective', // type
             3, // units
             'This course introduces basic methods underlying multivariate analysis through computer applications using R, which is used by many data scientists and is an attractive environment for learning multivariate analysis. Students will master multivariate analysis techniques, including principal components analysis, factor analysis, structural equation modeling, multidimensional scaling, correspondence analysis, cluster analysis, multivariate analysis of variance, discriminant function analysis, logistic regression, as well as other methods used for dimension reduction, pattern recognition, classification, and forecasting. Students will build expertise in applying these techniques to real data through class exercises and a project, and learn how to visualize data and present results. This proficiency will enable students to become sophisticated data analysts, and to help make more informed design, marketing, and business decisions.', // description
@@ -1065,7 +1065,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 654 Experimental Design II', // courseName
             'Graduate', // academicLevel
-            'Business Intelligence and Analytics', // courseOwner
+            'Business Intelligence and Analytics Program', // courseOwner
             'Elective', // type
             3, // units
             'This course covers fundamental concepts of experimentation including hypothesis development, operational definitions, reliability and validity, and measurement and variables, as well as design methods, such as sampling, randomization, and counterbalancing.  The course also introduces the analysis associated with different designs as designing solid experiments involves thinking about how to analyze the obtained data.  At the end of the course, students present a project, in which they come up with a research question, design an experiment, collect and analyze the data, and try to answer the question.  MGT 620 or equivalent is required; basic knowledge of statistics is expected.', // description
@@ -1085,7 +1085,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 656 Advanced Data Analytics and Machine Learning', // courseName
             'Graduate', // academicLevel
-            'Business Intelligence and Analytics', // courseOwner
+            'Business Intelligence and Analytics Program', // courseOwner
             'Elective', // type
             3, // units
             'The significant amount of corporate information available requires a systematic and analytical approach to select the most important information and anticipate major events. Statistical learning algorithms facilitate this process understanding, modeling and forecasting the behavior of major corporate variables. This course introduces time series and statistical and graphical models used for inference and prediction. The emphasis of the course is in the learning capability of the algorithms and their application to finance, direct marketing, operations, and biomedicine. Students should have a basic knowledge of probability theory, and linear algebra.', // description
@@ -1105,7 +1105,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 658 Social Network Analysis', // courseName
             'Graduate', // academicLevel
-            'Business Intelligence and Analytics', // courseOwner
+            'Business Intelligence and Analytics Program', // courseOwner
             'Elective', // type
             3, // units
             'The significant amount of corporate information available requires a systematic and analytical approach to select the most important information and anticipate major events. Statistical learning algorithms facilitate this process understanding, modeling and forecasting the behavior of major corporate variables. This course introduces time series and statistical and graphical models used for inference and prediction. The emphasis of the course is in the learning capability of the algorithms and their application to finance, direct marketing, operations, and biomedicine. Students should have a basic knowledge of probability theory, and linear algebra.', // description
@@ -1125,7 +1125,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 660 Web Mining', // courseName
             'Graduate', // academicLevel
-            'Business Intelligence and Analytics', // courseOwner
+            'Business Intelligence and Analytics Program', // courseOwner
             'Elective', // type
             3, // units
             'In this course, students will learn through hands-on experience how to extract data from the web and analyze web-scale data using distributed computing. Students will learn different analysis methods that are widely used across the range of internet companies, from start-ups to online giants like Amazon or Google. At the end of the course, students will apply these methods to answer real scientific question or to create a useful web application.', // description
@@ -1145,7 +1145,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'FIN 500 Financial and Managerial Accounting', // courseName
             'Graduate', // academicLevel
-            'Finance', // courseOwner
+            'Finance Program', // courseOwner
             'Elective', // type
             3, // units
             'This course will develop accounting analysis useful for managerial decision-making purposes. Topics will include an introduction to elements of financial accounting, cost-profit-volume analysis, manufacturing costs and elements of cost accounting, special decision analysis, budgeting, variances, and controllability and responsibility accounting.', // description
@@ -1165,7 +1165,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'FIN 510 Financial Statement Analysis', // courseName
             'Graduate', // academicLevel
-            'Finance', // courseOwner
+            'Finance Program', // courseOwner
             'Elective', // type
             3, // units
             'This course deals with (1) interpretation of financial statements, (2) evaluation of the alignment between business strategies and financial performance, (3) identification of potential business risks, and (4) comparison of performance of different companies. The course introduces business analysis and valuation techniques and utilizes real world data to help students comprehend financial statement analysis tools. Topics covers financial statement information, tools of financial statement analysis, and forecasting and valuation techniques.', // description
@@ -1185,7 +1185,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'FIN 515 Financial Decision Making', // courseName
             'Graduate', // academicLevel
-            'Finance', // courseOwner
+            'Finance Program', // courseOwner
             'Elective', // type
             3, // units
             'Corporate financial management requires the ability to understand the past performance of the firm in accounting terms; while also being able to project the future economic consequences of the firm in financial terms. This course provides the requisite survey of accounting and finance methods and principles to allow technical executives to make effective decisions that maximize shareholder value.', // description
@@ -1205,7 +1205,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'FIN 530 Investment Banking', // courseName
             'Graduate', // academicLevel
-            'Finance', // courseOwner
+            'Finance Program', // courseOwner
             'Elective', // type
             3, // units
             'This course focuses on the main activities of sell-side investment services such as: financial advisory, stocks and bonds structuring and underwriting, project finance and post-sale services such as equity and bond research. The course is aimed at students interested in acquiring skills and tools required for an investment banking career. The course does not cover the merger and acquisition topics (corporate, leveraged and early stage) for which the student should take the Venture Capital course.', // description
@@ -1225,7 +1225,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'FIN 540 Sustainable Finance', // courseName
             'Graduate', // academicLevel
-            'Finance', // courseOwner
+            'Finance Program', // courseOwner
             'Elective', // type
             3, // units
             'This course introduces students to sustainable finance. In this course, sustainable finance is understood as the process of ensuring the inclusion of environmental, social, and governance (ESG) considerations into corporate decisions. A sustainable corporation will make their investment decisions that consider not only financial returns but also its social impact. Our textbook provides a clear and masterful discussion of the principles of sustainable business based on “growing the pie” principle. By focusing on “growing the pie” as a corporate objective, the sustainable businesses are able to create shareholder values as well as stakeholder value.', // description
@@ -1245,7 +1245,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 501 Fundamentals of Atomic Physics', // courseName
             'Graduate', // academicLevel
-            'Physics & Engineering Physic', // courseOwner
+            'Physics and Engineering Physics Program', // courseOwner
             'Elective', // type
             3, // units
             'The course will cover the most common atomic and nuclear effects, yet covers it in direct relation to a sophisticated quantum mechanical treatment. It thereby connects the theoretical models with the experimental results, showcasing agreement as well as disagreement to outline the validity range of each model. Topics covered include Brownian motion; charge and mass of electrons and ions; Zeeman effect; photoelectric effect; emission, absorption, reflection, refraction, diffraction, absorption, and scattering of X-rays; Compton effect; diffraction of electrons; uncertainty principle; electron optics; atomic spectra and electron distribution; radioactivity; disintegration of nuclei; nuclear processes; nuclear energy; and fission.', // description
@@ -1265,7 +1265,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 506 Introduction to Astrophysics and Cosmology', // courseName
             'Graduate', // academicLevel
-            'Physics & Engineering Physic', // courseOwner
+            'Physics and Engineering Physics Program', // courseOwner
             'Elective', // type
             3, // units
             'Theories of the universe, general relativity, Big Bang cosmology, and the inflationary universe; and elementary particle theory and nucleosynthesis in the early universe. Observational cosmology; galaxy formation and galactic structure; and stellar evolution and formation of the elements. White dwarfs, neutron stars and black holes, planetary systems, and the existence of life in the universe.', // description
@@ -1285,7 +1285,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 507 Introduction to Microelectronics and Photonics', // courseName
             'Graduate', // academicLevel
-            'Physics & Engineering Physic', // courseOwner
+            'Physics and Engineering Physics Program', // courseOwner
             'Elective', // type
             3, // units
             'An overview of microelectronics and photonics science and technology. It provides the student who wishes to specialize in their application, physics or fabrication with the necessary knowledge of how the different aspects are interrelated. It is taught in three modules: design and applications, taught by EE faculty; operation of electronic and photonic devices, taught by Physics faculty; fabrication and reliability, taught by the materials faculty.', // description
@@ -1305,7 +1305,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 510 Modern Optics Laboratory', // courseName
             'Graduate', // academicLevel
-            'Physics & Engineering Physic', // courseOwner
+            'Physics and Engineering Physics Program', // courseOwner
             'Elective', // type
             3, // units
             'The course is designed to familiarize students with a range of optical instruments and their applications. Included will be the measurement of aberrations in optical systems, thin-film properties, Fourier transform imaging systems, nonlinear optics, and laser beam dynamics.', // description
@@ -1325,7 +1325,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 515 Photonics I', // courseName
             'Graduate', // academicLevel
-            'Physics & Engineering Physic', // courseOwner
+            'Physics and Engineering Physics Program', // courseOwner
             'Elective', // type
             3, // units
             'This course will cover topics encompassing the fundamental subject matter for the design of optical systems. Topics will include optical system analysis, optical instrument analysis, applications of thin-film coatings and opto-mechanical system design in the first term. The second term will cover the subjects of photometry and radiometry, spectrographic and spectrophotometric systems, infrared radiation measurement and instrumentation, lasers in optical systems and photon- electron conversion.', // description
@@ -1345,7 +1345,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 527 Mathematical Methods of Science and Engineering I', // courseName
             'Graduate', // academicLevel
-            'Physics & Engineering Physic', // courseOwner
+            'Physics and Engineering Physics Program', // courseOwner
             'Elective', // type
             3, // units
             'Fourier series, Bessel functions, and Legendre polynomials as involved in the solution of vibrating systems; tensors and vectors in the theory of elasticity; applications of vector analysis to electrodynamics; vector operations in curvilinear coordinates; numerical methods of interpolation and of integration of functions and differential equations.', // description
@@ -1365,7 +1365,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'CH 550 Spectra and Structure', // courseName
             'Graduate', // academicLevel
-            'Chemical Sciences Program', // courseOwner
+            'Chemistry Program', // courseOwner
             'Elective', // type
             3, // units
             'An intensive course on the interpretation of spectroscopic data; emphasis is on the use of modern spectroscopic techniques, such as NMR (13C, D, 15N, and H), mass (including CI), laser-Raman, ESCA, ORD, CD, IR, and UV for structure elucidation. Special attention is given to the application of computer technology in spectral work. A course designed for practicing chemists in analytical, organic, physical, and biomedical areas. Extensive problem solving. No laboratory.', // description
@@ -1385,7 +1385,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'CH 561 Instrumental Methods of Analysis', // courseName
             'Graduate', // academicLevel
-            'Chemical Sciences Program', // courseOwner
+            'Chemistry Program', // courseOwner
             'Elective', // type
             3, // units
             'Primarily a laboratory course, with some lecture presenting the principles and applications of contemporary instrumental analytical methods, with a focus on spectroscopy and separations. Laboratory practice explores ultraviolet, visible and infrared spectrophotometry, atomic absorption spectroscopy, nuclear magnetic resonance spectrometry, gas-liquid and high- performance liquid chromatography, and capillary electrophoresis. These instrumental techniques are utilized for quantitative and qualitative analyses of organic, inorganic, biological and environmental samples.', // description
@@ -1405,7 +1405,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'CH 580 Biochemistry I - Cellular Metabolism and Regulation', // courseName
             'Graduate', // academicLevel
-            'Chemical Sciences Program', // courseOwner
+            'Chemistry Program', // courseOwner
             'Elective', // type
             3, // units
             'This course includes discussion of biologically relevant topics such as intermolecular forces, amino acids, peptides, structures and functions of proteins, lipids, carbohydrates, nucleic acids. In addition, course includes discussion on topics such as biological activities, kinetics, and metabolic pathways in biosynthesis, regulatory mechanisms, cell respiration, glycolysis, gluconeogenesis, citric acid cycle.', // description
@@ -1425,7 +1425,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'CH 640 Advanced Organic and Heterocyclic Chemistry', // courseName
             'Graduate', // academicLevel
-            'Chemical Sciences Program', // courseOwner
+            'Chemistry Program', // courseOwner
             'Elective', // type
             3, // units
             'An advanced course in the chemistry of carbon compounds, with special reference to polyfunctional compounds, heterocycles, techniques of literature survey, stereochemical concepts, and physical tools for organic chemists. Fall semester.', // description
@@ -1525,7 +1525,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MT 542 Data Science in Pharmaceutical Development', // courseName
             'Graduate', // academicLevel
-            'Chemical Engineering Program', // courseOwner
+            'Materials Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'The increased availability of digital data in the pharmaceutical industry has enabled the adoption of machine learning models to advance pharmaceutical development efforts.  In addition, the emergence of open source languages with extensive libraries of powerful algorithms has transformed the way in which data science is adopted and practiced in pharmaceutical development organizations. This class provides the students with an introduction to pharmaceutical development aimed at contextualizing the incorporation of data science methodologies acquired in mathematical foundation courses (see requirements below).  Industrial case studies in the public domain will be used as practice examples to demonstrate the incorporation of data science principles to industrially relevant applications.', // description
@@ -1735,7 +1735,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user4,
-        course1,
+        course41,
         "His lectures are clear and encourages everyone to ask questions when unsure. (Do that. It'll help.) Make sure to show up for class, as there are often quizzes.",
         {difficulty: "Medium", chanceToGetA: 'High', workLoad: 'Medium'},
         4.1
@@ -1744,7 +1744,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user5,
-        course1,
+        course41,
         "Very enthusiastic about what he teaches, but goes really fast.",
         {difficulty: "Hard", chanceToGetA: 'High', workLoad: 'Low'},
         4.1
@@ -1753,7 +1753,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user3,
-        course2,
+        course42,
         "Very nice and teaches the class very logically. Very approachable in and out of class but a hard grader, though the course material is VERY easy if you read the notes. His exams are generally easy, with 1 tricky question max.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.0
@@ -1762,7 +1762,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user4,
-        course2,
+        course42,
         "Greenberg is probably one of the best professors I've had at UD. His class is very clear and if you pay attention for at least a little bit of it and read the notes you should do well.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.0
@@ -1771,7 +1771,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user5,
-        course2,
+        course42,
         "Great content in the course. try to use the aws credits and get hands on aws experience",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.8
@@ -1780,7 +1780,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user6,
-        course2,
+        course42,
         "His accent is a major problem, otherwise he is very knowledgable.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Low'},
         3.8
@@ -1789,7 +1789,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user10,
-        course1,
+        course41,
         "Class isn't too hard and not too much work is given. What truly sucks about this course is the lack of quality. Its kind of hard to describe, but it you can easily see how little effort is put into it. Also I am pretty sure Rahman has been teaching this class for several years, yet he still doesn't know how to use canvas.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         3.5
@@ -1798,7 +1798,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user10,
-        course2,
+        course42,
         "great professor. daily quick quiz.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.5
@@ -1807,7 +1807,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user10,
-        course3,
+        course35,
         "Its like this was the first year he taught this course and we were responsible for working out all the kinks. Year after year he doesn't fix issues with the assignments or lectures, causing us to hit the same road blocks. He is almost never available for help, and says he responds to emails or Piazza posts but never does! Lots of false promises!!!",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.0
@@ -1816,7 +1816,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user10,
-        course4,
+        course45,
         "Never reply email. Lots of boring podcasts. Too many homework. Just waste of time.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.0
@@ -1825,7 +1825,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user7,
-        course5,
+        course55,
         "It may not have been so bad if the materials were actually properly prepared. Often the material had broken links / missing videos. The biggest issue was the lecture audio and video were not in sync, requiring you to constantly pause or look at the PDF on the side to stay in sync. Several students reported this to him, but he did nothing about it.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.0
@@ -1834,7 +1834,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user7,
-        course6,
+        course65,
         "This is THE worst class at Stevens. It froze over in 2009 as all the lectures were recorded then and haven't been touched since. His stub code is years old and contains many bugs/errors that will trip you up. He hasn't touched the materials in years, and often needs to refresh his memory when asked questions. He can't be bothered to help! AVOID!!!!.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Lots'},
         2.0
@@ -1843,7 +1843,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user7,
-        course7,
+        course75,
         "No coding assignments, only homework is latex notes for a few of the lectures with a partner. Offers extra credit. Easiest grader I've had and laid back atmosphere.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.4
@@ -1852,7 +1852,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user7,
-        course8,
+        course38,
         "Amazing knowledge about Statistical Machine Learning and AI. Must take class if you want to get into Machine Learning research!",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.4
@@ -1861,7 +1861,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user8,
-        course11,
+        course38,
         "The lectures are great albeit a little bit of information overload. Take notes as midterm and endterm would be straight out of the material. A lot depends on the project. Pay attention to the grading criteria. Course is not really technical but is crucial if you are interested in building clean UI and want to learn about usability.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Low'},
         4.7
@@ -1870,7 +1870,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user8,
-        course12,
+        course37,
         "Awesome Professor. Very cool about doubts of students. Respected.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.7
@@ -1879,7 +1879,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user8,
-        course13,
+        course36,
         "You actually will learn a lot in his class, and Prof. Duggan is a good teacher. But it's simply not worth it to take this class! Some of the homework assignments (given weekly) take up to 15 hours to complete. If you finish an assignment within 10 hours you'll probably feel good about yourself. Save yourself a lot of anxiety and frustration. Avoid!",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         2.0
@@ -1888,7 +1888,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user8,
-        course14,
+        course35,
         "DO NOT LISTEN TO ANYONE, YOU WILL REGRET TAKING THIS CLASS.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.0
@@ -1897,16 +1897,16 @@ const main = async () => {
     
     await user.createCourseReview(
         user9,
-        course11,
+        course35,
         "Overall, a good prof who helps his students understand the computer programming in order to excel you need to put in the time and effort.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.2
     )
 
     
-    await user.createCourseReview(
+    await user.createCourseReview( 
         user9,
-        course12,
+        course36,
         "great for someone new to computer science.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
         4.2

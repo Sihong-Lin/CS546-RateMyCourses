@@ -59,8 +59,12 @@ router.post('/:id', async (req, res) => { // create course review
 });
 
 router.delete('/:id', async (req, res) => {  
-    const courseId = req.params.id;
-
+    let courseId = undefined;
+    try {
+        courseId = inputCheck.checkCourseId(req.params.id);
+    } catch (e) {
+        throw e
+    }
     try {
         removeCourseStatus = await course.removeCourse(courseId);
     } catch (e) {
@@ -70,29 +74,21 @@ router.delete('/:id', async (req, res) => {
     
     res.status(200).json({removeCourseStatus });
     
-    
-    /*
-    const userId = "6269c572c594dd340156efec";
-    const courseId = req.params.id;
-    let reviewDeleteStatus = undefined
-    try {
-        reviewDeleteStatus = await user.deleteCourseReview(userId, courseId);
-    } catch (e) {
-        res.status(500).json(e);
-        return
-    }
-    
-    res.status(200).json({reviewDeleteStatus });
-    */
 });
 
 
 
 router.put('/deleteCourseReview', async (req, res) => {  
- 
-    let userId = req.body.userId;
-    let courseId = req.body.courseId;
+    let userId = undefined
+    let courseId = undefined
     let reviewDeleteStatus = undefined
+    try {
+        userId = inputCheck.checkUserId(req.body.userId);
+        courseId = inputCheck.checkCourseId(req.body.courseId)
+    } catch (e) {
+        throw e
+    }
+    
     try {
         reviewDeleteStatus = await user.deleteCourseReview(userId, courseId);
     } catch (e) {
@@ -106,9 +102,16 @@ router.put('/deleteCourseReview', async (req, res) => {
 
 
 router.put('/editCourseReview/', async (req, res) => {  
-    let userId = req.body.userId;
-    let courseId = req.body.courseId;
-    let newComment = req.body.newComment;
+    let userId = undefined
+    let courseId = undefined
+    let newComment
+    try {
+        userId = inputCheck.checkUserId(req.body.userId)
+        courseId = inputCheck.checkCourseId(req.body.courseId)
+        newComment = inputCheck.checkComment(req.body.newComment)
+    } catch (e) {
+        throw e
+    }
     let reviewEditStatus = undefined
     try {
         reviewEditStatus = await course.updateCourseReviewComment(userId, courseId, newComment)
@@ -122,7 +125,7 @@ router.put('/editCourseReview/', async (req, res) => {
 });
 
 router.put('/edit/:id', async (req, res) => {  // edit course
-    const courseId = req.params.id
+    const courseId = inputCheck.checkCourseId(req.params.id)
     const courseBody = req.body
     if(!courseBody) {
         res.status(400).json({error : 'You must provide data to update a course'})
@@ -132,10 +135,8 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     let academicLevel = undefined
     let courseOwner = undefined
     let type = undefined
-   // let gradingBasis = undefined
     let units = undefined
     let description = undefined
-  //  let typicalPeriodsOffered = undefined
     let instructionalFormats = undefined
     let syllabus = undefined
     let courseware = undefined
