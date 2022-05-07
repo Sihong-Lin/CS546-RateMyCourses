@@ -232,12 +232,11 @@ async function getProfReview(reviewId) {
     return review;
 }
 
-async function updateProfReview(rid, uid, pid, comment, rating) {
+async function updateProfReview(rid, uid, pid, comment) {
     uid = inputCheck.checkUserId(uid); 
     rid = inputCheck.checkUserId(rid);
     pid = inputCheck.checkUserId(pid);
     comment = inputCheck.checkComment(comment);
-    rating = inputCheck.checkRating(rating);
 
     const profCollection = await professors();
     const userCollection = await users();
@@ -246,8 +245,7 @@ async function updateProfReview(rid, uid, pid, comment, rating) {
     const updateInfo = await profCollection.updateOne(
         { _id: ObjectId(pid),  "reviews._id": ObjectId(rid)},
         { $set: { 
-                "reviews.$.comment": comment,
-                "reviews.$.rating": rating
+                "reviews.$.comment": comment
             }
         });
     
@@ -255,8 +253,7 @@ async function updateProfReview(rid, uid, pid, comment, rating) {
         {_id: ObjectId(uid),"professorReviews._id" : ObjectId(rid)}, 
         {
             $set: {
-                "professorReviews.$.comment" : comment,
-                "professorReviews.$.rating" : rating
+                "professorReviews.$.comment" : comment
             }
         }
     )

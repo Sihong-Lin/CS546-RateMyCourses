@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const home = require('../data/home');
+const professorDB = require('../data/professor');
 const inputCheck = require('./inputCheck');
 const xss = require('xss');
 
@@ -34,6 +35,30 @@ router.post('/', async (req, res) => {
         console.log(e);
         res.status(400).send(e);
     }
+});
+
+router.put('/editProfessorReview/', async (req, res) => {
+    let userId = undefined
+    let professorId = undefined
+    let reviewId = undefined
+    let newComment = undefined
+    try {
+        userId = inputCheck.checkUserId(req.body.userId)
+        professorId = inputCheck.checkUserId(req.body.professorId)
+        reviewId = inputCheck.checkUserId(req.body.reviewId)
+        newComment = inputCheck.checkComment(req.body.newComment)
+    } catch (e) {
+        throw e
+    }
+    let reviewEditStatus = undefined
+    try {
+        reviewEditStatus = await professorDB.updateProfReview(reviewId, userId, professorId, newComment)
+    } catch (e) {
+        res.status(500).json(e);
+        return
+    }
+
+    res.status(200).json({ reviewEditStatus: true });
 });
 
 router.get('/:id', async (req, res) => {

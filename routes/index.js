@@ -22,7 +22,7 @@ const constructorMethod = (app) => {
     app.use('/home', homeRoutes);
     app.use('/course', courseRoutes);
     app.use('/courses', coursesRoutes);
-    // app.use('/professor', professorRoutes);
+   // app.use('/professor', professorRoutes);
     app.use('/professors', professorsRoutes);
     app.use('/backstage', backstageRoutes);
     app.use('/courseManage', courseManageRoutes);
