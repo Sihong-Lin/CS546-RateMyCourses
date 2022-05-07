@@ -23,6 +23,7 @@ router.put('/status/:id', async (req, res) => {
     const userId = req.params.id;
 
     try {
+        inputCheck.checkUserId(userId)
         userRestrictStatus = await user.setUserRestrictStatus(userId);
     } catch (e) {
         res.status(500).json(e);
@@ -37,6 +38,7 @@ router.put('/role/:id', async (req, res) => {
     const userId = req.params.id;
 
     try {
+        inputCheck.checkUserId(userId)
         userRole = await user.changeUserRole(userId);
     } catch (e) {
         res.status(500).json(e);
@@ -50,6 +52,7 @@ router.put('/role/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {  
     const userId = req.params.id;
     try {
+        inputCheck.checkUserId(userId)
         removeUserStatus = await user.removeUser(userId);
     } catch (e) {
         res.status(500).json(e);

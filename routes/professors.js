@@ -107,6 +107,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     let { id } = req.params;
     try {
+        inputCheck.checkUserId(id);
         if (req.session.user) {
             let deleteInfo = await home.removeProf(id);
             res.status(200).send("Professor successfully deleted");

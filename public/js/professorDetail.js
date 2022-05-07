@@ -42,7 +42,7 @@ $(document).ready(function () {
                             // closeOnCancel: true
                         }).then((res) => {
                             if (res.isConfirmed) {
-                                window.location = "http://localhost:3000/login.html";
+                                window.location = "http://localhost:3000/login";
                             }
                         })
                     }
