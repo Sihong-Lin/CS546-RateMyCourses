@@ -16,6 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 router.put('/editProfessorReview/', async (req, res) => {
+    console.log(11111)
     let userId = undefined
     let professorId = undefined
     let reviewId = undefined
@@ -28,6 +29,8 @@ router.put('/editProfessorReview/', async (req, res) => {
     } catch (e) {
         throw e
     }
+    console.log(userId)
+    console.log(newComment)
     let reviewEditStatus = undefined
     try {
         reviewEditStatus = await professor.updateProfReview(userId, reviewId, professorId, newComment)

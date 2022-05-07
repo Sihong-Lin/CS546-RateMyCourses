@@ -506,6 +506,13 @@
             var str = $("#professorId" + index).attr("value");
             let arr = str.split(" ");
             let comment = $("#prof-comment-edit" + index).val();
+            alert(comment)
+            let professorId = arr[0]
+            let reviewId = arr[1]
+            let userId = arr[2]
+            alert(professorId)
+            alert(reviewId)
+            alert(userId)
             var formData = {
                 professorId: arr[0],
                 reviewId: arr[1],
@@ -519,6 +526,7 @@
                 dataType: "json",
                 encode: true,
                 success: function (result) {
+                    alert(1111111111111)
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -531,6 +539,7 @@
                     });
                 },
                 error: function (request, status, error) {
+                    alert(222222222222)
                     Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
                     event.preventDefault();
                 }
