@@ -4,7 +4,7 @@
   "description": "Want to stack your schedule with great classes in Stevens? The RateMyCourses app is here to help. Plenty of resources like syllabuses, course reviews, professors’ teaching style and a robust set of search features will lead you directly to the perfect courses in the semester.",
   "main": "index.js",
   "scripts": {
-    "seed": "node ./tasks/testAll.js; node ./tasks/seed-prof.js",
+    "seed": "node ./tasks/testAll.js; node tasks/seed-courses;",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "pretty": "npx prettier --write '**/*.js' '!public/**' '!node_modules/**'"
