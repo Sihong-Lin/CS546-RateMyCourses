@@ -3034,6 +3034,78 @@ const main = async () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    let professor1 = await professor.createProfessor(
+        'Patrick Hill',
+        "Computer Science",
+        'Best prefessor at Stevens! I recieved and offer for an internship based just on the knowledge I got in his course. Hill is tough but fair and you get out of his course what you put into it. I feel I m a stronger developer after taking his course for sure.',
+        "http://www.graffixnyc.com/images/me2.jpg"
+    )
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor1._id.toString(),
+        "Really just a great dude all around. You can tell how much he cares about teaching and he gives off dad energy. He's always ready to help!",
+        5.0
+    )
+
+
     connection.closeConnection();
     console.log('Done!');
 }
