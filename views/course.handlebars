@@ -40,17 +40,15 @@
                 <div class="mb-4">
                     <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Course Info</h5>
                     <h1 class="display-10">{{courseDetail.courseName}}</h1>
-                    <h4 class="display-10">Academic Level: <dfn>{{courseDetail.academicLevel}}</dfn> </h4>
-                    <h4 class="display-10">Course Owner: <dfn>{{courseDetail.courseOwner}}</dfn> </h4>
-                    <h4 class="display-10">Instructional Formats: <dfn>{{courseDetail.instructionalFormats}}</dfn></h4>
-                    <h4 class="display-10">Type: <dfn class="display-10">{{courseDetail.type}}</dfn></h4>
-                    <h4 class="display-10">Difficulty: <dfn class="display-10">{{courseDetail.metrics.difficulty}}</dfn>
-                    </h4>
-                    <h4 class="display-10">WorkLoad: <dfn class="display-10">{{courseDetail.metrics.workLoad}}</dfn>
-                    </h4>
-                    <h4 class="display-10">Chance To Get A: <dfn
-                            class="display-10">{{courseDetail.metrics.chanceToGetA}}</dfn></h4>
-                    <h4 class="display-10">Overall Rating: <dfn class="display-10">{{courseDetail.overallRating}}</dfn>
+                    <h4 class="display-10">Academic Level: &nbsp&nbsp {{courseDetail.academicLevel}}</h4>
+                    <h4 class="display-10">Course Owner: &nbsp&nbsp {{courseDetail.courseOwner}}</h4>
+                    <h4 class="display-10">Instructional Formats: &nbsp&nbsp {{courseDetail.instructionalFormats}}</h4>
+                    <h4 class="display-10">Type: &nbsp&nbsp {{courseDetail.type}}</h4>
+                    <h4 class="display-10">Difficulty: &nbsp&nbsp {{courseDetail.metrics.difficulty}}</h4>
+                    <h4 class="display-10">WorkLoad: &nbsp&nbsp {{courseDetail.metrics.workLoad}}</h4>
+                    
+                    <h4 class="display-10">Chance To Get A: &nbsp&nbsp {{courseDetail.metrics.chanceToGetA}}</h4>
+                    <h4 class="display-10">Overall Rating: &nbsp&nbsp {{courseDetail.overallRating}}</h4>
                     </h4>
                     <h4 class="display-10">description: </h4>
                     <p>{{courseDetail.description}}</p>
@@ -115,25 +113,31 @@
                     <div class="col-12">
                         <span>
                             <h6>Difficulty:    </h6>
-                            <input type="radio" name="Difficulty" id = "Difficulty" value="Easy" required/>Easy
-                            <input type="radio" name="Difficulty" id = "Difficulty" value="Medium"/>Medium
-                            <input type="radio" name="Difficulty" id = "Difficulty" value="Hard"/>Hard
+                            <input type="radio" name="Difficulty" id = "Difficulty" value="Easy" required/>&nbsp Easy
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="radio" name="Difficulty" id = "Difficulty" value="Medium"/>&nbsp Medium
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="radio" name="Difficulty" id = "Difficulty" value="Hard"/>&nbsp Hard
                         </span>
                     </div>
                     <div class="col-12">
                         <span>
                             <h6>ChanceToGetA:    </h6>
-                            <input type="radio" name="ChanceToGetA" id = "ChanceToGetA" value="Low" required/>Low 
-                            <input type="radio" name="ChanceToGetA" id = "ChanceToGetA" value="Medium" />Medium
-                            <input type="radio" name="ChanceToGetA" id = "ChanceToGetA" value="High"/>High
+                            <input type="radio" name="ChanceToGetA" id = "ChanceToGetA" value="Low" required/>&nbsp Low 
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="radio" name="ChanceToGetA" id = "ChanceToGetA" value="Medium" />&nbsp Medium
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="radio" name="ChanceToGetA" id = "ChanceToGetA" value="High"/>&nbsp High
                         </span>
                     </div>
                     <div class="col-12">
                         <span>
                             <h6>WorkLoad:    </h6>
-                            <input type="radio" name="WorkLoad" id = "WorkLoad" value="Less" required/>Less
-                            <input type="radio" name="WorkLoad" id = "WorkLoad" value="Medium"/>Medium
-                            <input type="radio" name="WorkLoad" id = "WorkLoad" value="Plenty"/>Plenty
+                            <input type="radio" name="WorkLoad" id = "WorkLoad" value="Less" required/>&nbsp Less
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="radio" name="WorkLoad" id = "WorkLoad" value="Medium"/>&nbsp Medium
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="radio" name="WorkLoad" id = "WorkLoad" value="Plenty"/>&nbsp Plenty
                         </span>
                     </div>
                     <div class="col-12">

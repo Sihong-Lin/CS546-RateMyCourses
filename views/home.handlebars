@@ -347,7 +347,7 @@
                 data: formData,
                 dataType: "json",
                 encode: true,
-                success: function (result) {
+                success: function (request) {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -360,6 +360,9 @@
                     });
                 },
                 error: function (request, status, error) {
+                    alert(request.responseText)
+                    console.log(request.responseText)
+                    document.innerHTML = request.responseText;
                     Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
                     event.preventDefault();
                 }
