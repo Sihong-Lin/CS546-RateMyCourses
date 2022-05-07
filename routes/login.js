@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const user = require('../data/user');
+const xss = require('xss');
 
 router.get('/', async (req, res) => {
     if(req.session.user) {
@@ -17,14 +18,14 @@ router.post('/', async (req, res) => {
     try {
         if (!username || !password)
             throw 'Both username and password must be supplied.';
-        if (!checkUsername(username)) throw 'Provided username is invalid.';
-        if (!checkPassword(password)) throw 'Provided password is invalid.';
+        if (!checkUsername(xss(username))) throw 'Provided username is invalid.';
+        if (!checkPassword(xss(password))) throw 'Provided password is invalid.';
     } catch (err) {
         res.status(400).json(err);
         return;
     } 
     try {
-        const result = await user.checkUser(username, password);
+        const result = await user.checkUser(xss(username), xss(password));
         if (result.authenticated == true) {
             req.session.user = { username: username , userId : result.userId , role : result.role};
             res.status(200).json({ login: true });

@@ -4,6 +4,7 @@ const home = require('../data/home');
 const course = require('../data/course');
 const user = require('../data/user');
 const inputCheck = require('../data/inputCheck');
+const xss = require('xss');
 
 //页面初始化
 router.get('/', async (req, res) => {
@@ -23,8 +24,8 @@ router.put('/status/:id', async (req, res) => {
     const userId = req.params.id;
 
     try {
-        inputCheck.checkUserId(userId)
-        userRestrictStatus = await user.setUserRestrictStatus(userId);
+        inputCheck.checkUserId(xss(userId))
+        userRestrictStatus = await user.setUserRestrictStatus(xss(userId));
     } catch (e) {
         res.status(500).json(e);
         return
@@ -38,8 +39,8 @@ router.put('/role/:id', async (req, res) => {
     const userId = req.params.id;
 
     try {
-        inputCheck.checkUserId(userId)
-        userRole = await user.changeUserRole(userId);
+        inputCheck.checkUserId(xss(userId))
+        userRole = await user.changeUserRole(xss(userId));
     } catch (e) {
         res.status(500).json(e);
         return
@@ -52,8 +53,8 @@ router.put('/role/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {  
     const userId = req.params.id;
     try {
-        inputCheck.checkUserId(userId)
-        removeUserStatus = await user.removeUser(userId);
+        inputCheck.checkUserId(xss(userId))
+        removeUserStatus = await user.removeUser(xss(userId));
     } catch (e) {
         res.status(500).json(e);
         return

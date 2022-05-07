@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const user = require('../data/user');
 const inputCheck = require('../data/inputCheck');
+const xss = require('xss');
 
 
 router.post('/course', async (req, res) => {
@@ -19,28 +20,28 @@ router.post('/course', async (req, res) => {
     let rating = undefined
 
     try {
-        username = inputCheck.checkUserName(reviewBody.username)
+        username = inputCheck.checkUserName(xss(reviewBody.username))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        userId = inputCheck.checkUserId(reviewBody.userId)
+        userId = inputCheck.checkUserId(xss(reviewBody.userId))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        courseId = inputCheck.checkCourseId(reviewBody.courseId)
+        courseId = inputCheck.checkCourseId(xss(reviewBody.courseId))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        comment = inputCheck.checkComment(reviewBody.comment)
+        comment = inputCheck.checkComment(xss(reviewBody.comment))
     }catch(e) {
         res.status(400).json(e);
         return
@@ -62,13 +63,14 @@ router.post('/course', async (req, res) => {
 
     try {
         const newReview = await user.createCourseReview(
-            userId,
-            courseId,
-            comment,
+            xss(userId),
+            xss(courseId),
+            xss(comment),
             metrics,
             rating)
         res.json(newReview);
     }catch (e) {
+        console.log(e);
         res.sendStatus(500)
         return
     }
