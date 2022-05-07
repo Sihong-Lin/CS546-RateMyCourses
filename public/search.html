@@ -130,10 +130,12 @@
                 success: function (courses) {
                     console.log(courses);
                     if (courses.length == 0) {
+                        $('#showList').hide();
+                        $('#showList').empty();
                         $('#noCourse').show();
                     } else {
                         $('#showList').empty();
-                        $('#showList').hide();
+                        $('#noCourse').hide();
                         $.each(courses, function (i, course) {
                             $showList.append(`<li><a class="link" href='http://localhost:3000/course/${course._id}'>${course.courseName}</a></li>`)
                         })
