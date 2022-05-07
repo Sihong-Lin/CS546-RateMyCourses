@@ -18,7 +18,7 @@ const main = async () => {
     
     let user1 = undefined
     try {
-        let createUser = await user.createUser("user1", "user1@gmail.com", "Biomedical Engineering", "https://i.insider.com/61f14a0ce996470011907119?width=600&format=jpeg&auto=webp", "123456");
+        let createUser = await user.createUser("James", "James@gmail.com", "Biomedical Engineering", "https://i.insider.com/61f14a0ce996470011907119?width=600&format=jpeg&auto=webp", "123456");
         user1 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -26,7 +26,7 @@ const main = async () => {
 
     let user2 = undefined
     try {
-        let createUser = await user.createUser("user2", "user2@gmail.com", "Computer Science", "https://ysm-res.cloudinary.com/image/upload/ar_1:1,c_fill,dpr_3.0,f_auto,g_faces:auto,q_auto:eco,w_200/v1/yms/prod/36509713-affd-49af-b726-41403de634b1", "123456");
+        let createUser = await user.createUser("Robert", "Robert@gmail.com", "Computer Science", "https://ysm-res.cloudinary.com/image/upload/ar_1:1,c_fill,dpr_3.0,f_auto,g_faces:auto,q_auto:eco,w_200/v1/yms/prod/36509713-affd-49af-b726-41403de634b1", "123456");
         user2 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -34,7 +34,7 @@ const main = async () => {
 
     let user3 = undefined
     try {
-        let createUser = await user.createUser("user3", "user3@gmail.com", "Biomedical Engineering", "https://www.cancer.net/sites/cancer.net/files/styles/blog_media/public/markham_merry-jennifer_headshot.jpg.png?itok=GnzqyjcQ", "123456");
+        let createUser = await user.createUser("John3", "John@gmail.com", "Biomedical Engineering", "https://www.cancer.net/sites/cancer.net/files/styles/blog_media/public/markham_merry-jennifer_headshot.jpg.png?itok=GnzqyjcQ", "123456");
         user3 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -42,7 +42,7 @@ const main = async () => {
 
     let user4 = undefined
     try {
-        let createUser = await user.createUser("user4", "user4@gmail.com", "Physics", "https://images.ctfassets.net/yixw23k2v6vo/3ioQoj7O34KGny34uI2FMX/249c9055a0f5713d2e3027ac96db8c2d/LauraCason.jpg", "123456");
+        let createUser = await user.createUser("Michael", "Michael@gmail.com", "Environmental Engineering", "https://images.ctfassets.net/yixw23k2v6vo/3ioQoj7O34KGny34uI2FMX/249c9055a0f5713d2e3027ac96db8c2d/LauraCason.jpg", "123456");
         user4 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -50,7 +50,7 @@ const main = async () => {
 
     let user5 = undefined
     try {
-        let createUser = await user.createUser("user5", "user5@gmail.com", "Computer Science", "https://www.syracuse.com/resizer/UNYVpgRhA3z5lnxmRswrgWkEyWY=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/IOW75ADP3FCWHHKHM6WL67TQTQ.jpeg", "123456");
+        let createUser = await user.createUser("David", "David@gmail.com", "Computer Science", "https://www.syracuse.com/resizer/UNYVpgRhA3z5lnxmRswrgWkEyWY=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/IOW75ADP3FCWHHKHM6WL67TQTQ.jpeg", "123456");
         user5 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -58,7 +58,7 @@ const main = async () => {
 
     let user6 = undefined
     try {
-        let createUser = await user.createUser("user6", "user6@gmail.com", "Physics", "https://i.insider.com/5cf1200a11e2052506753045?width=700", "123456");
+        let createUser = await user.createUser("William", "William@gmail.com", "Environmental Engineering", "https://i.insider.com/5cf1200a11e2052506753045?width=700", "123456");
         user6 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -66,7 +66,7 @@ const main = async () => {
 
     let user7 = undefined
     try {
-        let createUser = await user.createUser("user7", "user7@gmail.com", "Mechanical Engineering", "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2022%2F03%2F30%2FWill-Smith-Oscars.jpg", "123456");
+        let createUser = await user.createUser("Richard", "Richard@gmail.com", "Mechanical Engineering", "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2022%2F03%2F30%2FWill-Smith-Oscars.jpg", "123456");
         user7 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -74,7 +74,7 @@ const main = async () => {
 
     let user8 = undefined
     try {
-        let createUser = await user.createUser("user8", "user8@gmail.com", "Physics", "https://www.london-fire.gov.uk/media/4613/london-fire-brigade-tim-powel-director-of-people.jpg", "123456");
+        let createUser = await user.createUser("Joseph", "Joseph@gmail.com", "Computer Science", "https://www.london-fire.gov.uk/media/4613/london-fire-brigade-tim-powel-director-of-people.jpg", "123456");
         user8 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -82,7 +82,7 @@ const main = async () => {
 
     let user9 = undefined
     try {
-        let createUser = await user.createUser("user9", "user9@gmail.com", "Physics", "https://www.okchicas.com/wp-content/uploads/2021/11/paul-rudd-es-el-hombre-mas-sexy-del-2021-por-revista-people-2.jpg", "123456");
+        let createUser = await user.createUser("Thomas", "Thomas@gmail.com", "Environmental Engineering", "https://www.okchicas.com/wp-content/uploads/2021/11/paul-rudd-es-el-hombre-mas-sexy-del-2021-por-revista-people-2.jpg", "123456");
         user9 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -90,7 +90,7 @@ const main = async () => {
 
     let user10 = undefined
     try {
-        let createUser = await user.createUser("user10", "user10@gmail.com", "Mechanical Engineering", "https://static.bangkokpost.com/media/content/dcx/2020/08/26/3730727_700.jpg", "123456");
+        let createUser = await user.createUser("Charles", "Charles@gmail.com", "Mechanical Engineering", "https://static.bangkokpost.com/media/content/dcx/2020/08/26/3730727_700.jpg", "123456");
         user10 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -98,7 +98,7 @@ const main = async () => {
 
     let user11 = undefined
     try {
-        let createUser = await user.createUser("user11", "user11@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT40s522A7NGSQ4kDq3gYJyJ3itLUcIlOroT25wjVhRVgsnBH2qlgh8EuADG_jEnCiSTig&usqp=CAU", "123456");
+        let createUser = await user.createUser("Christopher", "Christopher@gmail.com", "Computer Science", "https://us.123rf.com/450wm/bonninstudio/bonninstudio1306/bonninstudio130600006/20048138-portrait-of-a-normal-young-man.jpg?ver=6", "123456");
         user11 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -106,7 +106,7 @@ const main = async () => {
 
     let user12 = undefined
     try {
-        let createUser = await user.createUser("user12", "user12@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2RHj5aBArvQQQtkpqkJU3MzDrr2ji2rg00w&usqp=CAU", "123456");
+        let createUser = await user.createUser("Daniel", "Daniel@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2RHj5aBArvQQQtkpqkJU3MzDrr2ji2rg00w&usqp=CAU", "123456");
         user12 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -114,7 +114,7 @@ const main = async () => {
 
     let user13 = undefined
     try {
-        let createUser = await user.createUser("user13", "user13@gmail.com", "Mechanical Engineering", "https://149366112.v2.pressablecdn.com/wp-content/uploads/2015/01/leonardo-e1421876802330.jpg", "123456");
+        let createUser = await user.createUser("Matthew", "Matthew@gmail.com", "Mechanical Engineering", "https://149366112.v2.pressablecdn.com/wp-content/uploads/2015/01/leonardo-e1421876802330.jpg", "123456");
         user13 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -122,7 +122,7 @@ const main = async () => {
 
     let user14 = undefined
     try {
-        let createUser = await user.createUser("user14", "user14@gmail.com", "Computer Science", "https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/06/06/15/Chris-Pratt.jpg?quality=75&width=982&height=726&auto=webp", "123456");
+        let createUser = await user.createUser("Anthony", "Anthony@gmail.com", "Computer Science", "https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/06/06/15/Chris-Pratt.jpg?quality=75&width=982&height=726&auto=webp", "123456");
         user14 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -130,7 +130,7 @@ const main = async () => {
 
     let user15 = undefined
     try {
-        let createUser = await user.createUser("user15", "user15@gmail.com", "Mechanical Engineering", "https://virginiacancerspecialists.com/wp-content/uploads/2021/06/Ann-Favret-Bio-photo-2-2021-scaled-e1623768737328-400x400.jpg", "123456");
+        let createUser = await user.createUser("Mark", "Mark@gmail.com", "Mechanical Engineering", "https://virginiacancerspecialists.com/wp-content/uploads/2021/06/Ann-Favret-Bio-photo-2-2021-scaled-e1623768737328-400x400.jpg", "123456");
         user15 = createUser.insertedId;
     } catch (e) {
         console.log(e);
