@@ -4,6 +4,7 @@ const router = express.Router();
 const course = require('../data/course');
 const user = require('../data/user');
 const inputCheck = require('../data/inputCheck');
+const xss = require('xss');
 
 const isLoggedIn = function (req) {
     if(req.session.user != undefined) {
@@ -21,7 +22,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => { // show course
     let courseDetail = undefined
     try {
-        courseDetail = await course.getCourse(req.params.id);
+        courseDetail = await course.getCourse(xss(req.params.id));
         res.render('course', { title: courseDetail.courseName, courseDetail: courseDetail});
     } catch (e) {
         res.render('404')
@@ -48,7 +49,7 @@ router.post('/:id', async (req, res) => { // create course review
     const metrics = {difficulty: difficulty, chanceToGetA: chanceToGetA, workLoad: workLoad}
     let reviewCreateStatus = undefined
     try {
-        reviewCreateStatus = await user.createCourseReview(userId, courseId, comment, metrics, rating);
+        reviewCreateStatus = await user.createCourseReview(xss(userId), xss(courseId), xss(comment), metrics, rating);
     } catch (e) {
         res.status(400).json(e);
         return
