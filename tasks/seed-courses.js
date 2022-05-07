@@ -18,7 +18,7 @@ const main = async () => {
     
     let user1 = undefined
     try {
-        let createUser = await user.createUser("user1", "user1@gmail.com", "Biomedical Engineering", "https://i.insider.com/61f14a0ce996470011907119?width=600&format=jpeg&auto=webp", "123456");
+        let createUser = await user.createUser("James", "James@gmail.com", "Biomedical Engineering", "https://i.insider.com/61f14a0ce996470011907119?width=600&format=jpeg&auto=webp", "123456");
         user1 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -26,7 +26,7 @@ const main = async () => {
 
     let user2 = undefined
     try {
-        let createUser = await user.createUser("user2", "user2@gmail.com", "Computer Science", "https://ysm-res.cloudinary.com/image/upload/ar_1:1,c_fill,dpr_3.0,f_auto,g_faces:auto,q_auto:eco,w_200/v1/yms/prod/36509713-affd-49af-b726-41403de634b1", "123456");
+        let createUser = await user.createUser("Robert", "Robert@gmail.com", "Computer Science", "https://ysm-res.cloudinary.com/image/upload/ar_1:1,c_fill,dpr_3.0,f_auto,g_faces:auto,q_auto:eco,w_200/v1/yms/prod/36509713-affd-49af-b726-41403de634b1", "123456");
         user2 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -34,7 +34,7 @@ const main = async () => {
 
     let user3 = undefined
     try {
-        let createUser = await user.createUser("user3", "user3@gmail.com", "Biomedical Engineering", "https://www.cancer.net/sites/cancer.net/files/styles/blog_media/public/markham_merry-jennifer_headshot.jpg.png?itok=GnzqyjcQ", "123456");
+        let createUser = await user.createUser("John3", "John@gmail.com", "Biomedical Engineering", "https://www.cancer.net/sites/cancer.net/files/styles/blog_media/public/markham_merry-jennifer_headshot.jpg.png?itok=GnzqyjcQ", "123456");
         user3 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -42,7 +42,7 @@ const main = async () => {
 
     let user4 = undefined
     try {
-        let createUser = await user.createUser("user4", "user4@gmail.com", "Physics", "https://images.ctfassets.net/yixw23k2v6vo/3ioQoj7O34KGny34uI2FMX/249c9055a0f5713d2e3027ac96db8c2d/LauraCason.jpg", "123456");
+        let createUser = await user.createUser("Michael", "Michael@gmail.com", "Environmental Engineering", "https://images.ctfassets.net/yixw23k2v6vo/3ioQoj7O34KGny34uI2FMX/249c9055a0f5713d2e3027ac96db8c2d/LauraCason.jpg", "123456");
         user4 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -50,7 +50,7 @@ const main = async () => {
 
     let user5 = undefined
     try {
-        let createUser = await user.createUser("user5", "user5@gmail.com", "Computer Science", "https://www.syracuse.com/resizer/UNYVpgRhA3z5lnxmRswrgWkEyWY=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/IOW75ADP3FCWHHKHM6WL67TQTQ.jpeg", "123456");
+        let createUser = await user.createUser("David", "David@gmail.com", "Computer Science", "https://www.syracuse.com/resizer/UNYVpgRhA3z5lnxmRswrgWkEyWY=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/IOW75ADP3FCWHHKHM6WL67TQTQ.jpeg", "123456");
         user5 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -58,7 +58,7 @@ const main = async () => {
 
     let user6 = undefined
     try {
-        let createUser = await user.createUser("user6", "user6@gmail.com", "Physics", "https://i.insider.com/5cf1200a11e2052506753045?width=700", "123456");
+        let createUser = await user.createUser("William", "William@gmail.com", "Environmental Engineering", "https://i.insider.com/5cf1200a11e2052506753045?width=700", "123456");
         user6 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -66,7 +66,7 @@ const main = async () => {
 
     let user7 = undefined
     try {
-        let createUser = await user.createUser("user7", "user7@gmail.com", "Mechanical Engineering", "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2022%2F03%2F30%2FWill-Smith-Oscars.jpg", "123456");
+        let createUser = await user.createUser("Richard", "Richard@gmail.com", "Mechanical Engineering", "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2022%2F03%2F30%2FWill-Smith-Oscars.jpg", "123456");
         user7 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -74,7 +74,7 @@ const main = async () => {
 
     let user8 = undefined
     try {
-        let createUser = await user.createUser("user8", "user8@gmail.com", "Physics", "https://www.london-fire.gov.uk/media/4613/london-fire-brigade-tim-powel-director-of-people.jpg", "123456");
+        let createUser = await user.createUser("Joseph", "Joseph@gmail.com", "Computer Science", "https://www.london-fire.gov.uk/media/4613/london-fire-brigade-tim-powel-director-of-people.jpg", "123456");
         user8 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -82,7 +82,7 @@ const main = async () => {
 
     let user9 = undefined
     try {
-        let createUser = await user.createUser("user9", "user9@gmail.com", "Physics", "https://www.okchicas.com/wp-content/uploads/2021/11/paul-rudd-es-el-hombre-mas-sexy-del-2021-por-revista-people-2.jpg", "123456");
+        let createUser = await user.createUser("Thomas", "Thomas@gmail.com", "Environmental Engineering", "https://www.okchicas.com/wp-content/uploads/2021/11/paul-rudd-es-el-hombre-mas-sexy-del-2021-por-revista-people-2.jpg", "123456");
         user9 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -90,7 +90,7 @@ const main = async () => {
 
     let user10 = undefined
     try {
-        let createUser = await user.createUser("user10", "user10@gmail.com", "Mechanical Engineering", "https://static.bangkokpost.com/media/content/dcx/2020/08/26/3730727_700.jpg", "123456");
+        let createUser = await user.createUser("Charles", "Charles@gmail.com", "Mechanical Engineering", "https://static.bangkokpost.com/media/content/dcx/2020/08/26/3730727_700.jpg", "123456");
         user10 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -98,7 +98,7 @@ const main = async () => {
 
     let user11 = undefined
     try {
-        let createUser = await user.createUser("user11", "user11@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT40s522A7NGSQ4kDq3gYJyJ3itLUcIlOroT25wjVhRVgsnBH2qlgh8EuADG_jEnCiSTig&usqp=CAU", "123456");
+        let createUser = await user.createUser("Christopher", "Christopher@gmail.com", "Computer Science", "https://us.123rf.com/450wm/bonninstudio/bonninstudio1306/bonninstudio130600006/20048138-portrait-of-a-normal-young-man.jpg?ver=6", "123456");
         user11 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -106,7 +106,7 @@ const main = async () => {
 
     let user12 = undefined
     try {
-        let createUser = await user.createUser("user12", "user12@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2RHj5aBArvQQQtkpqkJU3MzDrr2ji2rg00w&usqp=CAU", "123456");
+        let createUser = await user.createUser("Daniel", "Daniel@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2RHj5aBArvQQQtkpqkJU3MzDrr2ji2rg00w&usqp=CAU", "123456");
         user12 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -114,7 +114,7 @@ const main = async () => {
 
     let user13 = undefined
     try {
-        let createUser = await user.createUser("user13", "user13@gmail.com", "Mechanical Engineering", "https://149366112.v2.pressablecdn.com/wp-content/uploads/2015/01/leonardo-e1421876802330.jpg", "123456");
+        let createUser = await user.createUser("Matthew", "Matthew@gmail.com", "Mechanical Engineering", "https://149366112.v2.pressablecdn.com/wp-content/uploads/2015/01/leonardo-e1421876802330.jpg", "123456");
         user13 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -122,7 +122,7 @@ const main = async () => {
 
     let user14 = undefined
     try {
-        let createUser = await user.createUser("user14", "user14@gmail.com", "Computer Science", "https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/06/06/15/Chris-Pratt.jpg?quality=75&width=982&height=726&auto=webp", "123456");
+        let createUser = await user.createUser("Anthony", "Anthony@gmail.com", "Computer Science", "https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/06/06/15/Chris-Pratt.jpg?quality=75&width=982&height=726&auto=webp", "123456");
         user14 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -130,7 +130,7 @@ const main = async () => {
 
     let user15 = undefined
     try {
-        let createUser = await user.createUser("user15", "user15@gmail.com", "Mechanical Engineering", "https://virginiacancerspecialists.com/wp-content/uploads/2021/06/Ann-Favret-Bio-photo-2-2021-scaled-e1623768737328-400x400.jpg", "123456");
+        let createUser = await user.createUser("Mark", "Mark@gmail.com", "Mechanical Engineering", "https://virginiacancerspecialists.com/wp-content/uploads/2021/06/Ann-Favret-Bio-photo-2-2021-scaled-e1623768737328-400x400.jpg", "123456");
         user15 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -1245,7 +1245,11 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 501 Fundamentals of Atomic Physics', // courseName
             'Graduate', // academicLevel
+<<<<<<< HEAD
             'Physics & Engineering Physics Program', // courseOwner
+=======
+            'Physics and Engineering Physics Program', // courseOwner
+>>>>>>> upstream/main
             'Elective', // type
             3, // units
             'The course will cover the most common atomic and nuclear effects, yet covers it in direct relation to a sophisticated quantum mechanical treatment. It thereby connects the theoretical models with the experimental results, showcasing agreement as well as disagreement to outline the validity range of each model. Topics covered include Brownian motion; charge and mass of electrons and ions; Zeeman effect; photoelectric effect; emission, absorption, reflection, refraction, diffraction, absorption, and scattering of X-rays; Compton effect; diffraction of electrons; uncertainty principle; electron optics; atomic spectra and electron distribution; radioactivity; disintegration of nuclei; nuclear processes; nuclear energy; and fission.', // description
@@ -1265,7 +1269,11 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 506 Introduction to Astrophysics and Cosmology', // courseName
             'Graduate', // academicLevel
+<<<<<<< HEAD
             'Physics & Engineering Physics Program', // courseOwner
+=======
+            'Physics and Engineering Physics Program', // courseOwner
+>>>>>>> upstream/main
             'Elective', // type
             3, // units
             'Theories of the universe, general relativity, Big Bang cosmology, and the inflationary universe; and elementary particle theory and nucleosynthesis in the early universe. Observational cosmology; galaxy formation and galactic structure; and stellar evolution and formation of the elements. White dwarfs, neutron stars and black holes, planetary systems, and the existence of life in the universe.', // description
@@ -1285,7 +1293,11 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 507 Introduction to Microelectronics and Photonics', // courseName
             'Graduate', // academicLevel
+<<<<<<< HEAD
             'Physics & Engineering Physics Program', // courseOwner
+=======
+            'Physics and Engineering Physics Program', // courseOwner
+>>>>>>> upstream/main
             'Elective', // type
             3, // units
             'An overview of microelectronics and photonics science and technology. It provides the student who wishes to specialize in their application, physics or fabrication with the necessary knowledge of how the different aspects are interrelated. It is taught in three modules: design and applications, taught by EE faculty; operation of electronic and photonic devices, taught by Physics faculty; fabrication and reliability, taught by the materials faculty.', // description
@@ -1305,7 +1317,11 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 510 Modern Optics Laboratory', // courseName
             'Graduate', // academicLevel
+<<<<<<< HEAD
             'Physics & Engineering Physics Program', // courseOwner
+=======
+            'Physics and Engineering Physics Program', // courseOwner
+>>>>>>> upstream/main
             'Elective', // type
             3, // units
             'The course is designed to familiarize students with a range of optical instruments and their applications. Included will be the measurement of aberrations in optical systems, thin-film properties, Fourier transform imaging systems, nonlinear optics, and laser beam dynamics.', // description
@@ -1325,7 +1341,11 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 515 Photonics I', // courseName
             'Graduate', // academicLevel
+<<<<<<< HEAD
             'Physics & Engineering Physics Program', // courseOwner
+=======
+            'Physics and Engineering Physics Program', // courseOwner
+>>>>>>> upstream/main
             'Elective', // type
             3, // units
             'This course will cover topics encompassing the fundamental subject matter for the design of optical systems. Topics will include optical system analysis, optical instrument analysis, applications of thin-film coatings and opto-mechanical system design in the first term. The second term will cover the subjects of photometry and radiometry, spectrographic and spectrophotometric systems, infrared radiation measurement and instrumentation, lasers in optical systems and photon- electron conversion.', // description
@@ -1345,7 +1365,11 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 527 Mathematical Methods of Science and Engineering I', // courseName
             'Graduate', // academicLevel
+<<<<<<< HEAD
             'Physics & Engineering Physics Program', // courseOwner
+=======
+            'Physics and Engineering Physics Program', // courseOwner
+>>>>>>> upstream/main
             'Elective', // type
             3, // units
             'Fourier series, Bessel functions, and Legendre polynomials as involved in the solution of vibrating systems; tensors and vectors in the theory of elasticity; applications of vector analysis to electrodynamics; vector operations in curvilinear coordinates; numerical methods of interpolation and of integration of functions and differential equations.', // description
@@ -1735,7 +1759,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user4,
-        course1,
+        course41,
         "His lectures are clear and encourages everyone to ask questions when unsure. (Do that. It'll help.) Make sure to show up for class, as there are often quizzes.",
         {difficulty: "Medium", chanceToGetA: 'High', workLoad: 'Medium'},
         4.1
@@ -1744,7 +1768,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user5,
-        course1,
+        course41,
         "Very enthusiastic about what he teaches, but goes really fast.",
         {difficulty: "Hard", chanceToGetA: 'High', workLoad: 'Low'},
         4.1
@@ -1753,7 +1777,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user3,
-        course2,
+        course42,
         "Very nice and teaches the class very logically. Very approachable in and out of class but a hard grader, though the course material is VERY easy if you read the notes. His exams are generally easy, with 1 tricky question max.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.0
@@ -1762,7 +1786,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user4,
-        course2,
+        course42,
         "Greenberg is probably one of the best professors I've had at UD. His class is very clear and if you pay attention for at least a little bit of it and read the notes you should do well.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.0
@@ -1771,7 +1795,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user5,
-        course2,
+        course42,
         "Great content in the course. try to use the aws credits and get hands on aws experience",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.8
@@ -1780,7 +1804,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user6,
-        course2,
+        course42,
         "His accent is a major problem, otherwise he is very knowledgable.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Low'},
         3.8
@@ -1789,7 +1813,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user10,
-        course1,
+        course41,
         "Class isn't too hard and not too much work is given. What truly sucks about this course is the lack of quality. Its kind of hard to describe, but it you can easily see how little effort is put into it. Also I am pretty sure Rahman has been teaching this class for several years, yet he still doesn't know how to use canvas.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         3.5
@@ -1798,7 +1822,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user10,
-        course2,
+        course42,
         "great professor. daily quick quiz.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.5
@@ -1807,7 +1831,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user10,
-        course3,
+        course35,
         "Its like this was the first year he taught this course and we were responsible for working out all the kinks. Year after year he doesn't fix issues with the assignments or lectures, causing us to hit the same road blocks. He is almost never available for help, and says he responds to emails or Piazza posts but never does! Lots of false promises!!!",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.0
@@ -1816,7 +1840,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user10,
-        course4,
+        course45,
         "Never reply email. Lots of boring podcasts. Too many homework. Just waste of time.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.0
@@ -1825,7 +1849,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user7,
-        course5,
+        course55,
         "It may not have been so bad if the materials were actually properly prepared. Often the material had broken links / missing videos. The biggest issue was the lecture audio and video were not in sync, requiring you to constantly pause or look at the PDF on the side to stay in sync. Several students reported this to him, but he did nothing about it.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.0
@@ -1834,7 +1858,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user7,
-        course6,
+        course65,
         "This is THE worst class at Stevens. It froze over in 2009 as all the lectures were recorded then and haven't been touched since. His stub code is years old and contains many bugs/errors that will trip you up. He hasn't touched the materials in years, and often needs to refresh his memory when asked questions. He can't be bothered to help! AVOID!!!!.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Lots'},
         2.0
@@ -1843,7 +1867,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user7,
-        course7,
+        course75,
         "No coding assignments, only homework is latex notes for a few of the lectures with a partner. Offers extra credit. Easiest grader I've had and laid back atmosphere.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.4
@@ -1852,7 +1876,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user7,
-        course8,
+        course38,
         "Amazing knowledge about Statistical Machine Learning and AI. Must take class if you want to get into Machine Learning research!",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.4
@@ -1861,7 +1885,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user8,
-        course11,
+        course38,
         "The lectures are great albeit a little bit of information overload. Take notes as midterm and endterm would be straight out of the material. A lot depends on the project. Pay attention to the grading criteria. Course is not really technical but is crucial if you are interested in building clean UI and want to learn about usability.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Low'},
         4.7
@@ -1870,7 +1894,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user8,
-        course12,
+        course37,
         "Awesome Professor. Very cool about doubts of students. Respected.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.7
@@ -1879,7 +1903,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user8,
-        course13,
+        course36,
         "You actually will learn a lot in his class, and Prof. Duggan is a good teacher. But it's simply not worth it to take this class! Some of the homework assignments (given weekly) take up to 15 hours to complete. If you finish an assignment within 10 hours you'll probably feel good about yourself. Save yourself a lot of anxiety and frustration. Avoid!",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         2.0
@@ -1888,7 +1912,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user8,
-        course14,
+        course35,
         "DO NOT LISTEN TO ANYONE, YOU WILL REGRET TAKING THIS CLASS.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.0
@@ -1897,16 +1921,16 @@ const main = async () => {
     
     await user.createCourseReview(
         user9,
-        course11,
+        course35,
         "Overall, a good prof who helps his students understand the computer programming in order to excel you need to put in the time and effort.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.2
     )
 
     
-    await user.createCourseReview(
+    await user.createCourseReview( 
         user9,
-        course12,
+        course36,
         "great for someone new to computer science.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
         4.2
@@ -3032,6 +3056,78 @@ const main = async () => {
         5.0
     )
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    let professor1 = await professor.createProfessor(
+        'Patrick Hill',
+        "Computer Science",
+        'Best prefessor at Stevens! I recieved and offer for an internship based just on the knowledge I got in his course. Hill is tough but fair and you get out of his course what you put into it. I feel I m a stronger developer after taking his course for sure.',
+        "http://www.graffixnyc.com/images/me2.jpg"
+    )
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor1._id.toString(),
+        "Really just a great dude all around. You can tell how much he cares about teaching and he gives off dad energy. He's always ready to help!",
+        5.0
+    )
 
 
     connection.closeConnection();

@@ -2,24 +2,32 @@ const express = require('express');
 const router = express.Router();
 const home = require('../data/home');
 const professor = require('../data/professor');
-
+const inputCheck = require('../data/inputCheck');
 //Professors页面初始化
 router.get('/', async (req, res) => {
     let professorList = await home.getAllProfessors();
     let dpts = await home.getDepartments();
     // console.log(professorList[0])
-    res.render('professors', { 
-        title: 'RateMyCourses - Courses', 
+    res.render('professors', {
+        title: 'RateMyCourses - Courses',
         allProfessors: professorList,
         dpts: dpts
     });
 });
 
-router.put('/editProfessorReview/', async (req, res) => {  
-    let userId = req.body.userId;
-    let professorId = req.body.professorId;
-    let reviewId = req.body.reviewId;
-    let newComment = req.body.newComment;
+router.put('/editProfessorReview/', async (req, res) => {
+    let userId = undefined
+    let professorId = undefined
+    let reviewId = undefined
+    let newComment = undefined
+    try {
+        userId = inputCheck.checkUserId(req.body.userId)
+        professorId = inputCheck.checkUserId(req.body.professorId)
+        reviewId = inputCheck.checkUserId(req.body.reviewId)
+        newComment = inputCheck.checkComment(req.body.newComment)
+    } catch (e) {
+        throw e
+    }
     let reviewEditStatus = undefined
     try {
         reviewEditStatus = await professor.updateProfReview(userId, reviewId, professorId, newComment)
@@ -27,9 +35,9 @@ router.put('/editProfessorReview/', async (req, res) => {
         res.status(500).json(e);
         return
     }
-    
-    res.status(200).json({reviewEditStatus: true});
-    
+
+    res.status(200).json({ reviewEditStatus: true });
+
 });
 
 router.post('/', async (req, res) => {
@@ -47,8 +55,9 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    let { id } = req.params;
+    
     try {
+        let  {id} = inputCheck.checkUserId(req.params)
         let professor = await home.getProfById(id);
         if (!professor.rating) {
             professor.rating = 0
@@ -63,10 +72,11 @@ router.get('/:id', async (req, res) => {
 
 // clean up this route
 router.post('/:id', async (req, res) => {
-    let { id } = req.params;
-    let comment = req.body.comment;
-    let rating = parseInt(req.body.rating);
+
     try {
+        let { id } = inputCheck.checkUserId(req.params);
+        let comment = inputCheck.checkComment(req.body.comment)
+        let rating = inputCheck.checkRating(parseInt(req.body.rating))
         if (req.session.user) {
             let uid = req.session.user.userId;
             let profReview = await home.addProfReview(uid, id, comment, rating);
@@ -83,9 +93,10 @@ router.post('/:id', async (req, res) => {
 
 
 router.put('/:id', async (req, res) => {
-    let { id } = req.params;
-    let updatedProf = req.body
+
     try {
+        let { id } = inputCheck.checkUserId(req.params)
+        let updatedProf = req.body
         if (req.session.user) {
             let updated = await home.updateProf(id, updatedProf);
             res.status(200).json("professro successfully updated");

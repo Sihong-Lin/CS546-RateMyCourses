@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const home = require('../data/home');
 const inputCheck = require('./inputCheck');
+const xss = require('xss');
 
 //Professors页面初始化
 router.get('/', async (req, res) => {
@@ -14,22 +15,23 @@ router.get('/', async (req, res) => {
         dpts: dpts
     });
 });
-
+// tested with post
 router.post('/', async (req, res) => {
     try {
-        inputCheck.checkUserName(req.body.professorName);
-        inputCheck.checkDepartment(req.body.department);
-        inputCheck.checkIntroduction(req.body.introduction);
-        inputCheck.checkProfessorPicture(req.body.picture);
+        inputCheck.checkUserName(xss(req.body.professorName));
+        inputCheck.checkDepartment(xss(req.body.department));
+        inputCheck.checkIntroduction(xss(req.body.introduction));
+        inputCheck.checkProfessorPicture(xss(req.body.picture));
 
         if (req.session.user) {
-            let professor = await home.createProfessor(req.body.professorName, req.body.department, req.body.introduction, req.body.picture);
+            let professor = await home.createProfessor(xss(req.body.professorName), xss(req.body.department), xss(req.body.introduction), xss(req.body.picture));
             res.status(200).json(professor);
         } else {
             console.log("You are not authorized to create professor")
             res.status(401).send("You are not authorized to create professor");
         }
     } catch (e) {
+        console.log(e);
         res.status(400).send(e);
     }
 });
@@ -37,8 +39,8 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     let { id } = req.params;
     try {
-        inputCheck.checkUserId(id);
-        let professor = await home.getProfById(id);
+        inputCheck.checkUserId(xss(id));
+        let professor = await home.getProfById(xss(id));
         if (!professor.rating) {
             professor.rating = 0
         } else {
@@ -57,13 +59,13 @@ router.post('/:id', async (req, res) => {
     let rating = parseInt(req.body.rating);
 
     try {
-        inputCheck.checkUserId(id);
-        inputCheck.checkComment(comment);
+        inputCheck.checkUserId(xss(id));
+        inputCheck.checkComment(xss(comment));
         inputCheck.checkRating(rating)
 
         if (req.session.user) {
             let uid = req.session.user.userId;
-            let profReview = await home.addProfReview(uid, id, comment, rating);
+            let profReview = await home.addProfReview(xss(uid), xss(id), xss(comment), rating);
             res.status(200).render('partials/professor_comment', profReview);
         } else {
             console.log("entering redirect");
@@ -71,6 +73,7 @@ router.post('/:id', async (req, res) => {
         }
         // return res.end();
     } catch (e) {
+        console.log(e);
         res.status(500).send(e);
     }
 });
@@ -93,7 +96,7 @@ router.put('/:id', async (req, res) => {
             if (!(profProperty.hasOwnProperty(key[0]))) throw "Invalid field";
         })
         if (req.session.user) {
-            let updated = await home.updateProf(id, updatedProf);
+            let updated = await home.updateProf(xss(id), updatedProf);
             res.status(200).json("professro successfully updated");
         } else {
             console.log("entering redirect");
@@ -107,8 +110,9 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     let { id } = req.params;
     try {
+        inputCheck.checkUserId(id);
         if (req.session.user) {
-            let deleteInfo = await home.removeProf(id);
+            let deleteInfo = await home.removeProf(xss(id));
             res.status(200).send("Professor successfully deleted");
         } else {
             res.status(401).send("You are not authorized to delete a professor");
@@ -122,9 +126,9 @@ router.delete('/:id', async (req, res) => {
 router.get('/comments/:id', async (req, res) => {
     let { id } = req.params;
     try {
-        inputCheck.checkUserId(id);
+        inputCheck.checkUserId(xss(id));
         if (req.session.user) {
-            let review = await home.getProfReview(id);
+            let review = await home.getProfReview(xss(id));
             res.status(200).json(review);
         } else {
             res.status(401).send("You are not authorized to view this content")
@@ -138,13 +142,13 @@ router.get('/comments/:id', async (req, res) => {
 router.put('/comments/:id', async (req, res) => {
     let { id } = req.params;
     try {
-        inputCheck.checkUserId(id);
-        inputCheck.checkUserId(req.body.professorId);
-        inputCheck.checkComment(req.body.comment);
+        inputCheck.checkUserId(xss(id));
+        inputCheck.checkUserId(xss(req.body.professorId));
+        inputCheck.checkComment(xss(req.body.comment));
         inputCheck.checkRating(req.body.rating);
 
         if (req.session.user) {
-            let updatedReview = await home.updateProfReview(id, req.session.user.userId, req.body.professorId, req.body.comment, req.body.rating);
+            let updatedReview = await home.updateProfReview(xss(id), xss(req.session.user.userId), xss(req.body.professorId), xss(req.body.comment), req.body.rating);
             res.status(200).json(updatedReview);
         } else {
             res.status(401).send("You are not authorized to edit this content")
@@ -158,9 +162,9 @@ router.put('/comments/:id', async (req, res) => {
 router.delete('/comments/:id', async (req, res) => {
     let { id } = req.params;
     try {
-        inputCheck.checkUserId(id);
+        inputCheck.checkUserId(xss(id));
         if (req.session.user) {
-            let deleteInfo = await home.removeProfReview(id);
+            let deleteInfo = await home.removeProfReview(xss(id));
             res.status(200).json(deleteInfo);
         } else {
             res.status(401).send("You are not authorized to delete this content")

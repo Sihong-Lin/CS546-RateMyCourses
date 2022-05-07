@@ -249,7 +249,7 @@ const main = async () => {
 
     
 
-    //Biomedical Engineering 9条
+    //Biomedical Engineering 9条 ok
          /*
         let professor16 = await professor.createProfessor(
             'Guodong Wang',
@@ -377,7 +377,7 @@ const main = async () => {
         }
         */
 
-    //Mechanical Engineering 5条
+    //Mechanical Engineering 5条 ok
       /*
         let professor25 = await professor.createProfessor(
             'Elsayed Aziz',
