@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const user = require('../data/user');
+const xss = require('xss');
 
 router.get('/', async (req, res) => {
     res.render('login', { title: 'login' });
@@ -19,7 +20,7 @@ router.post('/', async (req, res) => {
         return;
     } 
     try {
-        const result = await user.checkUser(username, password);
+        const result = await user.checkUser(xss(username), xss(password));
         if (result.authenticated == true) {
             req.session.user = { username: username , userId : result.userId , role : result.role};
             res.status(200).json({ login: true });

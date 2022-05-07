@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const home = require('../data/home');
 const courseDB = require('../data/course');
+const xss = require('xss');
 
 //Courses页面初始化
 router.get('/', async (req, res) => {
@@ -14,7 +15,7 @@ router.post('/', async (req, res) => {
 
     try {
         const body = req.body;
-        let courseList = await courseDB.getCoursesByKeywords(body.department, body.keyword);
+        let courseList = await courseDB.getCoursesByKeywords(xss(body.department), xss(body.keyword));
         res.json(courseList);
       
     } catch (e) {
