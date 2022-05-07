@@ -2,8 +2,8 @@ $(document).ready(function () {
     var form = $('#review-form'),
     comments = $('#comments'),
     _id = $("#review-form").attr("value");
-    $('#rating-error').hide();
     $('#comment-error').hide();
+    $('#rating-error').hide();
 
     form.submit(function (event) {
         event.preventDefault();
@@ -46,8 +46,8 @@ $(document).ready(function () {
                             }
                         })
                     }
-                }
-            };
+                },
+            }
             /*
             $.ajax(requestConfig).then(function (res) {
                 var newElement = $(res);
@@ -55,10 +55,13 @@ $(document).ready(function () {
                 comments.prepend(newElement);
             });
             */
-            $.ajax(requestConfig)
+            $.ajax(requestConfig).then(function(res) {
+                $('#comment-error').hide();
+                $('#rating-error').hide();
+            })
         } else {
-            if(comment.trim().length === 0) $('#comment-error').show();
-            if(rating === 'Rating') $('#rating-error').show();
+            if (comment.trim().length === 0) { $('#comment-error').show() } 
+            if (rating === 'Rating') {$('#rating-error').show()}
         }
     })
 });
