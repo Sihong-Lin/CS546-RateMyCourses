@@ -12,7 +12,7 @@ const courseManageRoutes = require('./courseManage');
 const professorManageRoutes = require('./professorManage');
 const userManageRoutes = require('./userManage');
 const accountRoutes = require('./account');
-
+const searchRoutes = require('./search')
 
 const constructorMethod = (app) => {
     app.use('/login', loginRoutes);
@@ -29,7 +29,7 @@ const constructorMethod = (app) => {
     app.use('/professorManage', professorManageRoutes);
     app.use('/userManage', userManageRoutes);
     app.use('/account', accountRoutes);
-
+    app.use('/search', searchRoutes)
 
 
     app.get('/', (req, res) => {

@@ -19,7 +19,8 @@ module.exports = {
     updateCourseCount,
     updateCourseRating,
     decreaseCourseCount,
-    updateCourseReviewComment
+    updateCourseReviewComment,
+    getAllMajor
 }
 
 async function createCourse(courseName, academicLevel, courseOwner, type,
@@ -493,3 +494,27 @@ async function updateCourseReviewComment(userId, courseId, newComment) {
 }
 
 
+async function getAllMajor() {
+    const courseCollection = await courses();
+    let courseList = await courseCollection.find({}).toArray();
+    let majors = new Set()
+    courseList.forEach(course => {
+        majors.add(courseOwnerToDepartment(course.courseOwner))
+    });
+    return Array.from(majors)
+}
+
+function courseOwnerToDepartment(courseOwner) {
+    // Computer Science Program ==> Computer Science 
+    // Finance Program ==> Finance
+    // Finance ==> Finance
+    let department = ""
+    const arr = courseOwner.split(" ");
+    if(arr[arr.length-1] == "Program") {
+        for(let i = 0; i < arr.length - 1; i++) {
+            department += arr[i] + " ";
+        }
+        return department.trim();
+    }
+    return courseOwner
+}

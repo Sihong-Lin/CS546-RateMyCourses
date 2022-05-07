@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="static/css/css2.css" rel="stylesheet">
+
+    <link href="static/css/all.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="static/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="static/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
+
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="static/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+
+    <div class="container-fluid sticky-top bg-white shadow-sm">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+                <a href="home.html" class="navbar-brand">
+                    <h1 class="m-0 text-primary"></i>RateMyCourses</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="home" class="nav-item nav-link">Home</a>
+                        <a href="courses" class="nav-item nav-link">Courses</a>
+                        <a href="professors" class="nav-item nav-link">Professors</a>
+                        <a href="search.html" class="nav-item nav-link active">Search</a>
+                        <a href="account" class="nav-item nav-link">Account</a>
+                        <a href="backstage" class="nav-item nav-link">Backstage</a>
+                        <a href="login" class="nav-item nav-link">Sign in</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="container-fluid pt-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Find A Course</h5>
+                <h1 class="display-4 mb-4">Find your interested courses</h1>
+            </div>
+            <div class="mx-auto" style="width: 100%; max-width: 600px;">
+                <div class="input-group">
+                    <select class="form-select border-primary w-25" style="height: 60px;" id="search-department"
+                        name="search-department">
+                        {{#each majors}}
+                        <option `value={{this}}`>{{this}}</option>
+                        {{/each}}
+                    </select>
+                    <input type="text" class="form-control border-primary w-50" placeholder="Keyword"
+                        id="search-keyword" name="search-keyword">
+                    <button class="btn btn-dark border-0 w-25 searchButton">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p></p>
+        <h1 class="display-4 mb-4" id="noCourse">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            
+            No Course Found</h1>
+    </div>
+    <div>
+        <ul id="showList"></ul>
+    </div>
+
+
+
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <script data-cfasync="false" src="static/js/email-decode.min.js"></script>
+    <script src="static/js/jquery-3.4.1.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
+    <script src="static/js/bootstrap.bundle.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
+    <script src="static/js/easing.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
+    <script src="static/js/waypoints.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
+    <script src="static/js/owl.carousel.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
+    <script src="static/js/moment.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
+    <script src="static/js/moment-timezone.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
+    <script src="static/js/tempusdominus-bootstrap-4.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
+
+    <script src="static/js/main.js" type="64f10123938904b78188bb72-text/javascript"></script>
+    <script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
+    <script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function () {
+        var $showList = $('#showList')
+        $('#showList').hide();
+        $('#noCourse').hide();
+        $(".searchButton").click(function () {
+            event.preventDefault();
+
+            var keyword = $("#search-keyword").val().trim()
+            var department = $("#search-department").val()
+            console.log(keyword)
+            console.log(department)
+
+            $.ajax({
+                type: 'Post',
+                url: "http://localhost:3000/courses",
+                data: {
+                    department: department,
+                    keyword: keyword
+                },
+                success: function (courses) {
+                    console.log(courses);
+                    if (courses.length == 0) {
+                        $('#showList').hide();
+                        $('#showList').empty();
+                        $('#noCourse').show();
+                    } else {
+                        $('#showList').empty();
+                        $('#noCourse').hide();
+                        $.each(courses, function (i, course) {
+                            $showList.append(`
+                            <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row g-5">
+                            <div class="col-lg-3 team-item">
+                                    <div class="bg-light rounded text-center">
+                                        <div class="position-relative">
+                                            <img class="img-fluid rounded-top" src="${course.picture}" alt="">
+                                            <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
+                                                style="background: rgba(29, 42, 77, .8);">
+                                                <h1 class="display-4 text-white mb-0">
+                                                    <small class="align-top fw-normal"
+                                                        style="font-size: 22px; line-height: 45px;"></small>${course.courseIndex}<small
+                                                        class="align-bottom fw-normal"
+                                                        style="font-size: 16px; line-height: 40px;"></small>
+                                                </h1>
+                                                <h3 class="text-white">${course.courseName}</h3>
+                                            </div>
+                                        </div>
+                                        <div class="text-center py-4">
+                                            <p>${course.type} Course</p>
+                                            <p>Difficulty: ${course.metrics.difficulty}</p>
+                                            <p>Chance to Get A: ${course.metrics.chanceToGetA}</p>
+                                            <p>Workload: ${course.metrics.workLoad}</p>
+                                            <a href="course/${course._id}" class="btn btn-primary rounded-pill py-2 px-3 my-2">More Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        </div>
+    </div>
+                            `)
+                        })
+                        $('#showList').show();
+                    }
+                },
+                error: function () {
+                    alert('error loading courses')
+                }
+            })
+
+            /*
+            let department = $("#search-department").val();
+            alert(department)
+            let keyword = $("#search-keyword").val();
+            alert(keyword)
+            */
+
+
+
+        });
+
+
+
+
+
+    });
+</script>
