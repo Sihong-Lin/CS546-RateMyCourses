@@ -30,9 +30,7 @@ router.post('/', async (req, res) => {
         if (result.userInserted == true) {
             res.status(200).json({ signup: true });
         } else {
-            res.status(500).render('signup', {
-                error: 'Internal Server Error',
-            });
+            res.status(500).json('Internal Server Error');
             return;
         }
     } catch (err) {
