@@ -96,7 +96,6 @@ async function getProfById(id) {
         if (!user) throw 'User not found';
         professorReviews[i].profilePicture = user.profilePicture;
     }
-    console.log(professor)
     return professor;
 }
 

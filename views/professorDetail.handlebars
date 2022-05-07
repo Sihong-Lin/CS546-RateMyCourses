@@ -44,18 +44,14 @@
                     <h1 class="display-10"> {{ professorName }} </h1>
                 </div>
                 <div class="mb-4">
-                    <h2 class="display-10"> {{ department }} </h2>
+                    <h4 class="display-10">Department: &nbsp&nbsp {{ department }} </h4>
                 </div>
                 <div class="mb-4">
-                    <h2 class="display-10"> About me </h2>
-                    <h3 class="display-18"> {{ introduction }} </h3>
+                    <h4 class="display-10"> Rating: &nbsp&nbsp {{ concat rating ' / 5.0' }} </h4>
                 </div>
                 <div class="mb-4">
-                    <h2 class="display-10"> {{ courses }} </h2>
-                </div>
-                <div class="mb-4">
-                    <h2 class="display-10"> Rating </h2>
-                    <h2 class="display-10"> {{ concat rating ' / 5' }} </h2>
+                    <h4 class="display-10"> About me: </h4>
+                    <p>{{ introduction }}</p>
                 </div>
             </div>
         </div>
