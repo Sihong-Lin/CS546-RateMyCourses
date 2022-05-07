@@ -6,25 +6,30 @@ const { ObjectId } = require('mongodb');
 
 const main = async () => {
     const db = await connection.connectToDb();
-    // await db.dropDatabase();
+
+     //await db.dropDatabase
     try {
 
         let user1 = await user.createUser('jguo32', "aaa@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K9xcJVlIG31wI5COY_Qep5GahOMmCmLYEQ&usqp=CAU", '123456');
         let uid = user1.insertedId.toString();
         //Computer Science 15条
 
+
+         
         let professor1 = await professor.createProfessor(
-            'HanTian',
+            'Patrick Hill',
             "Computer Science",
-            'All of the ML profs at Stevens know what they re talking about',
-            "http://y.qichejiashi.com/tupian/upload/72312225.jpg"
+            'Best prefessor at Stevens! I recieved and offer for an internship based just on the knowledge I got in his course. Hill is tough but fair and you get out of his course what you put into it. I feel I m a stronger developer after taking his course for sure.',
+            "http://www.graffixnyc.com/images/me2.jpg"
         )
+        
         let pid = professor1._id.toString();
         let review = 'nice!';
         for (let i = 0; i < 3; i++) {
             await professor.addProfReview(uid, pid, review, 5);
         }
-        
+
+  
         
         let professor2 = await professor.createProfessor(
             'Edward Amoroso',
@@ -98,7 +103,7 @@ const main = async () => {
             'Shudong Hao',
             "Computer Science",
             'He s honestly an awesome professor! All you needed to do was either pay attention during lectures or watch the lecture recordings and take notes. He goes out of his way to connect with students and provide help when we ask for it. ',
-            "https://i1.read01.com/DMlAgnYv6kqWLZqWOFNcVUQ/0.jpg"
+            "https://cw-image-resizer.cwg.tw/resize/uri/https%3A%2F%2Fcw1.tw%2FCW%2Fimages%2Farticle%2F201712%2Farticle-5a20ccfb2fb5d.jpg/?w=1600&format=webp"
         )
         
         let pid7 = professor7._id.toString();
@@ -112,7 +117,7 @@ const main = async () => {
             'Samuel Kim',
             "Computer Science",
             'Great Professor .Very Knowledgeable and amazingly explains the concepts.',
-            "https://i1.read01.com/L1ZiechQIa6qV58Yl8XwpWk/0.jpg"
+            "https://i1.sndcdn.com/artworks-gQvxwgtovMDnSxjd-lbYM9Q-t500x500.jpg"
         )
         
         let pid8 = professor8._id.toString();
@@ -125,7 +130,7 @@ const main = async () => {
             'Samantha Kleinberg',
             "Computer Science",
             'Computer science class but using a computer is forbidden in the class. She does not have any sympathy for students.',
-            "https://i3.read01.com/vZlN2SZUtBqh4fTDqmkaNFA/0.jpg"
+            "https://d4r15a7jvr7vs.cloudfront.net/ewoJICAgICAgICAgICAgICAgICJidWNrZXQiOiAiZmlsZXMubGJyLmNsb3VkIiwKCSAgICAgICAgICAgICAgICAia2V5IjogInB1YmxpYy85NS4wLjMxNS4yOTItM1JCLU1HLTA1MDctMTQ5N2xvdy0zNTB4MjUwLmpwZyIsCgkgICAgICAgICAgICAgICAgImVkaXRzIjogewoJICAgICAgICAgICAgICAgICAgInJlc2l6ZSI6IHsKCSAgICAgICAgICAgICAgICAgICAgIndpZHRoIjogMjMxLAoJICAgICAgICAgICAgICAgICAgICAiaGVpZ2h0IjogMjc5LAoJICAgICAgICAgICAgICAgICAgICAiZml0IjogImNvdmVyIgoJICAgICAgICAgICAgICAgICAgfQoJICAgICAgICAgICAgICAgIH0KCSAgICAgICAgICAgIH0="
         )
         let pid9 = professor9._id.toString();
         let review9 = 'nice!';
@@ -152,7 +157,7 @@ const main = async () => {
             'Xueqing Liu',
             "Computer Science",
             'This professor gets some unwarranted criticism tbh. Yes the class is hard, and the lectures can be a little hard to stay engaged in.',
-            "https://i3.read01.com/UkfaZ-TEmDQXk23jsk3Q8sQ/0.jpg"
+            "https://www.laoziliao.net/fs/img/ae/aed61504a92d87d424ad7d09d4be4942.jpg"
         )
         
         let pid11 = professor11._id.toString();
@@ -165,7 +170,7 @@ const main = async () => {
             'Philippe Meunie',
             "Computer Science",
             'Professor Meunier was an absolutely wonderful professor to work with.  The pacing of his class is great and his lectures were simple and easy to understand.',
-            "https://i3.read01.com/asSQqPziTOAUqmFchCaBPNU/0.jpg"
+            "https://source.wustl.edu/wp-content/uploads/2018/01/patrick-hill-300x300.jpg"
         )
         
         let pid12 = professor12._id.toString();
@@ -328,7 +333,7 @@ const main = async () => {
             'Becky Tucci',
             "Biomedical Engineering",
             'Amazing at teaching style. you can learn alot in this class. ',
-            "http://muezproxy.marshall.edu:2060/ehost/detail/detail?vid=24&sid=c1293182-fba1-4e84-97ec-9d037cba612a%40sessionmgr101&hid=124&bdata=JnNpdGU9ZWhvc3QtbGl2ZQ%3d%3d#db=aph&AN=117079526"
+            "https://glshop.tw/wp-content/uploads/2020/08/%E6%96%87%E9%9D%92%E9%A2%A8%E7%94%B7%E5%AD%B8%E7%94%9F%E9%AB%AE%E5%9E%8BTOP%E6%8E%A8%E8%96%A6-1-744x446.jpg"
         )
         
         let pid24 = professor24._id.toString();
@@ -916,7 +921,18 @@ const main = async () => {
             await professor.addProfReview(uid, pid73, review73, 4.4);
         }
 
-    
+          let professor74 = await professor.createProfessor(
+            'HanTian',
+            "Computer Science",
+            'All of the ML profs at Stevens know what they re talking about',
+            "http://y.qichejiashi.com/tupian/upload/72312225.jpg"
+        )
+        let pid74 = professor74._id.toString();
+        let review74 = 'nice!';
+        for (let i = 0; i < 3; i++) {
+            await professor.addProfReview(uid, pid74, review74, 5);
+        }
+        
         /*
         let professor74 = await professor.createProfessor(
             'Louis Mayer',
