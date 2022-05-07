@@ -10,6 +10,8 @@ const inputCheck = require("../data/inputCheck");
 const { courses } = require('../config/mongoCollections');
 
 const departmentReivew = async () => {
+
+    try {
     
     const db = await connection.connectToDb();
     await db.dropDatabase();
@@ -320,6 +322,9 @@ const departmentReivew = async () => {
 
     // let res = await professor.getTop5ProfessorsByMajor("computer science")
     // console.log(res);
+    } catch (e) {
+        console.log(e);
+    }
     connection.closeConnection();
     console.log('Done!');
 }
