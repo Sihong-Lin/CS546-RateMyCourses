@@ -7,6 +7,14 @@ const { ObjectId } = require('mongodb');
 const main = async () => {
     const db = await connection.connectToDb();
     await db.dropDatabase();
+
+    let admin = undefined
+    try {
+        let createUser = await user.createAdmin("admin", "admin@gmail.com", "Computer Science", "https://www.mantruckandbus.com/fileadmin/_processed_/2/b/csm_19-09_startseite_interviewkachel_324_224_3_726a3e77d5.jpg", "123456");
+        admin = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    } 
     
     let user1 = undefined
     try {
