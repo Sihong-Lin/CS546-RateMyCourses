@@ -4,7 +4,6 @@ const home = require('../data/home');
 const course = require('../data/course');
 const user = require('../data/user');
 const inputCheck = require('../data/inputCheck');
-const xss = require('xss');
 
 //页面初始化
 router.get('/', async (req, res) => {

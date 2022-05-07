@@ -26,7 +26,6 @@
     "express-session": "^1.17.2",
     "mongodb": "^4.4.0",
     "prettier": "^2.6.2",
-    "silly-datetime": "^0.1.2",
-    "xss": "^1.0.11"
+    "silly-datetime": "^0.1.2"
   }
 }

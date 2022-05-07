@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const user = require('../data/user');
 const inputCheck = require('../data/inputCheck');
-const xss = require('xss');
+
 
 router.post('/course', async (req, res) => {
     let reviewBody = req.body
@@ -62,11 +62,11 @@ router.post('/course', async (req, res) => {
 
     try {
         const newReview = await user.createCourseReview(
-            xss(userId),
-            xss(courseId),
-            xss(comment),
-            xss(metrics),
-            xss(rating))
+            userId,
+            courseId,
+            comment,
+            metrics,
+            rating)
         res.json(newReview);
     }catch (e) {
         res.sendStatus(500)
