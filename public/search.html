@@ -136,33 +136,39 @@
                     } else {
                         $('#showList').empty();
                         $('#noCourse').hide();
-                        $showList.append(`<p></p>`)
                         $.each(courses, function (i, course) {
-                            $showList.append(`<li><a class="link" href='course/${course._id}'>&nbsp&nbsp &nbsp&nbsp  ${course.courseName}</a></li>`)
-                            $showList.append(`<div class="col-lg-3 team-item">
-                    <div class="bg-light rounded text-center">
-                        <div class="position-relative">
-                            <img class="img-fluid rounded-top" src="${course.picture}" alt="">
-                            <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
-                                style="background: rgba(29, 42, 77, .8);">
-                                <h1 class="display-4 text-white mb-0">
-                                    <small class="align-top fw-normal"
-                                        style="font-size: 22px; line-height: 45px;"></small>CS 521<small
-                                        class="align-bottom fw-normal"
-                                        style="font-size: 16px; line-height: 40px;"></small>
-                                </h1>
-                                <h3 class="text-white">TCP/IP Networking</h3>
+                            $showList.append(`
+                            <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row g-5">
+                            <div class="col-lg-3 team-item">
+                                    <div class="bg-light rounded text-center">
+                                        <div class="position-relative">
+                                            <img class="img-fluid rounded-top" src="${course.picture}" alt="">
+                                            <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
+                                                style="background: rgba(29, 42, 77, .8);">
+                                                <h1 class="display-4 text-white mb-0">
+                                                    <small class="align-top fw-normal"
+                                                        style="font-size: 22px; line-height: 45px;"></small>${course.courseIndex}<small
+                                                        class="align-bottom fw-normal"
+                                                        style="font-size: 16px; line-height: 40px;"></small>
+                                                </h1>
+                                                <h3 class="text-white">${course.courseName}</h3>
+                                            </div>
+                                        </div>
+                                        <div class="text-center py-4">
+                                            <p>${course.type} Course</p>
+                                            <p>Difficulty: ${course.metrics.difficulty}</p>
+                                            <p>Chance to Get A: ${course.metrics.chanceToGetA}</p>
+                                            <p>Workload: ${course.metrics.workLoad}</p>
+                                            <a href="course/${course._id}" class="btn btn-primary rounded-pill py-2 px-3 my-2">More Details</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <p>Core Course</p>
-                            <p>Medium Difficulty</p>
-                            <p>High Chance to Get A</p>
-                            <p>Hard WorkLoad</p>
-                            <a href="course/${course._id}" class="btn btn-primary rounded-pill py-2 px-3 my-2">More Details</a>
-                        </div>
-                    </div>
-                </div>`)
+        </div>
+    </div>
+                            `)
                         })
                         $('#showList').show();
                     }

@@ -414,6 +414,15 @@ async function getCoursesByKeywords(department, keyword) {
             courseList.push(course)
         }
     })
+    for (let i = 0; i < courseList.length; i++) {
+        let courseName = courseList[i].courseName;
+        let arr = courseName.split(" ");
+        courseList[i].courseIndex = arr[0] + " " + arr[1];
+        courseList[i].courseName = arr.slice(2).join(" ");
+    }
+    courseList.forEach(course => {
+        course._id = course._id.toString()
+    })
     return courseList
 }
 
