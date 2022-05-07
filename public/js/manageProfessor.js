@@ -130,7 +130,8 @@ function spawnForm(professorId, professorName, department, introduction) {
     $('#edit-form-submit').attr('pid', professorId);
     $('#name').attr('value', professorName);
     $('#department').attr('value', department);
-    $('#introduction').attr('placeholder', substrHelper(introduction, 70));
+    // $('#introduction').attr('placeholder', substrHelper(introduction, 70));
+    $('#introduction').attr('value', introduction);
     $("#name-error").hide();
     $("#dpt-error").hide();
     $("#intro-error").hide();
