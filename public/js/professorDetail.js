@@ -55,11 +55,13 @@ $(document).ready(function () {
                 comments.prepend(newElement);
             });
             */
-            $.ajax(requestConfig)
+            $.ajax(requestConfig).then(function(res) {
+                $('#comment-error').hide();
+                $('#rating-error').hide();
+            })
         } else {
             if (comment.trim().length === 0) { $('#comment-error').show() } 
             if (rating === 'Rating') {$('#rating-error').show()}
         }
-            
     })
 });
