@@ -15,7 +15,7 @@ const isLoggedIn = function (req) {
 
 
 router.get('/', async (req, res) => {
-    res.redirect('home');
+    res.redirect('courses');
 });
 
 router.get('/:id', async (req, res) => { // show course
@@ -32,8 +32,8 @@ router.get('/:id', async (req, res) => { // show course
 
 router.post('/:id', async (req, res) => { // create course review
     if (!isLoggedIn(req)) {
-        res.redirect("../401.html");
-        return
+        res.status(401).json("You are not authroized to post a comment");
+        return;
     }
     const loginUser = req.session.user
     const reviewBody = req.body;
@@ -50,7 +50,7 @@ router.post('/:id', async (req, res) => { // create course review
     try {
         reviewCreateStatus = await user.createCourseReview(userId, courseId, comment, metrics, rating);
     } catch (e) {
-        res.status(500).json(e);
+        res.status(400).json(e);
         return
     }
     

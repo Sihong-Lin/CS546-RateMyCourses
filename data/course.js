@@ -420,7 +420,7 @@ async function getCoursesByKeywords(department, keyword) {
 function matchKeyword(courseName, keyword) {
     const words = courseName.split(" ");
     for (let i = 0; i < words.length; i++) {
-        if (words[i].indexOf(keyword) != -1) {
+        if (words[i].toLowerCase().indexOf(keyword.toLowerCase()) != -1) {
             return true;
         }
     }

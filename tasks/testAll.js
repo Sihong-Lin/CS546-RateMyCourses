@@ -292,7 +292,7 @@ const departmentReivew = async () => {
         5
     )
     
-    console.log(inputCheck.checkCourseware("http://georgetownheckler.com/wp-content/uploads/2016/09/prof.jpg"))
+    console.log(await course.getCoursesByKeywords("computer science", "data"))
     // let dc1 = await course.removeCourse(firstCourseId)
     // let dc2 = await course.removeCourse(secondCourseId)
     // let dc3 = await course.removeCourse(thirdCourseId)
