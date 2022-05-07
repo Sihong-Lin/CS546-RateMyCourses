@@ -7,10 +7,18 @@ const { ObjectId } = require('mongodb');
 const main = async () => {
     const db = await connection.connectToDb();
     await db.dropDatabase();
+
+    let admin = undefined
+    try {
+        let createUser = await user.createAdmin("admin", "admin@gmail.com", "Computer Science", "https://www.mantruckandbus.com/fileadmin/_processed_/2/b/csm_19-09_startseite_interviewkachel_324_224_3_726a3e77d5.jpg", "123456");
+        admin = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    } 
     
     let user1 = undefined
     try {
-        let createUser = await user.createUser("user1", "aaa@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K9xcJVlIG31wI5COY_Qep5GahOMmCmLYEQ&usqp=CAU", "123456");
+        let createUser = await user.createUser("user1", "user1@gmail.com", "Biomedical Engineering", "https://i.insider.com/61f14a0ce996470011907119?width=600&format=jpeg&auto=webp", "123456");
         user1 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -18,7 +26,7 @@ const main = async () => {
 
     let user2 = undefined
     try {
-        let createUser = await user.createUser("user2", "aaa@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM7y6bqoR4ypvuCak8H_ZVl7oqspxE6MxK3g&usqp=CAU", "123456");
+        let createUser = await user.createUser("user2", "user2@gmail.com", "Computer Science", "https://ysm-res.cloudinary.com/image/upload/ar_1:1,c_fill,dpr_3.0,f_auto,g_faces:auto,q_auto:eco,w_200/v1/yms/prod/36509713-affd-49af-b726-41403de634b1", "123456");
         user2 = createUser.insertedId;
     } catch (e) {
         console.log(e);
@@ -26,7 +34,104 @@ const main = async () => {
 
     let user3 = undefined
     try {
-        let createUser = await user.createUser("user3", "aaa@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQstkseuO__x9bRa_ycRdOnCH0YcGaZhSF0wA&usqp=CAU", "123456");
+        let createUser = await user.createUser("user3", "user3@gmail.com", "Biomedical Engineering", "https://www.cancer.net/sites/cancer.net/files/styles/blog_media/public/markham_merry-jennifer_headshot.jpg.png?itok=GnzqyjcQ", "123456");
+        user3 = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    }
+
+    let user4 = undefined
+    try {
+        let createUser = await user.createUser("user4", "user4@gmail.com", "Physics", "https://images.ctfassets.net/yixw23k2v6vo/3ioQoj7O34KGny34uI2FMX/249c9055a0f5713d2e3027ac96db8c2d/LauraCason.jpg", "123456");
+        user4 = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    } 
+
+    let user5 = undefined
+    try {
+        let createUser = await user.createUser("user5", "user5@gmail.com", "Computer Science", "https://www.syracuse.com/resizer/UNYVpgRhA3z5lnxmRswrgWkEyWY=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/IOW75ADP3FCWHHKHM6WL67TQTQ.jpeg", "123456");
+        user5 = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    }
+
+    let user6 = undefined
+    try {
+        let createUser = await user.createUser("user6", "user6@gmail.com", "Physics", "https://i.insider.com/5cf1200a11e2052506753045?width=700", "123456");
+        user6 = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    }
+
+    let user7 = undefined
+    try {
+        let createUser = await user.createUser("user7", "user7@gmail.com", "Mechanical Engineering", "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2022%2F03%2F30%2FWill-Smith-Oscars.jpg", "123456");
+        user7 = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    } 
+
+    let user8 = undefined
+    try {
+        let createUser = await user.createUser("user8", "user8@gmail.com", "Physics", "https://www.london-fire.gov.uk/media/4613/london-fire-brigade-tim-powel-director-of-people.jpg", "123456");
+        user8 = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    }
+
+    let user9 = undefined
+    try {
+        let createUser = await user.createUser("user9", "user9@gmail.com", "Physics", "https://www.okchicas.com/wp-content/uploads/2021/11/paul-rudd-es-el-hombre-mas-sexy-del-2021-por-revista-people-2.jpg", "123456");
+        user9 = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    }
+
+    let user10 = undefined
+    try {
+        let createUser = await user.createUser("user10", "user10@gmail.com", "Mechanical Engineering", "https://static.bangkokpost.com/media/content/dcx/2020/08/26/3730727_700.jpg", "123456");
+        user10 = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    } 
+
+    let user11 = undefined
+    try {
+        let createUser = await user.createUser("user11", "user11@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT40s522A7NGSQ4kDq3gYJyJ3itLUcIlOroT25wjVhRVgsnBH2qlgh8EuADG_jEnCiSTig&usqp=CAU", "123456");
+        user11 = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    }
+
+    let user12 = undefined
+    try {
+        let createUser = await user.createUser("user12", "user12@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2RHj5aBArvQQQtkpqkJU3MzDrr2ji2rg00w&usqp=CAU", "123456");
+        user12 = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    }
+
+    let user13 = undefined
+    try {
+        let createUser = await user.createUser("user13", "user13@gmail.com", "Mechanical Engineering", "https://149366112.v2.pressablecdn.com/wp-content/uploads/2015/01/leonardo-e1421876802330.jpg", "123456");
+        user13 = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    } 
+
+    let user14 = undefined
+    try {
+        let createUser = await user.createUser("user14", "user14@gmail.com", "Computer Science", "https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/06/06/15/Chris-Pratt.jpg?quality=75&width=982&height=726&auto=webp", "123456");
+        user14 = createUser.insertedId;
+    } catch (e) {
+        console.log(e);
+    }
+
+    let user15 = undefined
+    try {
+        let createUser = await user.createUser("user15", "user15@gmail.com", "Mechanical Engineering", "https://virginiacancerspecialists.com/wp-content/uploads/2021/06/Ann-Favret-Bio-photo-2-2021-scaled-e1623768737328-400x400.jpg", "123456");
+        user15 = createUser.insertedId;
     } catch (e) {
         console.log(e);
     }
@@ -620,7 +725,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 507 Introduction to Microelectronics and Photonics', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Electrical Engineering', // courseOwner
             'Elective', // type
             3, // units
             'An overview of microelectronics and photonics science and technology. It provides the student who wishes to specialize in their application, physics or fabrication with the necessary knowledge of how the different aspects are interrelated. It is taught in three modules: design and applications, taught by EE faculty; operation of electronic and photonic devices, taught by Physics faculty; fabrication and reliability, taught by the materials faculty.', // description
@@ -640,7 +745,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 515 Photonics I', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Electrical Engineering', // courseOwner
             'Elective', // type
             3, // units
             'This course will cover topics encompassing the fundamental subject matter for the design of optical systems. Topics will include optical system analysis, optical instrument analysis, applications of thin-film coatings and opto-mechanical system design in the first term. The second term will cover the subjects of photometry and radiometry, spectrographic and spectrophotometric systems, infrared radiation measurement and instrumentation, lasers in optical systems and photon- electron conversion.', // description
@@ -660,7 +765,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 517 Digital and Computer Systems Architecture', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Electrical Engineering', // courseOwner
             'Elective', // type
             3, // units
             'This course covers the design and architecture of computer and digital systems in the system design region starting from the transistor/logic gate level to below the device driver level/system monitor level. The systems considered in the course will go beyond the computer chips or CPUs discussed in a typical computer architecture course, but will include complex logic devices such as application specific integrated circuits (ASICs), the core-designs for field programmable gate arrays (FPGAs), system-on-a-chip (SoC) designs, ARM, and other application-specific architectures. Printed circuit board-level architectural considerations for multiple complex digital circuits will also be discussed.', // description
@@ -680,7 +785,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 548 Digital Signal Processing', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Electrical Engineering', // courseOwner
             'Elective', // type
             3, // units
             'Review  of  mathematics  of  signals  and  systems  including  sampling  theorem,  Fourier  transform,  z-transform,  Hilbert transform; algorithms for fast computation: DFT, DCT computation, convolution; filter design techniques: FIR and IIR filter design, time and frequency domain methods, window method and other approximation theory based methods; structures for realization of discrete time systems: direct form, parallel form, lattice structure and other state-space canonical forms (e.g., orthogonal filters and related structures); roundoff and quantization effects in digital filters: analysis of sensitivity to coefficient quantization, limit cycle in IIR filters, scaling to prevent overflow, role of special structures.', // description
@@ -700,7 +805,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 551 Engineering Programming: Python', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Electrical Engineering', // courseOwner
             'Elective', // type
             3, // units
             'This course presents tool, techniques, algorithms, and programming techniques using the Python programming language for data intensive applications and decision making. The course formally introduces techniques to: (i) gather,(ii) store, and (iii) process large volumes of data to make informed decisions. Such techniques find applicability in many engineering application areas, including communications systems, embedded systems, smart grids, robotics, Internet, and enterprise networks, or any network where information flows and alters decision making.', // description
@@ -720,7 +825,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 552 Engineering Programming: Java', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Electrical Engineering', // courseOwner
             'Elective', // type
             3, // units
             'This course is a hands-on intensive introduction to solving engineering problem using Java. The focus is on building real applications including an electrical CAD package, molecular modelers, and controlling network communications. In the process, Java and object-oriented programming are mastered in order to implement efficient solutions to the target applications.', // description
@@ -740,7 +845,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 553 Engineering Programming: C++', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Electrical Engineering', // courseOwner
             'Elective', // type
             3, // units
             'This course teaches a deep knowledge of C++ by focusing on common engineering problems. The focus is on engineering applications. In the beginning, the course covers computational goals to including statistics, smoothing data, numerical integration and calculation of volumes to teach/review basic programming logic, loops and function calls. Then we focus on more complex tasks such as simulation, localization and path planning for robotics, and teach object-oriented programming as part of an efficient solution to these engineering problems. By the end of the course, students will have a thorough knowledge of C++.', // description
@@ -760,7 +865,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'EE 560 Fundamentals of Remote Sensing', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Electrical Engineering', // courseOwner
             'Elective', // type
             3, // units
             'This course exposes the student to the physical principles underlying remote sensing of ocean, atmosphere, and land by electromagnetic and acoustic passive and active sensors: radars, lidars, infrared and microwaves thermal sensors, sonars, sodars, infrasound/seismic detectors. Topics include fundamental concepts of electromagnetic and acoustic wave interactions with oceanic, atmospheric, and land environment, as well as with natural and man-made objects. Examples from selected sensors will be used to illustrate the information extraction process, and applications of the data for environmental monitoring, oceanography, meteorology, and security/military objectives.', // description
@@ -780,7 +885,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MGT 506 Economics for Managers', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Management', // courseOwner
             'Elective', // type
             3, // units
             'This course introduces managers to the essence of business economics – the theories, concepts and ideas that form the economist’s tool kit encompassing both the microeconomic and macroeconomic environments. Microeconomic topics include demand and supply, elasticity, consumer choice, production, cost, profit maximization, market structure, and game theory while the Macroeconomic topics will be GDP, inflation, unemployment, aggregate demand, aggregate supply, fiscal and monetary policies. In addition the basic concepts in international trade and finance will be discussed.', // description
@@ -800,7 +905,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MGT 609 Project Management Fundamentals', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Management', // courseOwner
             'Elective', // type
             3, // units
             'This course deals with the basic problems of managing a project, defined as a temporary organization built for the purpose of achieving a specific objective. Both operational and conceptual issues will be considered. Operational issues include definition, planning, implementation, control, and evaluation of the project. Conceptual issues include project management vs. hierarchical management, matrix organization, project authority, motivation, and morale. Cases will be used to illustrate problems in project management and how to resolve them.', // description
@@ -820,7 +925,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MGT 610 Strategic Perspectives on Project Management', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Management', // courseOwner
             'Elective', // type
             3, // units
             'This course provides a theoretical perspective on project management for a better understanding of project implementation in modern organizations. The course is based on the premise that success in project leadership depends on a proper managerial style and attitude, and not on specific tools for planning and controlling. The course focuses on developing the manager’s conceptual thinking and on building “the project manager’s mind.” The course helps managers see the entire project landscape and the long-term issues that are critical to project success. It will also address the organizational aspects of initiating and running the program.', // description
@@ -840,7 +945,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MGT 611 Project Analytics', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Management', // courseOwner
             'Elective', // type
             3, // units
             'Formalized procedures, tools, and techniques used in conceptual and detailed planning of the project. Development of work breakdown structure as the foundation for project cost and project duration. Application of project data in monitoring the project progress and in formulating remedial actions in response to unexpected occurrences.', // description
@@ -860,7 +965,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MGT 612 Leader Development', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Management', // courseOwner
             'Elective', // type
             3, // units
             'Project success depends, largely, on the human side. Success in motivating project workers, organizing and leading project teams, communication and sharing information, and conflict resolution, are just a few areas that are critical for project success. However, being primarily technical people, many project managers tend to neglect these “soft” issues, assuming they are less important or that they should be addressed by direct functional managers. The purpose of this course is to increase awareness of project managers to the critical issues of managing people and to present some of the theories and practices of leading project workers and teams.', // description
@@ -880,7 +985,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 500 Business Analytics: Data, Models & Decisions', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Business Intelligence and Analytics', // courseOwner
             'Elective', // type
             3, // units
             'Many managerial decisions - regardless of their functional orientation - are increasingly based on analysis using quantitative models from the discipline of management science. Management science tools, techniques and concepts (e.g., data, models, and software programs) have dramatically changed the way businesses operate in manufacturing, service operations, marketing, transportation, and finance. Business Analytics explores data-driven methods that are used to analyze and solve complex business problems. Students will acquire analytical skills in building, applying and evaluating various models with hands-on computer applications. Topics include descriptive statistics, time-series analysis, regression models, decision analysis, Monte Carlo simulation, and optimization models.', // description
@@ -900,7 +1005,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 610 Applied Analytics', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Business Intelligence and Analytics', // courseOwner
             'Elective', // type
             3, // units
             'Applied Analytics is a capstone course for the analytic-focused MBA program. It is intended to integrate all previously taken coursed in the program by presenting a set of increasingly complex business problems. These problems can be solved through analytic skill taught in this and previous courses. In particular, the course is intended to reinforce the understanding of analysis as way to build models that can focus attention on parts of the system that can be improved through intervention. The early part of the course uses synthetic data and empirical data readily available for analysis. The second part of the course encourages students to state and solve their own problem, gathering their own data as a part of the analytic process.', // description
@@ -920,7 +1025,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 650 Optimization and Process Analytics', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Business Intelligence and Analytics', // courseOwner
             'Elective', // type
             3, // units
             'This course covers basic concepts in optimization and heuristic search with an emphasis on process improvement and optimization. This course emphasizes the application of mathematical optimization models over the underlying mathematics of their algorithms. While the skills developed in this course can be applied to a very broad range of business problems, the practice examples and student exercises will focus on the following areas: healthcare, logistics and supply chain optimization, capital budgeting, asset management, portfolio analysis. Most of the student exercises will involve the use of Microsoft Excel’s “Solver” add-on package for mathematical optimization.', // description
@@ -940,7 +1045,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 652 Multivariate Data Analysis I', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Business Intelligence and Analyticss', // courseOwner
             'Elective', // type
             3, // units
             'This course introduces basic methods underlying multivariate analysis through computer applications using R, which is used by many data scientists and is an attractive environment for learning multivariate analysis. Students will master multivariate analysis techniques, including principal components analysis, factor analysis, structural equation modeling, multidimensional scaling, correspondence analysis, cluster analysis, multivariate analysis of variance, discriminant function analysis, logistic regression, as well as other methods used for dimension reduction, pattern recognition, classification, and forecasting. Students will build expertise in applying these techniques to real data through class exercises and a project, and learn how to visualize data and present results. This proficiency will enable students to become sophisticated data analysts, and to help make more informed design, marketing, and business decisions.', // description
@@ -960,7 +1065,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 654 Experimental Design II', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Business Intelligence and Analytics', // courseOwner
             'Elective', // type
             3, // units
             'This course covers fundamental concepts of experimentation including hypothesis development, operational definitions, reliability and validity, and measurement and variables, as well as design methods, such as sampling, randomization, and counterbalancing.  The course also introduces the analysis associated with different designs as designing solid experiments involves thinking about how to analyze the obtained data.  At the end of the course, students present a project, in which they come up with a research question, design an experiment, collect and analyze the data, and try to answer the question.  MGT 620 or equivalent is required; basic knowledge of statistics is expected.', // description
@@ -980,7 +1085,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 656 Advanced Data Analytics and Machine Learning', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Business Intelligence and Analytics', // courseOwner
             'Elective', // type
             3, // units
             'The significant amount of corporate information available requires a systematic and analytical approach to select the most important information and anticipate major events. Statistical learning algorithms facilitate this process understanding, modeling and forecasting the behavior of major corporate variables. This course introduces time series and statistical and graphical models used for inference and prediction. The emphasis of the course is in the learning capability of the algorithms and their application to finance, direct marketing, operations, and biomedicine. Students should have a basic knowledge of probability theory, and linear algebra.', // description
@@ -1000,7 +1105,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 658 Social Network Analysis', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Business Intelligence and Analytics', // courseOwner
             'Elective', // type
             3, // units
             'The significant amount of corporate information available requires a systematic and analytical approach to select the most important information and anticipate major events. Statistical learning algorithms facilitate this process understanding, modeling and forecasting the behavior of major corporate variables. This course introduces time series and statistical and graphical models used for inference and prediction. The emphasis of the course is in the learning capability of the algorithms and their application to finance, direct marketing, operations, and biomedicine. Students should have a basic knowledge of probability theory, and linear algebra.', // description
@@ -1020,7 +1125,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'BIA 660 Web Mining', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Business Intelligence and Analytics', // courseOwner
             'Elective', // type
             3, // units
             'In this course, students will learn through hands-on experience how to extract data from the web and analyze web-scale data using distributed computing. Students will learn different analysis methods that are widely used across the range of internet companies, from start-ups to online giants like Amazon or Google. At the end of the course, students will apply these methods to answer real scientific question or to create a useful web application.', // description
@@ -1040,7 +1145,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'FIN 500 Financial and Managerial Accounting', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Finance', // courseOwner
             'Elective', // type
             3, // units
             'This course will develop accounting analysis useful for managerial decision-making purposes. Topics will include an introduction to elements of financial accounting, cost-profit-volume analysis, manufacturing costs and elements of cost accounting, special decision analysis, budgeting, variances, and controllability and responsibility accounting.', // description
@@ -1060,7 +1165,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'FIN 510 Financial Statement Analysis', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Finance', // courseOwner
             'Elective', // type
             3, // units
             'This course deals with (1) interpretation of financial statements, (2) evaluation of the alignment between business strategies and financial performance, (3) identification of potential business risks, and (4) comparison of performance of different companies. The course introduces business analysis and valuation techniques and utilizes real world data to help students comprehend financial statement analysis tools. Topics covers financial statement information, tools of financial statement analysis, and forecasting and valuation techniques.', // description
@@ -1080,7 +1185,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'FIN 515 Financial Decision Making', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Finance', // courseOwner
             'Elective', // type
             3, // units
             'Corporate financial management requires the ability to understand the past performance of the firm in accounting terms; while also being able to project the future economic consequences of the firm in financial terms. This course provides the requisite survey of accounting and finance methods and principles to allow technical executives to make effective decisions that maximize shareholder value.', // description
@@ -1100,7 +1205,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'FIN 530 Investment Banking', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Finance', // courseOwner
             'Elective', // type
             3, // units
             'This course focuses on the main activities of sell-side investment services such as: financial advisory, stocks and bonds structuring and underwriting, project finance and post-sale services such as equity and bond research. The course is aimed at students interested in acquiring skills and tools required for an investment banking career. The course does not cover the merger and acquisition topics (corporate, leveraged and early stage) for which the student should take the Venture Capital course.', // description
@@ -1120,7 +1225,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'FIN 540 Sustainable Finance', // courseName
             'Graduate', // academicLevel
-            'School of Business', // courseOwner
+            'Finance', // courseOwner
             'Elective', // type
             3, // units
             'This course introduces students to sustainable finance. In this course, sustainable finance is understood as the process of ensuring the inclusion of environmental, social, and governance (ESG) considerations into corporate decisions. A sustainable corporation will make their investment decisions that consider not only financial returns but also its social impact. Our textbook provides a clear and masterful discussion of the principles of sustainable business based on “growing the pie” principle. By focusing on “growing the pie” as a corporate objective, the sustainable businesses are able to create shareholder values as well as stakeholder value.', // description
@@ -1140,7 +1245,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 501 Fundamentals of Atomic Physics', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Physics & Engineering Physic', // courseOwner
             'Elective', // type
             3, // units
             'The course will cover the most common atomic and nuclear effects, yet covers it in direct relation to a sophisticated quantum mechanical treatment. It thereby connects the theoretical models with the experimental results, showcasing agreement as well as disagreement to outline the validity range of each model. Topics covered include Brownian motion; charge and mass of electrons and ions; Zeeman effect; photoelectric effect; emission, absorption, reflection, refraction, diffraction, absorption, and scattering of X-rays; Compton effect; diffraction of electrons; uncertainty principle; electron optics; atomic spectra and electron distribution; radioactivity; disintegration of nuclei; nuclear processes; nuclear energy; and fission.', // description
@@ -1160,7 +1265,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 506 Introduction to Astrophysics and Cosmology', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Physics & Engineering Physic', // courseOwner
             'Elective', // type
             3, // units
             'Theories of the universe, general relativity, Big Bang cosmology, and the inflationary universe; and elementary particle theory and nucleosynthesis in the early universe. Observational cosmology; galaxy formation and galactic structure; and stellar evolution and formation of the elements. White dwarfs, neutron stars and black holes, planetary systems, and the existence of life in the universe.', // description
@@ -1180,7 +1285,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 507 Introduction to Microelectronics and Photonics', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Physics & Engineering Physic', // courseOwner
             'Elective', // type
             3, // units
             'An overview of microelectronics and photonics science and technology. It provides the student who wishes to specialize in their application, physics or fabrication with the necessary knowledge of how the different aspects are interrelated. It is taught in three modules: design and applications, taught by EE faculty; operation of electronic and photonic devices, taught by Physics faculty; fabrication and reliability, taught by the materials faculty.', // description
@@ -1200,7 +1305,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 510 Modern Optics Laboratory', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Physics & Engineering Physic', // courseOwner
             'Elective', // type
             3, // units
             'The course is designed to familiarize students with a range of optical instruments and their applications. Included will be the measurement of aberrations in optical systems, thin-film properties, Fourier transform imaging systems, nonlinear optics, and laser beam dynamics.', // description
@@ -1220,7 +1325,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 515 Photonics I', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Physics & Engineering Physic', // courseOwner
             'Elective', // type
             3, // units
             'This course will cover topics encompassing the fundamental subject matter for the design of optical systems. Topics will include optical system analysis, optical instrument analysis, applications of thin-film coatings and opto-mechanical system design in the first term. The second term will cover the subjects of photometry and radiometry, spectrographic and spectrophotometric systems, infrared radiation measurement and instrumentation, lasers in optical systems and photon- electron conversion.', // description
@@ -1240,7 +1345,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'PEP 527 Mathematical Methods of Science and Engineering I', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Physics & Engineering Physic', // courseOwner
             'Elective', // type
             3, // units
             'Fourier series, Bessel functions, and Legendre polynomials as involved in the solution of vibrating systems; tensors and vectors in the theory of elasticity; applications of vector analysis to electrodynamics; vector operations in curvilinear coordinates; numerical methods of interpolation and of integration of functions and differential equations.', // description
@@ -1340,7 +1445,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MT 501 Introduction to Materials Science and Engineering', // courseName
             'Graduate', // academicLevel
-            'Materials Science and Engineering Program', // courseOwner
+            'Materials Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'An  introduction  to  the  structures/properties  relationships  of  materials  principally  intended  for  students  with  a  limited background in the field of materials science. Topics include: structure and bonding, thermodynamics of solids, alloys and phase diagrams, mechanical behavior, electrical properties and the kinetics of solid state reactions. The emphasis of this subject is the relationship between structure and composition, processing (and synthesis), properties and performance of materials.', // description
@@ -1360,7 +1465,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MT 507 Introduction to Microelectronics and Photonics', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Materials Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'An overview of microelectronics and photonics science and technology. It provides the student who wishes to specialize in their application, physics or fabrication with the necessary knowledge of how the different aspects are interrelated. It is taught in three modules: design and applications, taught by EE faculty; operation of electronic and photonic devices, taught by Physics faculty; fabrication and reliability, taught by the materials faculty.', // description
@@ -1380,7 +1485,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MT 515 Photonics I', // courseName
             'Graduate', // academicLevel
-            'Department of Physics', // courseOwner
+            'Materials Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'This course will cover topics encompassing the fundamental subject matter for the design of optical systems. Topics will include optical system analysis, optical instrument analysis, applications of thin-film coatings and opto-mechanical system design in the first term. The second term will cover the subjects of photometry and radiometry, spectrographic and spectrophotometric systems, infrared radiation measurement and instrumentation, lasers in optical systems and photon- electron conversion.', // description
@@ -1400,7 +1505,7 @@ const main = async () => {
         let createCourse = await course.createCourse(
             'MT 520 Analysis and Design of Composites', // courseName
             'Graduate', // academicLevel
-            'Mechanical Engineering Program', // courseOwner
+            'Materials Engineering Program', // courseOwner
             'Elective', // type
             3, // units
             'Composite  material  characterization;  composite  mechanics  of  plates,  panels,  beams,  columns,  and  rods  integrated with design procedures; analysis and design of composite structures; joining methods and procedures; introduction to manufacturing processes of filament winding, braiding, injection, compression and resin transfer molding, machining and drilling; and industrial applications.', // description
@@ -1549,7 +1654,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user1,
-        course1,
+        course2,
         "He is very arrogant, but his course is useful. His assignments take time but provides good knowledge. God bless you if he makes the project group because not everyone will work and you will cuss him for the group he made. but course is worth taking!",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Lots'},
         4.5
@@ -1558,7 +1663,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user1,
-        course1,
+        course3,
         "Force students to purchase zybooks ($88/term). And over 2000 questions in first week and you need to type all of them on zybooks to get credit.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.3
@@ -1567,7 +1672,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user1,
-        course1,
+        course4,
         "Professor Peyrovian seems like a great person who wants to be a good professor but unfortunately is not. Lectures are quite literally read word for word off of slides that are not even made by him or the department. He does not answer questions in any way that is useful and seems to think that CS 383 is the hardest and most difficult class here lol.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.3
@@ -1576,7 +1681,7 @@ const main = async () => {
     
     await user.createCourseReview(
         user1,
-        course1,
+        course5,
         "Awesome prof who teaches the material very well. Not much hw and quizzes are usually easy (make sure to do the optional exercises tho).",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.2
@@ -1584,8 +1689,8 @@ const main = async () => {
    
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user2,
+        course6,
         "Good at lecturing and clearly an intelligent guy. I would give a 5 but Prof. Bonelli has a habit of getting lost in the sauce and losing me in lecture.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Low'},
         4.2
@@ -1593,8 +1698,8 @@ const main = async () => {
    
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user2,
+        course7,
         "Very caring professor who obviously knows the subject very well. He can go a bit fast, but if you ask him to re-explain things he will and it's generally worth it. You should definitely pay attention in class, because while the work is tough if you pay attention and participate you'll be fine. You should also attend class because of weekly quizzes.",
         {difficulty: "Easy", chanceToGetA: 'Low', workLoad: 'Low'},
         4.2
@@ -1602,17 +1707,17 @@ const main = async () => {
    
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user2,
+        course8,
         "Challenging, but always completely fair. He really cares about the subject and his students, which occasionally leads to leads to him getting frustrated by lack of participation or misunderstanding of the material. Definitely take his courses if you get the chance. They are tough, but you get your money's worth with him.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
-        4.2
+        3.7
     )
   
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user2,
+        course9,
         "Very enthusiastic about what he teaches, but goes really fast.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.0
@@ -1620,7 +1725,7 @@ const main = async () => {
   
     
     await user.createCourseReview(
-        user1,
+        user3,
         course1,
         "Really nice guy who cares about his students' performance more than his paycheck.",
         {difficulty: "Medium", chanceToGetA: 'High', workLoad: 'Low'},
@@ -1629,7 +1734,7 @@ const main = async () => {
  
     
     await user.createCourseReview(
-        user1,
+        user4,
         course1,
         "His lectures are clear and encourages everyone to ask questions when unsure. (Do that. It'll help.) Make sure to show up for class, as there are often quizzes.",
         {difficulty: "Medium", chanceToGetA: 'High', workLoad: 'Medium'},
@@ -1638,17 +1743,17 @@ const main = async () => {
  
     
     await user.createCourseReview(
-        user1,
+        user5,
         course1,
         "Very enthusiastic about what he teaches, but goes really fast.",
-        {difficulty: "Low", chanceToGetA: 'High', workLoad: 'Low'},
+        {difficulty: "Hard", chanceToGetA: 'High', workLoad: 'Low'},
         4.1
     )
  
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user3,
+        course2,
         "Very nice and teaches the class very logically. Very approachable in and out of class but a hard grader, though the course material is VERY easy if you read the notes. His exams are generally easy, with 1 tricky question max.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.0
@@ -1656,17 +1761,17 @@ const main = async () => {
  
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user4,
+        course2,
         "Greenberg is probably one of the best professors I've had at UD. His class is very clear and if you pay attention for at least a little bit of it and read the notes you should do well.",
-        {difficulty: "Low", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.0
     )
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user5,
+        course2,
         "Great content in the course. try to use the aws credits and get hands on aws experience",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.8
@@ -1674,26 +1779,26 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user6,
+        course2,
         "His accent is a major problem, otherwise he is very knowledgable.",
-        {difficulty: "Low", chanceToGetA: 'Medium', workLoad: 'Low'},
+        {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Low'},
         3.8
     )
 
     
     await user.createCourseReview(
-        user1,
+        user10,
         course1,
         "Class isn't too hard and not too much work is given. What truly sucks about this course is the lack of quality. Its kind of hard to describe, but it you can easily see how little effort is put into it. Also I am pretty sure Rahman has been teaching this class for several years, yet he still doesn't know how to use canvas.",
-        {difficulty: "Low", chanceToGetA: 'Medium', workLoad: 'Lots'},
+        {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         3.5
     )
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user10,
+        course2,
         "great professor. daily quick quiz.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.5
@@ -1701,8 +1806,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user10,
+        course3,
         "Its like this was the first year he taught this course and we were responsible for working out all the kinks. Year after year he doesn't fix issues with the assignments or lectures, causing us to hit the same road blocks. He is almost never available for help, and says he responds to emails or Piazza posts but never does! Lots of false promises!!!",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.0
@@ -1710,8 +1815,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user10,
+        course4,
         "Never reply email. Lots of boring podcasts. Too many homework. Just waste of time.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.0
@@ -1719,8 +1824,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user7,
+        course5,
         "It may not have been so bad if the materials were actually properly prepared. Often the material had broken links / missing videos. The biggest issue was the lecture audio and video were not in sync, requiring you to constantly pause or look at the PDF on the side to stay in sync. Several students reported this to him, but he did nothing about it.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.0
@@ -1728,8 +1833,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user7,
+        course6,
         "This is THE worst class at Stevens. It froze over in 2009 as all the lectures were recorded then and haven't been touched since. His stub code is years old and contains many bugs/errors that will trip you up. He hasn't touched the materials in years, and often needs to refresh his memory when asked questions. He can't be bothered to help! AVOID!!!!.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Lots'},
         2.0
@@ -1737,8 +1842,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user7,
+        course7,
         "No coding assignments, only homework is latex notes for a few of the lectures with a partner. Offers extra credit. Easiest grader I've had and laid back atmosphere.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.4
@@ -1746,8 +1851,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user7,
+        course8,
         "Amazing knowledge about Statistical Machine Learning and AI. Must take class if you want to get into Machine Learning research!",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.4
@@ -1755,8 +1860,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user8,
+        course11,
         "The lectures are great albeit a little bit of information overload. Take notes as midterm and endterm would be straight out of the material. A lot depends on the project. Pay attention to the grading criteria. Course is not really technical but is crucial if you are interested in building clean UI and want to learn about usability.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Low'},
         4.7
@@ -1764,8 +1869,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user8,
+        course12,
         "Awesome Professor. Very cool about doubts of students. Respected.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.7
@@ -1773,8 +1878,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user8,
+        course13,
         "You actually will learn a lot in his class, and Prof. Duggan is a good teacher. But it's simply not worth it to take this class! Some of the homework assignments (given weekly) take up to 15 hours to complete. If you finish an assignment within 10 hours you'll probably feel good about yourself. Save yourself a lot of anxiety and frustration. Avoid!",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         2.0
@@ -1782,8 +1887,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user8,
+        course14,
         "DO NOT LISTEN TO ANYONE, YOU WILL REGRET TAKING THIS CLASS.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.0
@@ -1791,8 +1896,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user9,
+        course11,
         "Overall, a good prof who helps his students understand the computer programming in order to excel you need to put in the time and effort.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.2
@@ -1800,8 +1905,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user9,
+        course12,
         "great for someone new to computer science.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
         4.2
@@ -1809,8 +1914,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user9,
+        course13,
         "The most genuine professor who helped me achieve my dreams.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.5
@@ -1818,8 +1923,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user10,
+        course21,
         "You really have to put the work in to get a good grade.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.5
@@ -1827,8 +1932,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user10,
+        course22,
         "Do not listen to the Wang naysayers, they don't know C. (That is a Wang inside joke, he is a hilarious man if you actually listen to him) If you have ever talked to anyone that says Wang is a horrible teacher, they probably dropped the class and changed their major. If you ask him for help he is way more than willing to help you. Studying is a must.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
         3.0
@@ -1836,8 +1941,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user10,
+        course23,
         "He's good if you can understand him or read whats on the board. He tends to not erase completely and just keep writing over things.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
         3.0
@@ -1845,8 +1950,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user10,
+        course24,
         "He is a very honest person, very helpful-minded and is approachable at any time. His lab is very disoriented though, most of the students speak native languages while at work and you don't understand a thing, also is very reluctant to clean lab spaces. His presentations are very detailed and he cites lot of examples which is helpful. really good.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.3
@@ -1854,8 +1959,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user10,
+        course30,
         "Professor is honestly very helpful and tries to improve his lectures/class. If you manage to find him with time, he will provide help as much as he can. Honestly though, his lectures are rather dry and it does not help there is much overlap with materials course so you may be bored with the class. Tests are fair and shouldn't be too difficult.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.3
@@ -1863,8 +1968,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user10,
+        course31,
         "The best professor in the school.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.0
@@ -1872,8 +1977,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user10,
+        course32,
         "Highly respected.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.0
@@ -1881,8 +1986,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user11,
+        course30,
         "His class makes you think. I would totally take any class he will teach.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
         3.6
@@ -1890,7 +1995,7 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
+        user12,
         course1,
         "Awesome teacher! Very helpful!",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
@@ -1899,8 +2004,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user12,
+        course2,
         "George is an awesome professor and you learn so much in performance!",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.7
@@ -1908,8 +2013,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user12,
+        course3,
         "Such a great professor.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Low'},
         4.7
@@ -1917,8 +2022,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user12,
+        course4,
         "Such a great professor. A little hard to understand but the class is super easy and gives great lectures.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.2
@@ -1926,8 +2031,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user12,
+        course5,
         "Great professor. very friendly and understanding. Easy class.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
         3.2
@@ -1935,8 +2040,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user12,
+        course6,
         "This professor is kind and intelligent. However, he can't teach.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
         3.7
@@ -1944,8 +2049,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user12,
+        course7,
         "Hes a good person but when it comes to teaching I wouldnt recommend him especially if you are not proficient in Excel.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.7
@@ -1953,8 +2058,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user12,
+        course8,
         "Actually the worst teacher ever. I've never had a worse professor in my life. Doesn't lecture anything worth knowing and then tests and homework are extremely difficult.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         1.0
@@ -1962,8 +2067,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user12,
+        course9,
         "Worst ever.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Low'},
         1.0
@@ -1971,8 +2076,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user12,
+        course10,
         "Despite his name, haMID is absolutely not MID. He is a great professor. His lectures are interesting and useful. A great teacher. Tests are slightly difficult but fair.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.5
@@ -1980,8 +2085,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course40,
         "The best professor in the ME department. Explains content very clearly, and in a manner easy to understand even if you did not understand thermodynamics. Funny and understanding professor. Peaked my interest in thermal engineering, and would take courses in order to have him as my professor. If you can have him, take him over any other professor.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.5
@@ -1989,8 +2094,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course41,
         "Sad times. So much pain. Makes me want to see the sun blow up.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
         3.0
@@ -1998,8 +2103,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course42,
         "Salman is great. Honestly one of the best lecturers ever and makes the material very clear. The homework is challenging but helps with the exams.",
         {difficulty: "Medium", chanceToGetA: 'High', workLoad: 'Medium'},
         4.0
@@ -2007,8 +2112,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course43,
         "I took ME 524 Fundamentals of Remote Sensing with Dimitri online. There was no textbook, the only material he gave us were his PowerPoints from class. He gave these to us without any notes, audio or video to accompany them, they were useless. I spoke to my department head about this, I don't think this class will be offered for credit anymore.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         2.9
@@ -2016,8 +2121,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course51,
         "The GOAT. Best lab I've ever taken. Guy is hilarious and keeps things interesting. Looks out for you and make sure you learn.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
         4.8
@@ -2025,8 +2130,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course52,
         "I felt like the tests were hard and the study guides were not always reflective of the material on the test or what was covered on the lecture slides in class.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         3.0
@@ -2034,8 +2139,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course53,
         "nice professor, she is very helpful. if you need more help, she is very happy to help you. always go to class on time. dont skip class.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
         3.5
@@ -2043,8 +2148,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course54,
         "Really just a great dude all around. You can tell how much he cares about teaching and he gives off dad energy. He's always ready to help!",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
         5.0
@@ -2052,8 +2157,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course64,
         "Great Professor! Very Fun class with lots of discussions. We talk about Hobbes, Locke, Rousseau Mill, and many more. I must say Professor Ryan is a great Political Science teacher and I would recommend him to anyone.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         2.5
@@ -2061,8 +2166,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course65,
         "Horrible professor. Lack of organization, effort to care for his students' performances in his classes, and open-mindedness. This class has been one of the worst classes I've ever taken at Stevens.",
         {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Medium'},
         2.3
@@ -2070,8 +2175,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course66,
         "One of the worst professors I have ever had to be with. This man cannot teach for the life of him. Everything is disorganized, the classes barely understand what is going on. And this specific course focuses way too much on assembly programming instead of actual microprocessor architecture. Avoid at all cost.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Lots'},
         2.3
@@ -2079,8 +2184,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course67,
         "He is a good professor. The lecture establishes basic knowledges but it needs some more reading and some google research in order to get better understanding and to complete the exams/quizes. Also, he has very strong background what he teach.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
         2.9
@@ -2088,8 +2193,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course71,
         "Going to his class was stressful.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
         3.9
@@ -2097,8 +2202,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course72,
         "Robert is one of the toughest teachers I have ever had not due to the class vigor but merely due to his incompetence. He does not post instructions for assignments, expects too much from students, no one pays attention during class but you miss nothing. All class periods are mandatory but are just slide shows. 0/5 if it wasn't funny to watch.",
         {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Lots'},
         1.0
@@ -2106,8 +2211,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course73,
         "He makes sure his class understands the topic well and he delivers at his best. It is always fun attending his lectures.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
         4.1
@@ -2115,8 +2220,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course74,
         "pathetic professor. Never take it. Teaches all out of scope things.",
         {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Medium'},
         2.9
@@ -2124,8 +2229,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user13,
+        course75,
         "If you want marks, don't take this class. At your face she doesn't seem strict at all, but when the marks come in, you'll know the real her. She says she wants us to learn, but doesn't realize, some aren't experienced or aren't interested in this compulsory course. She destroyed my GPA. Two exams, two presentations, so much homework and a B.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Lots'},
         3.0
@@ -2133,8 +2238,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course25,
         "Great guy.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
         5.0
@@ -2142,8 +2247,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course26,
         "He's great, super knowledgeable on the material and is very clear with his expectations.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
         4.0
@@ -2151,8 +2256,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course27,
         "Attendance is not mandatory but participation in his classes will go a long way.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.9
@@ -2160,8 +2265,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course28,
         "He is a good professor and you would understand whatever he teaches if you in full concentration. However, in-class it gets boring a bit, but revise his lectures and you'll get to learn a lot. His assignments are good. It is fairly easy to get an A, if the assignments are done correctly. Overall he is a good Prof.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.8
@@ -2169,8 +2274,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course29,
         "He is awful at teaching and grading. Never take any course with him.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Medium'},
         2.5
@@ -2178,8 +2283,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course30,
         "By far, one of the most rigorous courses I have ever had. Having said that, If you put in time and effort, learning opportunity is limitless in the course and professor creamer makes sure that none of your doubts go unexplained. The material/textbooks provided are extremely helpful as well. Good course if you want to actually learn about the topics.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
         3.0
@@ -2187,8 +2292,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course43,
         "She gives you every opportunity to do well, but you must use the resources provided.",
         {difficulty: "Medium", chanceToGetA: 'High', workLoad: 'Medium'},
         5.0
@@ -2196,8 +2301,8 @@ const main = async () => {
 
     
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course44,
         "This class was a disaster.",
         {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Medium'},
         3.0
@@ -2205,8 +2310,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course53,
         "He's really chill. It's accounting so its obviously boring, but he makes dad jokes here and there that are pretty decent I must say. HW takes a decent amount of time, so just get it done early. Overall, easy going guy, easy going class. As long as you pay attention, you should be fine.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         5.0
@@ -2214,8 +2319,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course54,
         "Keeps the class light and fun for boring subject like accounting.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         5.0
@@ -2223,8 +2328,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course55,
         "Easiest A I've ever seen. Took the online course of FIN615. Each week is a quiz which is not at all thought-provoking. Midterm and final have same exact questions from weekly quizzes so it'd be extremely difficult to not do well. 2 chances on each quiz/midterm/final. Didn't learn a thing.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
         3.0
@@ -2232,8 +2337,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course56,
         "He talks whatever comes to his mind. Doesnt follow any syllabus. No discipline. Nothing is clear in this course. Everything is unpredictable. This is introductory course. But the things he asking without teaching is a lot. Basically, you are on yourself. Definitely wouldt recommend.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
         1.0
@@ -2241,8 +2346,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course57,
         "This class helped me soooo much and it was because the professor cared. He offered as much help as anyone needed and we really felt he wanted us to succeed.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Lots'},
         4.0
@@ -2250,8 +2355,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course58,
         "He knows his stuff very well and will give you feedback on a lot of things. Took him for SKIL and cares about you learning the material and explaining how signal processing works etc.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.7
@@ -2259,8 +2364,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course59,
         "She is one of the most boring teachers I have had in my whole life. You will learn nothing in lecture all year. We are two weeks in and 80% of the kids and lecture don't even show up because it is pointless. Every time i go to lecture I regret it.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.8
@@ -2268,8 +2373,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course60,
         "The GOAT. Best lab I've ever taken. Guy is hilarious and keeps things interesting. Looks out for you and make sure you learn.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
         4.8
@@ -2277,8 +2382,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course61,
         "Such an easy going guy! Really tries to help everyone get a good grade.",
         {difficulty: "Medium", chanceToGetA: 'High', workLoad: 'Medium'},
         4.0
@@ -2286,8 +2391,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course62,
         "He's awesome.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.0
@@ -2295,8 +2400,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course63,
         "Professor Lukic is incredible. I sucked at physics entering this class, but Lukic's passion for physics and astronomy made me become more interested in physics. His problems are difficult but I guarantee class with him will be a worthwhile experience.",
         {difficulty: "Medium", chanceToGetA: 'High', workLoad: 'Low'},
         4.1
@@ -2304,8 +2409,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course64,
         "There is hardly anything good I can write about her. She is smart obviously, but the ability to convey that information was definitely not strong, even when asking for help, it felt like you were talking to Karen who is the one who is always right. It was really degrading and I don't intend to take her again, I'll just chemistry with someone else.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.0
@@ -2313,8 +2418,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course65,
         "Even with trying to do the work early and understanding it lectures begin.",
         {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Medium'},
         3.5
@@ -2322,8 +2427,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course66,
         "He always have problem explaining the material. Avoid him as soon as possible!! Book explain better than him. He always confuses his students. His hand writing is the worst. most of the students learn by themselves so its like wasting of your money. He hardly answer the question correctly. He will confuse you on the board like in a second!!",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.2
@@ -2331,8 +2436,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course67,
         "There is hardly anything good I can write about her. She is smart obviously, but the ability to convey that information was definitely not strong, even when asking for help, it felt like you were talking to Karen who is the one who is always right. It was really degrading and I don't intend to take her again, I'll just chemistry with someone else.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
         3.0
@@ -2340,8 +2445,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course68,
         "Actually the worst teacher ever. I've never had a worse professor in my life. Doesn't lecture anything worth knowing and then tests and homework are extremely difficult.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
         1.0
@@ -2349,8 +2454,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course69,
         "Such an easy going guy! Really tries to help everyone get a good grade.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
         4.8
@@ -2358,8 +2463,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course70,
         "He's such a cutie pie, and I just love listening to his voice during class.",
         {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
         4.5
@@ -2367,8 +2472,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course71,
         "I did not like this teacher, he made us memorize 20 songs and tested us on only 10 of them on each test.",
         {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Medium'},
         3.2
@@ -2376,8 +2481,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course72,
         "He is literally the quietest man I've ever met. He shouldn't have been a professor, students can't even hear him from the front row.",
         {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Medium'},
         2.9
@@ -2385,8 +2490,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course73,
         "Perfect professor, really passionate to teach, puts in alot of effort for students, learnt alot.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.9
@@ -2394,8 +2499,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course74,
         "He is a good professor. The lecture establishes basic knowledges but it needs some more reading and some google research in order to get better understanding and to complete the exams/quizes.",
         {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
         2.9
@@ -2403,8 +2508,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course75,
         "Do the reading.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         4.0
@@ -2412,8 +2517,8 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course21,
         "Cool.",
         {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
         4.1
@@ -2421,12 +2526,512 @@ const main = async () => {
 
 
     await user.createCourseReview(
-        user1,
-        course1,
+        user14,
+        course22,
         "I found his lectures to be more applicable to real-life situations than reliant on tests and bs work.",
         {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
         5.0
     )
+
+
+
+
+
+    
+    await user.createCourseReview(
+        user15,
+        course21,
+        "This is THE worst class at Stevens. It froze over in 2009 as all the lectures were recorded then and haven't been touched since. His stub code is years old and contains many bugs/errors that will trip you up. He hasn't touched the materials in years, and often needs to refresh his memory when asked questions. He can't be bothered to help! AVOID!!!!.",
+        {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Lots'},
+        2.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course22,
+        "No coding assignments, only homework is latex notes for a few of the lectures with a partner. Offers extra credit. Easiest grader I've had and laid back atmosphere.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
+        4.4
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course23,
+        "Amazing knowledge about Statistical Machine Learning and AI. Must take class if you want to get into Machine Learning research!",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
+        4.4
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course24,
+        "The lectures are great albeit a little bit of information overload. Take notes as midterm and endterm would be straight out of the material. A lot depends on the project. Pay attention to the grading criteria. Course is not really technical but is crucial if you are interested in building clean UI and want to learn about usability.",
+        {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Low'},
+        4.7
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course25,
+        "Awesome Professor. Very cool about doubts of students. Respected.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
+        4.7
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course26,
+        "You actually will learn a lot in his class, and Prof. Duggan is a good teacher. But it's simply not worth it to take this class! Some of the homework assignments (given weekly) take up to 15 hours to complete. If you finish an assignment within 10 hours you'll probably feel good about yourself. Save yourself a lot of anxiety and frustration. Avoid!",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        2.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course27,
+        "DO NOT LISTEN TO ANYONE, YOU WILL REGRET TAKING THIS CLASS.",
+        {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
+        2.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course28,
+        "Overall, a good prof who helps his students understand the computer programming in order to excel you need to put in the time and effort.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
+        4.2
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course29,
+        "great for someone new to computer science.",
+        {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
+        4.2
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course30,
+        "The most genuine professor who helped me achieve my dreams.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        3.5
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course31,
+        "You really have to put the work in to get a good grade.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        3.5
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course32,
+        "Do not listen to the Wang naysayers, they don't know C. (That is a Wang inside joke, he is a hilarious man if you actually listen to him) If you have ever talked to anyone that says Wang is a horrible teacher, they probably dropped the class and changed their major. If you ask him for help he is way more than willing to help you. Studying is a must.",
+        {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
+        3.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course33,
+        "He's good if you can understand him or read whats on the board. He tends to not erase completely and just keep writing over things.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
+        3.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course34,
+        "He is a very honest person, very helpful-minded and is approachable at any time. His lab is very disoriented though, most of the students speak native languages while at work and you don't understand a thing, also is very reluctant to clean lab spaces. His presentations are very detailed and he cites lot of examples which is helpful. really good.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        4.3
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course35,
+        "Professor is honestly very helpful and tries to improve his lectures/class. If you manage to find him with time, he will provide help as much as he can. Honestly though, his lectures are rather dry and it does not help there is much overlap with materials course so you may be bored with the class. Tests are fair and shouldn't be too difficult.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        4.3
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course36,
+        "The best professor in the school.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
+        4.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course37,
+        "Highly respected.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        4.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course38,
+        "His class makes you think. I would totally take any class he will teach.",
+        {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
+        3.6
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course39,
+        "Awesome teacher! Very helpful!",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
+        3.6
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course40,
+        "George is an awesome professor and you learn so much in performance!",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        4.7
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course41,
+        "Such a great professor.",
+        {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Low'},
+        4.7
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course42,
+        "Such a great professor. A little hard to understand but the class is super easy and gives great lectures.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        3.2
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course43,
+        "Great professor. very friendly and understanding. Easy class.",
+        {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
+        3.2
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course44,
+        "This professor is kind and intelligent. However, he can't teach.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
+        3.7
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course45,
+        "Hes a good person but when it comes to teaching I wouldnt recommend him especially if you are not proficient in Excel.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        3.7
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course46,
+        "Actually the worst teacher ever. I've never had a worse professor in my life. Doesn't lecture anything worth knowing and then tests and homework are extremely difficult.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        1.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course47,
+        "Worst ever.",
+        {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Low'},
+        1.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course48,
+        "Despite his name, haMID is absolutely not MID. He is a great professor. His lectures are interesting and useful. A great teacher. Tests are slightly difficult but fair.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        4.5
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course49,
+        "The best professor in the ME department. Explains content very clearly, and in a manner easy to understand even if you did not understand thermodynamics. Funny and understanding professor. Peaked my interest in thermal engineering, and would take courses in order to have him as my professor. If you can have him, take him over any other professor.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Low'},
+        4.5
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course50,
+        "Sad times. So much pain. Makes me want to see the sun blow up.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
+        3.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course51,
+        "Salman is great. Honestly one of the best lecturers ever and makes the material very clear. The homework is challenging but helps with the exams.",
+        {difficulty: "Medium", chanceToGetA: 'High', workLoad: 'Medium'},
+        4.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course52,
+        "I took ME 524 Fundamentals of Remote Sensing with Dimitri online. There was no textbook, the only material he gave us were his PowerPoints from class. He gave these to us without any notes, audio or video to accompany them, they were useless. I spoke to my department head about this, I don't think this class will be offered for credit anymore.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        2.9
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course53,
+        "The GOAT. Best lab I've ever taken. Guy is hilarious and keeps things interesting. Looks out for you and make sure you learn.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
+        4.8
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course54,
+        "I felt like the tests were hard and the study guides were not always reflective of the material on the test or what was covered on the lecture slides in class.",
+        {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Lots'},
+        3.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course55,
+        "nice professor, she is very helpful. if you need more help, she is very happy to help you. always go to class on time. dont skip class.",
+        {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
+        3.5
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course56,
+        "Really just a great dude all around. You can tell how much he cares about teaching and he gives off dad energy. He's always ready to help!",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Low'},
+        5.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course57,
+        "Great Professor! Very Fun class with lots of discussions. We talk about Hobbes, Locke, Rousseau Mill, and many more. I must say Professor Ryan is a great Political Science teacher and I would recommend him to anyone.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        2.5
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course58,
+        "Horrible professor. Lack of organization, effort to care for his students' performances in his classes, and open-mindedness. This class has been one of the worst classes I've ever taken at Stevens.",
+        {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Medium'},
+        2.3
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course59,
+        "One of the worst professors I have ever had to be with. This man cannot teach for the life of him. Everything is disorganized, the classes barely understand what is going on. And this specific course focuses way too much on assembly programming instead of actual microprocessor architecture. Avoid at all cost.",
+        {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Lots'},
+        2.3
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course60,
+        "He is a good professor. The lecture establishes basic knowledges but it needs some more reading and some google research in order to get better understanding and to complete the exams/quizes. Also, he has very strong background what he teach.",
+        {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
+        2.9
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course61,
+        "Going to his class was stressful.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
+        3.9
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course62,
+        "Robert is one of the toughest teachers I have ever had not due to the class vigor but merely due to his incompetence. He does not post instructions for assignments, expects too much from students, no one pays attention during class but you miss nothing. All class periods are mandatory but are just slide shows. 0/5 if it wasn't funny to watch.",
+        {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Lots'},
+        1.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course63,
+        "He makes sure his class understands the topic well and he delivers at his best. It is always fun attending his lectures.",
+        {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
+        4.1
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course64,
+        "pathetic professor. Never take it. Teaches all out of scope things.",
+        {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Medium'},
+        2.9
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course65,
+        "If you want marks, don't take this class. At your face she doesn't seem strict at all, but when the marks come in, you'll know the real her. She says she wants us to learn, but doesn't realize, some aren't experienced or aren't interested in this compulsory course. She destroyed my GPA. Two exams, two presentations, so much homework and a B.",
+        {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Lots'},
+        3.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course66,
+        "Great guy.",
+        {difficulty: "Easy", chanceToGetA: 'High', workLoad: 'Medium'},
+        5.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course67,
+        "He's great, super knowledgeable on the material and is very clear with his expectations.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Lots'},
+        4.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course68,
+        "Attendance is not mandatory but participation in his classes will go a long way.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        3.9
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course69,
+        "He is a good professor and you would understand whatever he teaches if you in full concentration. However, in-class it gets boring a bit, but revise his lectures and you'll get to learn a lot. His assignments are good. It is fairly easy to get an A, if the assignments are done correctly. Overall he is a good Prof.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        3.8
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course70,
+        "He is awful at teaching and grading. Never take any course with him.",
+        {difficulty: "Hard", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        2.5
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course71,
+        "By far, one of the most rigorous courses I have ever had. Having said that, If you put in time and effort, learning opportunity is limitless in the course and professor creamer makes sure that none of your doubts go unexplained. The material/textbooks provided are extremely helpful as well. Good course if you want to actually learn about the topics.",
+        {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
+        3.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course72,
+        "She gives you every opportunity to do well, but you must use the resources provided.",
+        {difficulty: "Medium", chanceToGetA: 'High', workLoad: 'Medium'},
+        5.0
+    )
+
+    
+    await user.createCourseReview(
+        user15,
+        course73,
+        "This class was a disaster.",
+        {difficulty: "Hard", chanceToGetA: 'Low', workLoad: 'Medium'},
+        3.0
+    )
+
+
+    await user.createCourseReview(
+        user15,
+        course74,
+        "He's really chill. It's accounting so its obviously boring, but he makes dad jokes here and there that are pretty decent I must say. HW takes a decent amount of time, so just get it done early. Overall, easy going guy, easy going class. As long as you pay attention, you should be fine.",
+        {difficulty: "Easy", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        5.0
+    )
+
+
+    await user.createCourseReview(
+        user15,
+        course75,
+        "Keeps the class light and fun for boring subject like accounting.",
+        {difficulty: "Medium", chanceToGetA: 'Medium', workLoad: 'Medium'},
+        5.0
+    )
+
 
 
     connection.closeConnection();
