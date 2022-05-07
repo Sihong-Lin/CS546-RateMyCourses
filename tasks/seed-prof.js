@@ -133,7 +133,7 @@ const main = async () => {
             await professor.addProfReview(uid, pid9, review9, 1.5);
         }
         
-            
+        /*
         let professor10 = await professor.createProfessor(
             'Eric Koskinen',
             "Computer Science",
@@ -146,7 +146,7 @@ const main = async () => {
         for (let i = 0; i < 3; i++) {
             await professor.addProfReview(uid, pid10, review10, 4);
         }
-        
+        */
             
         let professor11 = await professor.createProfessor(
             'Xueqing Liu',

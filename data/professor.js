@@ -232,11 +232,12 @@ async function getProfReview(reviewId) {
     return review;
 }
 
-async function updateProfReview(uid, rid, pid, comment) {
-    uid = inputCheck.checkUserId(uid);
+async function updateProfReview(rid, uid, pid, comment, rating) {
+    uid = inputCheck.checkUserId(uid); 
     rid = inputCheck.checkUserId(rid);
     pid = inputCheck.checkUserId(pid);
     comment = inputCheck.checkComment(comment);
+    rating = inputCheck.checkRating(rating);
 
     const profCollection = await professors();
     const userCollection = await users();
@@ -244,22 +245,29 @@ async function updateProfReview(uid, rid, pid, comment) {
 
     const updateInfo = await profCollection.updateOne(
         { _id: ObjectId(pid),  "reviews._id": ObjectId(rid)},
-        { $set: { "reviews.$.comment": comment} },
-    );
+        { $set: { 
+                "reviews.$.comment": comment,
+                "reviews.$.rating": rating
+            }
+        });
+    
     const updateProfessorReviewInUser = await userCollection.updateOne(
         {_id: ObjectId(uid),"professorReviews._id" : ObjectId(rid)}, 
         {
             $set: {
-                "professorReviews.$.comment" : comment
+                "professorReviews.$.comment" : comment,
+                "professorReviews.$.rating" : rating
             }
         }
     )
 
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
         throw 'Update failed';
+    /*
     if (updateProfessorReviewInUser.modifiedCount === 0) {
-        throw 'could not professor review in user';
+        throw 'could not edit professor review in user';
     }
+    */
     return await this.getProfReview(rid);
 }
 
