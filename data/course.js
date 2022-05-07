@@ -18,7 +18,9 @@ module.exports = {
     getTop5CourseByMajor,
     updateCourseCount,
     updateCourseRating,
-    decreaseCourseCount
+    decreaseCourseCount,
+    updateCourseReviewComment,
+    getAllMajor
 }
 
 async function createCourse(courseName, academicLevel, courseOwner, type,
@@ -77,6 +79,14 @@ async function getCourse(courseId) {
     courseId = inputCheck.checkCourseId(courseId);
     const courseCollection = await courses();
     let course = await courseCollection.findOne({ _id: ObjectId(courseId) });
+    let reviews = course.courseReviews;
+    for (let i = 0; i < reviews.length; i++) {
+        let userId = reviews[i].userId
+        const userCollection = await users();
+        const user = await userCollection.findOne({ _id: ObjectId(userId) });
+        if (!user) throw 'User not found';
+        reviews[i].profilePicture = user.profilePicture;
+    }
     if (course === null) throw 'No course with that id';
     return course;
 }
@@ -405,13 +415,22 @@ async function getCoursesByKeywords(department, keyword) {
             courseList.push(course)
         }
     })
+    for (let i = 0; i < courseList.length; i++) {
+        let courseName = courseList[i].courseName;
+        let arr = courseName.split(" ");
+        courseList[i].courseIndex = arr[0] + " " + arr[1];
+        courseList[i].courseName = arr.slice(2).join(" ");
+    }
+    courseList.forEach(course => {
+        course._id = course._id.toString()
+    })
     return courseList
 }
 
 function matchKeyword(courseName, keyword) {
     const words = courseName.split(" ");
     for (let i = 0; i < words.length; i++) {
-        if (words[i].indexOf(keyword) != -1) {
+        if (words[i].toLowerCase().indexOf(keyword.toLowerCase()) != -1) {
             return true;
         }
     }
@@ -435,3 +454,67 @@ async function removeUserCourseReview(courseId, userId) {
         { $pull: { courseReviews: { courseId: courseId } } }
     )
 }  
+
+async function updateCourseReviewComment(userId, courseId, newComment) {
+    try {
+        userId = inputCheck.checkUserId(userId);
+        courseId = inputCheck.checkCourseId(courseId);
+        newComment = inputCheck.checkComment(newComment);
+    } catch (e) {
+        throw e
+    }
+    const courseCollection = await courses();
+    const userCollection = await users();
+    const updateCourseReviewInCourse = await courseCollection.updateOne(
+        {_id: ObjectId(courseId),"courseReviews.userId"  : userId}, 
+        {
+            $set: {
+                "courseReviews.$.comment" : newComment
+            }
+        }
+    )
+
+    const updateCourseReviewInUser = await userCollection.updateOne(
+        {_id: ObjectId(userId),"courseReviews.courseId"  : courseId}, 
+        {
+            $set: {
+                "courseReviews.$.comment" : newComment
+            }
+        }
+    )
+    
+    if (updateCourseReviewInCourse.modifiedCount === 0) {
+        throw 'could not update course review in course';
+    }
+
+    if (updateCourseReviewInUser.modifiedCount === 0) {
+        throw 'could not update course review in user';
+    }
+    return {updateCourseReviewComment: true}
+}
+
+
+async function getAllMajor() {
+    const courseCollection = await courses();
+    let courseList = await courseCollection.find({}).toArray();
+    let majors = new Set()
+    courseList.forEach(course => {
+        majors.add(courseOwnerToDepartment(course.courseOwner))
+    });
+    return Array.from(majors)
+}
+
+function courseOwnerToDepartment(courseOwner) {
+    // Computer Science Program ==> Computer Science 
+    // Finance Program ==> Finance
+    // Finance ==> Finance
+    let department = ""
+    const arr = courseOwner.split(" ");
+    if(arr[arr.length-1] == "Program") {
+        for(let i = 0; i < arr.length - 1; i++) {
+            department += arr[i] + " ";
+        }
+        return department.trim();
+    }
+    return courseOwner
+}

@@ -1,5 +1,4 @@
-//user add review to course
-//const { ConsoleLogger } = require('aws-amplify/node_modules/@aws-amplify/core');
+
 const express = require('express');
 const router = express.Router();
 const user = require('../data/user');

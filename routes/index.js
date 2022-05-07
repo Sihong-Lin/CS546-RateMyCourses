@@ -6,13 +6,13 @@ const homeRoutes = require('./home');
 const courseRoutes = require('./course');
 const coursesRoutes = require('./courses');
 const professorsRoutes = require('./professors');
-const professorRoutes = require('./professor');
+// const professorRoutes = require('./professor');
 const backstageRoutes = require('./backstage');
 const courseManageRoutes = require('./courseManage');
 const professorManageRoutes = require('./professorManage');
 const userManageRoutes = require('./userManage');
 const accountRoutes = require('./account');
-
+const searchRoutes = require('./search')
 
 const constructorMethod = (app) => {
     app.use('/login', loginRoutes);
@@ -22,14 +22,14 @@ const constructorMethod = (app) => {
     app.use('/home', homeRoutes);
     app.use('/course', courseRoutes);
     app.use('/courses', coursesRoutes);
-    app.use('/professor', professorRoutes);
+    // app.use('/professor', professorRoutes);
     app.use('/professors', professorsRoutes);
     app.use('/backstage', backstageRoutes);
     app.use('/courseManage', courseManageRoutes);
     app.use('/professorManage', professorManageRoutes);
     app.use('/userManage', userManageRoutes);
     app.use('/account', accountRoutes);
-
+    app.use('/search', searchRoutes)
 
 
     app.get('/', (req, res) => {

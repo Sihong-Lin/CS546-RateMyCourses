@@ -1,7 +1,7 @@
 <div class="container-fluid sticky-top bg-white shadow-sm">
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-            <a href="home.html" class="navbar-brand">
+            <a href="home" class="navbar-brand">
                 <h1 class="m-0 text-primary"></i>RateMyCourses</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -12,9 +12,10 @@
                     <a href="http://localhost:3000/home" class="nav-item nav-link">Home</a>
                     <a href="http://localhost:3000/courses" class="nav-item nav-link">Courses</a>
                     <a href="http://localhost:3000/professors" class="nav-item nav-link">Professors</a>
+                    <a href="http://localhost:3000/search" class="nav-item nav-link">Search</a>
                     <a href="http://localhost:3000/account" class="nav-item nav-link">Account</a>
                     <a href="http://localhost:3000/backstage" class="nav-item nav-link">Backstage</a>
-                    <a href="http://localhost:3000/login.html" class="nav-item nav-link">Sign in</a>
+                    <a href="http://localhost:3000/login" class="nav-item nav-link">Sign in</a>
                 </div>
             </div>
         </nav>
@@ -39,17 +40,15 @@
                 <div class="mb-4">
                     <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Course Info</h5>
                     <h1 class="display-10">{{courseDetail.courseName}}</h1>
-                    <h4 class="display-10">Academic Level: <dfn>{{courseDetail.academicLevel}}</dfn> </h4>
-                    <h4 class="display-10">Course Owner: <dfn>{{courseDetail.courseOwner}}</dfn> </h4>
-                    <h4 class="display-10">Instructional Formats: <dfn>{{courseDetail.instructionalFormats}}</dfn></h4>
-                    <h4 class="display-10">Type: <dfn class="display-10">{{courseDetail.type}}</dfn></h4>
-                    <h4 class="display-10">Difficulty: <dfn class="display-10">{{courseDetail.metrics.difficulty}}</dfn>
-                    </h4>
-                    <h4 class="display-10">WorkLoad: <dfn class="display-10">{{courseDetail.metrics.workLoad}}</dfn>
-                    </h4>
-                    <h4 class="display-10">Chance To Get A: <dfn
-                            class="display-10">{{courseDetail.metrics.chanceToGetA}}</dfn></h4>
-                    <h4 class="display-10">Overall Rating: <dfn class="display-10">{{courseDetail.overallRating}}</dfn>
+                    <h4 class="display-10">Academic Level: &nbsp&nbsp {{courseDetail.academicLevel}}</h4>
+                    <h4 class="display-10">Course Owner: &nbsp&nbsp {{courseDetail.courseOwner}}</h4>
+                    <h4 class="display-10">Instructional Formats: &nbsp&nbsp {{courseDetail.instructionalFormats}}</h4>
+                    <h4 class="display-10">Type: &nbsp&nbsp {{courseDetail.type}}</h4>
+                    <h4 class="display-10">Difficulty: &nbsp&nbsp {{courseDetail.metrics.difficulty}}</h4>
+                    <h4 class="display-10">WorkLoad: &nbsp&nbsp {{courseDetail.metrics.workLoad}}</h4>
+                    
+                    <h4 class="display-10">Chance To Get A: &nbsp&nbsp {{courseDetail.metrics.chanceToGetA}}</h4>
+                    <h4 class="display-10">Overall Rating: &nbsp&nbsp {{courseDetail.overallRating}}</h4>
                     </h4>
                     <h4 class="display-10">description: </h4>
                     <p>{{courseDetail.description}}</p>
@@ -71,22 +70,25 @@
         <div class="row g-5">
             {{#each courseDetail.courseReviews}}
             <div class="col-xl-4 col-lg-6">
-
+                
                 <div class="bg-light rounded overflow-hidden">
+                    
                     <div class="p-4">
-                        <h6 class="ms-3">Rating: {{this.rating}}</h6>
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle me-2" src={{this.profilePicture}} width="35" height="35"
+                                alt="">
+                            <h6 class="ms-3">{{this.username}}</h6>
+                        </div>
+                        <p></p>
                         <p class="m-0">{{this.comment}}</p>
                     </div>
                     <div class="d-flex justify-content-between border-top p-4">
                         <div class="d-flex align-items-center">
-                            <img class="rounded-circle me-2" src={{this.picture}} width="25" height="25"
-                                alt="">
-                            <small>{{this.username}}</small>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <small class="ms-3">Difficulty: {{this.metrics.difficulty}}</small>
-                            <small class="ms-3">ChanceToGetA: {{this.metrics.chanceToGetA}}</small>
-                            <small class="ms-3">WorkLoad: {{this.metrics.workLoad}}</small>
+                            <h6 class="ms-3">Rating: {{concat this.rating ' / 5'}}</h6>
+                            <h6 class="ms-3">Difficulty: {{this.metrics.difficulty}}</h6>
+                            <h6 class="ms-3">ChanceToGetA: {{this.metrics.chanceToGetA}}</h6>
+                            <h6 class="ms-3">WorkLoad: {{this.metrics.workLoad}}</h6>
+                            <h6 class="ms-3"></h6>
                         </div>
                     </div>
                 </div>
@@ -106,38 +108,44 @@
         <div class="bg-light rounded p-5">
             <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-white mb-4">
                 Leave a comment</h4>
-            <form method="POST">
+            <form id="sumbitForm" method="POST">
                 <div class="row g-3">
                     <div class="col-12">
                         <span>
                             <h6>Difficulty:    </h6>
-                            <input type="radio" name="Difficulty" value="Easy" required/>Easy
-                            <input type="radio" name="Difficulty" value="Medium"/>Medium
-                            <input type="radio" name="Difficulty" value="Hard"/>Hard
+                            <input type="radio" name="Difficulty" id = "Difficulty" value="Easy" required/>&nbsp Easy
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="radio" name="Difficulty" id = "Difficulty" value="Medium"/>&nbsp Medium
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="radio" name="Difficulty" id = "Difficulty" value="Hard"/>&nbsp Hard
                         </span>
                     </div>
                     <div class="col-12">
                         <span>
                             <h6>ChanceToGetA:    </h6>
-                            <input type="radio" name="ChanceToGetA" value="Low" required/>Low 
-                            <input type="radio" name="ChanceToGetA" value="Medium" />Medium
-                            <input type="radio" name="ChanceToGetA" value="High"/>High
+                            <input type="radio" name="ChanceToGetA" id = "ChanceToGetA" value="Low" required/>&nbsp Low 
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="radio" name="ChanceToGetA" id = "ChanceToGetA" value="Medium" />&nbsp Medium
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="radio" name="ChanceToGetA" id = "ChanceToGetA" value="High"/>&nbsp High
                         </span>
                     </div>
                     <div class="col-12">
                         <span>
                             <h6>WorkLoad:    </h6>
-                            <input type="radio" name="WorkLoad" value="Less" required/>Less
-                            <input type="radio" name="WorkLoad" value="Medium"/>Medium
-                            <input type="radio" name="WorkLoad" value="Plenty"/>Plenty
+                            <input type="radio" name="WorkLoad" id = "WorkLoad" value="Less" required/>&nbsp Less
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="radio" name="WorkLoad" id = "WorkLoad" value="Medium"/>&nbsp Medium
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="radio" name="WorkLoad" id = "WorkLoad" value="Plenty"/>&nbsp Plenty
                         </span>
                     </div>
                     <div class="col-12">
-                        <textarea name= "comment"class="form-control bg-white border-0" rows="5" placeholder="Comment" required></textarea>
+                        <textarea name= "comment"class="form-control bg-white border-0" rows="5" placeholder="Comment" id = "Comment"required></textarea>
                     </div>
                     
                     <div class="col-12 sm-6">
-                            <select class="form-select w-25" style="height: 60px;" name="rating" required>
+                            <select class="form-select w-25" style="height: 60px;" name="rating" id = "Rating" required>
                                 <option selected="">Rating</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -147,7 +155,7 @@
                             </select>
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-primary w-100 py-3" type="submit">Leave Your Comment</button>
+                        <button class="btn btn-primary w-100 py-3" type="submit" id = "sumbit">Leave Your Comment</button>
                     </div>
                 </div>
             </form>
@@ -166,42 +174,40 @@
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
                     Get In Touch</h4>
-                <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed
-                    dolor</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>123 Street, New York, USA</p>
+                <p class="mb-4">Best community built around students, courses and beyond.</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>1 Castle Point Terrace, Hoboken, NJ</p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i><a href="email-protection.html"
                         class="__cf_email__"
                         data-cfemail="adc4c3cbc2edc8d5ccc0ddc1c883cec2c0">[email&#160;protected]</a></p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>+012 345 67890</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>201-216-5000</p>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
                     Quick Links</h4>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Meet The Team</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Latest Blog</a>
-                    <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                    <a class="text-light mb-2" href="home"><i class="fa fa-angle-right me-2"></i>Home</a>
+                    <a class="text-light mb-2" href="courses"><i class="fa fa-angle-right me-2"></i>Courses</a>
+                    <a class="text-light mb-2" href="professors"><i class="fa fa-angle-right me-2"></i>Professors</a>
+                    <a class="text-light mb-2" href="login"><i class="fa fa-angle-right me-2"></i>Login</a>
+                    <a class="text-light mb-2" href="account"><i class="fa fa-angle-right me-2"></i>Account</a>
+                    <a class="text-light" href="Search"><i class="fa fa-angle-right me-2"></i>Search</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
-                    Popular Links</h4>
+                    Our Github Links</h4>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Meet The Team</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Latest Blog</a>
-                    <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                    <a class="text-light mb-2" href="https://github.com/Sihong-Lin" target="_blank"><i class="fa fa-angle-right me-2"></i>Sihong Lin</a>
+                    <a class="text-light mb-2" href="https://github.com/Problematicdriver" target="_blank"><i class="fa fa-angle-right me-2"></i>Jiayi Guo</a>
+                    <a class="text-light mb-2" href="https://github.com/Makutoo" target="_blank"><i class="fa fa-angle-right me-2"></i>Ziheng Zhu</a>
+                    <a class="text-light mb-2" href="https://github.com/huashenglulu" target="_blank"><i class="fa fa-angle-right me-2"></i>Yilu Nuo</a>
+                    <a class="text-light mb-2" href="https://www.stevens.edu/directory/stevens-career-center"><i class="fa fa-angle-right me-2"></i>Bofei Wang</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
                     Newsletter</h4>
-                <form action="">
+                <form action="http://localhost:3000/signup" method="GET">
                     <div class="input-group">
                         <input type="text" class="form-control p-3 border-0" placeholder="Your Email Address">
                         <button class="btn btn-primary">Sign Up</button>
@@ -209,13 +215,13 @@
                 </form>
                 <h6 class="text-primary text-uppercase mt-4 mb-3">Follow Us</h6>
                 <div class="d-flex">
-                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="https://twitter.com/?lang=en" target="_blank"><i
                             class="fab fa-twitter"></i></a>
-                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="https://www.facebook.com/" target="_blank"><i
                             class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="https://www.linkedin.com/" target="_blank"><i
                             class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="https://www.instagram.com/?hl=en" target="_blank"><i
                             class="fab fa-instagram"></i></a>
                 </div>
             </div>
@@ -226,8 +232,7 @@
     <div class="container">
         <div class="row g-5">
             <div class="col-md-6 text-center text-md-start">
-                <p class="mb-md-0">Copyright &copy; 2022.Company name All rights reserved.<a target="_blank"
-                        href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+                <p class="mb-md-0">Copyright &copy; 2022. CS 546 Group 36 All rights reserved.</p>
             </div>
             <div class="col-md-6 text-center text-md-end">
 
@@ -239,8 +244,10 @@
 
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
+<script src="static/js/jquery-3.4.1.min.js" type="64f10123938904b78188bb72-text/javascript"></script> 
 <script data-cfasync="false" src="static/js/email-decode.min.js"></script>
-<script src="static/js/jquery-3.4.1.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 <script src="static/js/bootstrap.bundle.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
 <script src="static/js/easing.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
 <script src="static/js/waypoints.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
@@ -251,3 +258,52 @@
 
 <script src="static/js/main.js" type="64f10123938904b78188bb72-text/javascript"></script>
 <script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
+
+<script>
+    $(document).ready(function () {
+        
+          $("#submit").click(function(event){ 
+              event.preventDefault(); // cancel default behavior
+        });
+         $("#sumbitForm").submit(function (event) {
+            event.preventDefault();
+            var id = "{{courseDetail._id}}"
+            console.log(id)
+            var formData = {
+                Difficulty: $("#Difficulty").val(),
+                ChanceToGetA: $("#ChanceToGetA").val(),
+                WorkLoad: $("#WorkLoad").val(),
+                rating: $("#Rating").val(),
+                comment: $("#Comment").val()
+            };
+            console.log(formData)
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/course/" + id ,
+                data: formData,
+                dataType: "json",
+                encode: true,
+                success: function (result) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'You have successfully create course review',
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "../courses";
+                        }
+                    });
+                },
+                error: function (request, status, error) {
+                    Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                    event.preventDefault();
+                }
+
+            })
+
+
+        });
+
+    });
+</script>

@@ -63,6 +63,12 @@
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="home" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-home"></em></span>
+                                        <span class="nk-menu-text">Back to Home</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="null" class="nk-menu-link sign-out">
                                         <span class="nk-menu-icon"><em class="icon ni ni-signout"></em></span>
                                         <span class="nk-menu-text">Sign Out</span>
                                     </a>
@@ -216,11 +222,12 @@
                                                 <ul class="nk-activity">
                                                     {{#each top5Courses}}
                                                     <li class="nk-activity-item">
-                                                        <div class="nk-activity-media user-avatar bg-success"><img
-                                                                src="./images/avatar/c-sm.jpg" alt=""></div>
+                                                        <div><img class="user-avatar sq"
+                                                                        src={{this.picture}} ></div>
                                                         <div class="nk-activity-data">
-                                                            <div class="label">{{this.courseName}}
-                                                            </div>
+                                                            <a href="{{concat '/course/' this._id}}">
+                                                                <div class="label">{{this.courseName}}</div>
+                                                            </a>
                                                             <span class="time">Rating: {{this.overallRating}} /5</span>
                                                         </div>
                                                     </li>
@@ -242,11 +249,12 @@
                                                 <ul class="nk-activity">
                                                     {{#each top5Professors}}
                                                     <li class="nk-activity-item">
-                                                        <div class="nk-activity-media user-avatar bg-success"><img
-                                                                src="./images/avatar/c-sm.jpg" alt=""></div>
+                                                        <div><img class="user-avatar"
+                                                                        src={{this.picture}} ></div>
                                                         <div class="nk-activity-data">
-                                                            <div class="label">{{this.professorName}}
-                                                            </div>
+                                                            <a href="{{concat '/professors/' this._id}}">
+                                                                <div class="label">{{this.professorName}}</div>
+                                                            </a>
                                                             <span class="time">Rating: {{this.rating}} /5</span>
                                                         </div>
                                                     </li>
@@ -297,13 +305,6 @@
                     <div class="container-fluid">
                         <div class="nk-footer-wrap">
                             <p class="mb-md-0">Copyright &copy; 2022. CS 546 Group 36 All rights reserved.</p>
-                            <div class="nk-footer-links">
-                                <ul class="nav nav-sm">
-                                    <li class="nav-item"><a class="nav-link" href="#">Terms</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -441,8 +442,8 @@
                                             return value + ' Reviews';
                                         },
                                         min: 0,
-                                        max: 15,
-                                        stepSize: 3
+                                        max: 50,
+                                        stepSize: 10
                                     },
                                     gridLines: {
                                         color: NioApp.hexRGB("#526484", .2),
@@ -578,6 +579,45 @@
         }(NioApp, jQuery);
 
     </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $(".sign-out").on("click", function (event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You are about to be signed out!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, sign out!'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            type: "GET",
+                            url: "http://localhost:3000/logout/",
+                            success: function (result) {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'You have successfully signed out',
+                                    showConfirmButton: true,
+                                }).then((result) => {
+                                    if (result.value) {
+                                        window.location.href = "home";
+                                    }
+                                });
+                            },
+                            error: function (request, status, error) {
+                                Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                                event.preventDefault();
+                            }
+                        })
+                    }
+                });
+            });
+        });
+    </script> 
 
 </body>
 

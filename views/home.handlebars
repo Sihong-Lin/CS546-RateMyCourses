@@ -1,7 +1,7 @@
 <div class="container-fluid sticky-top bg-white shadow-sm">
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-            <a href="home.html" class="navbar-brand">
+            <a href="home" class="navbar-brand">
                 <h1 class="m-0 text-primary"></i>RateMyCourses</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -12,9 +12,10 @@
                     <a href="home" class="nav-item nav-link active">Home</a>
                     <a href="courses" class="nav-item nav-link">Courses</a>
                     <a href="professors" class="nav-item nav-link">Professors</a>
+                    <a href="search" class="nav-item nav-link">Search</a>
                     <a href="account" class="nav-item nav-link">Account</a>
                     <a href="backstage" class="nav-item nav-link">Backstage</a>
-                    <a href="login.html" class="nav-item nav-link">Sign in</a>
+                    <a href="login" class="nav-item nav-link">Sign in</a>
                 </div>
             </div>
         </nav>
@@ -79,7 +80,7 @@
             {{#each topCourses}}
             <div class="bg-light rounded text-center">
                 <div class="position-relative">
-                    <img class="img-fluid rounded-top" src="{{this.picture}}" alt="">
+                    <img class="rounded-top" width="300" height="200" src="{{this.picture}}" alt="">
                     <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
                         style="background: rgba(29, 42, 77, .8);">
                         <h1 class="display-4 text-white mb-0">
@@ -93,9 +94,9 @@
                 </div>
                 <div class="text-center py-5">
                     <p>{{this.type}} Course</p>
-                    <p>{{this.metrics.difficulty}} Difficulty</p>
-                    <p>{{this.metrics.chanceToGetA}} Chance to Get A</p>
-                    <p>{{this.metrics.workLoad}} WorkLoad</p>
+                    <p>Difficulty: {{this.metrics.difficulty}}</p>
+                    <p>Chance to get A: {{this.metrics.chanceToGetA}}</p>
+                    <p>Workload: {{this.metrics.workLoad}}</p>
                     <a href="{{concat '/course/' this._id}}" class="btn btn-primary rounded-pill py-2 px-3 my-2">More Details</a>
                 </div>
             </div>
@@ -122,7 +123,7 @@
                     </div>
                     <div class="col-12 col-sm-7 h-100 d-flex flex-column">
                         <div class="mt-auto p-4">
-                            <h3>{{this.professorName}}</h3>
+                            <a href="{{concat 'professors/' this._id}}"><h3>{{this.professorName}}</h3></a>
                             <h6 class="fw-normal fst-italic text-primary mb-4">{{this.department}}</h6>
                             <p class="m-0">{{this.introduction}}</p>
                         </div>
@@ -135,93 +136,64 @@
         </div>
     </div>
 
-
-    <div class="container-fluid bg-primary my-5 py-5">
-        <div class="container py-5">
-            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-                <h5 class="d-inline-block text-white text-uppercase border-bottom border-5">Find A Course</h5>
-                <h1 class="display-4 mb-4">Find perfect courses in the semester</h1>
-                <h5 class="text-white fw-normal">Duo ipsum erat stet dolor sea ut nonumy tempor. Tempor duo lorem
-                    eos sit sed ipsum takimata ipsum sit est. Ipsum ea voluptua ipsum sit justo</h5>
-            </div>
-            <div class="mx-auto" style="width: 100%; max-width: 600px;">
-                <div class="input-group">
-                    <select class="form-select border-primary w-25" style="height: 60px;">
-                        <option selected="">Department</option>
-                        <option value="1">Computer Science</option>
-                        <option value="2">Biomedical Engineering</option>
-                        <option value="3">Electrical Engineering</option>
-                        <option value="4">Mechanical Engineering</option>
-                        <option value="5">Systems Engineering</option>
-                        <option value="6">Computer Engineering</option>
-                        <option value="7">Management</option>
-                        <option value="8">Information Systems</option>
-                        <option value="9">Chemistry</option>
-                    </select>
-                    <input type="text" class="form-control border-primary w-50" placeholder="Keyword">
-                    <button class="btn btn-dark border-0 w-25">Search</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div class="container-fluid py-5">
         <div class="container">
             <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Testimonial</h5>
-                <h1 class="display-4">Students Say About Our Services</h1>
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Sponsorship</h5>
+                <h1 class="display-10">Power the <strong class="display-1">RateMyCourses</strong> Community with your donation</h1>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="owl-carousel testimonial-carousel">
                         <div class="testimonial-item text-center">
                             <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-circle mx-auto" src="static/picture/testimonial-1.jpg"
+                                <img class="img-fluid rounded-circle mx-auto" src="static/picture/pay.jpg"
                                     alt="">
                                 <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle"
                                     style="width: 60px; height: 60px;">
                                     <i class="fa fa-quote-left fa-2x text-primary"></i>
                                 </div>
                             </div>
-                            <p class="fs-4 fw-normal">Dolores sed duo clita tempor justo dolor et stet lorem kasd
-                                labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor
-                                diam tempor erat. Erat dolor rebum sit ipsum.</p>
+                            <p class="fs-4 fw-normal">
+                                If you value RateMyCourses, 
+                                please consider making a donation. 
+                                Contributions from users like you help fund the operations of the RateMyCourses Foundation. 
+                                All money donated to the RateMyCourses Foundation will be used to support the RateMyCourses Community.
+                            </p>
                             <hr class="w-25 mx-auto">
-                            <h3>小美</h3>
-                            <h6 class="fw-normal text-primary mb-3">Civil, Environmental & Ocean Engineering</h6>
+                            <h3>Sihong Lin</h3>
+                            <h6 class="fw-normal text-primary mb-3">Frontend & Backend Developer</h6>
                         </div>
                         <div class="testimonial-item text-center">
                             <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-circle mx-auto" src="static/picture/testimonial-2.jpg"
+                                <img class="img-fluid rounded-circle mx-auto" src="static/picture/pay.jpg"
                                     alt="">
                                 <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle"
                                     style="width: 60px; height: 60px;">
                                     <i class="fa fa-quote-left fa-2x text-primary"></i>
                                 </div>
                             </div>
-                            <p class="fs-4 fw-normal">Dolores sed duo clita tempor justo dolor et stet lorem kasd
-                                labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor
-                                diam tempor erat. Erat dolor rebum sit ipsum.</p>
+                            <p class="fs-4 fw-normal">
+                                We'll get straight to the point: Today we ask you to defend RateMyCourses's independence.
+                                We're a non-profit that depends on donations to stay online, the price of a cup of coffee is all we ask.</p>
                             <hr class="w-25 mx-auto">
-                            <h3>Patient Name</h3>
-                            <h6 class="fw-normal text-primary mb-3">Electrical & Computer Engineering</h6>
+                            <h3>Jiayi Guo</h3>
+                            <h6 class="fw-normal text-primary mb-3">Frontend & Backend Developer</h6>
                         </div>
                         <div class="testimonial-item text-center">
                             <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-circle mx-auto" src="static/picture/testimonial-3.jpg"
+                                <img class="img-fluid rounded-circle mx-auto" src="static/picture/pay.jpg"
                                     alt="">
                                 <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle"
                                     style="width: 60px; height: 60px;">
                                     <i class="fa fa-quote-left fa-2x text-primary"></i>
                                 </div>
                             </div>
-                            <p class="fs-4 fw-normal">Dolores sed duo clita tempor justo dolor et stet lorem kasd
-                                labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor
-                                diam tempor erat. Erat dolor rebum sit ipsum.</p>
+                            <p class="fs-4 fw-normal">The RateMyCourses Foundation provides services to help stevens' student to choose course and professor. 
+                                Individual Supporter donations go directly into programs and resources that support growing communities.</p>
                             <hr class="w-25 mx-auto">
-                            <h3>Patient Name</h3>
-                            <h6 class="fw-normal text-primary mb-3">Mathematical Sciences</h6>
+                            <h3>Ziheng Zhu</h3>
+                            <h6 class="fw-normal text-primary mb-3">Backend Developer</h6>
                         </div>
                     </div>
                 </div>
@@ -240,42 +212,40 @@
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
                     Get In Touch</h4>
-                <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed
-                    dolor</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>123 Street, New York, USA</p>
+                <p class="mb-4">Best community built around students, courses and beyond.</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>1 Castle Point Terrace, Hoboken, NJ</p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i><a href="email-protection.html"
                         class="__cf_email__"
                         data-cfemail="adc4c3cbc2edc8d5ccc0ddc1c883cec2c0">[email&#160;protected]</a></p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>+012 345 67890</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>201-216-5000</p>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
                     Quick Links</h4>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Meet The Team</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Latest Blog</a>
-                    <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                    <a class="text-light mb-2" href="home"><i class="fa fa-angle-right me-2"></i>Home</a>
+                    <a class="text-light mb-2" href="courses"><i class="fa fa-angle-right me-2"></i>Courses</a>
+                    <a class="text-light mb-2" href="professors"><i class="fa fa-angle-right me-2"></i>Professors</a>
+                    <a class="text-light mb-2" href="login"><i class="fa fa-angle-right me-2"></i>Login</a>
+                    <a class="text-light mb-2" href="account"><i class="fa fa-angle-right me-2"></i>Account</a>
+                    <a class="text-light" href="Search"><i class="fa fa-angle-right me-2"></i>Search</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
-                    Popular Links</h4>
+                    Our Github Links</h4>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Meet The Team</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Latest Blog</a>
-                    <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                    <a class="text-light mb-2" href="https://github.com/Sihong-Lin" target="_blank"><i class="fa fa-angle-right me-2"></i>Sihong Lin</a>
+                    <a class="text-light mb-2" href="https://github.com/Problematicdriver" target="_blank"><i class="fa fa-angle-right me-2"></i>Jiayi Guo</a>
+                    <a class="text-light mb-2" href="https://github.com/Makutoo" target="_blank"><i class="fa fa-angle-right me-2"></i>Ziheng Zhu</a>
+                    <a class="text-light mb-2" href="https://github.com/huashenglulu" target="_blank"><i class="fa fa-angle-right me-2"></i>Yilu Nuo</a>
+                    <a class="text-light mb-2" href="https://www.stevens.edu/directory/stevens-career-center"><i class="fa fa-angle-right me-2"></i>Bofei Wang</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
                     Newsletter</h4>
-                <form action="">
+                <form action="http://localhost:3000/signup" method="GET">
                     <div class="input-group">
                         <input type="text" class="form-control p-3 border-0" placeholder="Your Email Address">
                         <button class="btn btn-primary">Sign Up</button>
@@ -283,13 +253,13 @@
                 </form>
                 <h6 class="text-primary text-uppercase mt-4 mb-3">Follow Us</h6>
                 <div class="d-flex">
-                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="https://twitter.com/?lang=en" target="_blank"><i
                             class="fab fa-twitter"></i></a>
-                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="https://www.facebook.com/" target="_blank"><i
                             class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="https://www.linkedin.com/" target="_blank"><i
                             class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="https://www.instagram.com/?hl=en" target="_blank"><i
                             class="fab fa-instagram"></i></a>
                 </div>
             </div>
@@ -300,8 +270,7 @@
     <div class="container">
         <div class="row g-5">
             <div class="col-md-6 text-center text-md-start">
-                <p class="mb-md-0">Copyright &copy; 2022.Company name All rights reserved.<a target="_blank"
-                        href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+                <p class="mb-md-0">Copyright &copy; 2022. CS 546 Group 36 All rights reserved.</p>
             </div>
             <div class="col-md-6 text-center text-md-end">
 
@@ -325,3 +294,48 @@
 
 <script src="static/js/main.js" type="64f10123938904b78188bb72-text/javascript"></script>
 <script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
+<script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $(".searchButton").click(function () {
+            event.preventDefault();
+            var formData = {
+                department: $("#search-department").val(),
+                keyword: $("#search-keyword").val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/courses",
+                data: formData,
+                dataType: "json",
+                encode: true,
+                success: function (request) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'New course has been saved',
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.reload();
+                        }
+                    });
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText)
+                    console.log(request.responseText)
+                    document.innerHTML = request.responseText;
+                    Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                    event.preventDefault();
+                }
+
+            })
+            
+        });
+
+
+    });
+</script>

@@ -14,21 +14,19 @@ router.get('/', async (req, res) => {
     let professorReviews = await user.getProfessorReviewById(userId);
     let courseReviews = await user.getCourseReviewById(userId);
 
-
+    let topCourses = await user.getTopCoursesByUserId(userId);
     res.render('account', 
                 { 
                     title: 'RateMyCourses - Account',
                     userInfo: userInfo,
                     professorReviews: professorReviews,
-                    courseReviews: courseReviews
+                    courseReviews: courseReviews,
+                    topCourses: topCourses
                 }
     );
 });
 
-router.get('/', async (req, res) => {
-    let courseList = await home.getAllCourses();
-    res.render('courses', { title: 'RateMyCourses - Courses', allCourses: courseList});
-});
+
 
 const isLoggedIn = function (req) {
     if(req.session.user != undefined) {

@@ -16,6 +16,8 @@ const {
     updateProf,
     removeProf,
     addProfReview,
+    getProfReview,
+    updateProfReview,
     removeProfReview,
     getDepartments,
 } = require('../data/professor');
@@ -30,6 +32,8 @@ module.exports = {
     updateProf,
     removeProf,
     addProfReview,
+    getProfReview,
+    updateProfReview,
     removeProfReview,
     getTop5Courses,
     getAllCourses,
@@ -117,17 +121,6 @@ function mergeDepartmentReview(departmentCourseReviewCount, departmentProfessorR
 async function searchCoursesByMajor(major) {
 
 }
-
-const main = async () => {
-    try {
-        //console.log(await getAllCourses());
-    } catch (e) {
-        console.log(e);
-    }
-
-}
-
-main();
 
 
 

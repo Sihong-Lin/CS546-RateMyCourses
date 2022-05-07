@@ -1,7 +1,7 @@
 <div class="container-fluid sticky-top bg-white shadow-sm">
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-            <a href="home.html" class="navbar-brand">
+            <a href="home" class="navbar-brand">
                 <h1 class="m-0 text-primary"></i>RateMyCourses</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -12,9 +12,10 @@
                     <a href="home" class="nav-item nav-link">Home</a>
                     <a href="courses" class="nav-item nav-link">Courses</a>
                     <a href="professors" class="nav-item nav-link">Professors</a>
+                    <a href="search" class="nav-item nav-link">Search</a> 
                     <a href="account" class="nav-item nav-link active">Account</a>
                     <a href="backstage" class="nav-item nav-link">Backstage</a>
-                    <a href="login.html" class="nav-item nav-link">Sign in</a>
+                    <a href="login" class="nav-item nav-link">Sign in</a>
                 </div>
             </div>
         </nav>
@@ -36,15 +37,17 @@
             </div>
             <div class="col-lg-7">
                 <div class="mb-4">
-                    <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Course Info</h5>
-                    <h4 class="display-10">Username: &nbsp {{userInfo.username}}</h4>
-                    <h4 class="display-10">Email: &nbsp {{userInfo.email}}</h4>
-                    <h4 class="display-10">Major: &nbsp {{userInfo.major}} </h4>
-                    <h4 class="display-10">Role: &nbsp {{userInfo.role}}</h4>
-                    <h4 class="display-10">Registration Time: &nbsp {{userInfo.registrationTime}}</h4>
-                    <h4 class="display-10">Last Login: &nbsp {{userInfo.lastLogin}}</h4>
-                    <h4 class="display-10">Restrict Status: &nbsp {{userInfo.restrictStatus}}</h4>
+                    <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">User Info</h5>
+                    <h4 class="display-10">Username: &nbsp&nbsp {{userInfo.username}}</h4>
+                    <h4 class="display-10">Email: &nbsp&nbsp {{userInfo.email}}</h4>
+                    <h4 class="display-10">Major: &nbsp&nbsp {{userInfo.major}} </h4>
+                    <h4 class="display-10">Role: &nbsp&nbsp {{userInfo.role}}</h4>
+                    <h4 class="display-10">Restrict Status: &nbsp&nbsp {{userInfo.restrictStatus}}</h4>
+                    <h4 class="display-10">Registration Time: &nbsp&nbsp {{userInfo.registrationTime}}</h4>
+                    <h4 class="display-10">Last Login: &nbsp&nbsp {{userInfo.lastLogin}}</h4>
                 </div>
+                <p>Want to sign out?<a class="switcher-text2 inline-text sign-out">
+                        &nbsp&nbsp Sign out</a></p>
             </div>
         </div>
     </div>
@@ -54,41 +57,128 @@
     <div class="container">
         <div class="row gx-5">
 
+
             <div class="col-lg-6 mb-5 mb-lg-0">
-                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-4">Course Reviews</h4>
-                
+                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-4">Course Reviews
+                </h4>
+
                 {{#each courseReviews}}
                 <div class="d-flex mb-4">
                     <img src="static/picture/user.jpg" class="img-fluid rounded-circle"
                         style="width: 45px; height: 45px;">
                     <div class="ps-3">
-                        <h6><a href="">{{this.courseName}}</a> &nbsp <small><i>Rating: {{this.rating}}/5.0</i></small></h6>
+                        <h6><a href="{{concat '/course/' this.courseId}}">{{this.courseName}}</a> &nbsp
+                            <small><i>Rating: {{this.rating}}/5.0</i></small>
+                        </h6>
                         <p>{{this.comment}}</p>
-                        <h6><small>Difficulty: {{this.metrics.difficulty}} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Chance To Get A: {{this.metrics.chanceToGetA}}  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp WorkLoad: {{this.metrics.workLoad}}</small></h6>
-                        <button class="btn btn-sm btn-light">Edit</button>
-                        <button class="btn btn-sm btn-light">Delete</button>
+                        <h6><small>Difficulty: {{this.metrics.difficulty}} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Chance To Get
+                                A: {{this.metrics.chanceToGetA}}
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp workLoad: {{this.metrics.workLoad}}</small></h6>
+                        <a data-toggle="modal" data-target="#cour-edit{{@index}}"><button
+                                class="btn btn-sm btn-light">Edit</button></a>
+                        <a id="courseId{{@index}}" value="{{this.courseId}} {{this.userId}}"
+                            class="eg-swal-av3-cour-delete"><button class="btn btn-sm btn-light">Delete</button></a>
                     </div>
+
+                    <div class="modal fade" tabindex="-1" role="dialog" id="cour-edit{{@index}}">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                                <div class="modal-body modal-body-lg">
+                                    <h5 class="title">Update Course Comment</h5>
+                                    <div class="tab-content">
+                                        <div class="row gy-4">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+
+                                                    <input type="text" class="form-control form-control-lg"
+                                                        id="cour-comment-edit{{@index}}" name="cour-comment"
+                                                        value="{{this.comment}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                                    <li>
+                                                        <a href="#"
+                                                            class="btn btn-lg btn-primary eg-swal-av3-cour-edit">Update</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" data-dismiss="modal"
+                                                            class="link link-light">Cancel</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div><!-- .tab-pane -->
+                                </div><!-- .modal-body -->
+                            </div><!-- .modal-content -->
+                        </div><!-- .modal-dialog -->
+                    </div><!-- .modal -->
                 </div>
                 {{/each}}
+
             </div>
+
+
 
             <div class="col-lg-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 mb-4">Professor Reviews
                 </h4>
+
                 {{#each professorReviews}}
                 <div class="d-flex mb-4">
                     <img src="static/picture/user.jpg" class="img-fluid rounded-circle"
                         style="width: 45px; height: 45px;">
                     <div class="ps-3">
-                        <h6><a href="">{{this.professorName}}</a> &nbsp <small><i>Rating: {{this.rating}}/5.0</i></small></h6>
+                        <h6><a href="{{concat '/professors/' this.professorId}}">{{this.professorName}}</a> &nbsp
+                            <small><i>Rating:
+                                    {{this.rating}}/5.0</i></small>
+                        </h6>
                         <p>{{this.comment}}</p>
-                        <button class="btn btn-sm btn-light">Edit</button>
-                        <button class="btn btn-sm btn-light">Delete</button>
+                        <a data-toggle="modal" data-target="#prof-edit{{@index}}"><button
+                                class="btn btn-sm btn-light">Edit</button></a>
+                        <a id="professorId{{@index}}" value="{{this.professorId}} {{this._id}} {{this.userId}}"
+                            class="eg-swal-av3-prof-delete"><button class="btn btn-sm btn-light">Delete</button></a>
                     </div>
+
+                    <div class="modal fade" tabindex="-1" role="dialog" id="prof-edit{{@index}}">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                                <div class="modal-body modal-body-lg">
+                                    <h5 class="title">Update Professor Comment</h5>
+                                    <div class="tab-content">
+                                        <div class="row gy-4">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+
+                                                    <input type="text" class="form-control form-control-lg"
+                                                        id="prof-comment-edit{{@index}}" name="prof-comment"
+                                                        value="{{this.comment}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                                    <li>
+                                                        <a href="#"
+                                                            class="btn btn-lg btn-primary eg-swal-av3-prof-edit">Update</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" data-dismiss="modal"
+                                                            class="link link-light">Cancel</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div><!-- .tab-pane -->
+                                </div><!-- .modal-body -->
+                            </div><!-- .modal-content -->
+                        </div><!-- .modal-dialog -->
+                    </div><!-- .modal -->
                 </div>
                 {{/each}}
-            </div>
 
+            </div>
 
         </div>
     </div>
@@ -103,73 +193,37 @@
             <h1 class="display-4">Some recommended courses for you</h1>
         </div>
         <div class="owl-carousel price-carousel position-relative" style="padding: 0 45px 45px 45px;">
+
+            {{#each topCourses}}
             <div class="bg-light rounded text-center">
                 <div class="position-relative">
-                    <img class="img-fluid rounded-top" src="static/picture/course-1.jpg" alt="">
+                    <img class="img-fluid rounded-top" src="{{this.picture}}" alt="">
                     <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
                         style="background: rgba(29, 42, 77, .8);">
 
                         <h1 class="display-4 text-white mb-0">
-                            <small class="align-top fw-normal" style="font-size: 22px; line-height: 45px;"></small>CS
-                            546<small class="align-bottom fw-normal"
-                                style="font-size: 16px; line-height: 40px;"></small>
+                            <small class="align-top fw-normal"
+                                style="font-size: 22px; line-height: 45px;"></small>{{this.courseIndex}}<small
+                                class="align-bottom fw-normal" style="font-size: 16px; line-height: 40px;"></small>
                         </h1>
-                        <h3 class="text-white">Web Programming</h3>
+                        <h3 class="text-white">{{this.courseName}}</h3>
                     </div>
                 </div>
                 <div class="text-center py-5">
-                    <p>Computer science program core course</p>
-                    <p>Medium Difficulty</p>
-                    <p>High chance to get A</p>
-                    <p>Hard workLoad</p>
-                    <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">More Details</a>
+                    <p>{{this.type}} Course</p>
+                    <p>Difficulty: {{this.metrics.difficulty}}</p>
+                    <p>Chance to get A: {{this.metrics.chanceToGetA}}</p>
+                    <p>Workload: {{this.metrics.workLoad}}</p>
+                    <a href="{{concat '/course/' this._id}}" class="btn btn-primary rounded-pill py-3 px-5 my-2">More
+                        Details</a>
                 </div>
             </div>
-            <div class="bg-light rounded text-center">
-                <div class="position-relative">
-                    <img class="img-fluid rounded-top" src="static/picture/course-2.jpg" alt="">
-                    <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
-                        style="background: rgba(29, 42, 77, .8);">
-                        <h1 class="display-4 text-white mb-0">
-                            <small class="align-top fw-normal" style="font-size: 22px; line-height: 45px;"></small>FE
-                            535<small class="align-bottom fw-normal"
-                                style="font-size: 16px; line-height: 40px;"></small>
-                        </h1>
-                        <h3 class="text-white">Intro Financial Risk Management</h3>
-                    </div>
-                </div>
-                <div class="text-center py-5">
-                    <p>Computer science program core course</p>
-                    <p>Medium Difficulty</p>
-                    <p>High chance to get A</p>
-                    <p>Hard workLoad</p>
-                    <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">More Details</a>
-                </div>
-            </div>
-            <div class="bg-light rounded text-center">
-                <div class="position-relative">
-                    <img class="img-fluid rounded-top" src="static/picture/course-3.jpg" alt="">
-                    <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
-                        style="background: rgba(29, 42, 77, .8);">
-                        <h1 class="display-4 text-white mb-0">
-                            <small class="align-top fw-normal" style="font-size: 22px; line-height: 45px;"></small>CS
-                            511<small class="align-bottom fw-normal"
-                                style="font-size: 16px; line-height: 40px;"></small>
-                        </h1>
-                        <h3 class="text-white">Concurrent Programming</h3>
-                    </div>
-                </div>
-                <div class="text-center py-5">
-                    <p>Computer science program core course</p>
-                    <p>Medium Difficulty</p>
-                    <p>High chance to get A</p>
-                    <p>Hard workLoad</p>
-                    <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">More Details</a>
-                </div>
-            </div>
+            {{/each}}
+
         </div>
     </div>
 </div>
+
 
 <div class="container-fluid pt-5">
     <div class="container">
@@ -203,42 +257,40 @@
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
                     Get In Touch</h4>
-                <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed
-                    dolor</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>123 Street, New York, USA</p>
+                <p class="mb-4">Best community built around students, courses and beyond.</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>1 Castle Point Terrace, Hoboken, NJ</p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i><a href="email-protection.html"
                         class="__cf_email__"
                         data-cfemail="adc4c3cbc2edc8d5ccc0ddc1c883cec2c0">[email&#160;protected]</a></p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>+012 345 67890</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>201-216-5000</p>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
                     Quick Links</h4>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Meet The Team</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Latest Blog</a>
-                    <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                    <a class="text-light mb-2" href="home"><i class="fa fa-angle-right me-2"></i>Home</a>
+                    <a class="text-light mb-2" href="courses"><i class="fa fa-angle-right me-2"></i>Courses</a>
+                    <a class="text-light mb-2" href="professors"><i class="fa fa-angle-right me-2"></i>Professors</a>
+                    <a class="text-light mb-2" href="login"><i class="fa fa-angle-right me-2"></i>Login</a>
+                    <a class="text-light mb-2" href="account"><i class="fa fa-angle-right me-2"></i>Account</a>
+                    <a class="text-light" href="Search"><i class="fa fa-angle-right me-2"></i>Search</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
-                    Popular Links</h4>
+                    Our Github Links</h4>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Meet The Team</a>
-                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Latest Blog</a>
-                    <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                    <a class="text-light mb-2" href="https://github.com/Sihong-Lin" target="_blank"><i class="fa fa-angle-right me-2"></i>Sihong Lin</a>
+                    <a class="text-light mb-2" href="https://github.com/Problematicdriver" target="_blank"><i class="fa fa-angle-right me-2"></i>Jiayi Guo</a>
+                    <a class="text-light mb-2" href="https://github.com/Makutoo" target="_blank"><i class="fa fa-angle-right me-2"></i>Ziheng Zhu</a>
+                    <a class="text-light mb-2" href="https://github.com/huashenglulu" target="_blank"><i class="fa fa-angle-right me-2"></i>Yilu Nuo</a>
+                    <a class="text-light mb-2" href="https://www.stevens.edu/directory/stevens-career-center"><i class="fa fa-angle-right me-2"></i>Bofei Wang</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
                     Newsletter</h4>
-                <form action="">
+                <form action="http://localhost:3000/signup" method="GET">
                     <div class="input-group">
                         <input type="text" class="form-control p-3 border-0" placeholder="Your Email Address">
                         <button class="btn btn-primary">Sign Up</button>
@@ -246,13 +298,13 @@
                 </form>
                 <h6 class="text-primary text-uppercase mt-4 mb-3">Follow Us</h6>
                 <div class="d-flex">
-                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="https://twitter.com/?lang=en" target="_blank"><i
                             class="fab fa-twitter"></i></a>
-                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="https://www.facebook.com/" target="_blank"><i
                             class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="https://www.linkedin.com/" target="_blank"><i
                             class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="https://www.instagram.com/?hl=en" target="_blank"><i
                             class="fab fa-instagram"></i></a>
                 </div>
             </div>
@@ -263,8 +315,7 @@
     <div class="container">
         <div class="row g-5">
             <div class="col-md-6 text-center text-md-start">
-                <p class="mb-md-0">Copyright &copy; 2022.Company name All rights reserved.<a target="_blank"
-                        href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+                <p class="mb-md-0">Copyright &copy; 2022. CS 546 Group 36 All rights reserved.</p>
             </div>
             <div class="col-md-6 text-center text-md-end">
 
@@ -288,3 +339,209 @@
 
 <script src="static/js/main.js" type="64f10123938904b78188bb72-text/javascript"></script>
 <script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
+<script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $(".sign-out").on("click", function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to be signed out!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, sign out!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:3000/logout/",
+                        success: function (result) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'You have successfully signed out',
+                                showConfirmButton: true,
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.href = "home";
+                                }
+                            });
+                        },
+                        error: function (request, status, error) {
+                            Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                            event.preventDefault();
+                        }
+                    })
+                }
+            });
+        });
+
+
+        $(".eg-swal-av3-cour-delete").on("click", function (event) {
+            event.preventDefault();
+            var index = $(".eg-swal-av3-cour-delete").index(this);
+            var str = $("#courseId" + index).attr("value");
+            let arr = str.split(" ");
+            var formData = {
+                courseId: arr[0],
+                userId: arr[1]
+            };
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "PUT",
+                        url: "http://localhost:3000/course/deleteCourseReview/",
+                        data: formData,
+                        dataType: "json",
+                        encode: true,
+                        success: function (result) {
+                            Swal.fire(
+                                'Deleted!',
+                                'The course review has been deleted.',
+                                'success'
+                            ).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
+                                }
+                            });
+                        },
+                        error: function (request, status, error) {
+                            Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                            event.preventDefault();
+                        }
+                    })
+                }
+            });
+        });
+
+
+        $(".eg-swal-av3-prof-delete").on("click", function (event) {
+            event.preventDefault();
+            var index = $(".eg-swal-av3-prof-delete").index(this);
+            var str = $("#professorId" + index).attr("value");
+            let reviewId = str.split(" ")[1];
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: "http://localhost:3000/professors/comments/" + reviewId,
+                        success: function (result) {
+                            Swal.fire(
+                                'Deleted!',
+                                'The professor review has been deleted.',
+                                'success'
+                            ).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
+                                }
+                            });
+
+                        },
+                        error: function (request, status, error) {
+                            Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                            event.preventDefault();
+                        }
+                    });
+                }
+            });
+        });
+
+        $('.eg-swal-av3-cour-edit').on("click", function (event) {
+            event.preventDefault();
+            var index = $(".eg-swal-av3-cour-edit").index(this);
+            var str = $("#courseId" + index).attr("value");
+            let arr = str.split(" ");
+            let comment = $("#cour-comment-edit" + index).val();
+            var formData = {
+                courseId: arr[0],
+                userId: arr[1],
+                newComment: comment
+            };
+            $.ajax({
+                type: "PUT",
+                url: "http://localhost:3000/course/editCourseReview/",
+                data: formData,
+                dataType: "json",
+                encode: true,
+                success: function (result) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'The Course comment has been updated',
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.reload();
+                        }
+                    });
+                },
+                error: function (request, status, error) {
+                    Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                    event.preventDefault();
+                }
+            })
+
+        });
+
+
+
+        $('.eg-swal-av3-prof-edit').on("click", function (event) {
+            event.preventDefault();
+            var index = $(".eg-swal-av3-prof-edit").index(this);
+            var str = $("#professorId" + index).attr("value");
+            let arr = str.split(" ");
+            let comment = $("#prof-comment-edit" + index).val();
+            var formData = {
+                professorId: arr[0],
+                reviewId: arr[1],
+                userId: arr[2],
+                newComment: comment
+            };
+            $.ajax({
+                type: "PUT",
+                url: "http://localhost:3000/professor/editProfessorReview/",
+                data: formData,
+                dataType: "json",
+                encode: true,
+                success: function (result) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'The Professor comment has been updated',
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.reload();
+                        }
+                    });
+                },
+                error: function (request, status, error) {
+                    Swal.fire("Error: " + request.status.toString(), request.responseText.replace(/\"/g, ""), "error");
+                    event.preventDefault();
+                }
+            })
+        });
+
+
+
+
+
+
+
+    });
+</script>
