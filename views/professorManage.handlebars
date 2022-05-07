@@ -88,11 +88,12 @@
                                                             class="icon ni ni-menu-alt-r"></em></a>
                                                     <div class="toggle-expand-content" data-content="pageMenu">
                                                         <ul class="nk-block-tools g-3">
-                                                            <li class="nk-block-tools-opt"><a href="#"
+                                                            <li class="nk-block-tools-opt"><a 
+                                                                    href="#"
+                                                                    onclick="spawnCreateForm()"
                                                                     data-toggle="modal" data-target="#professor-create"
                                                                     class="btn btn-primary"><em
-                                                                        class="icon ni ni-plus"></em><span>Add
-                                                                        Professor</span></a></li>
+                                                                        class="icon ni ni-plus"></em><span>Add Professor</span></a></li>
                                                         </ul>
                                                     </div>
                                                 </div><!-- .toggle-wrap -->
@@ -207,9 +208,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#personal">Personal</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#address">Profile Picture</a>
-                    </li>
                 </ul><!-- .nav-tabs -->
 
 
@@ -221,22 +219,22 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label" for="name">Full Name</label>
-                                        <input type="text" class="form-control form-control-lg" id="name"
-                                            placeholder="jquery here">
+                                        <input type="text" class="form-control form-control-lg" id="name">
+                                        <p style="color:red;" id="name-error">Invalid name</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label" for="department">Department</label>
-                                        <input type="text" class="form-control form-control-lg" id="department"
-                                            placeholder="jquery here">
+                                        <input type="text" class="form-control form-control-lg" id="department">
+                                        <p style="color:red;" id="dpt-error">Invalid department</p>
                                     </div>
                                 </div>
                                 <div class="col-sm">
                                     <div class="form-group">
                                         <label class="form-label" for="introduction">Introduction</label>
-                                        <input type="text" class="form-control form-control-lg" id="introduction"
-                                            placeholder="jquery here">
+                                        <input type="text" class="form-control form-control-lg" id="introduction">
+                                        <p style="color:red;" id="intro-error">Invalid introduciton</p>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -254,54 +252,6 @@
                         </form>
                     </div><!-- .tab-pane -->
 
-                    <div class="tab-pane" id="address">
-                        <div class="row gy-4">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="address-l1">Address Line 1</label>
-                                    <input type="text" class="form-control form-control-lg" id="address-l1"
-                                        value="2337 Kildeer Drive">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="address-l2">Address Line 2</label>
-                                    <input type="text" class="form-control form-control-lg" id="address-l2" value="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="address-st">State</label>
-                                    <input type="text" class="form-control form-control-lg" id="address-st"
-                                        value="Kentucky">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="address-county">Country</label>
-                                    <select class="form-select" id="address-county" data-ui="lg">
-                                        <option>Canada</option>
-                                        <option>United State</option>
-                                        <option>United Kindom</option>
-                                        <option>Australia</option>
-                                        <option>India</option>
-                                        <option>Bangladesh</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                                    <li>
-                                        <a href="#" class="btn btn-lg btn-primary">Update Address</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div><!-- .tab-pane -->
-
                 </div><!-- .tab-content -->
                 </form>
 
@@ -316,13 +266,10 @@
         <div class="modal-content">
             <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
             <div class="modal-body modal-body-lg">
-                <h5 class="title">Update Profile</h5>
+                <h5 class="title">Create Profile</h5>
                 <ul class="nk-nav nav nav-tabs">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#personal">Personal</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#address">Profile Picture</a>
                     </li>
                 </ul><!-- .nav-tabs -->
                 <div class="tab-content">
@@ -333,24 +280,29 @@
                                     <div class="form-group">
                                         <label class="form-label" for="name1">Full Name</label>
                                         <input type="text" class="form-control form-control-lg" id="name1">
+                                        <p style="color:red;" id="name-error1">Invalid name</p>
+
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label" for="department1">Department</label>
                                         <input type="text" class="form-control form-control-lg" id="department1">
+                                        <p style="color:red;" id="dpt-error1">Invalid department</p>
                                     </div>
                                 </div>
                                 <div class="col-sm">
                                     <div class="form-group">
                                         <label class="form-label" for="introduction1">Introduction</label>
                                         <input type="text" class="form-control form-control-lg" id="introduction1">
+                                        <p style="color:red;" id="intro-error1">Invalid introduciton</p>
                                     </div>
                                 </div>
                                 <div class="col-sm">
                                     <div class="form-group">
                                         <label class="form-label" for="picture1">Picture</label>
                                         <input type="text" class="form-control form-control-lg" id="picture1">
+                                        <p style="color:red;" id="pic-error1">Invalid picture url</p>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -368,54 +320,6 @@
                         </form>
                     </div><!-- .tab-pane -->
 
-                    <div class="tab-pane" id="address">
-                        <div class="row gy-4">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="address-l1">Address Line 1</label>
-                                    <input type="text" class="form-control form-control-lg" id="address-l1"
-                                        value="2337 Kildeer Drive">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="address-l2">Address Line 2</label>
-                                    <input type="text" class="form-control form-control-lg" id="address-l2" value="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="address-st">State</label>
-                                    <input type="text" class="form-control form-control-lg" id="address-st"
-                                        value="Kentucky">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="address-county">Country</label>
-                                    <select class="form-select" id="address-county" data-ui="lg">
-                                        <option>Canada</option>
-                                        <option>United State</option>
-                                        <option>United Kindom</option>
-                                        <option>Australia</option>
-                                        <option>India</option>
-                                        <option>Bangladesh</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                                    <li>
-                                        <a href="#" class="btn btn-lg btn-primary">Update Address</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div><!-- .tab-pane -->
-
                 </div><!-- .tab-content -->
             </div><!-- .modal-body -->
         </div><!-- .modal-content -->
@@ -428,6 +332,7 @@
 <script src="static/backstage/assets/js/scripts.js?ver=2.2.0"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
     integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="/public/js/inputCheck.js"></script>
 <script src="/public/js/manageProfessor.js"></script>
 
 <script>
