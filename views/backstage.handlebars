@@ -222,11 +222,12 @@
                                                 <ul class="nk-activity">
                                                     {{#each top5Courses}}
                                                     <li class="nk-activity-item">
-                                                        <div class="nk-activity-media user-avatar bg-success"><img
-                                                                src={{this.picture}} alt=""></div>
+                                                        <div><img class="user-avatar sq"
+                                                                        src={{this.picture}} ></div>
                                                         <div class="nk-activity-data">
-                                                            <div class="label">{{this.courseName}}
-                                                            </div>
+                                                            <a href="{{concat '/course/' this._id}}">
+                                                                <div class="label">{{this.courseName}}</div>
+                                                            </a>
                                                             <span class="time">Rating: {{this.overallRating}} /5</span>
                                                         </div>
                                                     </li>
@@ -248,11 +249,12 @@
                                                 <ul class="nk-activity">
                                                     {{#each top5Professors}}
                                                     <li class="nk-activity-item">
-                                                        <div class="nk-activity-media user-avatar bg-success"><img
-                                                                src="./images/avatar/c-sm.jpg" alt=""></div>
+                                                        <div><img class="user-avatar"
+                                                                        src={{this.picture}} ></div>
                                                         <div class="nk-activity-data">
-                                                            <div class="label">{{this.professorName}}
-                                                            </div>
+                                                            <a href="{{concat '/professors/' this._id}}">
+                                                                <div class="label">{{this.professorName}}</div>
+                                                            </a>
                                                             <span class="time">Rating: {{this.rating}} /5</span>
                                                         </div>
                                                     </li>
@@ -447,8 +449,8 @@
                                             return value + ' Reviews';
                                         },
                                         min: 0,
-                                        max: 15,
-                                        stepSize: 3
+                                        max: 50,
+                                        stepSize: 10
                                     },
                                     gridLines: {
                                         color: NioApp.hexRGB("#526484", .2),
