@@ -26,9 +26,9 @@ $(document).ready(function () {
                                 showCancelButton: false,
                                 confirmButtonText: 'confirm'
                             }).then(() => {
-                                // var newElement = $(res);
-                                // comments.prepend(newElement);
-                                window.location.reload();
+                                var newElement = $(res);
+                                comments.prepend(newElement);
+                                // window.location.reload();
                             })
                         },
                         401: function(res) {
