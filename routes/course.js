@@ -58,7 +58,7 @@ router.post('/:id', async (req, res) => { // create course review
 });
 
 router.delete('/:id', async (req, res) => {  
-    const courseId = undefined;
+    let courseId = undefined;
     try {
         courseId = inputCheck.checkCourseId(req.params.id);
     } catch (e) {
@@ -124,7 +124,7 @@ router.put('/editCourseReview/', async (req, res) => {
 });
 
 router.put('/edit/:id', async (req, res) => {  // edit course
-    const courseId = req.params.id
+    const courseId = inputCheck.checkCourseId(req.params.id)
     const courseBody = req.body
     if(!courseBody) {
         res.status(400).json({error : 'You must provide data to update a course'})

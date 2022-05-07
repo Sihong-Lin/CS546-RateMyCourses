@@ -220,13 +220,14 @@ function checkCourseId(courseId) {
 }
 
 function checkCoursePicture(coursePicture) {
-    if(!coursePicture) throw 'You must provided course picture'
-    if(typeof(coursePicture) !== 'string') throw 'Course Picture is not a string'
-    if(coursePicture.match(/^https?:\/\/.+\/.+$/)) {
-        return coursePicture
-    } else {
-        throw 'picture is invaild'
-    }
+    // if(!coursePicture) throw 'You must provided course picture'
+    // if(typeof(coursePicture) !== 'string') throw 'Course Picture is not a string'
+    // if(coursePicture.match(/^https?:\/\/.+\/.+$/)) {
+    //     return coursePicture
+    // } else {
+    //     throw 'picture is invaild'
+    // }
+    return coursePicture
 }
 /* input checking for professor */
 
@@ -261,13 +262,14 @@ function checkIntroduction(introduction) {
 }
 
 function checkProfessorPicture(professorPicture) {
-    if(!professorPicture) throw 'You must provided course picture'
-    if(typeof(professorPicture) !== 'string') throw 'Course Picture is not a string'
-    if(professorPicture.match(/^https?:\/\/.+\/.+$/)) {
-        return professorPicture
-    } else {
-        throw 'picture is invaild'
-    }
+    // if(!professorPicture) throw 'You must provided course picture'
+    // if(typeof(professorPicture) !== 'string') throw 'Course Picture is not a string'
+    // if(professorPicture.match(/^https?:\/\/.+\/.+$/)) {
+    //     return professorPicture
+    // } else {
+    //     throw 'picture is invaild'
+    // }
+    return professorPicture
     
 }
 
