@@ -15,7 +15,8 @@ router.post('/', async (req, res) => {
 
     try {
         const body = req.body;
-        let courseList = await courseDB.getCoursesByKeywords(xss(body.department), xss(body.keyword));
+        let courseList = await courseDB.getCoursesByKeywords(body.department, body.keyword);
+        console.log(courseList)
         res.json(courseList);
       
     } catch (e) {

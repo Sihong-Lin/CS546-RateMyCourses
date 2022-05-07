@@ -60,7 +60,7 @@ router.post('/:id', async (req, res) => {
     try {
         inputCheck.checkUserId(xss(id));
         inputCheck.checkComment(xss(comment));
-        inputCheck.checkRating(xss(rating))
+        let rating = inputCheck.checkRating(rating)
 
         if (req.session.user) {
             let uid = req.session.user.userId;
