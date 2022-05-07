@@ -33,7 +33,7 @@
             <div class="col-lg-3 mb-3 mb-lg-0" style="min-height: 300px;">
                 <div class="position-relative h-100">
                     <img class="position-absolute w-100 h-100 rounded"
-                        src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2022-04/220419-nicholas-meriwether-se-1206p-374c94.jpg"
+                        src={{ picture }}
                         style="object-fit: cover;">
                 </div>
             </div>
@@ -100,12 +100,13 @@
         <div class="bg-light rounded p-5">
             <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-white mb-4">
                 Leave a comment</h4>
-            <form id="review-form" value={{_id}}>
+            <form id="review-form" value={{ _id }}>
                 <div class="row g-3">
                     <div class="col-12">
                         <textarea class="form-control bg-white border-0" rows="5" placeholder="Comment"
                             id="comment"></textarea>
                     </div>
+                    <p id="comment-error" style="color:red;"> Please enter a valid comment </p>
                     <div class="col-12 sm-6">
                         <select class="form-select w-25" style="height: 60px;" id="rating">
                             <option selected="">Rating</option>
@@ -115,6 +116,7 @@
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </select>
+                        <p id="rating-error" style="color:red;"> Please choose a rating </p>
                     </div>
                     <div class="col-12">
                         <button class="btn btn-primary w-100 py-3" type="submit">Leave Your Comment</button>
@@ -210,7 +212,6 @@
 
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-<<<<<<< HEAD
     <script data-cfasync="false" src="static/js/email-decode.min.js"></script>
     <script src="static/js/jquery-3.4.1.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
     <script src="static/js/bootstrap.bundle.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
@@ -228,21 +229,4 @@
         crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/public/js/professorDetail.js"></script>
-=======
-<script data-cfasync="false" src="static/js/email-decode.min.js"></script>
-<script src="static/js/jquery-3.4.1.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
-<script src="static/js/bootstrap.bundle.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
-<script src="static/js/easing.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
-<script src="static/js/waypoints.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
-<script src="static/js/owl.carousel.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
-<script src="static/js/moment.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
-<script src="static/js/moment-timezone.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
-<script src="static/js/tempusdominus-bootstrap-4.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
-
-<script src="static/js/main.js" type="64f10123938904b78188bb72-text/javascript"></script>
-<script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"
-    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="/public/js/professorDetail.js"></script>
->>>>>>> upstream/main
 </body>
