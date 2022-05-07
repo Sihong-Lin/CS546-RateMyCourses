@@ -2,7 +2,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
             <a href="home" class="navbar-brand">
-                <h1 class="m-0 text-primary"></i>RateMyCourses</h1>
+                <h1 class="m-0 text-primary">RateMyCourses</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -31,23 +31,23 @@
         <div class="row gx-5">
             <div class="col-lg-3 mb-3 mb-lg-0" style="min-height: 300px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100 rounded-circle" src="{{userInfo.profilePicture}}"
+                    <img class="position-absolute w-100 h-100 rounded-circle" alt="admin" src="{{userInfo.profilePicture}}"
                         style="object-fit: cover;">
                 </div>
             </div>
             <div class="col-lg-7">
                 <div class="mb-4">
                     <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">User Info</h5>
-                    <h4 class="display-10">Username: &nbsp&nbsp {{userInfo.username}}</h4>
-                    <h4 class="display-10">Email: &nbsp&nbsp {{userInfo.email}}</h4>
-                    <h4 class="display-10">Major: &nbsp&nbsp {{userInfo.major}} </h4>
-                    <h4 class="display-10">Role: &nbsp&nbsp {{userInfo.role}}</h4>
-                    <h4 class="display-10">Restrict Status: &nbsp&nbsp {{userInfo.restrictStatus}}</h4>
-                    <h4 class="display-10">Registration Time: &nbsp&nbsp {{userInfo.registrationTime}}</h4>
-                    <h4 class="display-10">Last Login: &nbsp&nbsp {{userInfo.lastLogin}}</h4>
+                    <h4 class="display-10">Username: &nbsp;&nbsp; {{userInfo.username}}</h4>
+                    <h4 class="display-10">Email: &nbsp;&nbsp; {{userInfo.email}}</h4>
+                    <h4 class="display-10">Major: &nbsp;&nbsp; {{userInfo.major}} </h4>
+                    <h4 class="display-10">Role: &nbsp;&nbsp; {{userInfo.role}}</h4>
+                    <h4 class="display-10">Restrict Status: &nbsp;&nbsp; {{userInfo.restrictStatus}}</h4>
+                    <h4 class="display-10">Registration Time: &nbsp;&nbsp; {{userInfo.registrationTime}}</h4>
+                    <h4 class="display-10">Last Login: &nbsp;&nbsp; {{userInfo.lastLogin}}</h4>
                 </div>
                 <p>Want to sign out?<a class="switcher-text2 inline-text sign-out">
-                        &nbsp&nbsp Sign out</a></p>
+                        &nbsp;&nbsp; Sign out</a></p>
             </div>
         </div>
     </div>
@@ -67,13 +67,13 @@
                     <img src="static/picture/user.jpg" class="img-fluid rounded-circle"
                         style="width: 45px; height: 45px;">
                     <div class="ps-3">
-                        <h6><a href="{{concat '/course/' this.courseId}}">{{this.courseName}}</a> &nbsp
+                        <h6><a href="{{concat '/course/' this.courseId}}">{{this.courseName}}</a> &nbsp;
                             <small><i>Rating: {{this.rating}}/5.0</i></small>
                         </h6>
                         <p>{{this.comment}}</p>
-                        <h6><small>Difficulty: {{this.metrics.difficulty}} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Chance To Get
+                        <h6><small>Difficulty: {{this.metrics.difficulty}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chance To Get
                                 A: {{this.metrics.chanceToGetA}}
-                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp workLoad: {{this.metrics.workLoad}}</small></h6>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; workLoad: {{this.metrics.workLoad}}</small></h6>
                         <a data-toggle="modal" data-target="#cour-edit{{@index}}"><button
                                 class="btn btn-sm btn-light">Edit</button></a>
                         <a id="courseId{{@index}}" value="{{this.courseId}} {{this.userId}}"
@@ -327,7 +327,7 @@
 
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-<script data-cfasync="false" src="static/js/email-decode.min.js"></script>
+{{!-- <script data-cfasync="false" src="static/js/email-decode.min.js"></script>
 <script src="static/js/jquery-3.4.1.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
 <script src="static/js/bootstrap.bundle.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
 <script src="static/js/easing.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
@@ -339,7 +339,21 @@
 
 <script src="static/js/main.js" type="64f10123938904b78188bb72-text/javascript"></script>
 <script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
-<script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
+<script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script> --}}
+
+<script data-cfasync="false" src="static/js/email-decode.min.js"></script>
+    <script src="static/js/jquery-3.4.1.min.js"></script>
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/easing.min.js" ></script>
+    <script src="static/js/waypoints.min.js"></script>
+    <script src="static/js/owl.carousel.min.js"></script>
+    <script src="static/js/moment.min.js" ></script>
+    <script src="static/js/moment-timezone.min.js" ></script>
+    <script src="static/js/tempusdominus-bootstrap-4.min.js" ></script>
+
+    <script src="static/js/main.js" ></script>
+    <script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
+    <script src="static/backstage/assets/js/bundle.js?ver=2.2.0"></script>
 
 
 <script>

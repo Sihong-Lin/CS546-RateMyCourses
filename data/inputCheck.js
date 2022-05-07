@@ -37,7 +37,6 @@ function checkUserName(userName) {
     if (typeof userName != 'string') throw 'userName is not a string';
     userName = userName.trim();
     if (userName.length == 0) throw 'userName cannot be an empty string or just spaces';
-    //if (!/^[a-zA-Z0-9]{4,}$/.test(userName)) throw 'userName is not vaild';
     return userName;
 }
 
@@ -46,7 +45,6 @@ function checkPassword(password) {
     if (typeof password != 'string') throw 'password is not a string';
     password = password.trim();
     if (password.length < 6) throw 'password should be at least 6 characters long';
-    if (/[ ]{1,}/.test(password)) throw 'password cannot contain space'
     return password;
 }
 
@@ -220,13 +218,13 @@ function checkCourseId(courseId) {
 }
 
 function checkCoursePicture(coursePicture) {
-    // if(!coursePicture) throw 'You must provided course picture'
-    // if(typeof(coursePicture) !== 'string') throw 'Course Picture is not a string'
-    // if(coursePicture.match(/^https?:\/\/.+\/.+$/)) {
-    //     return coursePicture
-    // } else {
-    //     throw 'picture is invaild'
-    // }
+    if(!coursePicture) throw 'You must provided course picture'
+    if(typeof(coursePicture) !== 'string') throw 'Course Picture is not a string'
+    if(coursePicture.match(/^https?:\/\/.+\/.+$/)) {
+        return coursePicture
+    } else {
+        throw 'picture is invaild'
+    }
     return coursePicture
 }
 /* input checking for professor */
@@ -262,13 +260,13 @@ function checkIntroduction(introduction) {
 }
 
 function checkProfessorPicture(professorPicture) {
-    // if(!professorPicture) throw 'You must provided course picture'
-    // if(typeof(professorPicture) !== 'string') throw 'Course Picture is not a string'
-    // if(professorPicture.match(/^https?:\/\/.+\/.+$/)) {
-    //     return professorPicture
-    // } else {
-    //     throw 'picture is invaild'
-    // }
+    if(!professorPicture) throw 'You must provided course picture'
+    if(typeof(professorPicture) !== 'string') throw 'Course Picture is not a string'
+    if(professorPicture.match(/^https?:\/\/.+\/.+$/)) {
+        return professorPicture
+    } else {
+        throw 'picture is invaild'
+    }
     return professorPicture
     
 }
