@@ -61,12 +61,12 @@ router.post('/:id', async (req, res) => { // create course review
 router.delete('/:id', async (req, res) => {  
     let courseId = undefined;
     try {
-        courseId = inputCheck.checkCourseId(req.params.id);
+        courseId = inputCheck.checkCourseId(xss(req.params.id));
     } catch (e) {
         throw e
     }
     try {
-        removeCourseStatus = await course.removeCourse(courseId);
+        removeCourseStatus = await course.removeCourse(xss(courseId));
     } catch (e) {
         res.status(500).json(e);
         return
@@ -83,14 +83,14 @@ router.put('/deleteCourseReview', async (req, res) => {
     let courseId = undefined
     let reviewDeleteStatus = undefined
     try {
-        userId = inputCheck.checkUserId(req.body.userId);
-        courseId = inputCheck.checkCourseId(req.body.courseId)
+        userId = inputCheck.checkUserId(xss(req.body.userId));
+        courseId = inputCheck.checkCourseId(xss(req.body.courseId))
     } catch (e) {
         throw e
     }
     
     try {
-        reviewDeleteStatus = await user.deleteCourseReview(userId, courseId);
+        reviewDeleteStatus = await user.deleteCourseReview(xss(userId), xss(courseId));
     } catch (e) {
         res.status(500).json(e);
         return
@@ -106,15 +106,15 @@ router.put('/editCourseReview/', async (req, res) => {
     let courseId = undefined
     let newComment
     try {
-        userId = inputCheck.checkUserId(req.body.userId)
-        courseId = inputCheck.checkCourseId(req.body.courseId)
-        newComment = inputCheck.checkComment(req.body.newComment)
+        userId = inputCheck.checkUserId(xss(req.body.userId))
+        courseId = inputCheck.checkCourseId(xss(req.body.courseId))
+        newComment = inputCheck.checkComment(xss(req.body.newComment))
     } catch (e) {
         throw e
     }
     let reviewEditStatus = undefined
     try {
-        reviewEditStatus = await course.updateCourseReviewComment(userId, courseId, newComment)
+        reviewEditStatus = await course.updateCourseReviewComment(xss(userId), xss(courseId), xss(newComment))
     } catch (e) {
         res.status(500).json(e);
         return
@@ -125,7 +125,7 @@ router.put('/editCourseReview/', async (req, res) => {
 });
 
 router.put('/edit/:id', async (req, res) => {  // edit course
-    const courseId = inputCheck.checkCourseId(req.params.id)
+    const courseId = inputCheck.checkCourseId(xss(req.params.id))
     const courseBody = req.body
     if(!courseBody) {
         res.status(400).json({error : 'You must provide data to update a course'})
@@ -143,28 +143,28 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     let picture = undefined
 
     try {
-        courseName = inputCheck.checkCourseName(courseBody.courseName)
+        courseName = inputCheck.checkCourseName(xss(courseBody.courseName))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        academicLevel = inputCheck.checkAcademicLevel(courseBody.academicLevel)
+        academicLevel = inputCheck.checkAcademicLevel(xss(courseBody.academicLevel))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        courseOwner = inputCheck.checkCourseOwner(courseBody.courseOwner)
+        courseOwner = inputCheck.checkCourseOwner(xss(courseBody.courseOwner))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        type = inputCheck.checkType(courseBody.type)
+        type = inputCheck.checkType(xss(courseBody.type))
     }catch(e) {
         res.status(400).json(e);
         return
@@ -185,7 +185,7 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     }
 
     try {
-        description = inputCheck.checkDescription(courseBody.description)
+        description = inputCheck.checkDescription(xss(courseBody.description))
     }catch(e) {
         res.status(400).json(e);
         return
@@ -199,21 +199,21 @@ router.put('/edit/:id', async (req, res) => {  // edit course
     }
 
     try {
-        instructionalFormats = inputCheck.checkInstructionalFormats(courseBody.instructionalFormats)
+        instructionalFormats = inputCheck.checkInstructionalFormats(xss(courseBody.instructionalFormats))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        syllabus = inputCheck.checkSyllabus(courseBody.syllabus)
+        syllabus = inputCheck.checkSyllabus(xss(courseBody.syllabus))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        courseware = inputCheck.checkCourseware(courseBody.courseware)
+        courseware = inputCheck.checkCourseware(xss(courseBody.courseware))
     }catch(e) {
         res.status(400).json(e);
         return
@@ -228,19 +228,19 @@ router.put('/edit/:id', async (req, res) => {  // edit course
 
     try {
         const newCourse = await course.updateCourse(
-            courseId,
-            courseName,
-            academicLevel, 
-            courseOwner, 
-            type, 
+            xss(courseId),
+            xss(courseName),
+            xss(academicLevel), 
+            xss(courseOwner), 
+            xss(type), 
           //  gradingBasis,
             units,
-            description,
+            xss(description),
           //  typicalPeriodsOffered,
-            instructionalFormats,
-            syllabus,
-            courseware,
-            picture)
+            xss(instructionalFormats),
+            xss(syllabus),
+            xss(courseware),
+            xss(picture))
         res.json(newCourse);
     }catch (e) {
         res.sendStatus(500).json({e})
@@ -268,28 +268,28 @@ router.post('/', async (req, res) => { // create new course
     let picture = undefined
 
     try {
-        courseName = inputCheck.checkCourseName(courseBody.courseName)
+        courseName = inputCheck.checkCourseName(xss(courseBody.courseName))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        academicLevel = inputCheck.checkAcademicLevel(courseBody.academicLevel)
+        academicLevel = inputCheck.checkAcademicLevel(xss(courseBody.academicLevel))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        courseOwner = inputCheck.checkCourseOwner(courseBody.courseOwner)
+        courseOwner = inputCheck.checkCourseOwner(xss(courseBody.courseOwner))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        type = inputCheck.checkType(courseBody.type)
+        type = inputCheck.checkType(xss(courseBody.type))
     }catch(e) {
         res.status(400).json(e);
         return
@@ -310,7 +310,7 @@ router.post('/', async (req, res) => { // create new course
     }
 
     try {
-        description = inputCheck.checkDescription(courseBody.description)
+        description = inputCheck.checkDescription(xss(courseBody.description))
     }catch(e) {
         res.status(400).json(e);
         return
@@ -324,28 +324,28 @@ router.post('/', async (req, res) => { // create new course
     }
 
     try {
-        instructionalFormats = inputCheck.checkInstructionalFormats(courseBody.instructionalFormats)
+        instructionalFormats = inputCheck.checkInstructionalFormats(xss(courseBody.instructionalFormats))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        syllabus = inputCheck.checkSyllabus(courseBody.syllabus)
+        syllabus = inputCheck.checkSyllabus(xss(courseBody.syllabus))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        courseware = inputCheck.checkCourseware(courseBody.courseware)
+        courseware = inputCheck.checkCourseware(xss(courseBody.courseware))
     }catch(e) {
         res.status(400).json(e);
         return
     }
 
     try {
-        picture = inputCheck.checkCoursePicture(courseBody.picture)
+        picture = inputCheck.checkCoursePicture(xss(courseBody.picture))
     }catch(e) {
         res.status(400).json(e);
         return
@@ -354,18 +354,18 @@ router.post('/', async (req, res) => { // create new course
 
     try {
         const newCourse = await course.createCourse(
-            courseName,
-            academicLevel, 
-            courseOwner, 
-            type, 
+            xss(courseName),
+            xss(academicLevel), 
+            xss(courseOwner), 
+            xss(type), 
            // gradingBasis,
             units,
-            description,
+            xss(description),
           //  typicalPeriodsOffered,
-            instructionalFormats,
-            syllabus,
-            courseware,
-            picture)
+            xss(instructionalFormats),
+            xss(syllabus),
+            xss(courseware),
+            xss(picture))
         res.json(newCourse);
     }catch (e) {
         res.sendStatus(500)
