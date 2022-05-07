@@ -3,7 +3,12 @@ const router = express.Router();
 const user = require('../data/user');
 
 router.get('/', async (req, res) => {
-    res.render('login', { title: 'login' });
+    if(req.session.user) {
+        res.render('account')
+    } else {
+        res.render('login', { title: 'login' });
+    }
+    
 });
 
 router.post('/', async (req, res) => {
