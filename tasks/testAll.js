@@ -292,7 +292,7 @@ const departmentReivew = async () => {
         5
     )
     
-    console.log(await course.getCoursesByKeywords("computer science", "data"))
+    console.log(await course.getAllMajor())
     // let dc1 = await course.removeCourse(firstCourseId)
     // let dc2 = await course.removeCourse(secondCourseId)
     // let dc3 = await course.removeCourse(thirdCourseId)

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>MEDINOVA - Hospital Website Template</title>
+    <title>{{title}}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -31,7 +31,7 @@
     <div class="container-fluid sticky-top bg-white shadow-sm">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-                <a href="home.html" class="navbar-brand">
+                <a href="home" class="navbar-brand">
                     <h1 class="m-0 text-primary"></i>RateMyCourses</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -42,7 +42,7 @@
                         <a href="home" class="nav-item nav-link">Home</a>
                         <a href="courses" class="nav-item nav-link">Courses</a>
                         <a href="professors" class="nav-item nav-link">Professors</a>
-                        <a href="search.html" class="nav-item nav-link active">Search</a>
+                        <a href="search" class="nav-item nav-link active">Search</a>
                         <a href="account" class="nav-item nav-link">Account</a>
                         <a href="backstage" class="nav-item nav-link">Backstage</a>
                         <a href="login" class="nav-item nav-link">Sign in</a>
@@ -67,10 +67,9 @@
                 <div class="input-group">
                     <select class="form-select border-primary w-25" style="height: 60px;" id="search-department"
                         name="search-department">
-                        <option selected="">Department</option>
-                        <option value="Computer Science">Computer Science</option>
-                        <option value="2">Department 2</option>
-                        <option value="3">Department 3</option>
+                        {{#each majors}}
+                        <option `value={{this}}`>{{this}}</option>
+                        {{/each}}
                     </select>
                     <input type="text" class="form-control border-primary w-50" placeholder="Keyword"
                         id="search-keyword" name="search-keyword">
@@ -80,7 +79,12 @@
         </div>
     </div>
     <div>
-        <h1 class="display-4 mb-4" id="noCourse">No Course Found</h1>
+        <p></p>
+        <h1 class="display-4 mb-4" id="noCourse">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            
+            No Course Found</h1>
     </div>
     <div>
         <ul id="showList"></ul>
