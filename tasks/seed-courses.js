@@ -6,8 +6,8 @@ const { ObjectId } = require('mongodb');
 
 const main = async () => {
     const db = await connection.connectToDb();
-    // await db.dropDatabase();
-    /*
+     await db.dropDatabase();
+
     let admin = undefined
     try {
         let createUser = await user.createAdmin("admin", "admin@gmail.com", "Computer Science", "https://www.mantruckandbus.com/fileadmin/_processed_/2/b/csm_19-09_startseite_interviewkachel_324_224_3_726a3e77d5.jpg", "123456");
@@ -15,7 +15,7 @@ const main = async () => {
     } catch (e) {
         console.log(e);
     }
-    */
+
     try {
         let user1 = undefined
         try {
@@ -3946,7 +3946,7 @@ const main = async () => {
     )
 
     
-    await uprofessor.addProfReview(
+    await professor.addProfReview(
         user1.toString(),
         professor53._id.toString(),
         "I took ME 524 Fundamentals of Remote Sensing with Dimitri online. There was no textbook, the only material he gave us were his PowerPoints from class. He gave these to us without any notes, audio or video to accompany them, they were useless. I spoke to my department head about this, I don't think this class will be offered for credit anymore.",
