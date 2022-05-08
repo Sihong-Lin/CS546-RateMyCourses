@@ -3261,7 +3261,7 @@ const main = async () => {
     
     let professor25 = await professor.createProfessor(
         'Elsayed Aziz',
-        "Mechanical Engineering",
+        "Environmental Engineering",
         'This guy is really not a great teacher. Reads directly off slides, doesn t relay the material across to the students effectively at all.',
         "https://scpic.chinaz.net/files/pic/pic9/202004/zzpic24543.jpg"
     )
@@ -3501,14 +3501,14 @@ const main = async () => {
 
     let professor59 = await professor.createProfessor(
         'Nishika Jain',
-        "Physics & Engineering Physic",
+        "Physics and Engineering Physics",
         'The professor is hard working and expects you to work hard as well. ',
         "https://images.pexels.com/photos/3779001/pexels-photo-3779001.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     )
 
     let professor60 = await professor.createProfessor(
         'Joshua Kelle',
-        "Physics & Engineering Physic",
+        "Physics and Engineering Physics",
         'Assignments are challenging and hard.',
         "https://images.pexels.com/photos/1845848/pexels-photo-1845848.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     )
@@ -4764,46 +4764,6 @@ const main = async () => {
         5.0
     )
 
-   
-
-    
-
-   
-
-
-    
-
-
-
- 
-
- 
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    await professor.addProfReview(
-        user1.toString(),
-        professor1._id.toString(),
-        "Really just a great dude all around. You can tell how much he cares about teaching and he gives off dad energy. He's always ready to help!",
-        5.0
-    )
 
         
     } catch(e) {
