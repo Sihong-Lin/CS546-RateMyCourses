@@ -13,12 +13,12 @@ Want to stack your schedule with great classes in Stevens? The RateMyCourses app
 
 ## User Access
 
-Users can log in using the nav link in the top right of the site. Clicking this will bring them to a login page. If they do not have an existing account, there is a link in the login from to create a new account. Please remember: ONly logged-in users can enter their personal account page and leave their comments. Only administrator can enter the backstage system.
+Users can log in using the nav link in the top right of the site. Clicking this will bring them to a login page. If they do not have an existing account, there is a link in the login from to create a new account. Please remember: Only logged-in users can enter their personal account page and leave their comments. Only administrator can enter the backstage system.
 
-#### Default Admin Account
+#### Running the program with an administrator account
   * Username: admin 
   * Password: 123456
-#### Default Student Account
+#### Running the program with a student account
   * Username: James 
   * Password: 123456
 
