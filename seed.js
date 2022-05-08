@@ -3539,7 +3539,7 @@ const main = async () => {
 
     await professor.addProfReview(
         user1.toString(),
-        professor1._id.toString(),
+        professor51._id.toString(),
         "He is very arrogant, but his course is useful. His assignments take time but provides good knowledge. God bless you if he makes the project group because not everyone will work and you will cuss him for the group he made. but course is worth taking!",
         4.5
     )
@@ -3547,7 +3547,7 @@ const main = async () => {
     
     await professor.addProfReview(
         user1.toString(),
-        professor2._id.toString(),
+        professor52._id.toString(),
         "Force students to purchase zybooks ($88/term). And over 2000 questions in first week and you need to type all of them on zybooks to get credit.",
         2.3
     )
@@ -3555,7 +3555,7 @@ const main = async () => {
     
     await professor.addProfReview(
         user1.toString(),
-        professor3._id.toString(),
+        professor53._id.toString(),
         "Professor Peyrovian seems like a great person who wants to be a good professor but unfortunately is not. Lectures are quite literally read word for word off of slides that are not even made by him or the department. He does not answer questions in any way that is useful and seems to think that CS 383 is the hardest and most difficult class here lol.",
         2.3
     )
@@ -3563,7 +3563,7 @@ const main = async () => {
     
     await professor.addProfReview(
         user1.toString(),
-        professor4._id.toString(),
+        professor54._id.toString(),
         "Awesome prof who teaches the material very well. Not much hw and quizzes are usually easy (make sure to do the optional exercises tho).",
         4.2
     )
@@ -3571,7 +3571,7 @@ const main = async () => {
     
     await professor.addProfReview(
         user1.toString(),
-        professor5._id.toString(),
+        professor55._id.toString(),
         "Good at lecturing and clearly an intelligent guy. I would give a 5 but Prof. Bonelli has a habit of getting lost in the sauce and losing me in lecture.",
         4.2
     )
@@ -3579,7 +3579,7 @@ const main = async () => {
     
     await professor.addProfReview(
         user1.toString(),
-        professor6._id.toString(),
+        professor56._id.toString(),
         "Very caring professor who obviously knows the subject very well. He can go a bit fast, but if you ask him to re-explain things he will and it's generally worth it. You should definitely pay attention in class, because while the work is tough if you pay attention and participate you'll be fine. You should also attend class because of weekly quizzes.",
         4.2
     )
@@ -4034,7 +4034,7 @@ const main = async () => {
     
     await professor.addProfReview(
         user2.toString(),
-        professor1._id.toString(),
+        professor31._id.toString(),
         "He makes sure his class understands the topic well and he delivers at his best. It is always fun attending his lectures.",
         4.1
     )
@@ -4042,7 +4042,7 @@ const main = async () => {
     
     await professor.addProfReview(
         user3.toString(),
-        professor1._id.toString(),
+        professor41._id.toString(),
         "pathetic professor. Never take it. Teaches all out of scope things.",
         2.9
     )
@@ -4050,7 +4050,7 @@ const main = async () => {
     
     await professor.addProfReview(
         user4.toString(),
-        professor1._id.toString(),
+        professor51._id.toString(),
         "If you want marks, don't take this class. At your face she doesn't seem strict at all, but when the marks come in, you'll know the real her. She says she wants us to learn, but doesn't realize, some aren't experienced or aren't interested in this compulsory course. She destroyed my GPA. Two exams, two presentations, so much homework and a B.",
         3.0
     )
@@ -4090,7 +4090,7 @@ const main = async () => {
     
     await professor.addProfReview(
         user2.toString(),
-        professor6._id.toString(),
+        professor36._id.toString(),
         "He is awful at teaching and grading. Never take any course with him.",
         2.5
     )
@@ -4098,7 +4098,7 @@ const main = async () => {
     
     await professor.addProfReview(
         user2.toString(),
-        professor10._id.toString(),
+        professor30._id.toString(),
         "By far, one of the most rigorous courses I have ever had. Having said that, If you put in time and effort, learning opportunity is limitless in the course and professor creamer makes sure that none of your doubts go unexplained. The material/textbooks provided are extremely helpful as well. Good course if you want to actually learn about the topics.",
         3.0
     )
@@ -4106,7 +4106,7 @@ const main = async () => {
     
     await professor.addProfReview(
         user2.toString(),
-        professor15._id.toString(),
+        professor35._id.toString(),
         "She gives you every opportunity to do well, but you must use the resources provided.",
         5.0
     )
@@ -4114,7 +4114,7 @@ const main = async () => {
     
     await professor.addProfReview(
         user2.toString(),
-        professor20._id.toString(),
+        professor23._id.toString(),
         "This class was a disaster.",
         3.0
     )
@@ -4122,7 +4122,7 @@ const main = async () => {
 
     await professor.addProfReview(
         user2.toString(),
-        professor21._id.toString(),
+        professor28._id.toString(),
         "He's really chill. It's accounting so its obviously boring, but he makes dad jokes here and there that are pretty decent I must say. HW takes a decent amount of time, so just get it done early. Overall, easy going guy, easy going class. As long as you pay attention, you should be fine.",
         5.0
     )
@@ -4130,7 +4130,7 @@ const main = async () => {
 
     await professor.addProfReview(
         user2.toString(),
-        professor22._id.toString(),
+        professor29._id.toString(),
         "Keeps the class light and fun for boring subject like accounting.",
         5.0
     )
