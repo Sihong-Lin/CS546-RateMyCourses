@@ -1,7 +1,7 @@
-const user = require('../data/user');
-const course = require('../data/course');
-const professor = require('../data/professor');
-const connection = require('../config/mongoConnection');
+const user = require('./data/user');
+const course = require('./data/course');
+const professor = require('./data/professor');
+const connection = require('./config/mongoConnection');
 const { ObjectId } = require('mongodb');
 
 const main = async () => {
@@ -139,7 +139,6 @@ const main = async () => {
 
 
 
-        
         let course1 = undefined;
         try {
             let createCourse = await course.createCourse(
@@ -171,7 +170,7 @@ const main = async () => {
                 'Introduction to programming, data structures, and algorithm design, using one or more modern imperative language9s), as chosen by the instructor. Students will learn: basic programming constructs, data types, advanced and/or balanced search trees; hashing; asymptotic complexity analysis; standard algorithm design techniques; graph algorithms; sort algorithms; and other “classic’ algorithms that serve as examples of design techniques. Students will be given regular programming assignments. Pre-req: Undergraduate object oriented programming or CS 501.', // description
                 'Lecture', // instructionalFormats
                 'https://web.stevens.edu/academic_files/courses/syllabus/CS570syl.pdf', // syllabus
-                'https://web.stevens.edu/academic_files/courses/outcome/CS570.pdf', // courseware（复制课名随便找点相关网址粘上去）
+                'https://web.stevens.edu/academic_files/courses/outcome/CS570.pdf', // courseware
                 'https://www.smartpassiveincome.com/wp-content/uploads/2020/04/How-to-Create-an-Online-Course.png' // picture
             )
             course2 = createCourse._id.toString()
@@ -1642,8 +1641,8 @@ const main = async () => {
 
 
         await user.createCourseReview(
-            user1,      //这个先不改，只改最后三个属性性
-            course1,    //这个先不改，只改最后三个属性性
+            user1,    
+            course1,   
             "The lectures are quite easy to understand and so are the Labs. Only need to make sure that you are not careless while working on labs or else you'll lose points and that is something that the professor is always clear about. If you dedicatedly work on the labs and the project, you can easily score an Best professor at Stevens",
             {difficulty: "Easy", chanceToGetA: 'Low', workLoad: 'Less'},
             4.5   //0.0-5.0
@@ -4141,7 +4140,6 @@ const main = async () => {
         user2.toString(),
         professor23._id.toString(),
         "Easiest A I've ever seen. Took the online course of FIN615. Each week is a quiz which is not at all thought-provoking. Midterm and final have same exact questions from weekly quizzes so it'd be extremely difficult to not do well. 2 chances on each quiz/midterm/final. Didn't learn a thing.",
-        {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
         3.0
     )
 
