@@ -4,7 +4,7 @@
   "description": "Want to stack your schedule with great classes in Stevens? The RateMyCourses app is here to help. Plenty of resources like syllabuses, course reviews, professors’ teaching style and a robust set of search features will lead you directly to the perfect courses in the semester.",
   "main": "index.js",
   "scripts": {
-    "seed": "node ./tasks/testAll.js; node tasks/seed-courses;",
+    "seed": "node tasks/seed-courses;",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "pretty": "npx prettier --write '**/*.js' '!public/**' '!node_modules/**'"
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Sihong-Lin/CS546-RateMyCourses#readme",
   "dependencies": {
+    "aws-sdk": "^2.1130.0",
     "bcrypt": "^5.0.1",
     "express": "^4.17.3",
     "express-handlebars": "^6.0.3",
