@@ -7,11 +7,20 @@ Want to stack your schedule with great classes in Stevens? The RateMyCourses app
 
 ## **Setup**
 1. Use "npm install" to install all dependencies as listed in package.json
-2. Edit mongo settings in config/config.json (if needed) and use command line to start mongodb
-3. Seed the database with command such as "npm run seed"
-4. Use "npm start" to start the application
-5. Use browser to access the app at http://localhost:3000/
+2. Seed the database with command such as "npm run seed"
+3. Use "npm start" to start the application
+4. Use browser to access the app at http://localhost:3000/
 
+## **User Access**
+
+Users can log in using the nav link in the top right of the site. Clicking this will bring them to a login page. If they do not have an existing account, there is a link in the login from to create a new account. 
+
+### Default Admin Account
+  * Username: admin 
+  * Password: 123456
+### Default Student Account
+  * Username: James 
+  * Password: 123456
 
 ## **Group Memeber**
 - Sihong Lin
@@ -19,7 +28,6 @@ Want to stack your schedule with great classes in Stevens? The RateMyCourses app
 - Ziheng Zhu  
 - Yinuo Lu    
 - Bofei Wang
-
 
 ## Sync to upstream
 git fetch upstream
