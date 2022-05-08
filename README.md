@@ -1,5 +1,5 @@
-# <center>CS546-RateMyCourses</center>
-<center>CS546 Web Programming Section C Group 36</center>
+# CS546-RateMyCourses
+CS546 Web Programming Section C Group 36
 
 
 ## Introduction
@@ -28,7 +28,3 @@ Users can log in using the nav link in the top right of the site. Clicking this 
   * Ziheng Zhu  
   * Yinuo Lu    
   * Bofei Wang
-
-## Sync to upstream
-git fetch upstream
-git merge upstream/main
