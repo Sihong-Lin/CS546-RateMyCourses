@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="static/backstage/assets/css/dashlite.css?ver=2.2.0">
 
-<body class="nk-body bg-lighter npc-general has-sidebar ">
+{{!-- <body class="nk-body bg-lighter npc-general has-sidebar "> --}}
     <div class="nk-app-root">
         <!-- main @s -->
         <div class="nk-main ">
@@ -85,7 +85,7 @@
                                     </div><!-- .nk-block-between -->
                                 </div><!-- .nk-block-head -->
 
-                                <div class="nk-block">
+                                <div class="nk-block">class="nk-body bg-lighter npc-
                                     <div class="row g-gs">
 
                                         <div class="col-lg-8">
@@ -207,7 +207,7 @@
                                                     {{#each top5Courses}}
                                                     <li class="nk-activity-item">
                                                         <div><img class="user-avatar sq"
-                                                                        src={{this.picture}} ></div>
+                                                                    alt="someimg"    src={{this.picture}} ></div>
                                                         <div class="nk-activity-data">
                                                             <a href="{{concat '/course/' this._id}}">
                                                                 <div class="label">{{this.courseName}}</div>
@@ -234,7 +234,7 @@
                                                     {{#each top5Professors}}
                                                     <li class="nk-activity-item">
                                                         <div><img class="user-avatar"
-                                                                        src={{this.picture}} ></div>
+                                                                    alt="someimg"    src={{this.picture}} ></div>
                                                         <div class="nk-activity-data">
                                                             <a href="{{concat '/professors/' this._id}}">
                                                                 <div class="label">{{this.professorName}}</div>
@@ -603,6 +603,6 @@
         });
     </script> 
 
-</body>
+{{!-- </body> --}}
 
 </html>

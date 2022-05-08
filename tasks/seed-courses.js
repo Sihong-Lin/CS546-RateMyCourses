@@ -6,8 +6,8 @@ const { ObjectId } = require('mongodb');
 
 const main = async () => {
     const db = await connection.connectToDb();
-    // await db.dropDatabase();
-    /*
+     await db.dropDatabase();
+
     let admin = undefined
     try {
         let createUser = await user.createAdmin("admin", "admin@gmail.com", "Computer Science", "https://www.mantruckandbus.com/fileadmin/_processed_/2/b/csm_19-09_startseite_interviewkachel_324_224_3_726a3e77d5.jpg", "123456");
@@ -15,7 +15,7 @@ const main = async () => {
     } catch (e) {
         console.log(e);
     }
-    */
+
     try {
         let user1 = undefined
         try {
@@ -3261,7 +3261,7 @@ const main = async () => {
     
     let professor25 = await professor.createProfessor(
         'Elsayed Aziz',
-        "Mechanical Engineering",
+        "Environmental Engineering",
         'This guy is really not a great teacher. Reads directly off slides, doesn t relay the material across to the students effectively at all.',
         "https://scpic.chinaz.net/files/pic/pic9/202004/zzpic24543.jpg"
     )
@@ -3501,14 +3501,14 @@ const main = async () => {
 
     let professor59 = await professor.createProfessor(
         'Nishika Jain',
-        "Physics & Engineering Physic",
+        "Physics and Engineering Physics",
         'The professor is hard working and expects you to work hard as well. ',
         "https://images.pexels.com/photos/3779001/pexels-photo-3779001.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     )
 
     let professor60 = await professor.createProfessor(
         'Joshua Kelle',
-        "Physics & Engineering Physic",
+        "Physics and Engineering Physics",
         'Assignments are challenging and hard.',
         "https://images.pexels.com/photos/1845848/pexels-photo-1845848.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     )
@@ -3527,34 +3527,1198 @@ const main = async () => {
         "https://images.pexels.com/photos/8441779/pexels-photo-8441779.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     )
 
-   
+
+
+
+
+
+
+
+
+
+
+
+    await professor.addProfReview(
+        user1.toString(),
+        professor1._id.toString(),
+        "He is very arrogant, but his course is useful. His assignments take time but provides good knowledge. God bless you if he makes the project group because not everyone will work and you will cuss him for the group he made. but course is worth taking!",
+        4.5
+    )
 
     
-
-   
-
+    await professor.addProfReview(
+        user1.toString(),
+        professor2._id.toString(),
+        "Force students to purchase zybooks ($88/term). And over 2000 questions in first week and you need to type all of them on zybooks to get credit.",
+        2.3
+    )
 
     
+    await professor.addProfReview(
+        user1.toString(),
+        professor3._id.toString(),
+        "Professor Peyrovian seems like a great person who wants to be a good professor but unfortunately is not. Lectures are quite literally read word for word off of slides that are not even made by him or the department. He does not answer questions in any way that is useful and seems to think that CS 383 is the hardest and most difficult class here lol.",
+        2.3
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor4._id.toString(),
+        "Awesome prof who teaches the material very well. Not much hw and quizzes are usually easy (make sure to do the optional exercises tho).",
+        4.2
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor5._id.toString(),
+        "Good at lecturing and clearly an intelligent guy. I would give a 5 but Prof. Bonelli has a habit of getting lost in the sauce and losing me in lecture.",
+        4.2
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor6._id.toString(),
+        "Very caring professor who obviously knows the subject very well. He can go a bit fast, but if you ask him to re-explain things he will and it's generally worth it. You should definitely pay attention in class, because while the work is tough if you pay attention and participate you'll be fine. You should also attend class because of weekly quizzes.",
+        4.2
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor7._id.toString(),
+        "Challenging, but always completely fair. He really cares about the subject and his students, which occasionally leads to leads to him getting frustrated by lack of participation or misunderstanding of the material. Definitely take his courses if you get the chance. They are tough, but you get your money's worth with him.",
+        3.7
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor8._id.toString(),
+        "Very enthusiastic about what he teaches, but goes really fast.",
+        4.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor9._id.toString(),
+        "Really nice guy who cares about his students' performance more than his paycheck.",
+        4.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor10._id.toString(),
+        "His lectures are clear and encourages everyone to ask questions when unsure. (Do that. It'll help.) Make sure to show up for class, as there are often quizzes.",
+        4.1
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor11._id.toString(),
+        "Very enthusiastic about what he teaches, but goes really fast.",
+        4.1
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor12._id.toString(),
+        "Very nice and teaches the class very logically. Very approachable in and out of class but a hard grader, though the course material is VERY easy if you read the notes. His exams are generally easy, with 1 tricky question max.",
+        4.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor13._id.toString(),
+        "Greenberg is probably one of the best professors I've had at UD. His class is very clear and if you pay attention for at least a little bit of it and read the notes you should do well.",
+        4.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor14._id.toString(),
+        "Great content in the course. try to use the aws credits and get hands on aws experience",
+        3.8
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor15._id.toString(),
+        "His accent is a major problem, otherwise he is very knowledgable.",
+        3.8
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor16._id.toString(),
+        "Class isn't too hard and not too much work is given. What truly sucks about this course is the lack of quality. Its kind of hard to describe, but it you can easily see how little effort is put into it. Also I am pretty sure Rahman has been teaching this class for several years, yet he still doesn't know how to use canvas.",
+        3.5
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor17._id.toString(),
+        "great professor. daily quick quiz.",
+        3.5
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor18._id.toString(),
+        "Its like this was the first year he taught this course and we were responsible for working out all the kinks. Year after year he doesn't fix issues with the assignments or lectures, causing us to hit the same road blocks. He is almost never available for help, and says he responds to emails or Piazza posts but never does! Lots of false promises!!!",
+        2.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor19._id.toString(),
+        "Never reply email. Lots of boring podcasts. Too many homework. Just waste of time.",
+        2.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor20._id.toString(),
+        "It may not have been so bad if the materials were actually properly prepared. Often the material had broken links / missing videos. The biggest issue was the lecture audio and video were not in sync, requiring you to constantly pause or look at the PDF on the side to stay in sync. Several students reported this to him, but he did nothing about it.",
+        2.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor21._id.toString(),
+        "This is THE worst class at Stevens. It froze over in 2009 as all the lectures were recorded then and haven't been touched since. His stub code is years old and contains many bugs/errors that will trip you up. He hasn't touched the materials in years, and often needs to refresh his memory when asked questions. He can't be bothered to help! AVOID!!!!.",
+        2.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor22._id.toString(),
+        "No coding assignments, only homework is latex notes for a few of the lectures with a partner. Offers extra credit. Easiest grader I've had and laid back atmosphere.",
+        4.4
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor23._id.toString(),
+        "Amazing knowledge about Statistical Machine Learning and AI. Must take class if you want to get into Machine Learning research!",
+        4.4
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor24._id.toString(),
+        "The lectures are great albeit a little bit of information overload. Take notes as midterm and endterm would be straight out of the material. A lot depends on the project. Pay attention to the grading criteria. Course is not really technical but is crucial if you are interested in building clean UI and want to learn about usability.",
+        4.7
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor25._id.toString(),
+        "Awesome Professor. Very cool about doubts of students. Respected.",
+        4.7
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor26._id.toString(),
+        "You actually will learn a lot in his class, and Prof. Duggan is a good teacher. But it's simply not worth it to take this class! Some of the homework assignments (given weekly) take up to 15 hours to complete. If you finish an assignment within 10 hours you'll probably feel good about yourself. Save yourself a lot of anxiety and frustration. Avoid!",
+        2.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor28._id.toString(),
+        "DO NOT LISTEN TO ANYONE, YOU WILL REGRET TAKING THIS CLASS.",
+        2.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor29._id.toString(),
+        "Overall, a good prof who helps his students understand the computer programming in order to excel you need to put in the time and effort.",
+        4.2
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor30._id.toString(),
+        "great for someone new to computer science.",
+        4.2
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor31._id.toString(),
+        "The most genuine professor who helped me achieve my dreams.",
+        3.5
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor32._id.toString(),
+        "You really have to put the work in to get a good grade.",
+        3.5
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor33._id.toString(),
+        "Do not listen to the Wang naysayers, they don't know C. (That is a Wang inside joke, he is a hilarious man if you actually listen to him) If you have ever talked to anyone that says Wang is a horrible teacher, they probably dropped the class and changed their major. If you ask him for help he is way more than willing to help you. Studying is a must.",
+        3.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor34._id.toString(),
+        "He's good if you can understand him or read whats on the board. He tends to not erase completely and just keep writing over things.",
+        3.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor35._id.toString(),
+        "He is a very honest person, very helpful-minded and is approachable at any time. His lab is very disoriented though, most of the students speak native languages while at work and you don't understand a thing, also is very reluctant to clean lab spaces. His presentations are very detailed and he cites lot of examples which is helpful. really good.",
+        4.3
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor36._id.toString(),
+        "Professor is honestly very helpful and tries to improve his lectures/class. If you manage to find him with time, he will provide help as much as he can. Honestly though, his lectures are rather dry and it does not help there is much overlap with materials course so you may be bored with the class. Tests are fair and shouldn't be too difficult.",
+        4.3
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor37._id.toString(),
+        "The best professor in the school.",
+        4.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor38._id.toString(),
+        "Highly respected.",
+        4.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor39._id.toString(),
+        "His class makes you think. I would totally take any class he will teach.",
+        3.6
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor40._id.toString(),
+        "Awesome teacher! Very helpful!",
+        3.6
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor41._id.toString(),
+        "George is an awesome professor and you learn so much in performance!",
+        4.7
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor42._id.toString(),
+        "Such a great professor.",
+        4.7
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor43._id.toString(),
+        "Such a great professor. A little hard to understand but the class is super easy and gives great lectures.",
+        3.2
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor44._id.toString(),
+        "Great professor. very friendly and understanding. Easy class.",
+        3.2
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor45._id.toString(),
+        "This professor is kind and intelligent. However, he can't teach.",
+        3.7
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor46._id.toString(),
+        "Hes a good person but when it comes to teaching I wouldnt recommend him especially if you are not proficient in Excel.",
+        3.7
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor47._id.toString(),
+        "Actually the worst teacher ever. I've never had a worse professor in my life. Doesn't lecture anything worth knowing and then tests and homework are extremely difficult.",
+        1.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor48._id.toString(),
+        "Worst ever.",
+        1.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor49._id.toString(),
+        "Despite his name, haMID is absolutely not MID. He is a great professor. His lectures are interesting and useful. A great teacher. Tests are slightly difficult but fair.",
+        4.5
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor50._id.toString(),
+        "The best professor in the ME department. Explains content very clearly, and in a manner easy to understand even if you did not understand thermodynamics. Funny and understanding professor. Peaked my interest in thermal engineering, and would take courses in order to have him as my professor. If you can have him, take him over any other professor.",
+        4.5
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor51._id.toString(),
+        "Sad times. So much pain. Makes me want to see the sun blow up.",
+        3.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor52._id.toString(),
+        "Salman is great. Honestly one of the best lecturers ever and makes the material very clear. The homework is challenging but helps with the exams.",
+        4.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor53._id.toString(),
+        "I took ME 524 Fundamentals of Remote Sensing with Dimitri online. There was no textbook, the only material he gave us were his PowerPoints from class. He gave these to us without any notes, audio or video to accompany them, they were useless. I spoke to my department head about this, I don't think this class will be offered for credit anymore.",
+        2.9
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor54._id.toString(),
+        "The GOAT. Best lab I've ever taken. Guy is hilarious and keeps things interesting. Looks out for you and make sure you learn.",
+        4.8
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor55._id.toString(),
+        "I felt like the tests were hard and the study guides were not always reflective of the material on the test or what was covered on the lecture slides in class.",
+        3.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor56._id.toString(),
+        "nice professor, she is very helpful. if you need more help, she is very happy to help you. always go to class on time. dont skip class.",
+        3.5
+    )
+
+    await professor.addProfReview(
+        user1.toString(),
+        professor57._id.toString(),
+        "Really just a great dude all around. You can tell how much he cares about teaching and he gives off dad energy. He's always ready to help!",
+        5.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor58._id.toString(),
+        "Great Professor! Very Fun class with lots of discussions. We talk about Hobbes, Locke, Rousseau Mill, and many more. I must say Professor Ryan is a great Political Science teacher and I would recommend him to anyone.",
+        2.5
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor59._id.toString(),
+        "Horrible professor. Lack of organization, effort to care for his students' performances in his classes, and open-mindedness. This class has been one of the worst classes I've ever taken at Stevens.",
+        2.3
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor59._id.toString(),
+        "One of the worst professors I have ever had to be with. This man cannot teach for the life of him. Everything is disorganized, the classes barely understand what is going on. And this specific course focuses way too much on assembly programming instead of actual microprocessor architecture. Avoid at all cost.",
+        2.3
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor60._id.toString(),
+        "He is a good professor. The lecture establishes basic knowledges but it needs some more reading and some google research in order to get better understanding and to complete the exams/quizes. Also, he has very strong background what he teach.",
+        2.9
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor61._id.toString(),
+        "Going to his class was stressful.",
+        3.9
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor62._id.toString(),
+        "Robert is one of the toughest teachers I have ever had not due to the class vigor but merely due to his incompetence. He does not post instructions for assignments, expects too much from students, no one pays attention during class but you miss nothing. All class periods are mandatory but are just slide shows. 0/5 if it wasn't funny to watch.",
+        1.0
+    )
+
+    
+    await professor.addProfReview(
+        user2.toString(),
+        professor1._id.toString(),
+        "He makes sure his class understands the topic well and he delivers at his best. It is always fun attending his lectures.",
+        4.1
+    )
+
+    
+    await professor.addProfReview(
+        user3.toString(),
+        professor1._id.toString(),
+        "pathetic professor. Never take it. Teaches all out of scope things.",
+        2.9
+    )
+
+    
+    await professor.addProfReview(
+        user4.toString(),
+        professor1._id.toString(),
+        "If you want marks, don't take this class. At your face she doesn't seem strict at all, but when the marks come in, you'll know the real her. She says she wants us to learn, but doesn't realize, some aren't experienced or aren't interested in this compulsory course. She destroyed my GPA. Two exams, two presentations, so much homework and a B.",
+        3.0
+    )
+
+    
+    await professor.addProfReview(
+        user2.toString(),
+        professor2._id.toString(),
+        "Great guy.",
+        5.0
+    )
+
+    
+    await professor.addProfReview(
+        user2.toString(),
+        professor3._id.toString(),
+        "He's great, super knowledgeable on the material and is very clear with his expectations.",
+        4.0
+    )
+
+    
+    await professor.addProfReview(
+        user2.toString(),
+        professor4._id.toString(),
+        "Attendance is not mandatory but participation in his classes will go a long way.",
+        3.9
+    )
+
+    
+    await professor.addProfReview(
+        user2.toString(),
+        professor5._id.toString(),
+        "He is a good professor and you would understand whatever he teaches if you in full concentration. However, in-class it gets boring a bit, but revise his lectures and you'll get to learn a lot. His assignments are good. It is fairly easy to get an A, if the assignments are done correctly. Overall he is a good Prof.",
+        3.8
+    )
+
+    
+    await professor.addProfReview(
+        user2.toString(),
+        professor6._id.toString(),
+        "He is awful at teaching and grading. Never take any course with him.",
+        2.5
+    )
+
+    
+    await professor.addProfReview(
+        user2.toString(),
+        professor10._id.toString(),
+        "By far, one of the most rigorous courses I have ever had. Having said that, If you put in time and effort, learning opportunity is limitless in the course and professor creamer makes sure that none of your doubts go unexplained. The material/textbooks provided are extremely helpful as well. Good course if you want to actually learn about the topics.",
+        3.0
+    )
+
+    
+    await professor.addProfReview(
+        user2.toString(),
+        professor15._id.toString(),
+        "She gives you every opportunity to do well, but you must use the resources provided.",
+        5.0
+    )
+
+    
+    await professor.addProfReview(
+        user2.toString(),
+        professor20._id.toString(),
+        "This class was a disaster.",
+        3.0
+    )
 
 
-
- 
-
- 
-
-   
-
-
+    await professor.addProfReview(
+        user2.toString(),
+        professor21._id.toString(),
+        "He's really chill. It's accounting so its obviously boring, but he makes dad jokes here and there that are pretty decent I must say. HW takes a decent amount of time, so just get it done early. Overall, easy going guy, easy going class. As long as you pay attention, you should be fine.",
+        5.0
+    )
 
 
+    await professor.addProfReview(
+        user2.toString(),
+        professor22._id.toString(),
+        "Keeps the class light and fun for boring subject like accounting.",
+        5.0
+    )
 
 
+    await professor.addProfReview(
+        user2.toString(),
+        professor23._id.toString(),
+        "Easiest A I've ever seen. Took the online course of FIN615. Each week is a quiz which is not at all thought-provoking. Midterm and final have same exact questions from weekly quizzes so it'd be extremely difficult to not do well. 2 chances on each quiz/midterm/final. Didn't learn a thing.",
+        {difficulty: "Medium", chanceToGetA: 'Low', workLoad: 'Medium'},
+        3.0
+    )
 
 
+    await professor.addProfReview(
+        user2.toString(),
+        professor24._id.toString(),
+        "He talks whatever comes to his mind. Doesnt follow any syllabus. No discipline. Nothing is clear in this course. Everything is unpredictable. This is introductory course. But the things he asking without teaching is a lot. Basically, you are on yourself. Definitely wouldt recommend.",
+        1.0
+    )
 
 
+    await professor.addProfReview(
+        user2.toString(),
+        professor30._id.toString(),
+        "This class helped me soooo much and it was because the professor cared. He offered as much help as anyone needed and we really felt he wanted us to succeed.",
+        4.0
+    )
 
 
+    await professor.addProfReview(
+        user2.toString(),
+        professor31._id.toString(),
+        "He knows his stuff very well and will give you feedback on a lot of things. Took him for SKIL and cares about you learning the material and explaining how signal processing works etc.",
+        3.7
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor32._id.toString(),
+        "She is one of the most boring teachers I have had in my whole life. You will learn nothing in lecture all year. We are two weeks in and 80% of the kids and lecture don't even show up because it is pointless. Every time i go to lecture I regret it.",
+        2.8
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor33._id.toString(),
+        "The GOAT. Best lab I've ever taken. Guy is hilarious and keeps things interesting. Looks out for you and make sure you learn.",
+        4.8
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor34._id.toString(),
+        "Such an easy going guy! Really tries to help everyone get a good grade.",
+        4.0
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor35._id.toString(),
+        "He's awesome.",
+        4.0
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor36._id.toString(),
+        "Professor Lukic is incredible. I sucked at physics entering this class, but Lukic's passion for physics and astronomy made me become more interested in physics. His problems are difficult but I guarantee class with him will be a worthwhile experience.",
+        4.1
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor37._id.toString(),
+        "There is hardly anything good I can write about her. She is smart obviously, but the ability to convey that information was definitely not strong, even when asking for help, it felt like you were talking to Karen who is the one who is always right. It was really degrading and I don't intend to take her again, I'll just chemistry with someone else.",
+        3.0
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor38._id.toString(),
+        "Even with trying to do the work early and understanding it lectures begin.",
+        3.5
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor39._id.toString(),
+        "He always have problem explaining the material. Avoid him as soon as possible!! Book explain better than him. He always confuses his students. His hand writing is the worst. most of the students learn by themselves so its like wasting of your money. He hardly answer the question correctly. He will confuse you on the board like in a second!!",
+        2.2
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor40._id.toString(),
+        "There is hardly anything good I can write about her. She is smart obviously, but the ability to convey that information was definitely not strong, even when asking for help, it felt like you were talking to Karen who is the one who is always right. It was really degrading and I don't intend to take her again, I'll just chemistry with someone else.",
+        3.0
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor50._id.toString(),
+        "Actually the worst teacher ever. I've never had a worse professor in my life. Doesn't lecture anything worth knowing and then tests and homework are extremely difficult.",
+        1.0
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor51._id.toString(),
+        "Such an easy going guy! Really tries to help everyone get a good grade.",
+        4.8
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor53._id.toString(),
+        "He's such a cutie pie, and I just love listening to his voice during class.",
+        4.5
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor54._id.toString(),
+        "I did not like this teacher, he made us memorize 20 songs and tested us on only 10 of them on each test.",
+        3.2
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor55._id.toString(),
+        "He is literally the quietest man I've ever met. He shouldn't have been a professor, students can't even hear him from the front row.",
+        2.9
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor56._id.toString(),
+        "Perfect professor, really passionate to teach, puts in alot of effort for students, learnt alot.",
+        4.9
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor57._id.toString(),
+        "He is a good professor. The lecture establishes basic knowledges but it needs some more reading and some google research in order to get better understanding and to complete the exams/quizes.",
+        2.9
+    )
+
+
+    await professor.addProfReview(
+        user2.toString(),
+        professor58._id.toString(),
+        "Do the reading.",
+        4.0
+    )
+
+
+    await professor.addProfReview(
+        user3.toString(),
+        professor10._id.toString(),
+        "Cool.",
+        4.1
+    )
+
+
+    await professor.addProfReview(
+        user3.toString(),
+        professor11._id.toString(),
+        "I found his lectures to be more applicable to real-life situations than reliant on tests and bs work.",
+        5.0
+    )
+
+    await professor.addProfReview(
+        user3.toString(),
+        professor23._id.toString(),
+        "This is THE worst class at Stevens. It froze over in 2009 as all the lectures were recorded then and haven't been touched since. His stub code is years old and contains many bugs/errors that will trip you up. He hasn't touched the materials in years, and often needs to refresh his memory when asked questions. He can't be bothered to help! AVOID!!!!.",
+        2.0
+    )
+
+    
+    await professor.addProfReview(
+        user3.toString(),
+        professor30._id.toString(),
+        "No coding assignments, only homework is latex notes for a few of the lectures with a partner. Offers extra credit. Easiest grader I've had and laid back atmosphere.",
+        4.4
+    )
+
+    
+    await professor.addProfReview(
+        user3.toString(),
+        professor31._id.toString(),
+        "Amazing knowledge about Statistical Machine Learning and AI. Must take class if you want to get into Machine Learning research!",
+        4.4
+    )
+
+    
+    await professor.addProfReview(
+        user3.toString(),
+        professor32._id.toString(),
+        "The lectures are great albeit a little bit of information overload. Take notes as midterm and endterm would be straight out of the material. A lot depends on the project. Pay attention to the grading criteria. Course is not really technical but is crucial if you are interested in building clean UI and want to learn about usability.",
+        4.7
+    )
+
+    
+    await professor.addProfReview(
+        user3.toString(),
+        professor33._id.toString(),
+        "Awesome Professor. Very cool about doubts of students. Respected.",
+        4.7
+    )
+
+    
+    await professor.addProfReview(
+        user3.toString(),
+        professor34._id.toString(),
+        "You actually will learn a lot in his class, and Prof. Duggan is a good teacher. But it's simply not worth it to take this class! Some of the homework assignments (given weekly) take up to 15 hours to complete. If you finish an assignment within 10 hours you'll probably feel good about yourself. Save yourself a lot of anxiety and frustration. Avoid!",
+        2.0
+    )
+
+    
+    await professor.addProfReview(
+        user3.toString(),
+        professor41._id.toString(),
+        "DO NOT LISTEN TO ANYONE, YOU WILL REGRET TAKING THIS CLASS.",
+        2.0
+    )
+
+    
+    await professor.addProfReview(
+        user3.toString(),
+        professor45._id.toString(),
+        "Overall, a good prof who helps his students understand the computer programming in order to excel you need to put in the time and effort.",
+        4.2
+    )
+
+    
+    await professor.addProfReview(
+        user3.toString(),
+        professor49._id.toString(),
+        "great for someone new to computer science.",
+        4.2
+    )
+
+    
+    await professor.addProfReview(
+        user4.toString(),
+        professor4._id.toString(),
+        "The most genuine professor who helped me achieve my dreams.",
+        3.5
+    )
+
+    
+    await professor.addProfReview(
+        user4.toString(),
+        professor9._id.toString(),
+        "You really have to put the work in to get a good grade.",
+        3.5
+    )
+
+    
+    await professor.addProfReview(
+        user4.toString(),
+        professor16._id.toString(),
+        "Do not listen to the Wang naysayers, they don't know C. (That is a Wang inside joke, he is a hilarious man if you actually listen to him) If you have ever talked to anyone that says Wang is a horrible teacher, they probably dropped the class and changed their major. If you ask him for help he is way more than willing to help you. Studying is a must.",
+        3.0
+    )
+
+    
+    await professor.addProfReview(
+        user4.toString(),
+        professor34._id.toString(),
+        "He's good if you can understand him or read whats on the board. He tends to not erase completely and just keep writing over things.",
+        3.0
+    )
+
+    
+    await professor.addProfReview(
+        user4.toString(),
+        professor50._id.toString(),
+        "He is a very honest person, very helpful-minded and is approachable at any time. His lab is very disoriented though, most of the students speak native languages while at work and you don't understand a thing, also is very reluctant to clean lab spaces. His presentations are very detailed and he cites lot of examples which is helpful. really good.",
+        4.3
+    )
+
+    
+    await professor.addProfReview(
+        user4.toString(),
+        professor51._id.toString(),
+        "Professor is honestly very helpful and tries to improve his lectures/class. If you manage to find him with time, he will provide help as much as he can. Honestly though, his lectures are rather dry and it does not help there is much overlap with materials course so you may be bored with the class. Tests are fair and shouldn't be too difficult.",
+        4.3
+    )
+
+    
+    await professor.addProfReview(
+        user5.toString(),
+        professor52._id.toString(),
+        "The best professor in the school.",
+        4.0
+    )
+
+    
+    await professor.addProfReview(
+        user5.toString(),
+        professor1._id.toString(),
+        "Highly respected.",
+        4.0
+    )
+
+    
+    await professor.addProfReview(
+        user1.toString(),
+        professor53._id.toString(),
+        "His class makes you think. I would totally take any class he will teach.",
+        3.6
+    )
+
+    
+    await professor.addProfReview(
+        user6.toString(),
+        professor34._id.toString(),
+        "Awesome teacher! Very helpful!",
+        3.6
+    )
+
+    
+    await professor.addProfReview(
+        user6.toString(),
+        professor35._id.toString(),
+        "George is an awesome professor and you learn so much in performance!",
+        4.7
+    )
+
+    
+    await professor.addProfReview(
+        user6.toString(),
+        professor39._id.toString(),
+        "Such a great professor.",
+        4.7
+    )
+
+    
+    await professor.addProfReview(
+        user6.toString(),
+        professor40._id.toString(),
+        "Such a great professor. A little hard to understand but the class is supe r easy and gives great lectures.",
+        3.2
+    )
+
+    
+    await professor.addProfReview(
+        user6.toString(),
+        professor43._id.toString(),
+        "Great professor. very friendly and understanding. Easy class.",
+        3.2
+    )
+
+    
+    await professor.addProfReview(
+        user6.toString(),
+        professor57._id.toString(),
+        "This professor is kind and intelligent. However, he can't teach.",
+        3.7
+    )
+
+    
+    await professor.addProfReview(
+        user6.toString(),
+        professor58._id.toString(),
+        "Hes a good person but when it comes to teaching I wouldnt recommend him especially if you are not proficient in Excel.",
+        3.7
+    )
+
+    
+    await professor.addProfReview(
+        user7.toString(),
+        professor11._id.toString(),
+        "Actually the worst teacher ever. I've never had a worse professor in my life. Doesn't lecture anything worth knowing and then tests and homework are extremely difficult.",
+        1.0
+    )
+
+    
+    await professor.addProfReview(
+        user7.toString(),
+        professor32._id.toString(),
+        "Worst ever.",
+        1.0
+    )
+
+    
+    await professor.addProfReview(
+        user8.toString(),
+        professor7._id.toString(),
+        "Despite his name, haMID is absolutely not MID. He is a great professor. His lectures are interesting and useful. A great teacher. Tests are slightly difficult but fair.",
+        4.5
+    )
+
+    
+    await professor.addProfReview(
+        user8.toString(),
+        professor14._id.toString(),
+        "The best professor in the ME department. Explains content very clearly, and in a manner easy to understand even if you did not understand thermodynamics. Funny and understanding professor. Peaked my interest in thermal engineering, and would take courses in order to have him as my professor. If you can have him, take him over any other professor.",
+        4.5
+    )
+
+    
+    await professor.addProfReview(
+        user9.toString(),
+        professor11._id.toString(),
+        "Sad times. So much pain. Makes me want to see the sun blow up.",
+        3.0
+    )
+
+    
+    await professor.addProfReview(
+        user9.toString(),
+        professor23._id.toString(),
+        "Salman is great. Honestly one of the best lecturers ever and makes the material very clear. The homework is challenging but helps with the exams.",
+        4.0
+    )
+
+    
+    await professor.addProfReview(
+        user9.toString(),
+        professor35._id.toString(),
+        "I took ME 524 Fundamentals of Remote Sensing with Dimitri online. There was no textbook, the only material he gave us were his PowerPoints from class. He gave these to us without any notes, audio or video to accompany them, they were useless. I spoke to my department head about this, I don't think this class will be offered for credit anymore.",
+        2.9
+    )
+
+    
+    await professor.addProfReview(
+        user10.toString(),
+        professor14._id.toString(),
+        "The GOAT. Best lab I've ever taken. Guy is hilarious and keeps things interesting. Looks out for you and make sure you learn.",
+        4.8
+    )
+
+    
+    await professor.addProfReview(
+        user10.toString(),
+        professor13._id.toString(),
+        "I felt like the tests were hard and the study guides were not always reflective of the material on the test or what was covered on the lecture slides in class.",
+        3.0
+    )
+
+    
+    await professor.addProfReview(
+        user11.toString(),
+        professor16._id.toString(),
+        "nice professor, she is very helpful. if you need more help, she is very happy to help you. always go to class on time. dont skip class.",
+        3.5
+    )
+
+    
+    await professor.addProfReview(
+        user12.toString(),
+        professor35._id.toString(),
+        "Really just a great dude all around. You can tell how much he cares about teaching and he gives off dad energy. He's always ready to help!",
+        5.0
+    )
+
+    
+    await professor.addProfReview(
+        user13.toString(),
+        professor18._id.toString(),
+        "Great Professor! Very Fun class with lots of discussions. We talk about Hobbes, Locke, Rousseau Mill, and many more. I must say Professor Ryan is a great Political Science teacher and I would recommend him to anyone.",
+        2.5
+    )
+
+    
+    await professor.addProfReview(
+        user14.toString(),
+        professor36._id.toString(),
+        "Horrible professor. Lack of organization, effort to care for his students' performances in his classes, and open-mindedness. This class has been one of the worst classes I've ever taken at Stevens.",
+        2.3
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor42._id.toString(),
+        "One of the worst professors I have ever had to be with. This man cannot teach for the life of him. Everything is disorganized, the classes barely understand what is going on. And this specific course focuses way too much on assembly programming instead of actual microprocessor architecture. Avoid at all cost.",
+        2.3
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor23._id.toString(),
+        "He is a good professor. The lecture establishes basic knowledges but it needs some more reading and some google research in order to get better understanding and to complete the exams/quizes. Also, he has very strong background what he teach.",
+        2.9
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor6._id.toString(),
+        "Going to his class was stressful.",
+        3.9
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor44._id.toString(),
+        "Robert is one of the toughest teachers I have ever had not due to the class vigor but merely due to his incompetence. He does not post instructions for assignments, expects too much from students, no one pays attention during class but you miss nothing. All class periods are mandatory but are just slide shows. 0/5 if it wasn't funny to watch.",
+        1.0
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor45._id.toString(),
+        "He makes sure his class understands the topic well and he delivers at his best. It is always fun attending his lectures.",
+        4.1
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor46._id.toString(),
+        "pathetic professor. Never take it. Teaches all out of scope things.",
+        2.9
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor47._id.toString(),
+        "If you want marks, don't take this class. At your face she doesn't seem strict at all, but when the marks come in, you'll know the real her. She says she wants us to learn, but doesn't realize, some aren't experienced or aren't interested in this compulsory course. She destroyed my GPA. Two exams, two presentations, so much homework and a B.",
+        3.0
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor48._id.toString(),
+        "Great guy.",
+        5.0
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor2._id.toString(),
+        "He's great, super knowledgeable on the material and is very clear with his expectations.",
+        4.0
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor3._id.toString(),
+        "Attendance is not mandatory but participation in his classes will go a long way.",
+        3.9
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor4._id.toString(),
+        "He is a good professor and you would understand whatever he teaches if you in full concentration. However, in-class it gets boring a bit, but revise his lectures and you'll get to learn a lot. His assignments are good. It is fairly easy to get an A, if the assignments are done correctly. Overall he is a good Prof.",
+        3.8
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor5._id.toString(),
+        "He is awful at teaching and grading. Never take any course with him.",
+        2.5
+    )
 
 
 
@@ -3562,27 +4726,46 @@ const main = async () => {
 
     
     await professor.addProfReview(
-        user1.toString(),
-        professor1._id.toString(),
-        "Really just a great dude all around. You can tell how much he cares about teaching and he gives off dad energy. He's always ready to help!",
+        user15.toString(),
+        professor10._id.toString(),
+        "By far, one of the most rigorous courses I have ever had. Having said that, If you put in time and effort, learning opportunity is limitless in the course and professor creamer makes sure that none of your doubts go unexplained. The material/textbooks provided are extremely helpful as well. Good course if you want to actually learn about the topics.",
+        3.0
+    )
+
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor11._id.toString(),
+        "She gives you every opportunity to do well, but you must use the resources provided.",
         5.0
     )
 
-        /*
-        let professor1 = await professor.createProfessor(
-            'Patrick Hill',
-            "Computer Science",
-            'Best prefessor at Stevens! I recieved and offer for an internship based just on the knowledge I got in his course. Hill is tough but fair and you get out of his course what you put into it. I feel I m a stronger developer after taking his course for sure.',
-            "http://www.graffixnyc.com/images/me2.jpg"
-        )
+    
+    await professor.addProfReview(
+        user15.toString(),
+        professor12._id.toString(),
+        "This class was a disaster.",
+        3.0
+    )
+
+
+    await professor.addProfReview(
+        user15.toString(),
+        professor13._id.toString(),
+        "He's really chill. It's accounting so its obviously boring, but he makes dad jokes here and there that are pretty decent I must say. HW takes a decent amount of time, so just get it done early. Overall, easy going guy, easy going class. As long as you pay attention, you should be fine.",
+        5.0
+    )
+
+
+    await professor.addProfReview(
+        user15.toString(),
+        professor14._id.toString(),
+        "Keeps the class light and fun for boring subject like accounting.",
+        5.0
+    )
+
+
         
-        await professor.addProfReview(
-            user1.toString(),
-            professor1._id.toString(),
-            "Really just a great dude all around. You can tell how much he cares about teaching and he gives off dad energy. He's always ready to help!",
-            5.0
-        )
-        */
     } catch(e) {
         console.log(e);
     }

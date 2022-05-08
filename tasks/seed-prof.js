@@ -7,7 +7,7 @@ const { ObjectId } = require('mongodb');
 const main = async () => {
     const db = await connection.connectToDb();
 
-     //await db.dropDatabase
+    await db.dropDatabase
     try {
 
         let user1 = await user.createUser('jguo32', "aaa@gmail.com", "Computer Science", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K9xcJVlIG31wI5COY_Qep5GahOMmCmLYEQ&usqp=CAU", '123456');
