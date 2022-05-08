@@ -1,8 +1,8 @@
 <div class="container-fluid sticky-top bg-white shadow-sm">
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-            <a href="http://localhost:3000/home" class="navbar-brand">
-                <h1 class="m-0 text-primary"></i>RateMyCourses</h1>
+            <a href="home" class="navbar-brand">
+                <h1 class="m-0 text-primary">RateMyCourses</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -32,6 +32,7 @@
             <div class="col-lg-3 mb-3 mb-lg-0" style="min-height: 300px;">
                 <div class="position-relative h-100">
                     <img class="position-absolute w-100 h-100 rounded"
+                        alt="coursePicture"
                         src={{courseDetail.picture}}
                         style="object-fit: cover;">
                 </div>
@@ -40,16 +41,15 @@
                 <div class="mb-4">
                     <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Course Info</h5>
                     <h1 class="display-10">{{courseDetail.courseName}}</h1>
-                    <h4 class="display-10">Academic Level: &nbsp&nbsp {{courseDetail.academicLevel}}</h4>
-                    <h4 class="display-10">Course Owner: &nbsp&nbsp {{courseDetail.courseOwner}}</h4>
-                    <h4 class="display-10">Instructional Formats: &nbsp&nbsp {{courseDetail.instructionalFormats}}</h4>
-                    <h4 class="display-10">Type: &nbsp&nbsp {{courseDetail.type}}</h4>
-                    <h4 class="display-10">Difficulty: &nbsp&nbsp {{courseDetail.metrics.difficulty}}</h4>
-                    <h4 class="display-10">WorkLoad: &nbsp&nbsp {{courseDetail.metrics.workLoad}}</h4>
+                    <h4 class="display-10">Academic Level: &nbsp;&nbsp; {{courseDetail.academicLevel}}</h4>
+                    <h4 class="display-10">Course Owner: &nbsp;&nbsp; {{courseDetail.courseOwner}}</h4>
+                    <h4 class="display-10">Instructional Formats: &nbsp;&nbsp; {{courseDetail.instructionalFormats}}</h4>
+                    <h4 class="display-10">Type: &nbsp;&nbsp; {{courseDetail.type}}</h4>
+                    <h4 class="display-10">Difficulty: &nbsp;&nbsp; {{courseDetail.metrics.difficulty}}</h4>
+                    <h4 class="display-10">WorkLoad: &nbsp;&nbsp; {{courseDetail.metrics.workLoad}}</h4>
                     
-                    <h4 class="display-10">Chance To Get A: &nbsp&nbsp {{courseDetail.metrics.chanceToGetA}}</h4>
-                    <h4 class="display-10">Overall Rating: &nbsp&nbsp {{courseDetail.overallRating}}</h4>
-                    </h4>
+                    <h4 class="display-10">Chance To Get A: &nbsp;&nbsp; {{courseDetail.metrics.chanceToGetA}}</h4>
+                    <h4 class="display-10">Overall Rating: &nbsp;&nbsp; {{courseDetail.overallRating}}</h4>
                     <h4 class="display-10">description: </h4>
                     <p>{{courseDetail.description}}</p>
                 </div>
@@ -111,41 +111,41 @@
             <form id="sumbitForm" method="POST">
                 <div class="row g-3">
                     <div class="col-12">
-                        <span>
+                        <div>
                             <h6>Difficulty:    </h6>
-                            <input type="radio" name="Difficulty" id = "Difficulty" value="Easy" required/>&nbsp Easy
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            <input type="radio" name="Difficulty" id = "Difficulty" value="Medium"/>&nbsp Medium
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            <input type="radio" name="Difficulty" id = "Difficulty" value="Hard"/>&nbsp Hard
-                        </span>
+                            <input type="radio" name="Difficulty" class = "Difficulty" value="Easy" required/>&nbsp; Easy
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="Difficulty" class = "Difficulty" value="Medium"/>&nbsp; Medium
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="Difficulty" class = "Difficulty" value="Hard"/>&nbsp; Hard
+                        </div>
                     </div>
                     <div class="col-12">
-                        <span>
+                        <div>
                             <h6>ChanceToGetA:    </h6>
-                            <input type="radio" name="ChanceToGetA" id = "ChanceToGetA" value="Low" required/>&nbsp Low 
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            <input type="radio" name="ChanceToGetA" id = "ChanceToGetA" value="Medium" />&nbsp Medium
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            <input type="radio" name="ChanceToGetA" id = "ChanceToGetA" value="High"/>&nbsp High
-                        </span>
+                            <input type="radio" name="ChanceToGetA" class = "ChanceToGetA" value="Low" required/>&nbsp; Low 
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="ChanceToGetA" class = "ChanceToGetA" value="Medium" />&nbsp; Medium
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="ChanceToGetA" class = "ChanceToGetA" value="High"/>&nbsp; High
+                        </div>
                     </div>
                     <div class="col-12">
-                        <span>
+                        <div>
                             <h6>WorkLoad:    </h6>
-                            <input type="radio" name="WorkLoad" id = "WorkLoad" value="Less" required/>&nbsp Less
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            <input type="radio" name="WorkLoad" id = "WorkLoad" value="Medium"/>&nbsp Medium
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            <input type="radio" name="WorkLoad" id = "WorkLoad" value="Plenty"/>&nbsp Plenty
-                        </span>
+                            <input type="radio" name="WorkLoad" class = "WorkLoad" value="Less" required/>&nbsp; Less
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="WorkLoad" class = "WorkLoad" value="Medium"/>&nbsp; Medium
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="WorkLoad" class = "WorkLoad" value="Plenty"/>&nbsp; Plenty
+                        </div>
                     </div>
                     <div class="col-12">
-                        <textarea name= "comment"class="form-control bg-white border-0" rows="5" placeholder="Comment" id = "Comment"required></textarea>
+                        <textarea name= "comment" class="form-control bg-white border-0" rows="5" placeholder="Comment" id = "Comment" required></textarea>
                     </div>
                     
                     <div class="col-12 sm-6">
-                            <select class="form-select w-25" style="height: 60px;" name="rating" id = "Rating" required>
+                            <select class="form-select w-25" style="height: 60px;" name="rating" id = "Rating">
                                 <option selected="">Rating</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -244,7 +244,22 @@
 
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-<script src="static/js/jquery-3.4.1.min.js" type="64f10123938904b78188bb72-text/javascript"></script> 
+<script src="static/js/jquery-3.4.1.min.js" ></script> 
+<script data-cfasync="false" src="static/js/email-decode.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+<script src="static/js/bootstrap.bundle.min.js" ></script>
+<script src="static/js/easing.min.js" ></script>
+<script src="static/js/waypoints.min.js" ></script>
+<script src="static/js/owl.carousel.min.js" ></script>
+<script src="static/js/moment.min.js" ></script>
+<script src="static/js/moment-timezone.min.js" ></script>
+<script src="static/js/tempusdominus-bootstrap-4.min.js" ></script>
+
+<script src="static/js/main.js" ></script>
+<script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
+
+{{!-- <script src="static/js/jquery-3.4.1.min.js" type="64f10123938904b78188bb72-text/javascript"></script> 
 <script data-cfasync="false" src="static/js/email-decode.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
@@ -257,7 +272,7 @@
 <script src="static/js/tempusdominus-bootstrap-4.min.js" type="64f10123938904b78188bb72-text/javascript"></script>
 
 <script src="static/js/main.js" type="64f10123938904b78188bb72-text/javascript"></script>
-<script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script>
+<script src="static/js/rocket-loader.min.js" data-cf-settings="64f10123938904b78188bb72-|49" defer=""></script> --}}
 
 <script>
     $(document).ready(function () {
@@ -270,9 +285,9 @@
             var id = "{{courseDetail._id}}"
             console.log(id)
             var formData = {
-                Difficulty: $("#Difficulty").val(),
-                ChanceToGetA: $("#ChanceToGetA").val(),
-                WorkLoad: $("#WorkLoad").val(),
+                Difficulty: $(".Difficulty").val(),
+                ChanceToGetA: $(".ChanceToGetA").val(),
+                WorkLoad: $(".WorkLoad").val(),
                 rating: $("#Rating").val(),
                 comment: $("#Comment").val()
             };
